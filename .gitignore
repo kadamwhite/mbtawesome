@@ -1,2 +1,7 @@
+node_modules/
+
 # App-specific configuration
 config.yml
+
+# File used for authoring WIP test suites during development
+test.js
