@@ -1,0 +1,6 @@
+# To get started, copy this file to `config.yml` and replace the open
+# development key with your own MBTA API Key (visit the MBTA website at
+# http://realtime.mbta.com/Portal/ to register for a key)
+
+api:
+  key: 'wX9NwuHnZU2ToO7GmGR9uw'
