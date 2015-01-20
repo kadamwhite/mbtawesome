@@ -14,12 +14,15 @@ var publicRouter = require( './routes' );
 
 var app = express();
 
-// view engine setup
+// view engine setup:
 var templateEnv = nunjucks.configure( 'views', {
   autoescape: true,
   express: app
 });
 require( './views/filters' ).setEnvironment( templateEnv );
+browserify.settings({
+  transform: [ 'nunjucksify' ]
+});
 
 // Support stylus & serve static assets
 function compileStylus( str, path ) {
@@ -62,7 +65,7 @@ app.use(function( req, res, next ) {
 if ( app.get( 'env' ) === 'development' ) {
   app.use(function( err, req, res, next ) {
     res.status( err.status || 500 );
-    res.render( 'error.html', {
+    res.render( 'error.nunj', {
       message: err.message,
       error: err,
       __dirname: __dirname
@@ -74,7 +77,7 @@ if ( app.get( 'env' ) === 'development' ) {
 // no stacktraces leaked to user
 app.use(function( err, req, res, next ) {
   res.status( err.status || 500 );
-  res.render( 'error.html', {
+  res.render( 'error.nunj', {
     message: err.message,
     error: {}
   });

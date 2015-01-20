@@ -5,7 +5,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get( '/:line', function( req, res ) {
-  res.render( 'line-overview.html', {
+  res.render( 'line-overview.nunj', {
     title: req.params.line + ' line overview',
     line: {
       name: req.params.line

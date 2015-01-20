@@ -1,7 +1,7 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main.nunj" %}
 
 {% block main %}
-  {% include "partials/home.html" %}
+  {% include "partials/home.nunj" %}
 {% endblock %}
 
 {% block fixtures %}

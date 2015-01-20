@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main.nunj" %}
 
 {% block main %}
   <h1>{{ error.message }}</h1>
