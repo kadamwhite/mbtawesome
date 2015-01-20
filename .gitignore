@@ -1,4 +1,19 @@
+# NPM
 node_modules/
+
+# Bower: Exclude non-source files
+public/js/lib/**/*.html
+public/js/lib/**/*.json
+public/js/lib/**/*.md
+public/js/lib/**/*.txt
+public/js/lib/**/.gitignore
+public/js/lib/**/.npmignore
+public/js/lib/**/CNAME
+public/js/lib/**/LICENSE
+# Exclude jQuery source files
+public/js/lib/jquery/src
+# Exclude underscore entirely (in favor of lodash)
+public/js/lib/underscore
 
 # Server-Compiled Assets
 public/css
