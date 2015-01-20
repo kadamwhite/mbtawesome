@@ -12,6 +12,11 @@
     <script>
       {% block fixtures %}{% endblock %}
     </script>
-    {% block scripts %}{% endblock %}
+    <script src="/js/lib/lodash/dist/lodash.underscore.min.js"></script>
+    <script src="/js/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/js/lib/backbone/backbone.js"></script>
+    {% block scripts %}
+      <script src="/js/app.js"></script>
+    {% endblock %}
   </body>
 </html>

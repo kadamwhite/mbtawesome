@@ -8,6 +8,7 @@ var cookieParser = require( 'cookie-parser' );
 var bodyParser = require( 'body-parser' );
 var nunjucks = require( 'nunjucks' );
 var stylus = require( 'stylus' );
+var browserify = require( 'browserify-middleware' );
 
 var routes = require( './routes/index' );
 var users = require( './routes/users' );
@@ -34,6 +35,9 @@ app.use( stylus.middleware({
   dest: path.join( __dirname, 'public/css' ),
   compile: compileStylus
 }) );
+
+// Bundle and serve first-party application code
+app.get( '/js/app.js', browserify( './public/js/app.js' ) );
 
 // Other middleware & static assets
 app.use( favicon( __dirname + '/public/favicon.png' ) );
