@@ -125,4 +125,94 @@ describe( 'api-query module', function() {
 
   });
 
+  describe( 'scheduleByTrip()', function() {
+
+    it ( 'creates a request against the schedulebytrip endpoint', function() {
+      query.scheduleByTrip( 'tripId' );
+      expect( mockRestler.get ).to.have.been
+        .calledWith( 'apiroot/v2/schedulebytrip?trip=tripId&api_key=apikey&format=json' );
+    });
+
+    it ( 'requires the "trip" parameter to be specified', function() {
+      return expect( query.scheduleByTrip() ).to.be
+        .rejectedWith( 'missing required parameter: trip' );
+    });
+
+  });
+
+  describe( 'predictionsByStop()', function() {
+
+    it ( 'creates a request against the predictionsbystop endpoint', function() {
+      query.predictionsByStop( 'stopID' );
+      expect( mockRestler.get ).to.have.been
+        .calledWith( 'apiroot/v2/predictionsbystop?stop=stopID&api_key=apikey&format=json' );
+    });
+
+    it ( 'requires the "stop" parameter to be specified', function() {
+      return expect( query.predictionsByStop() ).to.be
+        .rejectedWith( 'missing required parameter: stop' );
+    });
+
+  });
+
+  describe( 'predictionsByRoute()', function() {
+
+    it ( 'creates a request against the predictionsbyroute endpoint', function() {
+      query.predictionsByRoute( 'routeID' );
+      expect( mockRestler.get ).to.have.been
+        .calledWith( 'apiroot/v2/predictionsbyroute?route=routeID&api_key=apikey&format=json' );
+    });
+
+    it ( 'requires the "route" parameter to be specified', function() {
+      return expect( query.predictionsByRoute() ).to.be
+        .rejectedWith( 'missing required parameter: route' );
+    });
+
+  });
+
+  describe( 'predictionsByTrip()', function() {
+
+    it ( 'creates a request against the predictionsbytrip endpoint', function() {
+      query.predictionsByTrip( 'tripId' );
+      expect( mockRestler.get ).to.have.been
+        .calledWith( 'apiroot/v2/predictionsbytrip?trip=tripId&api_key=apikey&format=json' );
+    });
+
+    it ( 'requires the "trip" parameter to be specified', function() {
+      return expect( query.predictionsByTrip() ).to.be
+        .rejectedWith( 'missing required parameter: trip' );
+    });
+
+  });
+
+  describe( 'vehiclesByRoute()', function() {
+
+    it ( 'creates a request against the vehiclesbyroute endpoint', function() {
+      query.vehiclesByRoute( 'routeID' );
+      expect( mockRestler.get ).to.have.been
+        .calledWith( 'apiroot/v2/vehiclesbyroute?route=routeID&api_key=apikey&format=json' );
+    });
+
+    it ( 'requires the "route" parameter to be specified', function() {
+      return expect( query.vehiclesByRoute() ).to.be
+        .rejectedWith( 'missing required parameter: route' );
+    });
+
+  });
+
+  describe( 'vehiclesByTrip()', function() {
+
+    it ( 'creates a request against the vehiclesbytrip endpoint', function() {
+      query.vehiclesByTrip( 'tripId' );
+      expect( mockRestler.get ).to.have.been
+        .calledWith( 'apiroot/v2/vehiclesbytrip?trip=tripId&api_key=apikey&format=json' );
+    });
+
+    it ( 'requires the "trip" parameter to be specified', function() {
+      return expect( query.vehiclesByTrip() ).to.be
+        .rejectedWith( 'missing required parameter: trip' );
+    });
+
+  });
+
 });
