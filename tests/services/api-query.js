@@ -95,4 +95,34 @@ describe( 'api-query module', function() {
 
   });
 
+  describe( 'scheduleByStop()', function() {
+
+    it ( 'creates a request against the schedulebystop endpoint', function() {
+      query.scheduleByStop( 'stopID' );
+      expect( mockRestler.get ).to.have.been
+        .calledWith( 'apiroot/v2/schedulebystop?stop=stopID&api_key=apikey&format=json' );
+    });
+
+    it ( 'requires the "stop" parameter to be specified', function() {
+      return expect( query.scheduleByStop() ).to.be
+        .rejectedWith( 'missing required parameter: stop' );
+    });
+
+  });
+
+  describe( 'scheduleByRoute()', function() {
+
+    it ( 'creates a request against the schedulebyroute endpoint', function() {
+      query.scheduleByRoute( 'routeID' );
+      expect( mockRestler.get ).to.have.been
+        .calledWith( 'apiroot/v2/schedulebyroute?route=routeID&api_key=apikey&format=json' );
+    });
+
+    it ( 'requires the "route" parameter to be specified', function() {
+      return expect( query.scheduleByRoute() ).to.be
+        .rejectedWith( 'missing required parameter: route' );
+    });
+
+  });
+
 });
