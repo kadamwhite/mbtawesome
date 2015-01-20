@@ -1,10 +1,10 @@
 {% extends "layouts/main.html" %}
 
 {% block main %}
-  {% include "partials/home.html" %}
+  {% include "partials/line-overview.html" %}
 {% endblock %}
 
 {% block fixtures %}
-  var data = {{ data | serialize }};
+  var data = {{ line | serialize }};
   console.log( data );
 {% endblock %}

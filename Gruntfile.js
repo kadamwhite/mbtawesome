@@ -6,10 +6,12 @@ module.exports = function( grunt ) {
   // Reusable file globbing
   var files = {
     grunt: [ 'Gruntfile.js' ],
+    client: [
+      'public/js/**/*.js',
+      '!public/js/lib/**/*.js'
+    ],
     lib: [
       'app.js',
-      'public/js/**/*.js',
-      '!public/js/lib/**/*.js',
       'services/**/*.js',
       'routes/**/*.js',
       'views/**/*.js'
@@ -55,12 +57,18 @@ module.exports = function( grunt ) {
         options: jshintrc,
         src: files.lib
       },
+      client: {
+        options: _.merge({
+          browser: true
+        }, jshintrc ),
+        src: files.client
+      },
       tests: {
         options: _.merge({
           globals: {
-            'beforeEach': false,
-            'describe': false,
-            'it': false
+            beforeEach: false,
+            describe: false,
+            it: false
           }
         }, jshintrc ),
         src: files.tests
