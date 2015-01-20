@@ -40,6 +40,9 @@ module.exports = function( grunt ) {
       lib: {
         src: files.lib
       },
+      client: {
+        src: files.client
+      },
       tests: {
         src: files.tests
       }
@@ -88,6 +91,10 @@ module.exports = function( grunt ) {
       lib: {
         files: files.lib,
         tasks: [ 'jscs:lib', 'jshint:lib', 'simplemocha' ]
+      },
+      client: {
+        files: files.client,
+        tasks: [ 'jscs:client', 'jshint:client' ]
       },
       tests: {
         files: files.tests,

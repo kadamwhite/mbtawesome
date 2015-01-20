@@ -6,9 +6,18 @@
   "private": true,
   "scripts": {
     "postinstall": "bower install",
+
     "start": "./bin/www",
+    "dev": "nodemon ./bin/www",
+
+    "watch": "grunt watch",
+    "watch:lib": "grunt watch:lib",
+    "watch:client": "grunt watch:client",
+    "watch:tests": "grunt watch:tests",
+
     "lint": "grunt lint",
-    "test": "grunt"
+    "pretest": "grunt lint",
+    "test": "grunt test"
   },
   "author": "K.Adam White <adam@kadamwhite.com> (http://www.kadamwhite.com/)",
   "license": "MIT",
@@ -20,6 +29,7 @@
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1",
     "grunt-jscs": "^1.2.0",
     "grunt-newer": "^1.1.0",
     "grunt-simple-mocha": "^0.4.0",
@@ -27,6 +37,7 @@
     "jshint-stylish": "^1.0.0",
     "load-grunt-tasks": "^2.0.0",
     "mocha": "^2.1.0",
+    "nodemon": "^1.3.2",
     "proxyquire": "^1.3.1",
     "restler": "^3.2.2",
     "sinon": "^1.12.2",
