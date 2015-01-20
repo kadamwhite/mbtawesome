@@ -4,3 +4,8 @@
   <h1>{{ title }}</h1>
   <p>Welcome to {{ title }}</p>
 {% endblock %}
+
+{% block fixtures %}
+var data = {{ data | serialize }};
+console.log( data );
+{% endblock %}

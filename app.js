@@ -15,10 +15,11 @@ var users = require( './routes/users' );
 var app = express();
 
 // view engine setup
-nunjucks.configure( 'views', {
+var templateEnv = nunjucks.configure( 'views', {
   autoescape: true,
   express: app
 });
+require( './views/filters' ).setEnvironment( templateEnv );
 
 // Support stylus & serve static assets
 function compileStylus( str, path ) {

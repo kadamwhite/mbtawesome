@@ -9,7 +9,8 @@ module.exports = function( grunt ) {
     lib: [
       'app.js',
       'services/**/*.js',
-      'routes/**/*.js'
+      'routes/**/*.js',
+      'views/**/*.js'
     ],
     tests: [ 'tests/**/*.js' ]
   };
