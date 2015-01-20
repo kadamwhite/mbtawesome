@@ -52,17 +52,7 @@ function makeQueryHandler( query, requiredParams ) {
   return function() {
     var args = Array.prototype.slice.call( arguments );
 
-    if ( ! _.isObject( args[ 0 ] ) && args.length < requiredParams.length ) {
-      var errorMessage = [
-        requiredParams.length,
-        'parameters required, but only',
-        arguments.length,
-        'supplied'
-      ].join( ' ' );
-
-      return Promise.reject( new Error( errorMessage ) );
-    }
-
+    // Parse the arguments into a query parameter object
     var params = _.reduce( args, function( memo, value, index ) {
       // Walk through the provided required params, one by one
       var key = requiredParams[ index ];
@@ -78,6 +68,16 @@ function makeQueryHandler( query, requiredParams ) {
       }
       return memo;
     }, {});
+
+    try {
+      _.each( requiredParams, function( key ) {
+        if ( _.isUndefined( params[ key ] ) ) {
+          throw new Error( 'missing required parameter: ' + key );
+        }
+      });
+    } catch ( err ) {
+      return Promise.reject( err );
+    }
 
     var queryString = url.format({
       query: _.merge( params, {
@@ -95,11 +95,11 @@ function makeQueryHandler( query, requiredParams ) {
         resolve( data );
       }
 
-      function handleFailure( data, response ) {
-        reject( data );
+      function handleFailure( err, response ) {
+        reject( err );
       }
 
-      // Long-term it may make sense not to handle all erros the same...
+      // Long-term it may make sense not to handle all errors the same...
       request
         // https://github.com/danwrong/restler#events
         .on( 'success', handleSuccess )
@@ -111,6 +111,37 @@ function makeQueryHandler( query, requiredParams ) {
 }
 
 module.exports = {
+  /**
+   * Return a complete list of routes for which data can be requested.
+   *
+   * @method routes
+   * @param {(...String|Object)} params Required and/or optional query parameter values
+   * @type {Promise} A promise to the /routes API response
+   */
   routes: makeQueryHandler( 'routes', [] ),
+  /**
+   * Return a list of routes that serve a particular stop.
+   *
+   * @method routesByStop
+   * @param {(...String|Object)} params Required and/or optional query parameter values
+   * @type {Promise} A promise to the /routesbystop API response
+   */
+  routesByStop: makeQueryHandler( 'routesbystop', [ 'stop' ] ),
+  /**
+   * Returns a list of all stops served by a route
+   *
+   * @method stopsByRoute
+   * @param {(...String|Object)} params Required and/or optional query parameter values
+   * @type {Promise} A promise to the /stopsbyroute API response
+   */
+  stopsByRoute: makeQueryHandler( 'stopsbyroute', [ 'route' ] ),
+  /**
+   * Returns a list of all stops near a specified latitude/longitude.
+   *
+   * @method stopsByLocation
+   * @param {(...Float|Object)} params Required and/or optional query parameter values
+   * @type {Promise} A promise to the /stopsbylocation API response
+   */
+  stopsByLocation: makeQueryHandler( 'stopsbylocation', [ 'lat', 'lon' ] ),
   _makeQueryHandler: makeQueryHandler
 };
