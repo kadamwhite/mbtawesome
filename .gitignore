@@ -5,3 +5,6 @@ config.yml
 
 # File used for authoring WIP test suites during development
 test.js
+
+# Logs
+*.log
