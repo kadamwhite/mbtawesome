@@ -7,6 +7,7 @@ var logger = require( 'morgan' );
 var cookieParser = require( 'cookie-parser' );
 var bodyParser = require( 'body-parser' );
 var nunjucks = require( 'nunjucks' );
+var stylus = require( 'stylus' );
 
 var routes = require( './routes/index' );
 var users = require( './routes/users' );
@@ -19,6 +20,21 @@ nunjucks.configure( 'views', {
   express: app
 });
 
+// Support stylus & serve static assets
+function compileStylus( str, path ) {
+  return stylus( str )
+    .set( 'filename', path )
+    // .set( 'sourcemap', true )
+    .set( 'compress', true );
+}
+
+app.use( stylus.middleware({
+  src: path.join( __dirname, 'public/stylus' ),
+  dest: path.join( __dirname, 'public/css' ),
+  compile: compileStylus
+}) );
+
+// Other middleware & static assets
 app.use( favicon( __dirname + '/public/favicon.png' ) );
 app.use( logger( 'dev' ) );
 app.use( bodyParser.json() );

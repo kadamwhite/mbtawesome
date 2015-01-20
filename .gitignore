@@ -1,5 +1,8 @@
 node_modules/
 
+# Server-Compiled Assets
+public/css
+
 # App-specific configuration
 config.yml
 
