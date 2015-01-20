@@ -52,7 +52,7 @@ function makeQueryHandler( query, requiredParams ) {
   return function() {
     var args = Array.prototype.slice.call( arguments );
 
-    if ( arguments.length < requiredParams.length ) {
+    if ( ! _.isObject( args[ 0 ] ) && args.length < requiredParams.length ) {
       var errorMessage = [
         requiredParams.length,
         'parameters required, but only',
@@ -72,7 +72,7 @@ function makeQueryHandler( query, requiredParams ) {
         memo = _.merge( memo, value );
       } else {
         // as may individual values for required parameter keys
-        if ( _.isDefined( key ) && _.isString( key ) ) {
+        if ( _.isString( key ) ) {
           memo[ key ] = value;
         }
       }
