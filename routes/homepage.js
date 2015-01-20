@@ -2,16 +2,18 @@
 
 var express = require( 'express' );
 var router = express.Router();
+/*jshint -W079 */// Suppress warning about redefiniton of `Promise`
+var Promise = require( 'bluebird' );
+
+var mbtapi = require( '../services/mbtapi' );
 
 /* GET home page. */
 router.get( '/', function( req, res ) {
-  res.render( 'index.nunj', {
-    title: 'Express',
-    data: {
-      some: {
-        data: 'object'
-      }
-    }
+  Promise.props({
+    title: 'MBTAwesome',
+    routes: mbtapi.subwayRoutes()
+  }).then(function( context ) {
+    res.render( 'index.nunj', context );
   });
 });
 

@@ -5,6 +5,5 @@
 {% endblock %}
 
 {% block fixtures %}
-  var data = {{ data | serialize }};
-  console.log( data );
+  var routes = {{ routes | serialize }};
 {% endblock %}

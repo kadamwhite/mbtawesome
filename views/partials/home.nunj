@@ -2,7 +2,8 @@
 <p>Welcome to {{ title }}</p>
 
 <div class="lines">
-  <h2><a href="/line/red">Red Line</a></h2>
-  <h2><a href="/line/orange">Orange Line</a></h2>
-  <h2><a href="/line/blue">Blue Line</a></h2>
+{% for key, route in routes %}
+  {# route is an array of route objects: pull the name off the first one #}
+  <h2><a href="/line/{{ key }}">{{ route.name }}</a></h2>
+{% endfor %}
 </div>

@@ -4,7 +4,10 @@ var $ = require( '../deps' ).jQuery;
 var tmplLineOverview = require( '../templates' ).get( 'line-overview' );
 
 function lineOverviewRoute( line ) {
-  $( '.container' ).html( tmplLineOverview.render({ title: line + ' line' }) );
+  var lineObj = window.routes && window.routes[ line ];
+  $( '.container' ).html( tmplLineOverview.render({
+    title: lineObj.name + ' Overview'
+  }) );
   // console.log( 'line overview for ' + line + ' line' );
 }
 
