@@ -39,7 +39,7 @@ app.use( stylus.middleware({
 }) );
 
 // Bundle and serve first-party application code
-app.get( '/js/app.js', browserify( './public/js/app.js' ) );
+app.get( '/js/app.js', browserify( './public/js/client-app.js' ) );
 
 // Other middleware & static assets
 app.use( favicon( __dirname + '/public/favicon.png' ) );
