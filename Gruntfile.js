@@ -13,6 +13,7 @@ module.exports = function( grunt ) {
     lib: [
       'app.js',
       'db/**/*.js',
+      'models/**/*.js',
       'services/**/*.js',
       'routes/**/*.js',
       'views/**/*.js'

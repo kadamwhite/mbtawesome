@@ -4,7 +4,7 @@
 var _ = require( 'lodash' );
 /*jshint -W079 */// Suppress warning about redefiniton of `Promise`
 var Promise = require( 'bluebird' );
-var get = require( './api-query' );
+var api = require( './api-query' );
 
 function subwayRoutes() {
   // Sample routes API response data structure:
@@ -18,7 +18,7 @@ function subwayRoutes() {
   //     }]
   //   }]
   // }
-  return get.routes().then(function( data ) {
+  return api.routes().then(function( data ) {
     // GTFS specification: Light Rail === 0, Subway === 1
     // https://developers.google.com/transit/gtfs/reference
     var routesList = _.find( data.mode, {
@@ -65,7 +65,7 @@ function routesByLine( line ) {
 function stopsByLine( line ) {
   return routesByLine( line ).then(function( routes ) {
     var stopPromises = _.map( routes.routeIds, function( routeId ) {
-      return get.stopsByRoute( routeId );
+      return api.stopsByRoute( routeId );
     });
 
     return Promise.all( stopPromises ).then(function( stops ) {
