@@ -2,7 +2,10 @@
 
 var BaseModel = require( './base-model' );
 
-var Route = BaseModel.extend({});
+var Route = BaseModel.extend({
+  tableName: 'routes',
+  idAttribute: 'route_id'
+});
 
 // TODO: Implement a custom save method on BaseModel to white-list
 // only the fields appearing in a models' `.fields` array
@@ -52,3 +55,5 @@ Route.fields = [
 // - 6: Gondola, Suspended cable car. Typically used for aerial cable cars
 //      where the car is suspended from the cable.
 // - 7: Funicular. Any rail system designed for steep inclines.
+
+module.exports = Route;
