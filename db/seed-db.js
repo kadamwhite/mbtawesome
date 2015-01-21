@@ -18,14 +18,14 @@ var Stop = require( '../models/stop' );
  * @property {Function[]} promFns An array of functions that return promises
  * @return {Promise} A promise to the completion of all calls
  */
-function sequence(promFns) {
-  return promFns.reduce(function(sequence, promFn) {
+function sequence( promFns ) {
+  return promFns.reduce(function( sequence, promFn ) {
     // Wait for the previous promise in the array to complete...
-    return sequence.then(function(collectedResults) {
+    return sequence.then(function( collectedResults ) {
       // ...then execute the provided function
-      return promFn().then(function(results) {
+      return promFn().then(function( results ) {
         // Store the result of the returned promise,
-        collectedResults.push(results);
+        collectedResults.push( results );
         // and return the results collection in our then
         return collectedResults;
       });
@@ -39,9 +39,6 @@ function sequence(promFns) {
 function saveCollectionAsModel( arr, model ) {
   var collection = model.collection( arr );
 
-  /* saving temporarily disabled b/c I don't know what I'm doing */
-  /* ----------------------------------------------------------- */
-
   var savePromises = collection.invoke( 'save', {}, {
     method: 'insert'
   });
@@ -50,13 +47,12 @@ function saveCollectionAsModel( arr, model ) {
     console.log( 'Inserted ' + result.length + ' records' );
     return result;
   });
-
-  return collection;
 }
 
 console.log( 'Fetching routes from the API server...' );
 
-api.routes().then(function( data ) {
+api.routes().then(function persistRoutesInDatabase( data ) {
+
   // Sample routes API response data structure:
   // {
   //   mode: [{
@@ -83,7 +79,8 @@ api.routes().then(function( data ) {
     .value();
 
   return saveCollectionAsModel( routes, Route );
-}).then(function( routesCollection ) {
+
+}).then(function getStopsFromAPI( routesCollection ) {
 
   // Filter method to select only routes categorized as subway or light rail
   function subwayAndLightRail( model ) {
@@ -99,16 +96,16 @@ api.routes().then(function( data ) {
     var route_id = model.get( 'route_id' );
     // Return a function that will pull stops for this route from the API
     return function() {
-      return api.stopsByRoute( model.get( 'route_id' ) ).then(function( stops ) {
+      return api.stopsByRoute( route_id ).then(function( stops ) {
         // From the API documentation, v2.0.1:
         // > The `route_id` and `route_name` properties of the `stop_list` are
         // > currently not displayed. They will be displayed as properties of
         // > the `stop_list` in a future update.
-        stops.route_id = model.get( 'route_id' );
+        stops.route_id = route_id;
         stops.route_name = model.get( 'route_name' );
         return stops;
       });
-    }
+    };
   }
 
   // Convert the collection of models into an array of functions that will fire requests
@@ -118,7 +115,9 @@ api.routes().then(function( data ) {
 
   // Execute those requests sequentially, rather than spamming the API all at once
   return sequence( getStopsByRouteFns );
-}).then(function( results ) {
+
+}).then(function persistStopsInDatabase( results ) {
+
   // `results` is an array of API response data.
   // Sample stops API response data structure:
   // {
@@ -157,9 +156,25 @@ api.routes().then(function( data ) {
     .value();
 
   return saveCollectionAsModel( stops, Stop );
+
+}).then(function associateRoutesToStops( stopsCollection ) {
+
+  // Work through each stop, attaching the relevant route record
+  return Promise.all( stopsCollection.map(function( stop ) {
+    // Return a promise so that Promise.all will resolve when every
+    // record is successfully attached
+    return Route.where({
+      route_id: stop.get( 'route_id' )
+    }).fetch().then(function( route ) {
+      // Create the association between a stop and its route
+      return route.related( 'stops' ).attach( stop );
+    });
+  }) );
+
 }).then(function( result ) {
   console.log( 'Data Population Complete. Exiting...' );
   process.exit( 0 );
+
 }).catch(function( err ) {
   console.error( 'Something went wrong! Aborting...' );
   console.error( err );

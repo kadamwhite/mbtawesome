@@ -1,9 +1,6 @@
 'use strict';
 
 exports.up = function( knex ) {
-  // return knex.schema
-  // .dropTableIfExists( 'stops' )
-  // .createTableIfNotExists( 'stops', function( t ) {
   return knex.schema.createTable( 'stops', function( t ) {
     t.increments( 'id' ).primary();
     t.text( 'stop_id' ).index();
@@ -18,7 +15,8 @@ exports.up = function( knex ) {
     t.text( 'route_id' ).notNullable();
   }).createTable( 'routes_stops', function( t ) {
     t.integer( 'route_id' ).references( 'routes.id' );
-    t.integer( 'stops_id' ).references( 'stops.id' );
+    t.integer( 'stop_id' ).references( 'stops.id' );
+    t.primary( 'stop_id', 'route_id' );
   });
 };
 

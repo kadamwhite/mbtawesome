@@ -4,7 +4,7 @@ var BaseModel = require( './base-model' );
 
 var Stop = BaseModel.extend({
   tableName: 'stops',
-  route: function() {
+  routes: function() {
     return this.belongsToMany( require( './route' ) );
   }
 });
