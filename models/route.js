@@ -4,36 +4,48 @@ var BaseModel = require( './base-model' );
 
 var Route = BaseModel.extend({
   tableName: 'routes',
-  idAttribute: 'route_id'
+  stops: function() {
+    return this.belongsToMany( require( './stop' ) );
+  }
 });
 
 // TODO: Implement a custom save method on BaseModel to white-list
 // only the fields appearing in a models' `.fields` array
 Route.fields = [
   /**
+   * Incrementing primary key
+   * @property {Number} id
+   */
+  'id',
+
+  /**
    * The unique GTFS-compatible identifier for the route
    * @example "931_"
    * @property {String} route_id
    */
   'route_id',
+
   /**
    * The human-readable name for the route
    * @example "Red Line"
    * @property {String} route_name
    */
   'route_name',
+
   /**
    * The GTFS-compatible identifier for the type of service (mode)
    * @example 1
    * @property {Number} route_type
    */
   'route_type',
+
   /**
    * The human-readable name for the type of service (mode)
    * @example "Subway"
    * @property {String} mode_name
    */
   'mode_name',
+
   /**
    * Whether this route should be hidden from users in some contexts
    * @property {Boolean} [route_hide]
