@@ -3,5 +3,33 @@
 # http://realtime.mbta.com/Portal/ to register for a key)
 
 api:
-  root: 'http://realtime.mbta.com/developer/api/v2/'
-  key: 'wX9NwuHnZU2ToO7GmGR9uw'
+  root: http://realtime.mbta.com/developer/api/v2/
+  key: wX9NwuHnZU2ToO7GmGR9uw
+
+db:
+  mode: development
+  environments:
+    development:
+      client: pg
+      debug: true
+      connection:
+        host:     localhost
+        database: mbtawesome
+        user:     mbtawesome
+        password: awesome
+        port:     5432
+      migrations:
+        directory: db/migrations
+        tableName: knex_migrations
+    production:
+      client: pg
+      connection:
+        database: my_db
+        user:     username
+        password: password
+      pool:
+        min: 2
+        max: 10
+      migrations:
+        directory: db/migrations
+        tableName: knex_migrations
