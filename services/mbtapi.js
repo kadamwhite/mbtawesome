@@ -2,6 +2,8 @@
 'use strict';
 
 var _ = require( 'lodash' );
+/*jshint -W079 */// Suppress warning about redefiniton of `Promise`
+var Promise = require( 'bluebird' );
 var get = require( './api-query' );
 
 function subwayRoutes() {
@@ -41,6 +43,19 @@ function subwayRoutes() {
 }
 
 /**
+ * Get an array of routes for a specific subway line
+ *
+ * @method routesByLine
+ * @param  {String} line One of "red", "green", or "blue"
+ * @return {Promise} A promise to an array of route objects
+ */
+function routesByLine( line ) {
+  return subwayRoutes().then(function( routes ) {
+    return routes[ line ];
+  });
+}
+
+/**
  * Get an array of individual stops on the routes for the provided line
  *
  * @method stopsByLine
@@ -48,12 +63,19 @@ function subwayRoutes() {
  * @return {Promise} A promise to an array of stops
  */
 function stopsByLine( line ) {
-  return subwayRoutes().then(function( routes ) {
-    return routes[ line ];
+  return routesByLine( line ).then(function( routes ) {
+    var stopPromises = _.map( routes.routeIds, function( routeId ) {
+      return get.stopsByRoute( routeId );
+    });
+
+    return Promise.all( stopPromises ).then(function( stops ) {
+      return stops;
+    });
   });
 }
 
 module.exports = {
   subwayRoutes: subwayRoutes,
+  routesByLine: routesByLine,
   stopsByLine: stopsByLine
 };

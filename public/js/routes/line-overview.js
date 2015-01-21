@@ -3,12 +3,24 @@
 var $ = require( '../deps' ).jQuery;
 var tmplLineOverview = require( '../templates' ).get( 'line-overview' );
 
-function lineOverviewRoute( line ) {
-  var lineObj = window.routes && window.routes[ line ];
+function render( line ) {
   $( '.container' ).html( tmplLineOverview.render({
-    title: lineObj.name + ' Overview'
+    title: line.name + ' Overview'
   }) );
-  // console.log( 'line overview for ' + line + ' line' );
+}
+
+function lineOverviewRoute( line ) {
+  var routes = window.routes;
+
+  if ( routes ) {
+    render( routes[ line ] );
+    return;
+  }
+
+  $.get( '/api/v1/routes' ).then(function( routes ) {
+    window.routes = routes;
+    render( routes[ line ] );
+  });
 }
 
 module.exports = lineOverviewRoute;

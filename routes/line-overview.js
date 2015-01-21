@@ -11,7 +11,7 @@ var mbtapi = require( '../services/mbtapi' );
 router.get( '/:line', function( req, res ) {
   var line = req.params.line;
 
-  var stationStops = mbtapi.stopsByLine( line );
+  var stationStops = mbtapi.routesByLine( line );
 
   Promise.props({
     stations: stationStops,

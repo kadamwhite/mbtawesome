@@ -10,8 +10,6 @@ var nunjucks = require( 'nunjucks' );
 var stylus = require( 'stylus' );
 var browserify = require( 'browserify-middleware' );
 
-var publicRouter = require( './routes' );
-
 var app = express();
 
 // view engine setup:
@@ -49,7 +47,9 @@ app.use( bodyParser.urlencoded({ extended: false }) );
 app.use( cookieParser() );
 app.use( express.static( path.join( __dirname, 'public' ) ) );
 
-app.use( '/', publicRouter );
+app.use( '/', require( './routes' ) );
+// MBTAwesome API v1; MBTA API v2. Confusing? Natch.
+app.use( '/api/v1/', require( './routes/api' ) );
 
 // catch 404 and forward to error handler
 app.use(function( req, res, next ) {
