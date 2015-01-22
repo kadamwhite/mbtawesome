@@ -5,13 +5,13 @@ var router = express.Router();
 /*jshint -W079 */// Suppress warning about redefiniton of `Promise`
 var Promise = require( 'bluebird' );
 
-var mbtapi = require( '../services/mbtapi' );
+var db = require( '../services/db' );
 
 /* GET users listing. */
 router.get( '/:line', function( req, res ) {
   var line = req.params.line;
 
-  var stationStops = mbtapi.routesByLine( line );
+  var stationStops = db.routesByLine( line );
 
   Promise.props({
     stations: stationStops,
