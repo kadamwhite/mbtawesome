@@ -1,6 +1,6 @@
 'use strict';
 
-var config = require( './configuration' );
+var config = require( './config' );
 var url = require( 'url' );
 /*jshint -W079 */// Suppress warning about redefiniton of `Promise`
 var Promise = require( 'bluebird' );

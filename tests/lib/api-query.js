@@ -26,11 +26,11 @@ describe( 'api-query module', function() {
       get: sinon.stub().returns({ on: basicOn })
     };
 
-    query = proxyquire( '../../services/api-query', {
+    query = proxyquire( '../../server/lib/api-query', {
       // Mock out the deps for the module api-query uses to create endpoint handlers
-      './make-query-handler': proxyquire( '../../services/make-query-handler', {
+      './make-query-handler': proxyquire( '../../server/lib/make-query-handler', {
         'restler': mockRestler,
-        './configuration': mockConfig
+        './config': mockConfig
       })
     });
   });

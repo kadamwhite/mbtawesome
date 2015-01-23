@@ -51,9 +51,9 @@ app.use( bodyParser.urlencoded({ extended: false }) );
 app.use( cookieParser() );
 app.use( express.static( path.join( __dirname, 'public' ) ) );
 
-app.use( '/', require( './routes' ) );
+app.use( '/', require( './server/routes' ) );
 // MBTAwesome API v1; MBTA API v2. Confusing? Natch.
-app.use( '/api/v1/', require( './routes/api' ) );
+app.use( '/api/v1/', require( './server/routes/api' ) );
 
 // catch 404 and forward to error handler
 app.use(function( req, res, next ) {

@@ -1,7 +1,7 @@
 'use strict';
 
-var config = require( '../services/configuration' );
-var knexConfig = require( '../knexfile' );
+var config = require( '../lib/config' );
+var knexConfig = require( '../../knexfile' );
 
 console.log( 'Connecting to development PostgreSQL database...' );
 

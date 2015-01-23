@@ -6,7 +6,7 @@ var fs = require( 'fs' );
 
 var configuration;
 
-var configPath = path.resolve( __dirname, '../config.yml' );
+var configPath = path.resolve( __dirname, '../../config.yml' );
 
 // Get document, or throw exception on error
 configuration = yaml.safeLoad( fs.readFileSync( configPath, 'utf8' ) );
