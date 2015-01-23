@@ -19,7 +19,11 @@ var templateEnv = nunjucks.configure( 'views', {
 });
 require( './views/filters' ).setEnvironment( templateEnv );
 browserify.settings({
-  transform: [ 'nunjucksify' ]
+  transform: [
+    [ 'nunjucksify', {
+      env: templateEnv
+    }]
+  ]
 });
 
 // Support stylus & serve static assets
