@@ -8,8 +8,7 @@ var nunjucks = require( 'nunjucks' );
 nunjucks.env = new nunjucks.Environment();
 require( '../../views/filters' ).setEnvironment( nunjucks.env );
 
-var Backbone = require( './deps' ).Backbone;
-var $ = require( './deps' ).jQuery;
+var Backbone = require( 'backbone' );
 
 // Namespace
 var MBTApp = window.MBTApp = {};
@@ -26,11 +25,5 @@ Backbone.history.start({
   // silent: true,
   pushState: true
 });
-
-// App-wide link hijacking
-// $( document ).on( 'click', 'a', function( evt ) {
-//   evt.preventDefault();
-//   MBTApp.navigate( evt.target.getAttribute( 'href' ) );
-// });
 
 module.exports = MBTApp;

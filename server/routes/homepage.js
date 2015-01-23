@@ -10,6 +10,7 @@ var db = require( '../services/db' );
 /* GET home page. */
 function homepageRoute( req, res, next ) {
   Promise.props({
+    _homepage: true, // Sets H1 in template
     title: 'MBTAwesome',
     routes: db.subwayRoutes()
   }).then(function( context ) {

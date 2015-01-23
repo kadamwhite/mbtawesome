@@ -1,8 +1,5 @@
 'use strict';
 
-var $ = require( '../../deps' ).jQuery;
-var Backbone = require( '../../deps' ).Backbone;
-
 var StopsListView = require( './view' );
 
 var Stops = require( '../../collections/stops' );
@@ -13,7 +10,7 @@ function lineOverviewRoute( line ) {
     line: line
   });
 
-  var stopsList = new StopsListView({
+  new StopsListView({
     collection: stops
   });
 

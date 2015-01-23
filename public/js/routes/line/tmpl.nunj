@@ -1,5 +1,4 @@
-<h1>{{ title }}</h1>
-<p>Overview of the {{ title }}</p>
+<h1>Overview of the {{ line | capitalize }} line</h1>
 
 <pre>{{ stops | serialize }}</pre>
 

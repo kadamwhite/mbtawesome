@@ -1,20 +1,13 @@
 'use strict';
 
-var Backbone = require( '../../deps' ).Backbone;
-
 var IndexView = require( './view' );
 
-var Line = Backbone.Model.extend({});
-
-var LinesCollection = Backbone.Collection.extend({
-  model: Line,
-  url: '/api/v1/lines'
-});
+var LinesCollection = require( '../../collections/lines' );
 
 function homeRoute() {
   var lines = new LinesCollection();
 
-  var indexView = new IndexView({
+  new IndexView({
     collection: lines
   });
 

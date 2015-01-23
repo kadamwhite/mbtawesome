@@ -1,6 +1,6 @@
 'use strict';
 
-var Backbone = require( '../deps' ).Backbone;
+var Backbone = require( 'backbone' );
 
 var Line = Backbone.Model.extend({});
 

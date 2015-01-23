@@ -1,6 +1,6 @@
 'use strict';
 
-var Backbone = require( '../../deps' ).Backbone;
+var Backbone = require( 'backbone' );
 
 var LineView = Backbone.View.extend({
   el: '.container',
@@ -8,14 +8,15 @@ var LineView = Backbone.View.extend({
   template: require( './tmpl.nunj' ),
 
   initialize: function() {
-    this.listenTo( this.collection, 'sync reset', this.render )
+    this.listenTo( this.collection, 'sync reset', this.render );
   },
 
   render: function() {
     var renderedTemplate = this.template.render({
+      line: this.collection.line,
       stops: this.collection.toJSON()
     });
-    this.$el.html( renderedTemplate )
+    this.$el.html( renderedTemplate );
     return this;
   },
 

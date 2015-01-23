@@ -1,6 +1,6 @@
 'use strict';
 
-var Backbone = require( '../deps' ).Backbone;
+var Backbone = require( 'backbone' );
 
 var Stops = Backbone.Collection.extend({
   model: require( '../models/stop' ),

@@ -21,6 +21,11 @@
   },
   "author": "K.Adam White <adam@kadamwhite.com> (http://www.kadamwhite.com/)",
   "license": "MIT",
+  "browser": {
+    "backbone": "./public/js/lib/backbone.js",
+    "jquery": "./public/js/lib/jquery.js",
+    "lodash": "./public/js/lib/lodash.js"
+  },
   "devDependencies": {
     "bluebird": "^2.8.0",
     "bower": "^1.3.12",
