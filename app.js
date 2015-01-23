@@ -22,7 +22,7 @@ browserify.settings({
   transform: [
     [ 'nunjucksify', {
       env: templateEnv
-    }]
+    } ]
   ]
 });
 

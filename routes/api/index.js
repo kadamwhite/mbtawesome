@@ -4,7 +4,6 @@ var express = require( 'express' );
 var router = express.Router();
 
 var db = require( '../../services/db' );
-var mbtapi = require( '../../services/mbtapi' );
 
 router.get( '/routes', function( req, res ) {
   return db.subwayRoutes().then(function( data ) {
