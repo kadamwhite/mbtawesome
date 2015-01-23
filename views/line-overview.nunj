@@ -5,6 +5,5 @@
 {% endblock %}
 
 {% block fixtures %}
-  var data = {{ stations | serialize }};
-  console.log( data );
+  {# var data = {{ stops | serialize }}; #}
 {% endblock %}

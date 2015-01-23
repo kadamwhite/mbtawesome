@@ -1,10 +1,10 @@
 'use strict';
 
 var $ = require( '../deps' ).jQuery;
-var tmplHome = require( '../templates' ).get( 'home' );
+var tmpl = require( '../../../views/partials/home.nunj' );
 
 function render( routes ) {
-  $( '.container' ).html( tmplHome.render({
+  $( '.container' ).html( tmpl.render({
     title: 'MBTAwesome',
     routes: routes
   }) );
@@ -17,7 +17,6 @@ function homeRoute() {
     return;
   }
   $.get( '/api/v1/routes' ).then(function( routes ) {
-    window.routes = routes;
     render( routes );
   });
 }

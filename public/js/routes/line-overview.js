@@ -1,25 +1,27 @@
 'use strict';
 
 var $ = require( '../deps' ).jQuery;
-var tmplLineOverview = require( '../templates' ).get( 'line-overview' );
+var tmpl = require( '../../../views/partials/line-overview.nunj' );
 
-function render( line ) {
-  $( '.container' ).html( tmplLineOverview.render({
-    title: line.name + ' Overview'
-  }) );
+function render( context ) {
+  var html = tmpl.render( context );
+  $( '.container' ).html( html );
 }
 
 function lineOverviewRoute( line ) {
-  var routes = window.routes;
+  var title = $.getJSON( '/api/v1/routes/' + line ).then(function( routes ) {
+    return routes.name;
+  });
 
-  if ( routes ) {
-    render( routes[ line ] );
-    return;
-  }
+  var stops = $.getJSON( '/api/v1/routes/' + line + '/stops' ).then(function( stops ) {
+    return stops;
+  });
 
-  $.get( '/api/v1/routes' ).then(function( routes ) {
-    window.routes = routes;
-    render( routes[ line ] );
+  $.when( title, stops ).then(function( title, stops ) {
+    render({
+      title: title + ' Overview',
+      stops: stops
+    });
   });
 }
 

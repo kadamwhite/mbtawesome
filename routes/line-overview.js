@@ -11,13 +11,13 @@ var db = require( '../services/db' );
 router.get( '/:line', function( req, res ) {
   var line = req.params.line;
 
-  var stationStops = db.routesByLine( line );
+  var title = db.routesByLine( line ).then(function( route ) {
+    return route.name;
+  });
 
   Promise.props({
-    stations: stationStops,
-    title: stationStops.then(function( route ) {
-      return route.name + ' Overview';
-    })
+    stops: db.stopsByLine( line ),
+    title: title
   }).then(function( context ) {
     res.render( 'line-overview.nunj', context );
   });

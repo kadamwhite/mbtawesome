@@ -3,6 +3,7 @@
 /*jshint -W106 */// Disable underscore_case warnings
 var _ = require( 'lodash' );
 var Route = require( '../models/route' );
+var Stop = require( '../models/stop' );
 
 /**
  * Get a dictionary of subway lines by color slug
@@ -10,10 +11,10 @@ var Route = require( '../models/route' );
  * @return {Promise} A promise to an object of line definition objects
  */
 function subwayRoutes() {
-  return Route.collection().query(function( qb ) {
-    qb.where({
+  return Route.collection().query({
+    where: {
       route_type: 1
-    });
+    }
   }).fetch().then(function( routes ) {
     return _.chain( routes.toJSON() )
       // Group together different routes on the same subway line
@@ -46,7 +47,41 @@ function routesByLine( line ) {
   });
 }
 
+/**
+ * Get an array of individual stops on the provided routes
+ *
+ * @method stopsByRoute
+ * @param {String|Array} routes A route ID string, or array of route ID strings
+ * @return {Promise} A promise to an array of stop objects
+ */
+function stopsByRoute( routes ) {
+  if ( ! _.isArray( routes ) ) {
+    routes = [ routes ];
+  }
+
+  return Stop.collection().query(function( qb ) {
+    qb.where( 'route_id', 'in', routes );
+  }).fetch().then(function( stops ) {
+    return stops;
+  });
+}
+
+/**
+ * Get an array of individual stops on the routes for the provided line
+ *
+ * @method stopsByLine
+ * @param {String} line One of "red," "green" or "blue"
+ * @return {Promise} A promise to an array of stop objects
+ */
+function stopsByLine( line ) {
+  return routesByLine( line ).then(function( routes ) {
+    return stopsByRoute( routes.routeIds );
+  });
+}
+
 module.exports = {
   subwayRoutes: subwayRoutes,
-  routesByLine: routesByLine
+  routesByLine: routesByLine,
+  stopsByRoute: stopsByRoute,
+  stopsByLine: stopsByLine
 };
