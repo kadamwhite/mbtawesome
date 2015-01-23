@@ -2,8 +2,7 @@
   "verbose": false,
   "watch": [
     "bin",
-    "routes",
-    "services",
+    "server",
     "views",
     "app.js",
     "config.yml"
