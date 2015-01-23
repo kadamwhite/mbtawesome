@@ -14,9 +14,10 @@ module.exports = function( grunt ) {
       'app.js',
       'db/**/*.js',
       'models/**/*.js',
-      'services/**/*.js',
       'routes/**/*.js',
-      'views/**/*.js'
+      'services/**/*.js',
+      'views/**/*.js',
+      'www/bin'
     ],
     tests: [ 'tests/**/*.js' ]
   };
