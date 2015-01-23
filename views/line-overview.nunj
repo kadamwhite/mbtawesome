@@ -1,9 +1,9 @@
 {% extends "layouts/main.nunj" %}
 
-{% block main %}
-  {% include "partials/line-overview.nunj" %}
-{% endblock %}
+{% block main %}{% endblock %}
 
 {% block fixtures %}
-  {# var data = {{ stops | serialize }}; #}
+  {# var data = {
+    stops = {{ stops | serialize }}
+  }; #}
 {% endblock %}

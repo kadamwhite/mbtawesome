@@ -7,12 +7,11 @@ var Promise = require( 'bluebird' );
 
 var db = require( '../services/db' );
 
-/* GET users listing. */
-router.get( '/:line', function( req, res ) {
+function lineOverviewRoute( req, res ) {
   var line = req.params.line;
 
   var title = db.routesByLine( line ).then(function( route ) {
-    return route.name;
+    return route.name + ' Overview | MBTAwesome';
   });
 
   Promise.props({
@@ -21,6 +20,6 @@ router.get( '/:line', function( req, res ) {
   }).then(function( context ) {
     res.render( 'line-overview.nunj', context );
   });
-});
+}
 
-module.exports = router;
+module.exports = lineOverviewRoute;

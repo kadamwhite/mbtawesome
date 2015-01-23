@@ -1,0 +1,11 @@
+<ul class="lines">
+{% for route in routes %}
+  <li>
+    <h2>
+      <a href="/{{ route.id }}">
+        {{ route.name }}
+      </a>
+    </h2>
+  </li>
+{% endfor %}
+</ul>

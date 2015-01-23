@@ -12,21 +12,25 @@ var Backbone = require( './deps' ).Backbone;
 var $ = require( './deps' ).jQuery;
 
 // Namespace
-var MBTApp = {};
+var MBTApp = window.MBTApp = {};
 
-MBTApp.router = require( './routes' );
+MBTApp.router = require( './router' );
+
+MBTApp.navigate = function( target ) {
+  MBTApp.router.navigate( target, {
+    trigger: true
+  });
+};
 
 Backbone.history.start({
-  pushState: true,
-  silent: true
+  // silent: true,
+  pushState: true
 });
 
 // App-wide link hijacking
-$( document ).on( 'click', 'a', function( evt ) {
-  evt.preventDefault();
-  MBTApp.router.navigate( evt.target.getAttribute( 'href' ), {
-    trigger: true
-  });
-});
+// $( document ).on( 'click', 'a', function( evt ) {
+//   evt.preventDefault();
+//   MBTApp.navigate( evt.target.getAttribute( 'href' ) );
+// });
 
 module.exports = MBTApp;

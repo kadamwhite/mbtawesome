@@ -8,13 +8,13 @@ var Promise = require( 'bluebird' );
 var db = require( '../services/db' );
 
 /* GET home page. */
-router.get( '/', function( req, res ) {
+function homepageRoute( req, res, next ) {
   Promise.props({
     title: 'MBTAwesome',
     routes: db.subwayRoutes()
   }).then(function( context ) {
     res.render( 'index.nunj', context );
-  });
-});
+  }).catch( next );
+}
 
-module.exports = router;
+module.exports = homepageRoute;

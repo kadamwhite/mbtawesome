@@ -1,9 +1,0 @@
-<h1>{{ title }}</h1>
-<p>Welcome to {{ title }}</p>
-
-<div class="lines">
-{% for key, route in routes %}
-  {# route is an array of route objects: pull the name off the first one #}
-  <h2><a href="/line/{{ key }}">{{ route.name }}</a></h2>
-{% endfor %}
-</div>

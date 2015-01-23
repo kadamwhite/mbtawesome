@@ -24,12 +24,13 @@ function subwayRoutes() {
       })
       // Reduce each nested array of routes to a single object
       .reduce(function( memo, routeGroup, line ) {
-        memo[ line ] = {
+        memo.push({
+          id: line,
           name: _.first( routeGroup ).route_name,
           routeIds: _.pluck( routeGroup, 'route_id' )
-        };
+        });
         return memo;
-      }, {})
+      }, [])
       .value();
   });
 }
@@ -43,7 +44,9 @@ function subwayRoutes() {
  */
 function routesByLine( line ) {
   return subwayRoutes().then(function( routes ) {
-    return routes[ line ];
+    return _.findWhere( routes, {
+      id: line
+    });
   });
 }
 

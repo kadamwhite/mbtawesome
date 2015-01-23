@@ -5,6 +5,14 @@
     <link rel="stylesheet" href="/css/app.css" />
   </head>
   <body>
+    <nav class="top-nav">
+      {% block top_nav %}
+      {% if _homepage %}<h1{% else %}<p{% endif %} class="site-header">
+        MBTAwesome
+      {% if _homepage %}</h1>{% else %}</p>{% endif %}
+      {% endblock %}
+    </nav>
+
     <div class="container">
       {% block main %}{% endblock %}
     </div>
