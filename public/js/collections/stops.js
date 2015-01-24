@@ -10,6 +10,7 @@ var Stops = Backbone.Collection.extend({
     this.line = opts.line;
 
     // Auto-compact data on load
+    // TODO: Do this de-duping on the server?
     this.on( 'reset sync', this.compact );
   },
 
@@ -89,7 +90,14 @@ var Stops = Backbone.Collection.extend({
     })( routeIds );
 
     // Remove duplicates from the collection
-    this.remove( duplicatedStops );
+    this._removedStops = this.remove( duplicatedStops );
+  },
+
+  expand: function() {
+    if ( this._removedStops ) {
+      this.add( this._removedStops );
+      this._removedStops = null;
+    }
   },
 
   byStation: function() {
@@ -97,16 +105,25 @@ var Stops = Backbone.Collection.extend({
       .groupBy(function( stop ) {
         return stop.get( 'parent_station' );
       })
-      .reduce(function( memo, group ) {
-        memo.push( group );
-        return memo;
-      }, [])
+      .values()
       .sortBy(function( group ) {
-        // Descending order by station ID
-        window.g = group;
-        return -_.find( group, function( stop ) {
+        // Sort by stop order for direction_id === 0
+        return _.find( group, function( stop ) {
           return stop.get( 'direction_id' ) === 0;
-        }).get( 'stop_id' );
+        }).get( 'stop_order' );
+      })
+      .value();
+  },
+
+  byRoute: function( directionId ) {
+    directionId = _.isUndefined( directionId ) ? 0 : directionId;
+    var stops = this.groupBy( 'direction_id' )[ directionId ];
+    return _.chain( stops )
+      .sortBy(function( stop ) {
+        return stop.get( 'stop_order' );
+      })
+      .groupBy(function( stop ) {
+        return stop.get( 'route_id' );
       })
       .value();
   }
