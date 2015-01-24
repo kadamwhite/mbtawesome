@@ -27,7 +27,8 @@ var Stops = Backbone.Collection.extend({
 
     // Nest dictionarys of stop IDs to stops within one of stops by route ID
     // (Uses reduce to replicate the behavior of lodash.mapValues)
-    var stopsByIdByRoute = _.reduce( this.groupBy( 'route_id' ), function( stopsByRoute, stops, routeId ) {
+    var stopsByRoute = this.groupBy( 'route_id' );
+    var stopsByIdByRoute = _.reduce( stopsByRoute, function( stopsByRoute, stops, routeId ) {
       stopsByRoute[ routeId ] = _.reduce( stops, function( memo, stop ) {
         // Return a mapping of a stop's stop_id to that stop object's ID
         // (Note that there may be duplication within a route for terminal
@@ -73,7 +74,7 @@ var Stops = Backbone.Collection.extend({
         // of this same stop: filter down to only the stops with duplicates
         .filter(function( stopId ) {
           return _.any( remainingRouteIds, function( routeId ) {
-            return !!stopsByIdByRoute[ routeId ][ stopId ];
+            return !! stopsByIdByRoute[ routeId ][ stopId ];
           });
         })
         // Return the model for this ID
