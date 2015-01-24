@@ -8,7 +8,7 @@ module.exports = function( grunt ) {
     grunt: [ 'Gruntfile.js' ],
     client: [
       'public/js/**/*.js',
-      '!public/js/lib/**/*.js'
+      '!public/js/vendor/**/*.js'
     ],
     lib: [
       'app.js',

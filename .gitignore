@@ -2,18 +2,18 @@
 node_modules/
 
 # Bower: Exclude non-source files
-public/js/lib/**/*.html
-public/js/lib/**/*.json
-public/js/lib/**/*.md
-public/js/lib/**/*.txt
-public/js/lib/**/.gitignore
-public/js/lib/**/.npmignore
-public/js/lib/**/CNAME
-public/js/lib/**/LICENSE
+public/js/vendor/**/*.html
+public/js/vendor/**/*.json
+public/js/vendor/**/*.md
+public/js/vendor/**/*.txt
+public/js/vendor/**/.gitignore
+public/js/vendor/**/.npmignore
+public/js/vendor/**/CNAME
+public/js/vendor/**/LICENSE
 # Exclude jQuery source files
-public/js/lib/jquery/src
+public/js/vendor/jquery/src
 # Exclude underscore entirely (in favor of lodash)
-public/js/lib/underscore
+public/js/vendor/underscore
 
 # Server-Compiled Assets
 public/css

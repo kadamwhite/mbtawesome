@@ -22,9 +22,9 @@
   "author": "K.Adam White <adam@kadamwhite.com> (http://www.kadamwhite.com/)",
   "license": "MIT",
   "browser": {
-    "backbone": "./public/js/lib/backbone.js",
-    "jquery": "./public/js/lib/jquery.js",
-    "lodash": "./public/js/lib/lodash.js"
+    "backbone": "./public/js/vendor/backbone.js",
+    "jquery": "./public/js/vendor/jquery.js",
+    "lodash": "./public/js/vendor/lodash.js"
   },
   "devDependencies": {
     "bluebird": "^2.8.0",
