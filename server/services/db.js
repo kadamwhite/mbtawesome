@@ -11,10 +11,8 @@ var Stop = require( '../models/stop' );
  * @return {Promise} A promise to an object of line definition objects
  */
 function subwayRoutes() {
-  return Route.collection().query({
-    where: {
-      route_type: 1
-    }
+  return Route.collection().query(function( qb ) {
+    qb.where( 'route_type', '=', 1 );
   }).fetch().then(function( routes ) {
     return _.chain( routes.toJSON() )
       // Group together different routes on the same subway line
