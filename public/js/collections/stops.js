@@ -8,6 +8,9 @@ var Stops = Backbone.Collection.extend({
 
   initialize: function( arr, opts ) {
     this.line = opts.line;
+
+    // Auto-compact data on load
+    this.on( 'reset sync', this.compact );
   },
 
   url: function() {
