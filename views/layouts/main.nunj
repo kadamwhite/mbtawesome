@@ -14,7 +14,12 @@
     </nav>
 
     <div class="container">
-      {% block main %}{% endblock %}
+      {% block main %}
+        {# Spinner displays until client app initializes #}
+        <div class="loading-spinner">
+          <p>Loading</p>
+        </div>
+      {% endblock %}
     </div>
 
     <script>
