@@ -57,7 +57,7 @@
     "allExcept": [ "}", ")" ]
   },
   "requireSpacesInsideArrayBrackets": {
-    "allExcept": [ "[", "]" ]
+    "allExcept": [ "[", "{", "}", "]" ]
   },
   "requireSpacesInsideParentheses": {
     "all": true,

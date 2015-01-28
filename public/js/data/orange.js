@@ -343,4 +343,8 @@ var stations = [{
   }
 }];
 
-module.exports = stations;
+module.exports = {
+  name: 'Orange Line',
+  slug: 'orange',
+  stops: stations
+};

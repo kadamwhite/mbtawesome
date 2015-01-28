@@ -4,18 +4,9 @@
 var cache = window._data || {};
 
 cache.lines = {
-  blue: {
-    name: 'Blue Line',
-    stops: require( './blue' )
-  },
-  orange: {
-    name: 'Orange Line',
-    stops: require( './orange' )
-  },
-  red: {
-    name: 'Red Line',
-    stops: require( './red' )
-  }
+  blue: require( './blue' ),
+  orange: require( './orange' ),
+  red: require( './red' )
 };
 
 module.exports = cache;

@@ -190,4 +190,8 @@ var stations = [{
   }
 }];
 
-module.exports = stations;
+module.exports = {
+  name: 'Blue Line',
+  slug: 'blue',
+  stops: stations
+};

@@ -1,5 +1,9 @@
-<h1>Overview of the {{ line | capitalize }} line</h1>
+<h1>{{ name }}</h1>
 
-<pre>{{ stops | serialize }}</pre>
+<ul>
+  {% for station in stops %}
+  <li>{{ station.name }}</li>
+  {% endfor %}
+</ul>
 
 <a href="/">Back to Home</a>

@@ -7,7 +7,8 @@ var Stops = Backbone.Collection.extend({
   model: require( '../models/stop' ),
 
   initialize: function( arr, opts ) {
-    this.line = opts.line;
+    this.name = opts.name;
+    // this.add( arr );
 
     // Auto-compact data on load
     // TODO: Do this de-duping on the server?

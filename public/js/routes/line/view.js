@@ -1,36 +1,17 @@
 'use strict';
 
-var Backbone = require( 'backbone' );
+var BaseView = require( '../../lib/base-view' );
 
-var LineView = Backbone.View.extend({
+var LineView = BaseView.extend({
   el: '.container',
 
   template: require( './tmpl.nunj' ),
 
   initialize: function() {
-    this.listenTo( this.collection, 'sync reset', this.render );
-  },
-
-  render: function() {
-    var renderedTemplate = this.template.render({
-      line: this.collection.line,
-      stops: this.collection.toJSON()
-    });
-    this.$el.html( renderedTemplate );
-    return this;
-  },
-
-  events: {
-    'click a': 'navigate'
-  },
-
-  navigate: function( evt ) {
-    evt.preventDefault();
-
-    var targetUrl = this.$( evt.target ).attr( 'href' );
-
-    require( '../../client-app' ).navigate( targetUrl );
+    // Auto-render, and listen for subsequent changes
+    this.render().listenTo( this.model, 'change', this.render );
   }
+
 });
 
 module.exports = LineView;

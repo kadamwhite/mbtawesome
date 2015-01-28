@@ -2,19 +2,16 @@
 
 var StopsListView = require( './view' );
 
-var Stops = require( '../../collections/stops' );
+var Line = require( '../../models/line' );
 
 function lineOverviewRoute( line ) {
 
-  var stops = window.stops = new Stops([], {
-    line: line
-  });
+  var line = new Line( require( '../../data' ).lines[ line ] );
 
   new StopsListView({
-    collection: stops
+    model: line
   });
 
-  stops.fetch();
 }
 
 module.exports = lineOverviewRoute;

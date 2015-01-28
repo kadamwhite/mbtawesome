@@ -381,4 +381,8 @@ var stations = [{
   }]
 ]];
 
-module.exports = stations;
+module.exports = {
+  name: 'Red Line',
+  slug: 'red',
+  stops: stations
+};

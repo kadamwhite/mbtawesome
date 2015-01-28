@@ -1,9 +1,9 @@
 <ul class="lines">
-{% for route in routes %}
+{% for line in lines %}
   <li>
     <h2>
-      <a href="/{{ route.id }}">
-        {{ route.name }}
+      <a href="/{{ line.slug }}">
+        {{ line.name }}
       </a>
     </h2>
   </li>

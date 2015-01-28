@@ -1,41 +1,24 @@
 'use strict';
 
-var Backbone = require( 'backbone' );
+var BaseView = require( '../../lib/base-view' );
 
-var IndexView = Backbone.View.extend({
+var IndexView = BaseView.extend({
 
   el: '.container',
 
   template: require( './tmpl.nunj' ),
 
   initialize: function( opts ) {
-    this.listenTo( this.collection, 'sync reset', this.render );
+    // Auto-render, and listen for subsequent changes (there are unlikely to be any)
+    this.render().listenTo( this.collection, 'change', this.render );
   },
 
-  render: function() {
-    var lines = this.collection.toJSON();
-
-    var renderedTemplate = this.template.render({
-      line: this.collection.line,
-      routes: lines
-    });
-
-    this.$el.html( renderedTemplate );
-
-    return this;
-  },
-
-  events: {
-    'click a': 'navigate'
-  },
-
-  navigate: function( evt ) {
-    evt.preventDefault();
-
-    var targetUrl = this.$( evt.target ).attr( 'href' );
-
-    require( '../../client-app' ).navigate( targetUrl );
+  serialize: function() {
+    return {
+      lines: this.collection.toJSON()
+    }
   }
+
 });
 
 module.exports = IndexView;
