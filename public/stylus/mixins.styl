@@ -1,18 +1,28 @@
-$xs-screen = 320px;
-$sm-screen = 480px;
-$md-screen = 768px;
-$lg-screen = 992px;
+// Larger than mobile
+$xs-screen = 400px;
+// Larger than phablet (also when the skeleton grid becomes active)
+$sm-screen = 550px;
+// Larger than tablet
+$md-screen = 750px;
+// Larger than desktop
+$lg-screen = 1000px;
+// Larger than desktop HD
+$xl-screen = 1200px;
 
-respond-below($width)
-  media = 'all and (max-width: %s)' % $width
-  @media media
+respond-below($width) {
+  media = 'all and (max-width: %s)' % $width;
+  @media media {
     {block}
+  }
+}
 
 
-respond-above($width)
-  media = 'all and (min-width: %s)' % $width
-  @media media
+respond-above($width) {
+  media = 'all and (min-width: %s)' % $width;
+  @media media {
     {block}
+  }
+}
 
 respond-between($min-width, $max-width) {
   $max-width = $max-width - 1;
