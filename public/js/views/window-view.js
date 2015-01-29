@@ -11,9 +11,14 @@ var WindowView = Backbone.View.extend({
   },
 
   navigate: function( evt ) {
-    evt.preventDefault();
-
     var targetUrl = this.$( evt.target ).attr( 'href' );
+
+    // Don't hijack any off-site links
+    if ( /http/.test( targetUrl ) ) {
+      return;
+    }
+
+    evt.preventDefault();
 
     require( '../client-app' ).navigate( targetUrl );
   }
