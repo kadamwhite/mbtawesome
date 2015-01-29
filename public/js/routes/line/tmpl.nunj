@@ -3,6 +3,18 @@
 <ul>
   {% for station in stops %}
   <li>{{ station.name }}</li>
+  {% if station.length %}
+    {% for branch in station %}
+    <li>
+      <em>To {{ branch | last | get( 'name' ) }}</em>
+      <ul>
+        {% for station in branch %}
+        <li>{{ station.name }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+    {% endfor %}
+  {% endif %}
   {% endfor %}
 </ul>
 
