@@ -2,6 +2,22 @@
 @import 'lib/skeleton';
 @import 'mixins';
 
+// MBTA Colors
+// ==============================================
+
+// http://en.wikipedia.org/wiki/Template_talk:MBTA_color
+$mbta-red = #fa2d27;    // (formerly #c80000)
+$mbta-orange = #fd8a03; // (formerly #fe6700)
+$mbta-green = #008150;  // (formerly #11773c)
+$mbta-blue = #2f5da6;   // (formerly #00009c)
+$mbta-silver = #9a9c9d; // (formerly #8d8787)
+$mbta-rail = #9d1582;   // (formerly #b60ea0)
+$mbta-boats = #06f;
+
+
+// Global Styles
+// ==============================================
+
 // See http://static.incompl.com/awful
 * {
   box-sizing: border-box;
@@ -10,4 +26,65 @@
 
 body {
   font-family: 'Lucida Grande', 'Helvetica Neue', Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+// Header
+// ==============================================
+
+.top-nav {
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  border-bottom: 1px solid #e1e1e1;
+
+  h1, p {
+    margin: 0;
+    font-size: 2.5rem;
+  }
+}
+
+
+// List Buttons
+// ==============================================
+
+// Mixin
+mbta-color( $color ) {
+  background-color: $color;
+  border-color: $color;
+
+  &:hover {
+    background-color: lighten( $color, 10% );
+    border-color: lighten( $color, 10% );
+  }
+}
+
+.station,
+.line {
+  text-transform: none;
+  display: block;
+  height: auto;
+  padding: 5px 10px;
+
+  &.red {
+    mbta-color( $mbta-red );
+  }
+
+  &.orange {
+    mbta-color( $mbta-orange );
+  }
+
+  &.blue {
+    mbta-color( $mbta-blue );
+  }
+
+  h2, h3, p {
+    font-size: 2rem;
+    margin: 0;
+    color: white;
+  }
 }

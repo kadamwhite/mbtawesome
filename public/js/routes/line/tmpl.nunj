@@ -8,13 +8,21 @@
       <em>To {{ branch | last | get( 'name' ) }}</em>
       <ul>
         {% for station in branch %}
-          <li class="station">{{ station.name }}</li>
+          <li class="station button">
+            <a href="">
+              <h2>{{ station.name }}</h2>
+            </a>
+          </li>
         {% endfor %}
       </ul>
     </li>
     {% endfor %}
   {% else %}
-    <li class="station">{{ station.name }}</li>
+    <li class="station button">
+      <a href="">
+        <h2>{{ station.name }}</h2>
+      </a>
+    </li>
   {% endif %}
 {% endfor %}
 </ul>
