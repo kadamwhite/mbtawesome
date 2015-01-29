@@ -11,8 +11,11 @@ require( '../../views/filters' ).setEnvironment( nunjucks.env );
 var Backbone = require( 'backbone' );
 
 // Namespace
+// ==============================================
 var MBTApp = {};
 
+// Navigation
+// ==============================================
 MBTApp.router = require( './router' );
 
 // Convenience wrapper to always set { trigger: true }
@@ -26,5 +29,9 @@ Backbone.history.start({
   // silent: true,
   pushState: true
 });
+
+// WindowView intercepts all local navigation clicks and converts them to
+// router navigation actions
+require( './views/window-view' );
 
 module.exports = MBTApp;

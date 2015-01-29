@@ -68,9 +68,10 @@ mbta-color( $color ) {
 
 .station,
 .line {
-  text-transform: none;
   display: block;
   height: auto;
+  padding: 0;
+  text-transform: none;
 
   h2, h3, p {
     padding: 5px 10px;
@@ -79,6 +80,7 @@ mbta-color( $color ) {
   }
 
   a {
+    display: block;
     color: white;
   }
 
@@ -98,15 +100,25 @@ mbta-color( $color ) {
 .stations {
   &.red li {
     mbta-color( $mbta-red );
+    &.branch { border-left: 10px solid darken( $mbta-red, 10% ); }
   }
   &.orange li {
     mbta-color( $mbta-orange );
+    &.branch { border-left: 10px solid darken( $mbta-orange, 10% ); }
   }
   &.blue li {
     mbta-color( $mbta-blue );
+    &.branch { border-left: 10px solid darken( $mbta-blue, 10% ); }
   }
 
   li.branch, li.branch:hover {
+    list-style-type: none;
     background-color: $white;
+    text-align: right;
+
+    ul {
+      margin-left: 1.5rem;
+      margin-bottom: 0;
+    }
   }
 }
