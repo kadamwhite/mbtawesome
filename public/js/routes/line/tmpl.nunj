@@ -1,19 +1,19 @@
 <h1>{{ name }}</h1>
 
-<ul>
+<ul class="stations {{ slug }}">
 {% for station in stops %}
   {% if station.length %}
     {% for branch in station %}
     <li class="branch">
       <em>To {{ branch | last | get( 'name' ) }}</em>
       <ul>
-        {% for station in branch %}
-          <li class="station button">
-            <a href="">
-              <h2>{{ station.name }}</h2>
-            </a>
-          </li>
-        {% endfor %}
+      {% for station in branch %}
+        <li class="station button">
+          <a href="">
+            <h2>{{ station.name }}</h2>
+          </a>
+        </li>
+      {% endfor %}
       </ul>
     </li>
     {% endfor %}

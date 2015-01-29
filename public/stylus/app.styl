@@ -71,23 +71,38 @@ mbta-color( $color ) {
   text-transform: none;
   display: block;
   height: auto;
-  padding: 5px 10px;
 
+  h2, h3, p {
+    padding: 5px 10px;
+    margin: 0;
+    font-size: 2rem;
+  }
+
+  a {
+    color: white;
+  }
+
+  // Per-list-item coloring (class goes on <li>)
   &.red {
     mbta-color( $mbta-red );
   }
-
   &.orange {
     mbta-color( $mbta-orange );
   }
-
   &.blue {
     mbta-color( $mbta-blue );
   }
+}
 
-  h2, h3, p {
-    font-size: 2rem;
-    margin: 0;
-    color: white;
+// Per-list coloring (class goes on <ul>)
+.stations {
+  &.red li {
+    mbta-color( $mbta-red );
+  }
+  &.orange li {
+    mbta-color( $mbta-orange );
+  }
+  &.blue li {
+    mbta-color( $mbta-blue );
   }
 }

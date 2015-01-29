@@ -11,7 +11,7 @@ require( '../../views/filters' ).setEnvironment( nunjucks.env );
 var Backbone = require( 'backbone' );
 
 // Namespace
-var MBTApp = window.MBTApp = {};
+var MBTApp = {};
 
 MBTApp.router = require( './router' );
 

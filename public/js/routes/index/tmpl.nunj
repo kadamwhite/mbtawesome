@@ -1,11 +1,11 @@
 <ul class="lines">
 {% for line in lines %}
   <li class="line button {{ line.slug }}">
-    <a href="/{{ line.slug }}">
-      <h2>
+    <h2>
+      <a href="/{{ line.slug }}">
         {{ line.name }}
-      </h2>
-    </a>
+      </a>
+    </h2>
   </li>
 {% endfor %}
 </ul>

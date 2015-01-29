@@ -17,13 +17,12 @@ var BaseView = Backbone.View.extend({
 
   render: function() {
     // console.log( this.serialize() );
-    if ( ! this.template ) {
+    if ( this.template ) {
+      this.$el.html( this.template.render( this.serialize() ) );
+    } else {
       console.warn( 'View has no template method' );
       Backbone.View.prototype.render.call( this, arguments );
-      return this;
     }
-
-    this.$el.html( this.template.render( this.serialize() ) );
 
     return this;
   },
@@ -36,11 +35,11 @@ var BaseView = Backbone.View.extend({
   navigate: function( evt ) {
     evt.preventDefault();
 
-    this.$el.off( 'click' );
-
     var targetUrl = this.$( evt.target ).attr( 'href' );
 
     require( '../client-app' ).navigate( targetUrl );
+
+    this.$el.off( 'click' );
   }
 });
 

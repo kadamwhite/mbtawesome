@@ -3,6 +3,7 @@
 var BaseView = require( '../../lib/base-view' );
 
 var LineView = BaseView.extend({
+
   el: '.container',
 
   template: require( './tmpl.nunj' ),
