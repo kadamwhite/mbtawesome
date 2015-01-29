@@ -1,3 +1,6 @@
+// Responsive Mixins
+// ==============================================
+
 // Larger than mobile
 $xs-screen = 400px;
 // Larger than phablet (also when the skeleton grid becomes active)
@@ -16,7 +19,6 @@ respond-below($width) {
   }
 }
 
-
 respond-above($width) {
   media = 'all and (min-width: %s)' % $width;
   @media media {
@@ -30,4 +32,14 @@ respond-between($min-width, $max-width) {
   @media media {
     {block}
   }
+}
+
+// Animation Mixins
+// ==============================================
+
+animate( $rule ) {
+  -webkit-animation: $rule;
+  -moz-animation: $rule;
+  -o-animation: $rule;
+  animation: $rule;
 }

@@ -1,0 +1,45 @@
+// Adapted from https://github.com/tobiasahlin/SpinKit, by Tobias Ahlin
+$size = 60px;
+$spinner-margin = $size / 3 auto;
+
+.loading-spinner p {
+  text-align: center;
+
+  animate( hide-loading-text 0s 1 linear forwards );
+}
+
+@keyframes hide-loading-text {
+  0% {
+    color: black;
+  } 100% {
+    color: white;
+  }
+}
+
+.rotating-plane-spinner {
+  width: $size;
+  height: $size;
+
+  margin: $spinner-margin;
+
+  animate( spinkit-rotate-plane 2s infinite ease-in-out );
+}
+
+@keyframes spinkit-rotate-plane {
+  0% {
+    transform: perspective( 120px ) rotateX( 0deg ) rotateY( 0deg );
+    background-color: $mbta-red;
+  } 25% {
+    transform: perspective( 120px ) rotateX( -180.1deg ) rotateY( 0deg );
+    background-color: $mbta-green;
+  } 50% {
+    transform: perspective( 120px ) rotateX( -180deg ) rotateY( -179.9deg );
+    background-color: $mbta-orange;
+  } 75% {
+    transform: perspective( 120px ) rotateX( 0deg ) rotateY( -179.9deg );
+    background-color: $mbta-blue;
+  } 100% {
+    transform: perspective( 120px ) rotateX( 0deg ) rotateY( -360deg );
+    background-color: $mbta-red;
+  }
+}

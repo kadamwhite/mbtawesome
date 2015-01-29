@@ -18,6 +18,7 @@
         {# Spinner displays until client app initializes #}
         <div class="loading-spinner">
           <p>Loading</p>
+          <div class="rotating-plane-spinner"></div>
         </div>
       {% endblock %}
     </div>
