@@ -16,7 +16,7 @@ var IndexView = BaseView.extend({
   serialize: function() {
     return {
       lines: this.collection.toJSON()
-    }
+    };
   }
 
 });

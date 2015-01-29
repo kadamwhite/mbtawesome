@@ -1,7 +1,6 @@
 'use strict';
 
 var Backbone = require( 'backbone' );
-var _ = require( 'lodash' );
 
 var LinesCollection = Backbone.Collection.extend({
 
