@@ -1,6 +1,6 @@
 'use strict';
 
-var BaseView = require( '../../lib/base-view' );
+var BaseView = require( '../../views/base-view' );
 
 var IndexView = BaseView.extend({
 
