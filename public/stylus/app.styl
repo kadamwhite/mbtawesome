@@ -15,7 +15,7 @@ $mbta-rail = #9d1582;   // (formerly #b60ea0)
 $mbta-boats = #06f;
 
 // Depends on mixins and colors
-@import 'lib/spinkit-rotating-plane';
+// @import 'lib/spinkit-rotating-plane';
 
 
 // Global Styles
@@ -61,8 +61,8 @@ mbta-color( $color ) {
   border-color: $color;
 
   &:hover {
-    background-color: lighten( $color, 10% );
-    border-color: lighten( $color, 10% );
+    background-color: darken( $color, 20% );
+    border-color: darken( $color, 20% );
   }
 }
 
@@ -104,5 +104,9 @@ mbta-color( $color ) {
   }
   &.blue li {
     mbta-color( $mbta-blue );
+  }
+
+  li.branch, li.branch:hover {
+    background-color: $white;
   }
 }
