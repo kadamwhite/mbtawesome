@@ -1,21 +1,22 @@
 <h1>{{ name }}</h1>
 
 <ul>
-  {% for station in stops %}
-  <li>{{ station.name }}</li>
+{% for station in stops %}
   {% if station.length %}
     {% for branch in station %}
-    <li>
+    <li class="branch">
       <em>To {{ branch | last | get( 'name' ) }}</em>
       <ul>
         {% for station in branch %}
-        <li>{{ station.name }}</li>
+          <li class="station">{{ station.name }}</li>
         {% endfor %}
       </ul>
     </li>
     {% endfor %}
+  {% else %}
+    <li class="station">{{ station.name }}</li>
   {% endif %}
-  {% endfor %}
+{% endfor %}
 </ul>
 
 <a href="/">Back to Home</a>
