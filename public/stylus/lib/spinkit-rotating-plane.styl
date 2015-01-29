@@ -1,11 +1,26 @@
 // Adapted from https://github.com/tobiasahlin/SpinKit, by Tobias Ahlin
-$size = 60px;
-$spinner-margin = $size / 3 auto;
+$spinner-size = 60px;
+$spinner-margin = $spinner-size / 3;
 
-.loading-spinner p {
-  text-align: center;
+.loading-spinner {
+  p {
+    text-align: center;
+    animate( hide-loading-text 0s 1 linear forwards );
+  }
 
-  animate( hide-loading-text 0s 1 linear forwards );
+  .rotating-plane {
+    width: $spinner-size;
+    height: $spinner-size;
+    margin: $spinner-margin auto;
+
+    &.small-spinner {
+      width: $spinner-margin;
+      height: $spinner-margin;
+      margin: ( $spinner-margin / 2 ) auto;
+    }
+
+    animate( spinkit-rotate-plane 2s infinite ease-in-out );
+  }
 }
 
 @keyframes hide-loading-text {
@@ -14,15 +29,6 @@ $spinner-margin = $size / 3 auto;
   } 100% {
     color: white;
   }
-}
-
-.rotating-plane-spinner {
-  width: $size;
-  height: $size;
-
-  margin: $spinner-margin;
-
-  animate( spinkit-rotate-plane 2s infinite ease-in-out );
 }
 
 @keyframes spinkit-rotate-plane {
