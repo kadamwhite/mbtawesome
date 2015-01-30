@@ -229,3 +229,23 @@ module.exports = {
    */
   // TODO: serverTime method
 };
+
+// Airplane Mode
+module.exports.mockPredictions = function() {
+  var dataGroup = 'r01';
+  var readFileAsync = require( 'bluebird' ).promisify( require( 'fs' ).readFile );
+
+  function getMockData( id ) {
+    var path = require( 'path' ).resolve( __dirname, [
+      '../../api-mock/',
+      dataGroup, '-', id, '.json'
+    ].join( '' ));
+
+    return readFileAsync( path ).then(function( result ) {
+      return JSON.parse( result );
+    });
+  };
+
+  module.exports.predictionsByStop = getMockData;
+  module.exports.predictionsByRoute = getMockData;
+};
