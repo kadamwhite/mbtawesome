@@ -60,14 +60,24 @@ mbta-color( $color ) {
   background-color: $color;
   border-color: $color;
 
-  &:hover {
+  &:focus, &:hover, &:active {
     background-color: darken( $color, 20% );
     border-color: darken( $color, 20% );
   }
 }
 
+coloring( $color ) {
+  .button {
+    mbta-color( $color );
+  }
+  .branch {
+    border-left: 10px solid darken( $color, 10% );
+  }
+}
+
 .station,
 .line {
+  list-style-type: none;
   display: block;
   height: auto;
   padding: 0;
@@ -83,7 +93,10 @@ mbta-color( $color ) {
     display: block;
     color: white;
   }
+}
 
+// Coloring for home screen line links
+.line {
   // Per-list-item coloring (class goes on <li>)
   &.red {
     mbta-color( $mbta-red );
@@ -98,21 +111,27 @@ mbta-color( $color ) {
 
 // Per-list coloring (class goes on <ul>)
 .stations {
-  &.red li {
-    mbta-color( $mbta-red );
-    &.branch { border-left: 10px solid darken( $mbta-red, 10% ); }
-  }
-  &.orange li {
-    mbta-color( $mbta-orange );
-    &.branch { border-left: 10px solid darken( $mbta-orange, 10% ); }
-  }
-  &.blue li {
-    mbta-color( $mbta-blue );
-    &.branch { border-left: 10px solid darken( $mbta-blue, 10% ); }
+
+  .button {
+    color: white;
   }
 
-  li.branch, li.branch:hover {
+  li {
     list-style-type: none;
+  }
+
+  &.red {
+    coloring( $mbta-red );
+  }
+  &.orange {
+    coloring( $mbta-orange );
+  }
+  &.blue  {
+    coloring( $mbta-blue );
+  }
+
+  ul.branches {
+    margin: 0;
     background-color: $white;
     text-align: right;
 

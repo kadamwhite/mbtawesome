@@ -9,7 +9,7 @@ var api = require( '../../lib/api-query' );
 var getTripsFromRoutes = require( './_get-trips-from-routes' );
 var batchRequests = require( './_batch-requests' );
 
-// api.mockPredictions();
+api.mockPredictions();
 
 // Cache
 var LRU = require( 'lru-cache' );
@@ -22,7 +22,7 @@ var cache = LRU({
 // Hard-coded route ID list (saves an otherwise useless DB round-trip)
 var routes = {
   blue: [ '946_', '948_' ],
-  orange: [ '901_', '913_' ],
+  orange: [ '903_', '913_' ],
   red: [ '931_', '933_' ]
 }
 

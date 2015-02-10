@@ -1,0 +1,3 @@
+<a class="button" href="">
+  <h2>{{ station.name }}</h2>
+</a>
