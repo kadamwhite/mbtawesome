@@ -23,6 +23,31 @@ var Trip = Backbone.Model.extend({
   },
 
   /**
+   * Get the message to display for this train for a specific station
+   * @method message
+   * @return {String} A string message, e.g. "Forest Hills train in 15 minutes"
+   */
+  messageForStation: function( stationId ) {
+    var secondsToStation = this.visits( stationId );
+
+    if ( secondsToStation < 0 ) {
+      return '';
+    }
+
+    var minutesToStation = Math.floor( secondsToStation / 60 );
+    var headsign = this.get( 'headsign' );
+
+    // Return a message to be displayed in the UI
+    if ( secondsToStation < 30 ) {
+      return headsign + ' train arriving';
+    }
+    if ( secondsToStation < 90 ) {
+      return headsign + ' train approaching';
+    }
+    return headsign + ' train in ' + minutesToStation + ' minutes';
+  },
+
+  /**
    * Identify whether the provided station is this train's next stop
    *
    * @method approaching

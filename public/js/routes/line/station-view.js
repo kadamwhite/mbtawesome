@@ -18,6 +18,20 @@ var StationView = BaseView.extend({
   },
 
   /**
+   * Get a list of unique stations represented by this view: De-dupe stops on
+   * ID to avoid double-listing trains approaching the end-of-line terminal
+   * stations (which are included with the same ID in both directions)
+   *
+   * @method stations
+   * @return {Array} Array of station objects
+   */
+  stations: function() {
+    return _.unique( this.station.stops, function( stop ) {
+      return stop.id;
+    });
+  },
+
+  /**
    * Get the train models for which this station is their next stop,
    * grouped by which direction they are traveling
    *
@@ -27,13 +41,7 @@ var StationView = BaseView.extend({
   approaching: function() {
     var trips = this.collection;
 
-    // De-dupe stops on ID to avoid double-listing trains approaching the
-    // end-of-line terminal stations (which get listed for both directions)
-    var stops = _.unique( this.station.stops, function( stop ) {
-      return stop.id;
-    });
-
-    return _.chain( stops )
+    return _.chain( this.stations() )
       // Get collection of Trip models for trains approaching this station
       .map(function( stop ) {
         return trips.approaching( stop.id );
@@ -52,27 +60,29 @@ var StationView = BaseView.extend({
   },
 
   serialize: function() {
+    var stationIds = _.pluck( this.stations(), 'id' );
+
     // Bake the trip objects down to the minimum values needed to render
     var approachingTrips = _.mapValues( this.approaching(), function( trips, key ) {
       return _.map( trips, function( tripModel ) {
-        var headsign = tripModel.get( 'headsign' );
-        var seconds = tripModel.stops().first().get( 'seconds' );
-        var minutes = Math.floor( seconds / 60 );
-        var trip = {};
+        // this.approaching doesn't maintain association b/w the trip and the
+        // actual station_id of the station it is approaching: Check each of
+        // the station IDs associated with this view to get the message. (only
+        // one of them will be valid, hence the .without('').first()).
+        var message = _.chain( stationIds )
+          .map(function( stationId ) {
+            return tripModel.messageForStation( stationId );
+          })
+          .without( '' )
+          .first()
+          .value();
 
-        // Return a message to be displayed in the UI
-        if ( minutes < 1 ) {
-          trip.message = headsign + ' train arriving';
-        } else if ( minutes === 1 ) {
-          trip.message = headsign + ' train approaching';
-        } else {
-          trip.message = headsign + ' train in ' + minutes + ' minutes';
-        }
-
-        // Return whether the train is scheduled
-        trip.scheduled = ! tripModel.active();
-
-        return trip;
+        return {
+          // Message to display as hover text
+          message: message,
+          // Return whether the train is scheduled
+          scheduled:  ! tripModel.active()
+        };
       });
     });
 
