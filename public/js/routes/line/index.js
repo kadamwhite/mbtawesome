@@ -5,6 +5,7 @@ var StopsListView = require( './view' );
 var TripsCollection = require( '../../collections/trips' );
 
 var data = require( '../../data' );
+var setTitle = require( '../../lib/set-title' );
 
 function lineOverviewRoute( lineSlug ) {
 
@@ -25,6 +26,10 @@ function lineOverviewRoute( lineSlug ) {
 
   // Kick off trips data request
   trips.fetch();
+
+  setTitle([
+    lineSlug + ' Line Overview'
+  ]);
 
 }
 

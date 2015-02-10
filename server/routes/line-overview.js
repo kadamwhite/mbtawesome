@@ -5,21 +5,27 @@ var router = express.Router();
 /*jshint -W079 */// Suppress warning about redefiniton of `Promise`
 var Promise = require( 'bluebird' );
 
-var db = require( '../services/db' );
+var pageTitle = require( '../services/page-title' );
 
-function lineOverviewRoute( req, res ) {
+function lineOverviewRoute( req, res, next ) {
   var line = req.params.line;
 
-  var title = db.routesByLine( line ).then(function( route ) {
-    return route.name + ' Overview | MBTAwesome';
-  });
+  // 404 early if we're not requesting a "valid" line
+  // (Green gets its own template, because it is SO AWESOME)
+  if ( [ 'red', 'orange', 'blue' ].indexOf( line ) < 0 ) {
+    next();
+  }
+
+  // Determine the title
+  var title = pageTitle([
+    line + ' Line Overview'
+  ]);
 
   Promise.props({
-    stops: db.stopsByLine( line ),
     title: title
   }).then(function( context ) {
     res.render( 'line-overview.nunj', context );
-  });
+  }).catch( next );
 }
 
 module.exports = lineOverviewRoute;

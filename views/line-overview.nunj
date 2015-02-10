@@ -1,9 +1,1 @@
 {% extends "layouts/main.nunj" %}
-
-{# {% block main %}{% endblock %} #}
-
-{% block fixtures %}
-  {# var data = {
-    stops = {{ stops | serialize }}
-  }; #}
-{% endblock %}
