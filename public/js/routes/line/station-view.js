@@ -58,15 +58,21 @@ var StationView = BaseView.extend({
         var headsign = tripModel.get( 'headsign' );
         var seconds = tripModel.stops().first().get( 'seconds' );
         var minutes = Math.floor( seconds / 60 );
+        var trip = {};
 
         // Return a message to be displayed in the UI
         if ( minutes < 1 ) {
-          return headsign + ' train arriving';
+          trip.message = headsign + ' train arriving';
         } else if ( minutes === 1 ) {
-          return headsign + ' train approaching';
+          trip.message = headsign + ' train approaching';
         } else {
-          return headsign + ' train in ' + minutes + ' minutes';
+          trip.message = headsign + ' train in ' + minutes + ' minutes';
         }
+
+        // Return whether the train is scheduled
+        trip.scheduled = ! tripModel.active();
+
+        return trip;
       });
     });
 

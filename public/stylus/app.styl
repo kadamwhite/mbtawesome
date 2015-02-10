@@ -175,6 +175,10 @@ triangle-down( $size = 20px ) {
     .train {
       vertical-align: top;
       triangle-up();
+
+      &.scheduled {
+        border-bottom-color: #666;
+      }
     }
   }
   &.down {
@@ -183,6 +187,10 @@ triangle-down( $size = 20px ) {
     .train {
       vertical-align: top;
       triangle-down();
+
+      &.scheduled {
+        border-top-color: #666;
+      }
     }
   }
 }

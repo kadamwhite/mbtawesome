@@ -1,6 +1,9 @@
 <div class="trains down">
   {% for train in directions['0'] | reverse %}
-  <span class="train" title="{{ train }}"></span>
+  <span
+    class="train {{ 'scheduled' if train.scheduled }}"
+    title="{{ train.message }}">
+  </span>
   {% endfor %}
 </div>
 <a class="button" href="">
@@ -8,6 +11,9 @@
 </a>
 <div class="trains up">
   {% for train in directions['1'] %}
-  <span class="train" title="{{ train }}"></span>
+  <span
+    class="train {{ 'scheduled' if train.scheduled }}"
+    title="{{ train.message }}">
+  </span>
   {% endfor %}
 </div>
