@@ -2,14 +2,13 @@
 
 var StopsListView = require( './view' );
 
-var Line = require( '../../models/line' );
 var TripsCollection = require( '../../collections/trips' );
+
+var lines = require( '../../data' ).lines;
 
 function lineOverviewRoute( lineSlug ) {
 
-  var lineObj = require( '../../data' ).lines[ lineSlug ];
-
-  var line = new Line( lineObj );
+  var line = lines.bySlug( lineSlug );
 
   var trips = new TripsCollection([], {
     line: lineSlug

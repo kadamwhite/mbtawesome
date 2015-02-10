@@ -2,11 +2,15 @@
 
 // Optionally pick up on a preloaded data object
 var cache = window._data || {};
+var Backbone = require( 'backbone' );
+var LinesCollection = require( '../collections/lines' );
 
-cache.lines = {
-  blue: require( './blue' ),
-  orange: require( './orange' ),
-  red: require( './red' )
-};
+cache.lines = new LinesCollection([
+  require( './blue' ),
+  require( './orange' ),
+  require( './red' )
+]);
+
+cache.predictions = new Backbone.Model({});
 
 module.exports = cache;

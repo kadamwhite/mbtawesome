@@ -9,9 +9,9 @@ var Router = Backbone.Router.extend({
     ':line': 'line'
   },
 
-  home: require( './routes/index/route' ),
+  home: require( './routes/index' ),
 
-  line: require( './routes/line/route' )
+  line: require( './routes/line' )
 
 });
 
