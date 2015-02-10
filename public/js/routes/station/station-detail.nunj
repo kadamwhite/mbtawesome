@@ -9,10 +9,12 @@
 <ul>
 </ul>
 
-<div class="stations {{ line }}">
-  <a class="line button" href="/{{ line }}">
-    <h2>Back to {{ line | capitalize }} Line</h2>
-  </a>
+<div class="line">
+  <h2 class="line button {{ line }}">
+    <a href="/{{ line }}">
+      Back to {{ line | capitalize }} Line
+    </a>
+  </h2>
 </div>
 
 <a href="/">Back to Home</a>

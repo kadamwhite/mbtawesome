@@ -6,8 +6,8 @@
   </span>
   {% endfor %}
 </div>
-<h2>
-  <a class="button" href="/{{ line }}/{{ station.station }}">
+<h2 class="button">
+  <a href="/{{ line }}/{{ station.station }}">
     {{ station.name }}
   </a>
 </h2>

@@ -95,20 +95,27 @@ triangle-down( $size = 20px ) {
 .station,
 .line {
   list-style-type: none;
-  display: block;
   height: auto;
   padding: 0;
   text-transform: none;
+  text-align: center;
 
   h2, h3, p {
-    padding: 5px 10px;
+    padding: 0;
     margin: 0;
     font-size: 2rem;
+    letter-spacing: -.1rem;
+
+    &.button {
+      display: block;
+      font-size: 2rem;
+      font-weight: inherit;
+    }
   }
 
-  .button, a {
+  a {
     display: block;
-    font-weight: normal;
+    padding: 0 5px;
     color: white;
   }
 }
