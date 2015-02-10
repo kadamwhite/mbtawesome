@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require( 'lodash' );
 var BaseView = require( '../../views/base-view' );
 
 var StationView = BaseView.extend({

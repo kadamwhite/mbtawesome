@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require( 'lodash' );
 var Backbone = require( 'backbone' );
 
 // Predictions collection structures the "stops" property of a Trip model.
