@@ -4,15 +4,19 @@ var StopsListView = require( './view' );
 
 var TripsCollection = require( '../../collections/trips' );
 
-var lines = require( '../../data' ).lines;
+var data = require( '../../data' );
 
 function lineOverviewRoute( lineSlug ) {
 
-  var line = lines.bySlug( lineSlug );
+  var line = data.lines.bySlug( lineSlug );
 
-  var trips = new TripsCollection([], {
-    line: lineSlug
-  });
+  var trips = data.predictions.get( lineSlug );
+  if ( ! trips ) {
+    trips = new TripsCollection([], {
+      line: lineSlug
+    });
+    data.predictions.set( lineSlug, trips );
+  }
 
   new StopsListView({
     model: line,
