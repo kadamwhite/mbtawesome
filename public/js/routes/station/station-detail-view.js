@@ -1,13 +1,9 @@
 'use strict';
 
 var _ = require( 'lodash' );
-var BaseView = require( '../../views/base-view' );
+var StationView = require( '../line/station-view' );
 
-// var BranchView = require( './branch-view' );
-// var StationView = require( './station-view' );
-
-// Takes both a model and a collection
-var StopsListView = BaseView.extend({
+var StopsListView = StationView.extend({
 
   el: '.container',
 
@@ -35,26 +31,50 @@ var StopsListView = BaseView.extend({
    */
   scheduled: function() {
     var predictions = this.collection;
-    return _.chain( this.station.stops )
+    return _.chain( this.stations() )
       .map(function( stop ) {
-        return predictions.scheduled( stop.id );
+        // Get all trips visiting this stop, and set a property
+        // containing the message to be displayed
+        return _.chain( predictions.scheduled( stop.id ) )
+          .map(function( trip ) {
+            var tripObj = trip.toJSON();
+            // For grouping
+            tripObj.stop = stop.id;
+            // For display
+            tripObj.timeUntil = trip.timeUntil( stop.id );
+            tripObj.scheduled = ! trip.active();
+            // For sorting
+            tripObj.seconds = trip.visits( stop.id );
+            return tripObj;
+          })
+          .sortBy( 'seconds' )
+          .value();
       })
       .flatten()
       .value();
   },
 
   serialize: function() {
-    var predictions = _.map( this.scheduled(), function( model ) {
-      return model.toJSON();
-    });
+    var predictions = this.scheduled();
 
-    window.predictions = predictions;
-    window.t = this;
+    var directions = _.chain( this.station.stops )
+      .map(function( stop ) {
+        var trips = _.where( predictions, {
+          direction: stop.direction
+        });
+        return {
+          direction: stop.direction,
+          name: stop.dirName,
+          trips: trips
+        };
+      })
+      .sortBy( 'direction' )
+      .value();
 
     return {
       station: this.station,
       line: this.line,
-      predictions: predictions
+      directions: directions
     };
   }
 

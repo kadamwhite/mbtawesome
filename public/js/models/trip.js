@@ -25,27 +25,49 @@ var Trip = Backbone.Model.extend({
 
   /**
    * Get the message to display for this train for a specific station
-   * @method message
+   * in the station overview list
+   *
+   * @method messageForStation
    * @return {String} A string message, e.g. "Forest Hills train in 15 minutes"
    */
   messageForStation: function( stationId ) {
+    var timeUntil = this.timeUntil( stationId );
+
+    if ( ! timeUntil ) {
+      return '';
+    }
+
+    var headsign = this.get( 'headsign' );
+
+    if ( timeUntil === 'Arriving' || timeUntil === 'Approaching' ) {
+      return headsign + ' train ' + timeUntil;
+    }
+
+    return headsign + ' train in ' + timeUntil;
+  },
+
+  /**
+   * Get an object specifying information about the arrival of the current
+   * trip at the specified station (e.g: 'Arriving', '4 minutes', etc)
+   *
+   * @method timeUntil
+   * @param  {String} stationId The station_id of a station on this trip
+   * @return {String} A string representing when this trip arrives at the station
+   */
+  timeUntil: function( stationId ) {
     var secondsToStation = this.visits( stationId );
 
     if ( secondsToStation < 0 ) {
       return '';
     }
 
-    var minutesToStation = Math.floor( secondsToStation / 60 );
-    var headsign = this.get( 'headsign' );
-
-    // Return a message to be displayed in the UI
     if ( secondsToStation < 30 ) {
-      return headsign + ' train arriving';
+      return 'Arriving';
     }
     if ( secondsToStation < 90 ) {
-      return headsign + ' train approaching';
+      return 'Approaching';
     }
-    return headsign + ' train in ' + minutesToStation + ' minutes';
+    return Math.floor( secondsToStation / 60 ) + ' min';
   },
 
   /**

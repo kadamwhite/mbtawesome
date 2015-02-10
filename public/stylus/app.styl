@@ -39,6 +39,10 @@ a {
 // Header
 // ==============================================
 
+.site-title {
+  cursor: pointer;
+}
+
 .top-nav {
   padding: 5px 10px;
   margin-bottom: 10px;
@@ -168,6 +172,18 @@ triangle-down( $size = 20px ) {
   }
 }
 
+.divider-blue,
+.divider-green,
+.divider-orange,
+.divider-red {
+  border: none;
+  border-top: 5px solid;
+}
+.divider-blue { border-top-color: $mbta-blue; }
+.divider-green { border-top-color: $mbta-green; }
+.divider-orange { border-top-color: $mbta-orange; }
+.divider-red { border-top-color: $mbta-red; }
+
 .trains {
   overflow: hidden;
   max-height: 13px;
@@ -200,5 +216,29 @@ triangle-down( $size = 20px ) {
         border-top-color: #666;
       }
     }
+  }
+}
+
+// Station Detail View
+// ==============================================
+
+.arrival-predictions {
+  list-style: none;
+
+  &.blue {
+    td, th { border-color: lighten( $mbta-blue, 40% ); }
+  }
+  &.green {
+    td, th { border-color: lighten( $mbta-green, 40% ); }
+  }
+  &.orange {
+    td, th { border-color: lighten( $mbta-orange, 40% ); }
+  }
+  &.red {
+    td, th { border-color: lighten( $mbta-red, 40% ); }
+  }
+
+  table {
+    width: 100%;
   }
 }

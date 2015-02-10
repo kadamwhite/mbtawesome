@@ -6,7 +6,42 @@
   <h2>Alerts (todo)</h2>
 </div>#}
 
-<ul>
+<hr class="divider-{{ line }}" />
+
+<ul class="arrival-predictions {{ line }}">
+  {% for direction in directions %}
+  <li>
+    <h3>{{ direction.name }}</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Destination</th>
+          <th>
+            <acronym title="Estimated Time of Arrival">ETA</acronym>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+
+      {% if direction.trips.length %}
+        {% for trip in direction.trips %}
+        <tr {{ 'class="scheduled"' if trip.scheduled }}>
+          <td>{{ trip.headsign }}</td>
+          <td>{{ trip.timeUntil }}</td>
+        </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan="2">
+            <em>No trains in service</em>
+          </td>
+        </tr>
+      {% endif %}
+      </tbody>
+    </table>
+  </li>
+  {% endfor %}
 </ul>
 
 <div class="line">
