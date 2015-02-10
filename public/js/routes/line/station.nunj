@@ -1,3 +1,12 @@
+<div class="trains down">
+  <span class="train" title="foo"></span>
+  <span class="train"></span>
+  <span class="train"></span>
+  <span class="train"></span>
+</div>
 <a class="button" href="">
   <h2>{{ station.name }}</h2>
 </a>
+<div class="trains up">
+  <span class="train"></span>
+</div>
