@@ -1,12 +1,13 @@
 <div class="trains down">
-  <span class="train" title="foo"></span>
-  <span class="train"></span>
-  <span class="train"></span>
-  <span class="train"></span>
+  {% for train in directions['0'] | reverse %}
+  <span class="train" title="{{ train }}"></span>
+  {% endfor %}
 </div>
 <a class="button" href="">
   <h2>{{ station.name }}</h2>
 </a>
 <div class="trains up">
-  <span class="train"></span>
+  {% for train in directions['1'] %}
+  <span class="train" title="{{ train }}"></span>
+  {% endfor %}
 </div>

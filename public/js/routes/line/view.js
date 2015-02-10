@@ -21,7 +21,7 @@ var StopsListView = BaseView.extend({
     // this.collection = opts.collection;
 
     // Listen for new predictions data
-    this.listenTo( this.collection, 'add sync reset', this.render );
+    this.listenTo( this.collection, 'sync reset', this.render );
 
     // Auto-render on load
     this.render();

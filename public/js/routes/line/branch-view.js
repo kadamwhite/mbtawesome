@@ -13,10 +13,14 @@ var BranchView = BaseView.extend({
 
   initialize: function( opts ) {
     this.branches = opts.branches;
-    this.collection = opts.trips;
-  },
 
-  serialize: function() {},
+    if ( ! this.branches ) {
+      throw new Error( 'BranchView initialized without branches' );
+    }
+    if ( ! this.collection ) {
+      throw new Error( 'BranchView initialized without a collection' );
+    }
+  },
 
   render: function() {
     // Iterate through each branch
@@ -28,7 +32,6 @@ var BranchView = BaseView.extend({
     var trips = this.collection;
 
     _.forEach( this.branches, function( branch, index ) {
-      // this.$el.find( 'ul' ).eq( index ).append('<li/>');
       var branchStopViews = _.map( branch, function( station ) {
         return new StationView({
           station: station,

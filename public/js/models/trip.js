@@ -12,14 +12,26 @@ var Trip = Backbone.Model.extend({
    * Get the number of seconds until this trip reaches the provided station,
    * or else return -1 if the trip is not scheduled to do so
    *
-   * @method arrives
+   * @method visits
    * @return {Number} The number of seconds until this trip reaches the specified station
    * */
-  arrives: function( stationId ) {
+  visits: function( stationId ) {
     var station = this.stops().findWhere({
       id: stationId
     });
     return station ? station.get( 'seconds' ) : -1;
+  },
+
+  /**
+   * Identify whether the provided station is this train's next stop
+   *
+   * @method approaching
+   * @param {String} stationId The ID of the station to check for
+   * @return {Boolean} Whether that station is this train's next stop
+   */
+  approaching: function( stationId ) {
+    var nextStop = this.stops().first();
+    return stationId === nextStop.get( 'id' );
   },
 
   /**
@@ -40,7 +52,9 @@ var Trip = Backbone.Model.extend({
    *                                 this trip's predicted arrival times
    */
   stops: function() {
-    return new PredictionsCollection( this.get( 'stops' ) );
+    // Ensure stops are sorted in arrival order
+    var stops = _.sortBy( this.get( 'stops' ), 'seq' );
+    return new PredictionsCollection( stops );
   },
 
   /**

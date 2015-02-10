@@ -6,6 +6,7 @@ function getTripsFromRoute( route ) {
   // Iterate through directions within a route
   return _.map( route.direction, function getTripsFromDirection( direction ) {
     var directionName = direction.direction_name;
+    var directionId = direction.direction_id;
 
     // Iterate through trips on this direction
     return _.map( direction.trip, function cleanTrips( trip ) {
@@ -14,7 +15,7 @@ function getTripsFromRoute( route ) {
         id: trip.trip_id,
         // name: trip.trip_name,
         headsign: trip.trip_headsign,
-        direction: directionName
+        direction: +directionId
       };
 
       // Simplify vehicle data value keys
@@ -35,6 +36,8 @@ function getTripsFromRoute( route ) {
       tripObj.stops = _.map( trip.stop, function cleanStops( stop ) {
         return {
           id: stop.stop_id,
+          seq: +stop.stop_sequence,
+          // name: stop.stop_name,
           // // Scheduled arrival & departure (seconds)
           // schArr: stop.sch_arr_dt,
           // schDep: stop.sch_dep_dt,

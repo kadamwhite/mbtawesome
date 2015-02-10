@@ -18,11 +18,17 @@ var TripsCollection = Backbone.Collection.extend({
     return '/api/v1/lines/' + this.line + '/predictions';
   },
 
+  scheduled: function( stationId ) {
+    return this.filter(function( trip ) {
+      return trip.visits( stationId ) > 0;
+    });
+  },
+
   // Shortcut method to filter collection down to only those trips which
   // will eventually reach the provided station
   approaching: function( stationId ) {
     return this.filter(function( trip ) {
-      return trip.arrives( stationId ) > 0;
+      return trip.approaching( stationId ) > 0;
     });
   }
 

@@ -11,17 +11,16 @@ var BaseView = Backbone.View.extend({
     if ( this.collection ) {
       return this.collection.toJSON();
     }
-    console.warn( 'View has no model or collection' );
+    console.warn( 'View has neither model nor collection' );
     return {};
   },
 
   render: function() {
-    // console.log( this.serialize() );
     if ( this.template ) {
       this.$el.html( this.template.render( this.serialize() ) );
     } else {
       console.warn( 'View has no template method' );
-      Backbone.View.prototype.render.call( this, arguments );
+      Backbone.View.prototype.render.apply( this, arguments );
     }
 
     return this;
