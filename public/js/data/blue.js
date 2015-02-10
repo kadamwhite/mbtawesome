@@ -4,7 +4,6 @@
 var stations = [{
   name: 'Wonderland',
   station: 'place-wondl',
-  routes: [ '946_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Westbound',
@@ -21,7 +20,6 @@ var stations = [{
 }, {
   name: 'Revere Beach',
   station: 'place-rbmnl',
-  routes: [ '946_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Westbound',
@@ -38,7 +36,6 @@ var stations = [{
 }, {
   name: 'Beachmont',
   station: 'place-bmmnl',
-  routes: [ '946_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Westbound',
@@ -55,7 +52,6 @@ var stations = [{
 }, {
   name: 'Suffolk Downs',
   station: 'place-sdmnl',
-  routes: [ '946_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Westbound',
@@ -72,7 +68,6 @@ var stations = [{
 }, {
   name: 'Orient Heights',
   station: 'place-orhte',
-  routes: [ '946_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Westbound',
@@ -89,7 +84,6 @@ var stations = [{
 }, {
   name: 'Wood Island',
   station: 'place-wimnl',
-  routes: [ '946_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Westbound',
@@ -106,7 +100,6 @@ var stations = [{
 }, {
   name: 'Airport',
   station: 'place-aport',
-  routes: [ '946_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Westbound',
@@ -123,7 +116,6 @@ var stations = [{
 }, {
   name: 'Maverick',
   station: 'place-mvbcl',
-  routes: [ '946_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Westbound',
@@ -140,7 +132,6 @@ var stations = [{
 }, {
   name: 'Aquarium',
   station: 'place-aqucl',
-  routes: [ '946_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Westbound',
@@ -157,7 +148,6 @@ var stations = [{
 }, {
   name: 'State Street',
   station: 'place-state',
-  routes: [ '946_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Westbound',
@@ -174,7 +164,6 @@ var stations = [{
 }, {
   name: 'Bowdoin',
   station: 'place-bomnl',
-  routes: [ '946_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Westbound',
@@ -193,5 +182,6 @@ var stations = [{
 module.exports = {
   name: 'Blue Line',
   slug: 'blue',
+  routes: [ '946_', '948_' ],
   stops: stations
 };

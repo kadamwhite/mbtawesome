@@ -4,7 +4,6 @@
 var stations = [{
   name: 'Oak Grove',
   station: 'place-ogmnl',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -21,7 +20,6 @@ var stations = [{
 }, {
   name: 'Malden Center',
   station: 'place-mlmnl',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -38,7 +36,6 @@ var stations = [{
 }, {
   name: 'Wellington',
   station: 'place-welln',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -55,7 +52,6 @@ var stations = [{
 }, {
   name: 'Assembly',
   station: 'place-astao',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -72,7 +68,6 @@ var stations = [{
 }, {
   name: 'Sullivan Square',
   station: 'place-sull',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -89,7 +84,6 @@ var stations = [{
 }, {
   name: 'Community College',
   station: 'place-ccmnl',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -106,7 +100,6 @@ var stations = [{
 }, {
   name: 'North Station',
   station: 'place-north',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -123,7 +116,6 @@ var stations = [{
 }, {
   name: 'Haymarket',
   station: 'place-haecl',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -140,7 +132,6 @@ var stations = [{
 }, {
   name: 'State Street',
   station: 'place-state',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -157,7 +148,6 @@ var stations = [{
 }, {
   name: 'Downtown Crossing',
   station: 'place-dwnxg',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -174,7 +164,6 @@ var stations = [{
 }, {
   name: 'Chinatown',
   station: 'place-chncl',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -191,7 +180,6 @@ var stations = [{
 }, {
   name: 'Tufts Medical Center',
   station: 'place-tumnl',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -208,7 +196,6 @@ var stations = [{
 }, {
   name: 'Back Bay',
   station: 'place-bbsta',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -225,7 +212,6 @@ var stations = [{
 }, {
   name: 'Massachusetts Ave.',
   station: 'place-masta',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -242,7 +228,6 @@ var stations = [{
 }, {
   name: 'Ruggles',
   station: 'place-rugg',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -259,7 +244,6 @@ var stations = [{
 }, {
   name: 'Roxbury Crossing',
   station: 'place-rcmnl',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -276,7 +260,6 @@ var stations = [{
 }, {
   name: 'Jackson Square',
   station: 'place-jaksn',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -293,7 +276,6 @@ var stations = [{
 }, {
   name: 'Stony Brook',
   station: 'place-sbmnl',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -310,7 +292,6 @@ var stations = [{
 }, {
   name: 'Green Street',
   station: 'place-grnst',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -327,7 +308,6 @@ var stations = [{
 }, {
   name: 'Forest Hills',
   station: 'place-forhl',
-  routes: [ '903_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -346,5 +326,6 @@ var stations = [{
 module.exports = {
   name: 'Orange Line',
   slug: 'orange',
+  routes: [ '901_', '913_' ],
   stops: stations
 };

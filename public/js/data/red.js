@@ -4,7 +4,6 @@
 var stations = [{
   name: 'Alewife',
   station: 'place-alfcl',
-  routes: [ '931_', '933_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -21,7 +20,6 @@ var stations = [{
 }, {
   name: 'Davis',
   station: 'place-davis',
-  routes: [ '933_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -38,7 +36,6 @@ var stations = [{
 }, {
   name: 'Porter',
   station: 'place-portr',
-  routes: [ '933_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -55,7 +52,6 @@ var stations = [{
 }, {
   name: 'Harvard',
   station: 'place-harsq',
-  routes: [ '933_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -72,7 +68,6 @@ var stations = [{
 }, {
   name: 'Central',
   station: 'place-cntsq',
-  routes: [ '933_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -89,7 +84,6 @@ var stations = [{
 }, {
   name: 'Kendall/MIT',
   station: 'place-knncl',
-  routes: [ '933_' ],
   stops: [{
     direction_id: 1,
     direction_name: 'Northbound',
@@ -106,7 +100,6 @@ var stations = [{
 }, {
   name: 'Charles/MGH',
   station: 'place-chmnl',
-  routes: [ '933_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -123,7 +116,6 @@ var stations = [{
 }, {
   name: 'Park Street',
   station: 'place-pktrm',
-  routes: [ '933_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -140,7 +132,6 @@ var stations = [{
 }, {
   name: 'Downtown Crossing',
   station: 'place-dwnxg',
-  routes: [ '933_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -157,7 +148,6 @@ var stations = [{
 }, {
   name: 'South Station',
   station: 'place-sstat',
-  routes: [ '933_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -174,7 +164,6 @@ var stations = [{
 }, {
   name: 'Broadway',
   station: 'place-brdwy',
-  routes: [ '933_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -191,7 +180,6 @@ var stations = [{
 }, {
   name: 'Andrew',
   station: 'place-andrw',
-  routes: [ '933_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -208,7 +196,6 @@ var stations = [{
 }, {
   name: 'JFK/Umass',
   station: 'place-jfk',
-  routes: [ '931_', '933_' ],
   stops: [{
     direction_id: 0,
     direction_name: 'Southbound',
@@ -227,7 +214,6 @@ var stations = [{
   [{
     name: 'Savin Hill',
     station: 'place-shmnl',
-    routes: [ '931_' ],
     stops: [{
       direction_id: 1,
       direction_name: 'Northbound',
@@ -244,7 +230,6 @@ var stations = [{
   }, {
     name: 'Fields Corner',
     station: 'place-fldcr',
-    routes: [ '931_' ],
     stops: [{
       direction_id: 0,
       direction_name: 'Southbound',
@@ -261,7 +246,6 @@ var stations = [{
   }, {
     name: 'Shawmut',
     station: 'place-smmnl',
-    routes: [ '931_' ],
     stops: [{
       direction_id: 0,
       direction_name: 'Southbound',
@@ -278,7 +262,6 @@ var stations = [{
   }, {
     name: 'Ashmont',
     station: 'place-asmnl',
-    routes: [ '931_' ],
     stops: [{
       direction_id: 0,
       direction_name: 'Southbound',
@@ -296,7 +279,6 @@ var stations = [{
   [{
     name: 'North Quincy',
     station: 'place-nqncy',
-    routes: [ '933_' ],
     stops: [{
       direction_id: 0,
       direction_name: 'Southbound',
@@ -313,7 +295,6 @@ var stations = [{
   }, {
     name: 'Wollaston',
     station: 'place-wlsta',
-    routes: [ '933_' ],
     stops: [{
       direction_id: 0,
       direction_name: 'Southbound',
@@ -330,7 +311,6 @@ var stations = [{
   }, {
     name: 'Quincy Center',
     station: 'place-qnctr',
-    routes: [ '933_' ],
     stops: [{
       direction_id: 0,
       direction_name: 'Southbound',
@@ -347,7 +327,6 @@ var stations = [{
   }, {
     name: 'Quincy Adams',
     station: 'place-qamnl',
-    routes: [ '933_' ],
     stops: [{
       direction_id: 0,
       direction_name: 'Southbound',
@@ -364,7 +343,6 @@ var stations = [{
   }, {
     name: 'Braintree',
     station: 'place-brntn',
-    routes: [ '933_' ],
     stops: [{
       direction_id: 0,
       direction_name: 'Southbound',
@@ -384,5 +362,6 @@ var stations = [{
 module.exports = {
   name: 'Red Line',
   slug: 'red',
+  routes: [ '931_', '933_' ],
   stops: stations
 };
