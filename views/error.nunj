@@ -3,5 +3,7 @@
 {% block main %}
   <h1>{{ error.message }}</h1>
   <h2>{{ error.status }}</h2>
-  <pre>{{ error.stack | replace(__dirname, '') }}</pre>
+  <pre>{{ error.stack | replace( __dirname, '' ) }}</pre>
 {% endblock %}
+
+{% block scripts %}{% endblock %}
