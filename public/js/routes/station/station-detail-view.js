@@ -35,9 +35,8 @@ var StopsListView = BaseView.extend({
    */
   scheduled: function() {
     var predictions = this.collection;
-    var stops = _.chain( this.station.stops )
+    return _.chain( this.station.stops )
       .map(function( stop ) {
-        console.log( stop.id );
         return predictions.scheduled( stop.id );
       })
       .flatten()
