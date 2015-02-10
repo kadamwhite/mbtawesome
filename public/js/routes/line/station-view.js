@@ -13,9 +13,7 @@ var StationView = BaseView.extend({
 
   initialize: function( opts ) {
     this.station = opts.station;
-
-    // Probably not needed?
-    // this.listenTo( this.collection, 'add sync reset', this.render );
+    this.line = opts.line;
   },
 
   /**
@@ -88,6 +86,7 @@ var StationView = BaseView.extend({
     });
 
     return {
+      line: this.line,
       station: this.station,
       directions: approachingTrips
     };

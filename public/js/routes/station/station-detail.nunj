@@ -1,0 +1,18 @@
+<h1 class="station-detail {{ line }}">
+  {{ station.name }}
+</h1>
+
+{#<div>
+  <h2>Alerts (todo)</h2>
+</div>#}
+
+<ul>
+</ul>
+
+<div class="stations {{ line }}">
+  <a class="line button" href="/{{ line }}">
+    <h2>Back to {{ line | capitalize }} Line</h2>
+  </a>
+</div>
+
+<a href="/">Back to Home</a>

@@ -1,7 +1,7 @@
 <ul class="lines">
 {% for line in lines %}
-  <li class="line button {{ line.slug }}">
-    <h2>
+  <li class="line">
+    <h2 class="line button {{ line.slug }}">
       <a href="/{{ line.slug }}">
         {{ line.name }}
       </a>

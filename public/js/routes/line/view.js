@@ -17,9 +17,6 @@ var StopsListView = BaseView.extend({
     // Nested array defining the layout of the stops
     this.stations = this.model.stops();
 
-    // Store the collection (of actual stop data)
-    // this.collection = opts.collection;
-
     // Listen for new predictions data
     this.listenTo( this.collection, 'sync reset', this.render );
 
@@ -32,12 +29,14 @@ var StopsListView = BaseView.extend({
     this.$el.html( this.template.render( this.serialize() ) );
 
     var trips = this.collection;
+    var lineSlug = this.model.get( 'slug' );
 
     // Build an array of subviews (StationView or BranchView)
     var subViews = _.map( this.stations, function( station ) {
       if ( ! _.isArray( station ) ) {
         // Non-array station gets rendered as-is
         return new StationView({
+          line: lineSlug,
           station: station,
           collection: trips
         });
@@ -45,6 +44,7 @@ var StopsListView = BaseView.extend({
 
       // If station is an array, we're branching:
       return new BranchView({
+        line: lineSlug,
         branches: station,
         collection: trips
       });

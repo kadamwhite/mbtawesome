@@ -5,13 +5,16 @@ var Backbone = require( 'backbone' );
 var Router = Backbone.Router.extend({
 
   routes: {
-    '':      'home',
-    ':line': 'line'
+    '':               'index',
+    ':line':          'line',
+    ':line/:station': 'station'
   },
 
-  home: require( './routes/index' ),
+  index: require( './routes/index' ),
 
-  line: require( './routes/line' )
+  line: require( './routes/line' ),
+
+  station: require( './routes/station' )
 
 });
 

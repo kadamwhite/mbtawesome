@@ -6,9 +6,11 @@
   </span>
   {% endfor %}
 </div>
-<a class="button" href="">
-  <h2>{{ station.name }}</h2>
-</a>
+<h2>
+  <a class="button" href="/{{ line }}/{{ station.station }}">
+    {{ station.name }}
+  </a>
+</h2>
 <div class="trains up">
   {% for train in directions['1'] %}
   <span

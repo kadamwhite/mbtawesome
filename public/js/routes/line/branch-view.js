@@ -13,6 +13,8 @@ var BranchView = BaseView.extend({
 
   initialize: function( opts ) {
     this.branches = opts.branches;
+    // Store the line slug (to pass through to the view)
+    this.line = opts.line;
 
     if ( ! this.branches ) {
       throw new Error( 'BranchView initialized without branches' );
@@ -30,10 +32,12 @@ var BranchView = BaseView.extend({
 
     var $branches = this.$el.find( '.branch' );
     var trips = this.collection;
+    var line = this.line;
 
     _.forEach( this.branches, function( branch, index ) {
       var branchStopViews = _.map( branch, function( station ) {
         return new StationView({
+          line: line,
           station: station,
           collection: trips
         });
