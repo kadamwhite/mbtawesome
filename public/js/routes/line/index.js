@@ -1,6 +1,6 @@
 'use strict';
 
-var StopsListView = require( './view' );
+var StopsListView = require( './station-list-view' );
 
 var AlertsCollection = require( '../../collections/alerts' );
 var TripsCollection = require( '../../collections/trips' );
