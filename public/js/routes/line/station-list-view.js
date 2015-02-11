@@ -3,9 +3,12 @@
 var _ = require( 'lodash' );
 var BaseView = require( '../../views/base-view' );
 
+var LineStatusModel = require( '../../models/line-status' );
+
 var BranchView = require( './branch-view' );
 var StationView = require( './station-view' );
 var AlertsView = require( '../../views/alerts-view' );
+var LineStatusView = require( '../../views/line-status-view' );
 
 // Takes both a model and a collection
 var StopsListView = BaseView.extend({
@@ -23,6 +26,12 @@ var StopsListView = BaseView.extend({
 
     // Listen for new predictions data
     this.listenTo( this.collection, 'sync reset', this.render );
+
+    this.statusModel = new LineStatusModel({
+      alerts: this.alerts,
+      stations: this.model.stops({ flatten: true }),
+      predictions: this.collection
+    });
 
     // Auto-render on load
     this.render();
@@ -64,7 +73,13 @@ var StopsListView = BaseView.extend({
       el: '.alert-list'
     });
 
-    subViews.push( alertsView );
+    var lineStatusView = new LineStatusView({
+      stations: this.stations,
+      model: this.statusModel,
+      el: '.line-status'
+    });
+
+    subViews.push( alertsView, lineStatusView );
 
     this.subViews = subViews;
 

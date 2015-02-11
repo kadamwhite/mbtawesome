@@ -1,5 +1,7 @@
 <h1>{{ name }}</h1>
 
+<div class="line-status"></div>
+
 <div class="alert-list"></div>
 
 <ul class="stations {{ slug }}"></ul>
