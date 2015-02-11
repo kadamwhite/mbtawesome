@@ -4,6 +4,10 @@
 var stations = [{
   name: 'Oak Grove',
   station: 'place-ogmnl',
+  // position: {
+  //   lat: 42.4367,
+  //   lon: -71.0711
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -12,14 +16,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70036'
-  }],
-  position: {
-    lat: 42.4367,
-    lon: -71.0711
-  }
+  }]
 }, {
   name: 'Malden Center',
   station: 'place-mlmnl',
+  // position: {
+  //   lat: 42.4266,
+  //   lon: -71.0741
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -28,14 +32,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70035'
-  }],
-  position: {
-    lat: 42.4266,
-    lon: -71.0741
-  }
+  }]
 }, {
   name: 'Wellington',
   station: 'place-welln',
+  // position: {
+  //   lat: 42.4024,
+  //   lon: -71.0771
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -44,14 +48,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70033'
-  }],
-  position: {
-    lat: 42.4024,
-    lon: -71.0771
-  }
+  }]
 }, {
   name: 'Assembly',
   station: 'place-astao',
+  // position: {
+  //   lat: 42.3928,
+  //   lon: -71.0773
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -60,14 +64,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70279'
-  }],
-  position: {
-    lat: 42.3928,
-    lon: -71.0773
-  }
+  }]
 }, {
   name: 'Sullivan Square',
   station: 'place-sull',
+  // position: {
+  //   lat: 42.384,
+  //   lon: -71.077
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -76,14 +80,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70031'
-  }],
-  position: {
-    lat: 42.384,
-    lon: -71.077
-  }
+  }]
 }, {
   name: 'Community College',
   station: 'place-ccmnl',
+  // position: {
+  //   lat: 42.3736,
+  //   lon: -71.0695
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -92,14 +96,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70029'
-  }],
-  position: {
-    lat: 42.3736,
-    lon: -71.0695
-  }
+  }]
 }, {
   name: 'North Station',
   station: 'place-north',
+  // position: {
+  //   lat: 42.3656,
+  //   lon: -71.0613
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -108,14 +112,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70027'
-  }],
-  position: {
-    lat: 42.3656,
-    lon: -71.0613
-  }
+  }]
 }, {
   name: 'Haymarket',
   station: 'place-haecl',
+  // position: {
+  //   lat: 42.363,
+  //   lon: -71.0583
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -124,14 +128,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70025'
-  }],
-  position: {
-    lat: 42.363,
-    lon: -71.0583
-  }
+  }]
 }, {
   name: 'State Street',
   station: 'place-state',
+  // position: {
+  //   lat: 42.359,
+  //   lon: -71.0576
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -140,14 +144,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70023'
-  }],
-  position: {
-    lat: 42.359,
-    lon: -71.0576
-  }
+  }]
 }, {
   name: 'Downtown Crossing',
   station: 'place-dwnxg',
+  // position: {
+  //   lat: 42.3555,
+  //   lon: -71.0602
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -156,14 +160,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70021'
-  }],
-  position: {
-    lat: 42.3555,
-    lon: -71.0602
-  }
+  }]
 }, {
   name: 'Chinatown',
   station: 'place-chncl',
+  // position: {
+  //   lat: 42.3525,
+  //   lon: -71.0628
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -172,14 +176,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70019'
-  }],
-  position: {
-    lat: 42.3525,
-    lon: -71.0628
-  }
+  }]
 }, {
   name: 'Tufts Medical Center',
   station: 'place-tumnl',
+  // position: {
+  //   lat: 42.3497,
+  //   lon: -71.0639
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -188,14 +192,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70017'
-  }],
-  position: {
-    lat: 42.3497,
-    lon: -71.0639
-  }
+  }]
 }, {
   name: 'Back Bay',
   station: 'place-bbsta',
+  // position: {
+  //   lat: 42.3474,
+  //   lon: -71.0757
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -204,14 +208,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70015'
-  }],
-  position: {
-    lat: 42.3474,
-    lon: -71.0757
-  }
+  }]
 }, {
   name: 'Massachusetts Ave.',
   station: 'place-masta',
+  // position: {
+  //   lat: 42.3415,
+  //   lon: -71.0834
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -220,14 +224,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70013'
-  }],
-  position: {
-    lat: 42.3415,
-    lon: -71.0834
-  }
+  }]
 }, {
   name: 'Ruggles',
   station: 'place-rugg',
+  // position: {
+  //   lat: 42.3364,
+  //   lon: -71.089
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -236,14 +240,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70011'
-  }],
-  position: {
-    lat: 42.3364,
-    lon: -71.089
-  }
+  }]
 }, {
   name: 'Roxbury Crossing',
   station: 'place-rcmnl',
+  // position: {
+  //   lat: 42.3314,
+  //   lon: -71.0955
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -252,14 +256,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70009'
-  }],
-  position: {
-    lat: 42.3314,
-    lon: -71.0955
-  }
+  }]
 }, {
   name: 'Jackson Square',
   station: 'place-jaksn',
+  // position: {
+  //   lat: 42.3231,
+  //   lon: -71.0996
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -268,14 +272,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70007'
-  }],
-  position: {
-    lat: 42.3231,
-    lon: -71.0996
-  }
+  }]
 }, {
   name: 'Stony Brook',
   station: 'place-sbmnl',
+  // position: {
+  //   lat: 42.3171,
+  //   lon: -71.1042
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -284,14 +288,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70005'
-  }],
-  position: {
-    lat: 42.3171,
-    lon: -71.1042
-  }
+  }]
 }, {
   name: 'Green Street',
   station: 'place-grnst',
+  // position: {
+  //   lat: 42.3105,
+  //   lon: -71.1074
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -300,14 +304,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70003'
-  }],
-  position: {
-    lat: 42.3105,
-    lon: -71.1074
-  }
+  }]
 }, {
   name: 'Forest Hills',
   station: 'place-forhl',
+  // position: {
+  //   lat: 42.3005,
+  //   lon: -71.1137
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -316,11 +320,7 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70001'
-  }],
-  position: {
-    lat: 42.3005,
-    lon: -71.1137
-  }
+  }]
 }];
 
 module.exports = {

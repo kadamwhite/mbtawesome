@@ -4,6 +4,10 @@
 var stations = [{
   name: 'Wonderland',
   station: 'place-wondl',
+  // position: {
+  //   lat: 42.4134,
+  //   lon: -70.9916
+  // },
   stops: [{
     direction: 0,
     dirName: 'Westbound',
@@ -12,14 +16,14 @@ var stations = [{
     direction: 1,
     dirName: 'Eastbound',
     id: '70060'
-  }],
-  position: {
-    lat: 42.4134,
-    lon: -70.9916
-  }
+  }]
 }, {
   name: 'Revere Beach',
   station: 'place-rbmnl',
+  // position: {
+  //   lat: 42.4078,
+  //   lon: -70.9925
+  // },
   stops: [{
     direction: 0,
     dirName: 'Westbound',
@@ -28,14 +32,14 @@ var stations = [{
     direction: 1,
     dirName: 'Eastbound',
     id: '70058'
-  }],
-  position: {
-    lat: 42.4078,
-    lon: -70.9925
-  }
+  }]
 }, {
   name: 'Beachmont',
   station: 'place-bmmnl',
+  // position: {
+  //   lat: 42.3975,
+  //   lon: -70.9923
+  // },
   stops: [{
     direction: 0,
     dirName: 'Westbound',
@@ -44,14 +48,14 @@ var stations = [{
     direction: 1,
     dirName: 'Eastbound',
     id: '70056'
-  }],
-  position: {
-    lat: 42.3975,
-    lon: -70.9923
-  }
+  }]
 }, {
   name: 'Suffolk Downs',
   station: 'place-sdmnl',
+  // position: {
+  //   lat: 42.3905,
+  //   lon: -70.9971
+  // },
   stops: [{
     direction: 0,
     dirName: 'Westbound',
@@ -60,14 +64,14 @@ var stations = [{
     direction: 1,
     dirName: 'Eastbound',
     id: '70054'
-  }],
-  position: {
-    lat: 42.3905,
-    lon: -70.9971
-  }
+  }]
 }, {
   name: 'Orient Heights',
   station: 'place-orhte',
+  // position: {
+  //   lat: 42.3869,
+  //   lon: -71.0047
+  // },
   stops: [{
     direction: 0,
     dirName: 'Westbound',
@@ -76,14 +80,14 @@ var stations = [{
     direction: 1,
     dirName: 'Eastbound',
     id: '70052'
-  }],
-  position: {
-    lat: 42.3869,
-    lon: -71.0047
-  }
+  }]
 }, {
   name: 'Wood Island',
   station: 'place-wimnl',
+  // position: {
+  //   lat: 42.3796,
+  //   lon: -71.0229
+  // },
   stops: [{
     direction: 0,
     dirName: 'Westbound',
@@ -92,14 +96,14 @@ var stations = [{
     direction: 1,
     dirName: 'Eastbound',
     id: '70050'
-  }],
-  position: {
-    lat: 42.3796,
-    lon: -71.0229
-  }
+  }]
 }, {
   name: 'Airport',
   station: 'place-aport',
+  // position: {
+  //   lat: 42.3743,
+  //   lon: -71.0304
+  // },
   stops: [{
     direction: 0,
     dirName: 'Westbound',
@@ -108,14 +112,14 @@ var stations = [{
     direction: 1,
     dirName: 'Eastbound',
     id: '70048'
-  }],
-  position: {
-    lat: 42.3743,
-    lon: -71.0304
-  }
+  }]
 }, {
   name: 'Maverick',
   station: 'place-mvbcl',
+  // position: {
+  //   lat: 42.3691,
+  //   lon: -71.0395
+  // },
   stops: [{
     direction: 0,
     dirName: 'Westbound',
@@ -124,14 +128,14 @@ var stations = [{
     direction: 1,
     dirName: 'Eastbound',
     id: '70046'
-  }],
-  position: {
-    lat: 42.3691,
-    lon: -71.0395
-  }
+  }]
 }, {
   name: 'Aquarium',
   station: 'place-aqucl',
+  // position: {
+  //   lat: 42.3598,
+  //   lon: -71.0517
+  // },
   stops: [{
     direction: 0,
     dirName: 'Westbound',
@@ -140,14 +144,14 @@ var stations = [{
     direction: 1,
     dirName: 'Eastbound',
     id: '70044'
-  }],
-  position: {
-    lat: 42.3598,
-    lon: -71.0517
-  }
+  }]
 }, {
   name: 'State Street',
   station: 'place-state',
+  // position: {
+  //   lat: 42.359,
+  //   lon: -71.0576
+  // },
   stops: [{
     direction: 0,
     dirName: 'Westbound',
@@ -156,14 +160,14 @@ var stations = [{
     direction: 1,
     dirName: 'Eastbound',
     id: '70042'
-  }],
-  position: {
-    lat: 42.359,
-    lon: -71.0576
-  }
+  }]
 }, {
   name: 'Bowdoin',
   station: 'place-bomnl',
+  // position: {
+  //   lat: 42.3614,
+  //   lon: -71.062
+  // },
   stops: [{
     direction: 0,
     dirName: 'Westbound',
@@ -172,11 +176,7 @@ var stations = [{
     direction: 1,
     dirName: 'Eastbound',
     id: '70038'
-  }],
-  position: {
-    lat: 42.3614,
-    lon: -71.062
-  }
+  }]
 }];
 
 module.exports = {

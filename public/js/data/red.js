@@ -4,6 +4,10 @@
 var stations = [{
   name: 'Alewife',
   station: 'place-alfcl',
+  // position: {
+  //   lat: 42.3954,
+  //   lon: -71.1425
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -12,14 +16,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70061'
-  }],
-  position: {
-    lat: 42.3954,
-    lon: -71.1425
-  }
+  }]
 }, {
   name: 'Davis',
   station: 'place-davis',
+  // position: {
+  //   lat: 42.3967,
+  //   lon: -71.1218
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -28,14 +32,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70064'
-  }],
-  position: {
-    lat: 42.3967,
-    lon: -71.1218
-  }
+  }]
 }, {
   name: 'Porter',
   station: 'place-portr',
+  // position: {
+  //   lat: 42.3884,
+  //   lon: -71.1191
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -44,14 +48,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70066'
-  }],
-  position: {
-    lat: 42.3884,
-    lon: -71.1191
-  }
+  }]
 }, {
   name: 'Harvard',
   station: 'place-harsq',
+  // position: {
+  //   lat: 42.3734,
+  //   lon: -71.119
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -60,14 +64,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70068'
-  }],
-  position: {
-    lat: 42.3734,
-    lon: -71.119
-  }
+  }]
 }, {
   name: 'Central',
   station: 'place-cntsq',
+  // position: {
+  //   lat: 42.3655,
+  //   lon: -71.1038
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -76,14 +80,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70070'
-  }],
-  position: {
-    lat: 42.3655,
-    lon: -71.1038
-  }
+  }]
 }, {
   name: 'Kendall/MIT',
   station: 'place-knncl',
+  // position: {
+  //   lat: 42.3625,
+  //   lon: -71.0862
+  // },
   stops: [{
     direction: 1,
     dirName: 'Northbound',
@@ -92,14 +96,14 @@ var stations = [{
     direction: 0,
     dirName: 'Southbound',
     id: '70071'
-  }],
-  position: {
-    lat: 42.3625,
-    lon: -71.0862
-  }
+  }]
 }, {
   name: 'Charles/MGH',
   station: 'place-chmnl',
+  // position: {
+  //   lat: 42.3612,
+  //   lon: -71.0706
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -108,14 +112,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70074'
-  }],
-  position: {
-    lat: 42.3612,
-    lon: -71.0706
-  }
+  }]
 }, {
   name: 'Park Street',
   station: 'place-pktrm',
+  // position: {
+  //   lat: 42.3564,
+  //   lon: -71.0624
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -124,14 +128,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70076'
-  }],
-  position: {
-    lat: 42.3564,
-    lon: -71.0624
-  }
+  }]
 }, {
   name: 'Downtown Crossing',
   station: 'place-dwnxg',
+  // position: {
+  //   lat: 42.3555,
+  //   lon: -71.0602
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -140,14 +144,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70078'
-  }],
-  position: {
-    lat: 42.3555,
-    lon: -71.0602
-  }
+  }]
 }, {
   name: 'South Station',
   station: 'place-sstat',
+  // position: {
+  //   lat: 42.3523,
+  //   lon: -71.0552
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -156,14 +160,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70080'
-  }],
-  position: {
-    lat: 42.3523,
-    lon: -71.0552
-  }
+  }]
 }, {
   name: 'Broadway',
   station: 'place-brdwy',
+  // position: {
+  //   lat: 42.3426,
+  //   lon: -71.057
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -172,14 +176,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70082'
-  }],
-  position: {
-    lat: 42.3426,
-    lon: -71.057
-  }
+  }]
 }, {
   name: 'Andrew',
   station: 'place-andrw',
+  // position: {
+  //   lat: 42.3302,
+  //   lon: -71.0577
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -188,14 +192,14 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70084'
-  }],
-  position: {
-    lat: 42.3302,
-    lon: -71.0577
-  }
+  }]
 }, {
   name: 'JFK/Umass',
   station: 'place-jfk',
+  // position: {
+  //   lat: 42.3207,
+  //   lon: -71.0524
+  // },
   stops: [{
     direction: 0,
     dirName: 'Southbound',
@@ -204,16 +208,16 @@ var stations = [{
     direction: 1,
     dirName: 'Northbound',
     id: '70096'
-  }],
-  position: {
-    lat: 42.3207,
-    lon: -71.0524
-  }
+  }]
 },
 [
   [{
     name: 'Savin Hill',
     station: 'place-shmnl',
+    // position: {
+    //   lat: 42.3113,
+    //   lon: -71.0533
+    // },
     stops: [{
       direction: 1,
       dirName: 'Northbound',
@@ -222,14 +226,14 @@ var stations = [{
       direction: 0,
       dirName: 'Southbound',
       id: '70087'
-    }],
-    position: {
-      lat: 42.3113,
-      lon: -71.0533
-    }
+    }]
   }, {
     name: 'Fields Corner',
     station: 'place-fldcr',
+    // position: {
+    //   lat: 42.3001,
+    //   lon: -71.0617
+    // },
     stops: [{
       direction: 0,
       dirName: 'Southbound',
@@ -238,14 +242,14 @@ var stations = [{
       direction: 1,
       dirName: 'Northbound',
       id: '70090'
-    }],
-    position: {
-      lat: 42.3001,
-      lon: -71.0617
-    }
+    }]
   }, {
     name: 'Shawmut',
     station: 'place-smmnl',
+    // position: {
+    //   lat: 42.2931,
+    //   lon: -71.0657
+    // },
     stops: [{
       direction: 0,
       dirName: 'Southbound',
@@ -254,14 +258,14 @@ var stations = [{
       direction: 1,
       dirName: 'Northbound',
       id: '70092'
-    }],
-    position: {
-      lat: 42.2931,
-      lon: -71.0657
-    }
+    }]
   }, {
     name: 'Ashmont',
     station: 'place-asmnl',
+    // position: {
+    //   lat: 42.2847,
+    //   lon: -71.0645
+    // },
     stops: [{
       direction: 0,
       dirName: 'Southbound',
@@ -270,15 +274,15 @@ var stations = [{
       direction: 1,
       dirName: 'Northbound',
       id: '70094'
-    }],
-    position: {
-      lat: 42.2847,
-      lon: -71.0645
-    }
+    }]
   }],
   [{
     name: 'North Quincy',
     station: 'place-nqncy',
+    // position: {
+    //   lat: 42.2753,
+    //   lon: -71.0296
+    // },
     stops: [{
       direction: 0,
       dirName: 'Southbound',
@@ -287,14 +291,14 @@ var stations = [{
       direction: 1,
       dirName: 'Northbound',
       id: '70098'
-    }],
-    position: {
-      lat: 42.2753,
-      lon: -71.0296
-    }
+    }]
   }, {
     name: 'Wollaston',
     station: 'place-wlsta',
+    // position: {
+    //   lat: 42.2665,
+    //   lon: -71.0203
+    // },
     stops: [{
       direction: 0,
       dirName: 'Southbound',
@@ -303,14 +307,14 @@ var stations = [{
       direction: 1,
       dirName: 'Northbound',
       id: '70100'
-    }],
-    position: {
-      lat: 42.2665,
-      lon: -71.0203
-    }
+    }]
   }, {
     name: 'Quincy Center',
     station: 'place-qnctr',
+    // position: {
+    //   lat: 42.2518,
+    //   lon: -71.0054
+    // },
     stops: [{
       direction: 0,
       dirName: 'Southbound',
@@ -319,14 +323,14 @@ var stations = [{
       direction: 1,
       dirName: 'Northbound',
       id: '70102'
-    }],
-    position: {
-      lat: 42.2518,
-      lon: -71.0054
-    }
+    }]
   }, {
     name: 'Quincy Adams',
     station: 'place-qamnl',
+    // position: {
+    //   lat: 42.2334,
+    //   lon: -71.0072
+    // },
     stops: [{
       direction: 0,
       dirName: 'Southbound',
@@ -335,14 +339,14 @@ var stations = [{
       direction: 1,
       dirName: 'Northbound',
       id: '70104'
-    }],
-    position: {
-      lat: 42.2334,
-      lon: -71.0072
-    }
+    }]
   }, {
     name: 'Braintree',
     station: 'place-brntn',
+    // position: {
+    //   lat: 42.2079,
+    //   lon: -71.0011
+    // },
     stops: [{
       direction: 0,
       dirName: 'Southbound',
@@ -351,11 +355,7 @@ var stations = [{
       direction: 1,
       dirName: 'Northbound',
       id: '70105'
-    }],
-    position: {
-      lat: 42.2079,
-      lon: -71.0011
-    }
+    }]
   }]
 ]];
 
