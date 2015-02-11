@@ -171,21 +171,43 @@ module.exports = {
    *                      returned, e.g. "CR-Providence-CR-Weekday-807".
    * @return {Promise} A promise to the /vehiclesbytrip API response
    */
-  vehiclesByTrip: makeQueryHandler( 'vehiclesbytrip', [ 'trip' ] )
+  vehiclesByTrip: makeQueryHandler( 'vehiclesbytrip', [ 'trip' ] ),
 
   /**
    * Returns a list of all alerts, with all details
    *
    * @method alerts
+   * @param {Boolean} [include_access_alerts]  Whether or not alerts pertaining to accessibility
+   *                                           (elevators, escalators) should be returned.
+   *                                           Possible values: "true" or "false"; default value:
+   *                                           "false". If not included, then alerts pertaining to
+   *                                           accessibility are not returned.
+   * @param {Boolean} [include_service_alerts] Whether or not service alerts should be returned.
+   *                                           Possible values: "true" or "false"; default value:
+   *                                           "true". If not included, then service alerts will
+   *                                           be returned.
+   * @return {Promise} A promise to the /alerts API response
    */
-  // TODO: alerts method
+  alerts: makeQueryHandler( 'alerts', [] ),
 
   /**
    * Returns a list of all alerts applicable to a route, with all details
    *
    * @method alertsByRoute
+   * @param {String}  route                    GTFS-compatible route_id value for which alerts
+   *                                           should be returned, e.g. "88" or "931_"
+   * @param {Boolean} [include_access_alerts]  Whether or not alerts pertaining to accessibility
+   *                                           (elevators, escalators) should be returned.
+   *                                           Possible values: "true" or "false"; default value:
+   *                                           "false". If not included, then alerts pertaining to
+   *                                           accessibility are not returned.
+   * @param {Boolean} [include_service_alerts] Whether or not service alerts should be returned.
+   *                                           Possible values: "true" or "false"; default value:
+   *                                           "true". If not included, then service alerts will
+   *                                           be returned.
+   * @return {Promise} A promise to the /alertsbyroute API response
    */
-  // TODO: alertsByRoute method
+  alertsByRoute: makeQueryHandler( 'alertsbyroute', [ 'route' ] ),
 
   /**
    * Returns a list of all alerts applicable to a stop, with all details
@@ -246,6 +268,6 @@ module.exports.mockPredictions = function() {
     });
   };
 
-  module.exports.predictionsByStop = getMockData;
+  // module.exports.predictionsByStop = getMockData;
   module.exports.predictionsByRoute = getMockData;
 };

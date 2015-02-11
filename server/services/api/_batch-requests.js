@@ -29,7 +29,14 @@ function getReason( settledPromise ) {
  */
 function batchRequests( ids, reqFn ) {
   var reqProms = _.map( ids, function( id ) {
-    return reqFn( id );
+    return reqFn( id ).catch(function( err ) {
+      if ( err.error && err.error.message && /no data/i.test( err.error.message ) ) {
+        // No data is an "OK" response; just return empty array
+        return [];
+      }
+      // re-throw the error
+      throw err;
+    });
   });
 
   // Sort out successful results from rejections
@@ -57,7 +64,7 @@ function batchRequests( ids, reqFn ) {
 
     // If everything failed, throw an error
     // TODO: Special handling for requests outside of operating hours?
-    throw new Error( 'All requests failed:' + results.failed.join( '\n' ) );
+    throw new Error( 'All requests failed: \n' + results.failed.join( '\n' ) );
   });
 }
 
