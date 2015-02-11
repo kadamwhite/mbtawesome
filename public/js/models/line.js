@@ -6,8 +6,21 @@ var Backbone = require( 'backbone' );
 var Line = Backbone.Model.extend({
   // No API request for this: it's basically static data
 
-  stops: function() {
-    return this.get( 'stops' );
+  /**
+   * Get the nested stops array, optionally flattened into a single list
+   *
+   * @method stops
+   * @param {Object} [opts] An options hash
+   * @param {Boolean} [opts.flatten] Whether to flatten the returned array
+   * @return {Array} An array of stop objects
+   */
+  stops: function( opts ) {
+    var flatten = opts ? opts.flatten : false;
+    var stops = this.get( 'stops' );
+
+    // Optionally eliminate any branch nesting in the stops array
+    // Note: _.flatten defaults to deep flatten in lodash.compat
+    return flatten ? _.flatten( stops ) : stops;
   },
 
   /**
@@ -17,9 +30,9 @@ var Line = Backbone.Model.extend({
    * @return {[type]} The object for this station from the stops array
    */
   station: function( parentStation ) {
-    // Eliminate any branch nesting in the stops array
-    // Note: _.flatten defaults to deep flatten in lodash.compat
-    var stops = _.flatten( this.stops() );
+    var stops = this.stops({
+      flatten: true
+    });
 
     // Get the stop with the provided parentStation
     return _.findWhere( stops, {

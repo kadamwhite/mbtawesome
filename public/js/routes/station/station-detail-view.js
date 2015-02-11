@@ -13,10 +13,14 @@ var StopsListView = StationView.extend({
     // Nested array defining the layout of the stops
     this.station = opts.station;
 
-    this.line = opts.line;
+    // this.model is a Line model instance
+    this.line = this.model.get( 'slug' );
+
+    // this.collection is a TripsCollection instance:
+    this.predictions = opts.predictions;
 
     // Listen for new predictions data
-    this.listenTo( this.collection, 'sync reset', this.render );
+    this.listenTo( this.predictions, 'sync reset', this.render );
 
     // Auto-render on load
     this.render();
@@ -30,7 +34,7 @@ var StopsListView = StationView.extend({
    * @return {Array} Array of Trip models
    */
   scheduled: function() {
-    var predictions = this.collection;
+    var predictions = this.predictions;
     return _.chain( this.stations() )
       .map(function( stop ) {
         // Get all trips visiting this stop, and set a property
