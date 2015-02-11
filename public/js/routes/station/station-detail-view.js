@@ -60,10 +60,10 @@ var StopsListView = StationView.extend({
     var directions = _.chain( this.station.stops )
       .map(function( stop ) {
         var trips = _.where( predictions, {
-          direction: stop.direction
+          direction: stop.dir
         });
         return {
-          direction: stop.direction,
+          direction: stop.dir,
           name: stop.dirName,
           trips: trips
         };
@@ -77,37 +77,6 @@ var StopsListView = StationView.extend({
       directions: directions
     };
   }
-
-  // render: function() {
-  //   // Render the template into the container
-  //   this.$el.html( this.template.render( this.serialize() ) );
-
-  //   var trips = this.collection;
-
-  //   // Build an array of subviews (StationView or BranchView)
-  //   var subViews = _.map( this.stations, function( station ) {
-  //     if ( ! _.isArray( station ) ) {
-  //       // Non-array station gets rendered as-is
-  //       return new StationView({
-  //         station: station,
-  //         collection: trips
-  //       });
-  //     }
-
-  //     // If station is an array, we're branching:
-  //     return new BranchView({
-  //       branches: station,
-  //       collection: trips
-  //     });
-  //   });
-
-  //   // Render subviews into the parent element
-  //   this.$el.find( '.stations' ).append( _.map( subViews, function( subView ) {
-  //     return subView.render().el;
-  //   }));
-
-  //   return this;
-  // }
 
 });
 

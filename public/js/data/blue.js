@@ -9,11 +9,11 @@ var stations = [{
   //   lon: -70.9916
   // },
   stops: [{
-    direction: 0,
+    dir: 0,
     dirName: 'Westbound',
     id: '70060'
   }, {
-    direction: 1,
+    dir: 1,
     dirName: 'Eastbound',
     id: '70060'
   }]
@@ -25,11 +25,11 @@ var stations = [{
   //   lon: -70.9925
   // },
   stops: [{
-    direction: 0,
+    dir: 0,
     dirName: 'Westbound',
     id: '70057'
   }, {
-    direction: 1,
+    dir: 1,
     dirName: 'Eastbound',
     id: '70058'
   }]
@@ -41,11 +41,11 @@ var stations = [{
   //   lon: -70.9923
   // },
   stops: [{
-    direction: 0,
+    dir: 0,
     dirName: 'Westbound',
     id: '70055'
   }, {
-    direction: 1,
+    dir: 1,
     dirName: 'Eastbound',
     id: '70056'
   }]
@@ -57,11 +57,11 @@ var stations = [{
   //   lon: -70.9971
   // },
   stops: [{
-    direction: 0,
+    dir: 0,
     dirName: 'Westbound',
     id: '70053'
   }, {
-    direction: 1,
+    dir: 1,
     dirName: 'Eastbound',
     id: '70054'
   }]
@@ -73,11 +73,11 @@ var stations = [{
   //   lon: -71.0047
   // },
   stops: [{
-    direction: 0,
+    dir: 0,
     dirName: 'Westbound',
     id: '70051'
   }, {
-    direction: 1,
+    dir: 1,
     dirName: 'Eastbound',
     id: '70052'
   }]
@@ -89,11 +89,11 @@ var stations = [{
   //   lon: -71.0229
   // },
   stops: [{
-    direction: 0,
+    dir: 0,
     dirName: 'Westbound',
     id: '70049'
   }, {
-    direction: 1,
+    dir: 1,
     dirName: 'Eastbound',
     id: '70050'
   }]
@@ -105,11 +105,11 @@ var stations = [{
   //   lon: -71.0304
   // },
   stops: [{
-    direction: 0,
+    dir: 0,
     dirName: 'Westbound',
     id: '70047'
   }, {
-    direction: 1,
+    dir: 1,
     dirName: 'Eastbound',
     id: '70048'
   }]
@@ -121,11 +121,11 @@ var stations = [{
   //   lon: -71.0395
   // },
   stops: [{
-    direction: 0,
+    dir: 0,
     dirName: 'Westbound',
     id: '70045'
   }, {
-    direction: 1,
+    dir: 1,
     dirName: 'Eastbound',
     id: '70046'
   }]
@@ -137,11 +137,11 @@ var stations = [{
   //   lon: -71.0517
   // },
   stops: [{
-    direction: 0,
+    dir: 0,
     dirName: 'Westbound',
     id: '70043'
   }, {
-    direction: 1,
+    dir: 1,
     dirName: 'Eastbound',
     id: '70044'
   }]
@@ -153,11 +153,11 @@ var stations = [{
   //   lon: -71.0576
   // },
   stops: [{
-    direction: 0,
+    dir: 0,
     dirName: 'Westbound',
     id: '70041'
   }, {
-    direction: 1,
+    dir: 1,
     dirName: 'Eastbound',
     id: '70042'
   }]
@@ -169,11 +169,11 @@ var stations = [{
   //   lon: -71.062
   // },
   stops: [{
-    direction: 0,
+    dir: 0,
     dirName: 'Westbound',
     id: '70038'
   }, {
-    direction: 1,
+    dir: 1,
     dirName: 'Eastbound',
     id: '70038'
   }]
