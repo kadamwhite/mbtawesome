@@ -1,6 +1,6 @@
 <h1>{{ name }}</h1>
 
-<div>
+<div class="alerts">
   <h2>Alerts (todo)</h2>
 </div>
 

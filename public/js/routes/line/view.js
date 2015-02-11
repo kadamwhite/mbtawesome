@@ -5,6 +5,7 @@ var BaseView = require( '../../views/base-view' );
 
 var BranchView = require( './branch-view' );
 var StationView = require( './station-view' );
+var AlertsView = require( '../../views/alerts-view' );
 
 // Takes both a model and a collection
 var StopsListView = BaseView.extend({
@@ -54,6 +55,10 @@ var StopsListView = BaseView.extend({
     this.$el.find( '.stations' ).append( _.map( subViews, function( subView ) {
       return subView.render().el;
     }));
+
+    var alertsView = new AlertsView({
+      el: '.alerts'
+    });
 
     return this;
   }
