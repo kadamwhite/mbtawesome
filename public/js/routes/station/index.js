@@ -29,7 +29,7 @@ function stationDetailRoute( lineSlug, parentStation ) {
   });
 
   // Kick off or refresh the trip predictions data
-  trips.fetch();
+  trips.refresh();
 
   setTitle([
     station.name,

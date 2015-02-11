@@ -18,6 +18,23 @@ var TripsCollection = Backbone.Collection.extend({
     return '/api/v1/lines/' + this.line + '/predictions';
   },
 
+  refresh: function() {
+    var now = new Date();
+    // If we updated less than 20 seconds ago, don't fetch new data
+    if ( this.lastRefreshed && this.lastRefreshed > now - 1000 * 20 ) {
+      return {
+        // Mock promise interface, just in case
+        then: function(cb) {
+          cb( this.toJSON() );
+        }
+      };
+    }
+
+    // We updated more than 20 seconds ago: get new data from the API
+    this.lastRefreshed = now;
+    return this.fetch();
+  },
+
   scheduled: function( stationId ) {
     return this.filter(function( trip ) {
       return trip.visits( stationId ) > 0;

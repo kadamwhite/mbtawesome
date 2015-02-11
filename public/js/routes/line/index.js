@@ -25,7 +25,7 @@ function lineOverviewRoute( lineSlug ) {
   });
 
   // Kick off trips data request
-  trips.fetch();
+  trips.refresh();
 
   setTitle([
     lineSlug + ' Line Overview'
