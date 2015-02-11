@@ -61,7 +61,7 @@ var StopsListView = BaseView.extend({
 
     var alertsView = new AlertsView({
       collection: this.alerts,
-      el: '#alerts'
+      el: '.alert-list'
     });
 
     subViews.push( alertsView );

@@ -6,6 +6,10 @@ var AlertsView = BaseView.extend({
 
   template: require( './alerts-view.nunj' ),
 
+  events: {
+    'click .alert-list-toggle': 'toggle'
+  },
+
   initialize: function() {
     this.listenTo( this.collection, 'sync reset', this.render );
 
@@ -17,6 +21,10 @@ var AlertsView = BaseView.extend({
     return {
       alerts: this.collection.toJSON()
     };
+  },
+
+  toggle: function() {
+    this.$el.toggleClass( 'alert-list-open' );
   }
 
 });

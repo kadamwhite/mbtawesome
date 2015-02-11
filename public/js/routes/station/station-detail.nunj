@@ -2,9 +2,7 @@
   {{ station.name }}
 </h1>
 
-{#<div>
-  <h2>Alerts (todo)</h2>
-</div>#}
+<div class="alert-list"></div>
 
 <hr class="divider-{{ line }}" />
 

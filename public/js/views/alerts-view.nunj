@@ -1,6 +1,9 @@
-<h2>Alerts (WIP)</h2>
-
 {% if alerts.length %}
+<button class="alert-list-toggle">
+  {% for alert in alerts %}
+  todo: {{ alert.severity | lower }} alert icon<br>
+  {% endfor %}
+</button>
 <ul>
   {% for alert in alerts %}
   <li>
