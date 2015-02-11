@@ -8,6 +8,7 @@
     "postinstall": "bower install",
     "start": "./bin/www",
     "dev": "nodemon ./bin/www",
+    "prod": "NODE_ENV=production nodemon ./bin/www",
     "build:template": "nunjucks-precompile",
     "build:application": "browserify ./public/js/client-app.js -t nunjucksify",
     "build:styles": "stylus ./public/stylus/app.styl > ./public/css/app.css",
