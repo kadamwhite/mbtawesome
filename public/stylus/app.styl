@@ -272,12 +272,58 @@ triangle-down( $size = 20px ) {
 // ==============================================
 
 .alert-list {
-  ul {
+  ul,
+  .alerts-minimize {
     display: none;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .alert-type {
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #e1e1e1;
+  }
+
+  hr {
+    margin: 5px 0;
+  }
+
+  button {
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    text-align: left;
   }
 }
 .alert-list-open {
-  ul {
+  ul,
+  .alerts-minimize {
     display: block;
   }
+  .alerts-expand {
+    display: none;
+  }
+}
+
+.alert-icon {
+  width: 21px;
+  height: 26px;
+  display: inline-block;
+  background: center top no-repeat;
+  background-size: 21px 21px;
+  vertical-align: middle
+}
+
+.alert-severe {
+  background-image: url( '/images/alert-severe.png' );
+}
+.alert-moderate {
+  background-image: url( '/images/alert-moderate.png' );
+}
+.alert-minor {
+  background-image: url( '/images/alert-minor.png' );
 }

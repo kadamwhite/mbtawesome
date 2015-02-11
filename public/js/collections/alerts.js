@@ -3,6 +3,13 @@
 var _ = require( 'lodash' );
 var Backbone = require( 'backbone' );
 
+// Dictionary to use when determining issue severity (used in sorting)
+var severity = {
+  severe: 1,
+  moderate: 2,
+  minor: 3
+};
+
 var AlertsCollection = Backbone.Collection.extend({
 
   model: require( '../models/alert' ),
@@ -30,6 +37,13 @@ var AlertsCollection = Backbone.Collection.extend({
     // We updated more than 20 seconds ago: get new data from the API
     this.lastRefreshed = now;
     return this.fetch();
+  },
+
+  /**
+   * Comparator function to order collection by severity (high to low)
+   */
+  comparator: function( model ) {
+    return severity[ model.get( 'severity' ).toLowerCase() ];
   },
 
   /**
