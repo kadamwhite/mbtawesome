@@ -1,0 +1,14 @@
+<h2>Alerts (WIP)</h2>
+
+{% if alerts.length %}
+<ul>
+  {% for alert in alerts %}
+  <li>
+    {{ alert.alert_id }}
+    ({{ alert.cause_name }}),
+    {{ alert.severity }}:<br>
+    {{ alert.header_text }}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}

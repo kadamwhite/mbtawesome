@@ -1,18 +1,24 @@
 'use strict';
 
-var Backbone = require( 'backbone' );
+var BaseView = require( './base-view' );
 
-var AlertsView = Backbone.View.extend({
-  el: '.alerts',
+var AlertsView = BaseView.extend({
+
+  template: require( './alerts-view.nunj' ),
 
   initialize: function() {
+    this.listenTo( this.collection, 'sync reset', this.render );
+
+    // Auto-render on load
     this.render();
   },
 
-  render: function() {
-    this.$el.empty()
-    return this;
+  serialize: function() {
+    return {
+      alerts: this.collection.toJSON()
+    };
   }
+
 });
 
 module.exports = AlertsView;

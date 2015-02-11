@@ -2,6 +2,7 @@
 
 var StopsListView = require( './view' );
 
+var AlertsCollection = require( '../../collections/alerts' );
 var TripsCollection = require( '../../collections/trips' );
 
 var data = require( '../../data' );
@@ -19,12 +20,22 @@ function lineOverviewRoute( lineSlug ) {
     data.predictions.set( lineSlug, trips );
   }
 
+  var alerts = data.alerts.get( lineSlug );
+  if ( ! alerts ) {
+    alerts = new AlertsCollection([], {
+      line: lineSlug
+    });
+    data.alerts.set( lineSlug, alerts );
+  }
+
   new StopsListView({
+    alerts: alerts,
     model: line,
     collection: trips
   });
 
   // Kick off trips data request
+  alerts.refresh();
   trips.refresh();
 
   setTitle([

@@ -11,6 +11,7 @@ cache.lines = new LinesCollection([
   require( './red' )
 ]);
 
+cache.alerts = new Backbone.Model({});
 cache.predictions = new Backbone.Model({});
 
 module.exports = cache;

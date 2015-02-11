@@ -15,6 +15,9 @@ var StopsListView = BaseView.extend({
   template: require( './tmpl.nunj' ),
 
   initialize: function( opts ) {
+    // Alerts collection, to hand off to a sub-view
+    this.alerts = opts.alerts;
+
     // Nested array defining the layout of the stops
     this.stations = this.model.stops();
 
@@ -57,8 +60,13 @@ var StopsListView = BaseView.extend({
     }));
 
     var alertsView = new AlertsView({
-      el: '.alerts'
+      collection: this.alerts,
+      el: '#alerts'
     });
+
+    subViews.push( alertsView );
+
+    this.subViews = subViews;
 
     return this;
   }
