@@ -42,9 +42,7 @@
     {% endblock %}
     </div>
 
-    <script>
-      {% block fixtures %}{% endblock %}
-    </script>
+    <script>{% block fixtures %}{% endblock %}</script>
     <script src="/js/vendor/lodash/dist/lodash.compat.min.js"></script>
     <script src="/js/vendor/jquery/dist/jquery.min.js"></script>
     <script src="/js/vendor/backbone/backbone.js"></script>
