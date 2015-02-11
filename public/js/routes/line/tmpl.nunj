@@ -6,4 +6,8 @@
 
 <ul class="stations {{ slug }}"></ul>
 
-<a href="/">Back to Home</a>
+<small>
+  <em>
+    Black arrows represent active trips, grey arrows represent scheduled trips
+  </em>
+</small>

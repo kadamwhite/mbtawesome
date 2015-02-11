@@ -23,6 +23,19 @@
       {% endblock %}
     </div>
 
+    <div class="footer">
+    {% block footer %}
+      <p>
+        Follow <a href="https://twitter.com/mbtawesome">@mbtawesome</a> for app updates!
+      </p>
+      <p>
+        <a href="/">Home</a>
+        &bull;
+        &copy; 2015 <a href="https://twitter.com/kadamwhite">K. Adam White</a>
+      </p>
+    {% endblock %}
+    </div>
+
     <script>
       {% block fixtures %}{% endblock %}
     </script>

@@ -24,7 +24,7 @@ $mbta-boats = #06f;
 // See http://static.incompl.com/awful
 * {
   box-sizing: border-box;
-  overflow: auto;
+  // overflow: auto;
 }
 
 body {
@@ -33,6 +33,11 @@ body {
 
 a {
   text-decoration: none;
+  color: $mbta-blue;
+
+  &:hover {
+    color: $mbta-orange;
+  }
 }
 
 
@@ -45,7 +50,7 @@ a {
 
 .top-nav {
   padding: 5px 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   width: 100%;
   border-bottom: 1px solid #e1e1e1;
 
@@ -55,6 +60,26 @@ a {
   }
 }
 
+// Footer
+// ==============================================
+.footer {
+  padding: 5px 10px;
+  margin-top: 20px;
+  width: 100%;
+  border-top: 1px solid #e1e1e1;
+
+  p {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+}
+
+// Container
+// ==============================================
+
+.container {
+  min-height: 300px;
+}
 
 // List Buttons
 // ==============================================
