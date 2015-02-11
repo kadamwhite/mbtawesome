@@ -24,7 +24,7 @@ var TripsCollection = Backbone.Collection.extend({
     if ( this.lastRefreshed && this.lastRefreshed > now - 1000 * 20 ) {
       return {
         // Mock promise interface, just in case
-        then: function(cb) {
+        then: function( cb ) {
           cb( this.toJSON() );
         }
       };

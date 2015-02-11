@@ -6,9 +6,13 @@ var router = express.Router();
 var Promise = require( 'bluebird' );
 
 var pageTitle = require( '../services/page-title' );
+var mbtapi = require( '../services/api' );
 
 function stationDetailRoute( req, res, next ) {
   var line = req.params.line;
+
+  // Prime API cache
+  mbtapi.predictionsByLine( line );
 
   // 404 handled on the client (where the dictionary of page titles lives)
 

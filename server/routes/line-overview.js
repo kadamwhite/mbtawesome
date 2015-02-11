@@ -6,9 +6,13 @@ var router = express.Router();
 var Promise = require( 'bluebird' );
 
 var pageTitle = require( '../services/page-title' );
+var mbtapi = require( '../services/api' );
 
 function lineOverviewRoute( req, res, next ) {
   var line = req.params.line;
+
+  // Prime API cache
+  mbtapi.predictionsByLine( line );
 
   // 404 early if we're not requesting a "valid" line
   // (Green gets its own template, because it is SO AWESOME)
