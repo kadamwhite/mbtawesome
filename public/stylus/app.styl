@@ -14,6 +14,8 @@ $mbta-silver = #9a9c9d; // (formerly #8d8787)
 $mbta-rail = #9d1582;   // (formerly #b60ea0)
 $mbta-boats = #06f;
 
+$scheduled-trip = #666;
+
 // Depends on mixins and colors
 @import 'lib/spinkit-rotating-plane';
 
@@ -226,7 +228,7 @@ triangle-down( $size = 20px ) {
       triangle-up();
 
       &.scheduled {
-        border-bottom-color: #666;
+        border-bottom-color: $scheduled-trip;
       }
     }
   }
@@ -238,7 +240,7 @@ triangle-down( $size = 20px ) {
       triangle-down();
 
       &.scheduled {
-        border-top-color: #666;
+        border-top-color: $scheduled-trip;
       }
     }
   }
@@ -261,6 +263,10 @@ triangle-down( $size = 20px ) {
   }
   &.red {
     td, th { border-color: lighten( $mbta-red, 40% ); }
+  }
+
+  .scheduled {
+    color: $scheduled-trip;
   }
 
   table {
