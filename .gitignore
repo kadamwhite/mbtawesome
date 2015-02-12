@@ -17,6 +17,8 @@ public/js/vendor/underscore
 
 # Server-Compiled Assets
 public/css
+public/js/app.min.js
+public/js/app.min.map
 
 # App-specific configuration
 config.yml

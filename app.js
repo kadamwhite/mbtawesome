@@ -18,10 +18,12 @@ var templateEnv = nunjucks.configure( 'views', {
   express: app
 });
 require( './views/filters' ).setEnvironment( templateEnv );
+templateEnv.addGlobal( 'production', process.env.NODE_ENV === 'production' );
+// Specify transforms here instead of "browserify" section in package.json,
+// for maximum obviousness
 browserify.settings({
   transform: [
     [ 'nunjucksify', {
-      env: templateEnv,
       extension: '.tmpl'
     } ]
   ]

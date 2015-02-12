@@ -9,7 +9,7 @@ var api = require( '../../lib/api-query' );
 var getTripsFromRoutes = require( './_get-trips-from-routes' );
 var batchRequests = require( './_batch-requests' );
 
-// api.mockPredictions();
+api.mockPredictions();
 
 // 15 second cache expiry
 var shortCache = require( './_short-cache' );
