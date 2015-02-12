@@ -91,6 +91,21 @@ module.exports = function( grunt ) {
       }
     },
 
+    stylus: {
+      compile: {
+        options: {
+          banner: '/*! <%= pkg.name %>, v<%= pkg.version %>. Build by K Adam White at Bocoup. */',
+          compress: true,
+          // Give Stylus compiler a root directory for import lookups
+          paths: [ 'public/stylus' ]
+          // urlfunc: 'embedurl', // use embedurl( 'test.png' ) in our code to trigger Data URI embedding
+        },
+        files: {
+          'public/css/app.min.css': 'public/stylus/app.styl'
+        }
+      }
+    },
+
     watch: {
       lib: {
         files: files.lib,
