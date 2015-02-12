@@ -119,6 +119,10 @@ coloring( $color ) {
   text-transform: none;
   text-align: center;
 
+  .button {
+    border: 0;
+  }
+
   h2, h3, p {
     padding: 0;
     margin: 0;
@@ -153,7 +157,7 @@ coloring( $color ) {
   }
 
   // On larger screens, make the home page buttons bigger
-  &.columns .button {
+  &.columns .button a {
     +respond-above($sm-screen) { padding: 3rem 0; }
     +respond-above($md-screen) {
       font-size: 2.5rem;
@@ -180,7 +184,6 @@ coloring( $color ) {
 
   .button {
     margin: 0;
-    border: 0;
     color: white;
   }
 
@@ -212,9 +215,13 @@ coloring( $color ) {
 xfer-border( $color, $color2 = $color ) {
   border-right: 20px solid $color;
   border-left: 20px solid $color2;
+  +respond-above($sm-screen) {
+    border-right: 15px solid $color;
+    border-left: 15px solid $color2;
+  }
   +respond-above($md-screen) {
-    border-right: 40px solid $color;
-    border-left: 40px solid $color2;
+    border-right: 30px solid $color;
+    border-left: 30px solid $color2;
   }
 }
 
@@ -308,6 +315,14 @@ xfer-border( $color, $color2 = $color ) {
         border-top-color: $scheduled-trip;
       }
     }
+  }
+}
+
+.lg-max-ten-columns {
+  +respond-above($lg-screen) {
+    // Mirror .ten.columns.offset-by-one
+    margin-left: 8.66666666667%;
+    width: 82.6666666667%;
   }
 }
 
