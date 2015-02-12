@@ -96,11 +96,9 @@ a {
 // Mixin
 mbta-color( $color ) {
   background-color: $color;
-  border-color: $color;
 
   &:focus, &:hover, &:active {
     background-color: darken( $color, 20% );
-    border-color: darken( $color, 20% );
   }
 }
 
@@ -109,7 +107,7 @@ coloring( $color ) {
     mbta-color( $color );
   }
   .branch {
-    border-left: 10px solid darken( $color, 10% );
+    border-left: 10px solid $color;
   }
 }
 
@@ -182,6 +180,7 @@ coloring( $color ) {
 
   .button {
     margin: 0;
+    border: 0;
     color: white;
   }
 
@@ -204,6 +203,52 @@ coloring( $color ) {
       margin-left: 1.5rem;
       margin-bottom: 0;
     }
+  }
+}
+
+// Transfer indicators
+// ==============================================
+
+xfer-border( $color, $color2 = $color ) {
+  border-right: 10px solid $color;
+  border-left: 10px solid $color2;
+  +respond-above($md-screen) {
+    border-right: 20px solid $color;
+    border-left: 20px solid $color2;
+  }
+}
+
+// These go in .stations as well, for specificity parity
+.stations {
+  .xfer-blue {
+    xfer-border( $mbta-blue );
+  }
+  .xfer-green {
+    xfer-border( $mbta-green );
+  }
+  .xfer-orange {
+    xfer-border( $mbta-orange );
+  }
+  .xfer-rail {
+    xfer-border( $mbta-rail );
+  }
+  .xfer-silver {
+    xfer-border( $mbta-silver );
+  }
+  .xfer-red {
+    xfer-border( $mbta-red );
+  }
+  .xfer-green.xfer-rail {
+    xfer-border( $mbta-rail, $mbta-silver );
+  }
+  .xfer-orange.xfer-silver {
+    xfer-border( $mbta-orange, $mbta-silver );
+  }
+  .xfer-rail.xfer-silver {
+    xfer-border( $mbta-rail, $mbta-silver );
+  }
+  .xfer-red.xfer-silver {
+    xfer-border( $mbta-rail, $mbta-silver );
   }
 }
 

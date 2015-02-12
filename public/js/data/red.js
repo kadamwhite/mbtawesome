@@ -36,6 +36,7 @@ var stations = [{
 }, {
   name: 'Porter',
   station: 'place-portr',
+  transfer: [ 'rail' ],
   // position: {
   //   lat: 42.3884,
   //   lon: -71.1191
@@ -116,6 +117,7 @@ var stations = [{
 }, {
   name: 'Park Street',
   station: 'place-pktrm',
+  transfer: [ 'green' ],
   // position: {
   //   lat: 42.3564,
   //   lon: -71.0624
@@ -132,6 +134,7 @@ var stations = [{
 }, {
   name: 'Downtown Crossing',
   station: 'place-dwnxg',
+  transfer: [ 'orange', 'silver' ],
   // position: {
   //   lat: 42.3555,
   //   lon: -71.0602
@@ -148,6 +151,7 @@ var stations = [{
 }, {
   name: 'South Station',
   station: 'place-sstat',
+  transfer: [ 'rail', 'silver' ],
   // position: {
   //   lat: 42.3523,
   //   lon: -71.0552
@@ -196,6 +200,7 @@ var stations = [{
 }, {
   name: 'JFK/Umass',
   station: 'place-jfk',
+  transfer: [ 'rail' ],
   // position: {
   //   lat: 42.3207,
   //   lon: -71.0524
@@ -311,6 +316,7 @@ var stations = [{
   }, {
     name: 'Quincy Center',
     station: 'place-qnctr',
+    transfer: [ 'rail' ],
     // position: {
     //   lat: 42.2518,
     //   lon: -71.0054
@@ -343,6 +349,7 @@ var stations = [{
   }, {
     name: 'Braintree',
     station: 'place-brntn',
+    transfer: [ 'rail' ],
     // position: {
     //   lat: 42.2079,
     //   lon: -71.0011

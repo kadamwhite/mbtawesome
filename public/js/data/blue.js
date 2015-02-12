@@ -148,6 +148,7 @@ var stations = [{
 }, {
   name: 'State Street',
   station: 'place-state',
+  transfer: [ 'orange' ],
   // position: {
   //   lat: 42.359,
   //   lon: -71.0576

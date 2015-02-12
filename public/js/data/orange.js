@@ -20,6 +20,7 @@ var stations = [{
 }, {
   name: 'Malden Center',
   station: 'place-mlmnl',
+  transfer: [ 'rail' ],
   // position: {
   //   lat: 42.4266,
   //   lon: -71.0741
@@ -100,6 +101,7 @@ var stations = [{
 }, {
   name: 'North Station',
   station: 'place-north',
+  transfer: [ 'green', 'rail' ],
   // position: {
   //   lat: 42.3656,
   //   lon: -71.0613
@@ -116,6 +118,7 @@ var stations = [{
 }, {
   name: 'Haymarket',
   station: 'place-haecl',
+  transfer: [ 'green' ],
   // position: {
   //   lat: 42.363,
   //   lon: -71.0583
@@ -132,6 +135,7 @@ var stations = [{
 }, {
   name: 'State Street',
   station: 'place-state',
+  transfer: [ 'blue' ],
   // position: {
   //   lat: 42.359,
   //   lon: -71.0576
@@ -148,6 +152,7 @@ var stations = [{
 }, {
   name: 'Downtown Crossing',
   station: 'place-dwnxg',
+  transfer: [ 'red', 'silver' ],
   // position: {
   //   lat: 42.3555,
   //   lon: -71.0602
@@ -196,6 +201,7 @@ var stations = [{
 }, {
   name: 'Back Bay',
   station: 'place-bbsta',
+  transfer: [ 'rail' ],
   // position: {
   //   lat: 42.3474,
   //   lon: -71.0757
@@ -228,6 +234,7 @@ var stations = [{
 }, {
   name: 'Ruggles',
   station: 'place-rugg',
+  transfer: [ 'rail' ],
   // position: {
   //   lat: 42.3364,
   //   lon: -71.089
@@ -308,6 +315,7 @@ var stations = [{
 }, {
   name: 'Forest Hills',
   station: 'place-forhl',
+  transfer: [ 'rail' ],
   // position: {
   //   lat: 42.3005,
   //   lon: -71.1137
