@@ -38,6 +38,29 @@ var Line = Backbone.Model.extend({
     return _.findWhere( stops, {
       station: parentStation
     });
+  },
+
+  /**
+   * Get the stops array for a provided parent_station ID
+   *
+   * @param  {[type]} parentStation [description]
+   * @return {[type]}               [description]
+   */
+  stopsByStation: function( parentStation ) {
+    var station = this.station( parentStation );
+
+    // Fail out if we got nothing back
+    if ( ! station ) {
+      return;
+    }
+
+    // If we got a station back, get a list of unique stops contained within
+    // this station: De-dupe stops on ID to avoid double-listing trains
+    // approaching the end-of-line terminal stations (which are included with
+    // the same stop_id in both directions)
+    return _.unique( station.stops, function( stop ) {
+      return stop.id;
+    });
   }
 
 });

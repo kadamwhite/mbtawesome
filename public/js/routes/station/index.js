@@ -22,7 +22,7 @@ function stationDetailRoute( lineSlug, parentStation ) {
   }
 
   new StationDetailView({
-    model: line,
+    line: line,
     station: station,
     predictions: trips
   });

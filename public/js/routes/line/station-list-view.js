@@ -42,14 +42,14 @@ var StopsListView = BaseView.extend({
     this.$el.html( this.template.render( this.serialize() ) );
 
     var trips = this.collection;
-    var lineSlug = this.model.get( 'slug' );
+    var line = this.model;
 
     // Build an array of subviews (StationView or BranchView)
     var subViews = _.map( this.stations, function( station ) {
       if ( ! _.isArray( station ) ) {
         // Non-array station gets rendered as-is
         return new StationView({
-          line: lineSlug,
+          line: line,
           station: station,
           collection: trips
         });
@@ -57,7 +57,7 @@ var StopsListView = BaseView.extend({
 
       // If station is an array, we're branching:
       return new BranchView({
-        line: lineSlug,
+        line: line,
         branches: station,
         collection: trips
       });

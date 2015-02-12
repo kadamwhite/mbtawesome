@@ -25,9 +25,8 @@ var StationView = BaseView.extend({
    * @return {Array} Array of station objects
    */
   stations: function() {
-    return _.unique( this.station.stops, function( stop ) {
-      return stop.id;
-    });
+    var parentStation = this.station.station;
+    return this.line.stopsByStation( parentStation );
   },
 
   /**
@@ -86,7 +85,7 @@ var StationView = BaseView.extend({
     });
 
     return {
-      line: this.line,
+      line: this.line.get( 'slug' ),
       station: this.station,
       directions: approachingTrips
     };

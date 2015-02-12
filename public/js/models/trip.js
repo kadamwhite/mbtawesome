@@ -6,21 +6,20 @@ var Backbone = require( 'backbone' );
 // Predictions collection structures the "stops" property of a Trip model.
 // Each entry in the "stops" array has properties "id", "eta" and "seconds",
 // e.g. `{ id: '70087', eta: 1423524933, seconds: 136 }`.
-var PredictionsCollection = Backbone.Collection.extend({});
+var PredictionsCollection = Backbone.Collection.extend({
+  // Ensure stops are sorted in arrival order
+  comparator: 'seq'
+});
 
 var Trip = Backbone.Model.extend({
   /**
-   * Get the number of seconds until this trip reaches the provided station,
-   * or else return -1 if the trip is not scheduled to do so
+   * Return a Boolean indicating whether this trip visits the provided station
    *
    * @method visits
-   * @return {Number} The number of seconds until this trip reaches the specified station
+   * @return {Boolean} Whether or not the trip stops at the specified station
    * */
   visits: function( stationId ) {
-    var station = this.stops().findWhere({
-      id: stationId
-    });
-    return station ? station.get( 'seconds' ) : -1;
+    return this.secondsToStation( stationId ) > 0;
   },
 
   /**
@@ -55,7 +54,7 @@ var Trip = Backbone.Model.extend({
    * @return {String} A string representing when this trip arrives at the station
    */
   timeUntil: function( stationId ) {
-    var secondsToStation = this.visits( stationId );
+    var secondsToStation = this.secondsToStation( stationId );
 
     if ( secondsToStation < 0 ) {
       return '';
@@ -68,6 +67,20 @@ var Trip = Backbone.Model.extend({
       return 'Approaching';
     }
     return Math.floor( secondsToStation / 60 ) + ' min';
+  },
+
+  /**
+   * Get the number of seconds until this trip reaches the provided station,
+   * or else return -1 if the trip is not scheduled to do so
+   *
+   * @method visits
+   * @return {Number} The number of seconds until this trip reaches the specified station
+   * */
+  secondsToStation: function( stationId ) {
+    var station = this.stops().findWhere({
+      id: stationId
+    });
+    return station ? station.get( 'seconds' ) : -1;
   },
 
   /**
@@ -95,18 +108,18 @@ var Trip = Backbone.Model.extend({
 
   /**
    * Access the "stops" property as a collection
+   *
    * @method stops
    * @return {PredictionsCollection} A PredictionsCollection instance containing
    *                                 this trip's predicted arrival times
    */
   stops: function() {
-    // Ensure stops are sorted in arrival order
-    var stops = _.sortBy( this.get( 'stops' ), 'seq' );
-    return new PredictionsCollection( stops );
+    return new PredictionsCollection( this.get( 'stops' ) );
   },
 
   /**
    * Access the ETA of the trip as a Date object
+   * (NOT CURRENTLY IN USE)
    * TODO: Is this useful in any way, given the "seconds" property?
    *
    * @method eta
@@ -118,6 +131,7 @@ var Trip = Backbone.Model.extend({
 
   /**
    * Get a representation of the trip's vehicle position, if available
+   * (NOT CURRENTLY IN USE)
    *
    * @method position
    * @return {Object|null} An object with "lat", "lon" and "bearing", or null

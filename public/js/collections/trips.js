@@ -37,7 +37,7 @@ var TripsCollection = Backbone.Collection.extend({
 
   scheduled: function( stationId ) {
     return this.filter(function( trip ) {
-      return trip.visits( stationId ) > 0;
+      return trip.visits( stationId );
     });
   },
 

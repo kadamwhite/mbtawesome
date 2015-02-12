@@ -13,8 +13,8 @@ var StopsListView = StationView.extend({
     // Nested array defining the layout of the stops
     this.station = opts.station;
 
-    // this.model is a Line model instance
-    this.line = this.model.get( 'slug' );
+    // this.line is a Line model instance
+    this.line = opts.line;
 
     // this.collection is a TripsCollection instance:
     this.predictions = opts.predictions;
@@ -77,7 +77,7 @@ var StopsListView = StationView.extend({
 
     return {
       station: this.station,
-      line: this.line,
+      line: this.line.get( 'slug' ),
       directions: directions
     };
   }
