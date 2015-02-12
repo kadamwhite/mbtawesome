@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require( 'lodash' );
 var Backbone = require( 'backbone' );
 
 var TripsCollection = Backbone.Collection.extend({

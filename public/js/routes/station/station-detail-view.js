@@ -27,13 +27,22 @@ var StopsListView = StationView.extend({
   },
 
   serialize: function() {
-    var trips = this.trips;
+    var stopIds = _.pluck( this.station.stops, 'id' );
+
+    // Get all trips that visit one of this station's stops
+    var tripsForStation = this.trips.visitsAny( stopIds );
+
+    // Now that we have the trips, iterate over the stops
     var tripsByDirection = _.chain( this.station.stops )
       // Sort by direction (alphabetically)
       .sortBy( 'dir' )
-      // Get all trips visiting this stop
+      // Get all trips visiting this specific stop & direction (filtering on
+      // both is necessary due to terminal stations like Alewife or Bowdoin)
       .map(function getsTripsVisiting( stop ) {
-        var tripsForStop = _.chain( trips.visits( stop.id ) )
+        var tripsForStop = _.chain( tripsForStation )
+          .filter(function( trip ) {
+            return trip.visits( stop.id ) && trip.get( 'direction' ) === stop.dir;
+          })
           .map(function createRenderableTrip( trip ) {
             // Use overloaded toJSON to produce a renderable object including
             // relevant computed properties like "active" or "seconds"
