@@ -1,0 +1,16 @@
+# humanstxt.org/
+
+# TEAM
+
+    K. Adam White -- Developer & Designer -- @kadamwhite
+
+# THANKS
+
+    Joey Brunelle, Goose Rock Design -- friend & author of howsthet.com -- @gooserockdesign
+    Everyone at Bocoup -- Best coworkers in the world -- @bocoup
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Express, Nginx, Backbone, Lodash, jQuery, skeleton.css, Normalize.css
+    Stylus, Browserify, Nunjucks, Grunt
