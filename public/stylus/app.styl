@@ -218,7 +218,7 @@ xfer-border( $color, $color2 = $color ) {
   }
 }
 
-// These go in .stations as well, for specificity parity
+// Transfer indicators nest inside .stations for specificity parity
 .stations {
   .xfer-blue {
     xfer-border( $mbta-blue );
@@ -232,11 +232,11 @@ xfer-border( $color, $color2 = $color ) {
   .xfer-rail {
     xfer-border( $mbta-rail );
   }
-  .xfer-silver {
-    xfer-border( $mbta-silver );
-  }
   .xfer-red {
     xfer-border( $mbta-red );
+  }
+  .xfer-silver {
+    xfer-border( $mbta-silver );
   }
   .xfer-green.xfer-rail {
     xfer-border( $mbta-rail, $mbta-silver );
@@ -318,11 +318,12 @@ xfer-border( $color, $color2 = $color ) {
   list-style: none;
   // Clear the columns, when floated on larger screens
   overflow: hidden;
+  margin-bottom: 0;
 
   li {
-    // Two-column layout at larger screen sizes
-    // Note: can't use @extend with multiple classes
     +respond-above($md-screen) {
+      // Two-column layout at larger screen sizes: these rules mirror the
+      // behavior of .six.columns (we can't @extend both for some reason)
       float: left;
       width: 48%;
       margin-left: 4%;
@@ -369,6 +370,33 @@ xfer-border( $color, $color2 = $color ) {
   .scheduled {
     color: $scheduled-trip;
   }
+}
+
+// Station details page transfer indicators
+.transfers {
+  border-top: 1px solid #e1e1e1;
+  padding-top: 3.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.xfer-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: sub;
+  border-radius: 10px;
+
+  // Hide text within icons
+  span {
+    text-hidden();
+  }
+
+  &.xfer-blue { background-color: $mbta-blue; }
+  &.xfer-green { background-color: $mbta-green; }
+  &.xfer-orange { background-color: $mbta-orange; }
+  &.xfer-rail { background-color: $mbta-rail; }
+  &.xfer-red { background-color: $mbta-red; }
+  &.xfer-silver { background-color: $mbta-silver; }
 }
 
 // Alerts
