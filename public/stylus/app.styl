@@ -51,14 +51,14 @@ a {
 }
 
 .top-nav {
-  padding: 5px 10px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   width: 100%;
   border-bottom: 1px solid #e1e1e1;
 
   h1, p {
     margin: 0;
     font-size: 2.5rem;
+    +respond-above($md-screen) { font-size: 3.5rem; }
   }
 }
 
@@ -74,6 +74,13 @@ a {
     margin: 0;
     font-size: 1.5rem;
   }
+}
+
+.top-nav,
+.footer {
+  padding: 5px 10px;
+  +respond-above($sm-screen) { padding: 10px 20px; }
+  +respond-above($md-screen) { padding: 20px 20px; }
 }
 
 // Container
@@ -104,23 +111,6 @@ coloring( $color ) {
   .branch {
     border-left: 10px solid darken( $color, 10% );
   }
-}
-
-// Train Indicators
-triangle-up( $size = 20px ) {
-  width: 0;
-  height: 0;
-  border-left: ( $size / 2 ) solid transparent;
-  border-right: ( $size / 2 ) solid transparent;
-  border-bottom: ( $size / 2 ) solid black;
-}
-
-triangle-down( $size = 20px ) {
-  width: 0;
-  height: 0;
-  border-left: ( $size / 2 ) solid transparent;
-  border-right: ( $size / 2 ) solid transparent;
-  border-top: ( $size / 2 ) solid black;
 }
 
 .station,
@@ -163,6 +153,19 @@ triangle-down( $size = 20px ) {
   &.blue {
     mbta-color( $mbta-blue );
   }
+
+  // On larger screens, make the home page buttons bigger
+  &.columns .button {
+    +respond-above($sm-screen) { padding: 3rem 0; }
+    +respond-above($md-screen) {
+      font-size: 2.5rem;
+      padding: 6rem 0;
+    }
+    +respond-above($lg-screen) {
+      font-size: 3rem;
+      padding: 8rem 0;
+    }
+  }
 }
 
 // Per-list coloring (class goes on <ul>)
@@ -204,6 +207,9 @@ triangle-down( $size = 20px ) {
   }
 }
 
+// Themed Dividers
+// ==============================================
+
 .divider-blue,
 .divider-green,
 .divider-orange,
@@ -216,33 +222,42 @@ triangle-down( $size = 20px ) {
 .divider-orange { border-top-color: $mbta-orange; }
 .divider-red { border-top-color: $mbta-red; }
 
+// Train Icons
+// ==============================================
+
 .trains {
   overflow: hidden;
   height: 13px;
 
+  $arrow-size = 10px;
+
   .train {
     display: inline-block;
     overflow: visible;
+    width: 0;
+    height: 0;
+    vertical-align: top;
+    border-left: $arrow-size solid transparent;
+    border-right: $arrow-size solid transparent;
   }
 
   &.up {
     margin: 3px 0 0;
     text-align: left;
     .train {
-      vertical-align: top;
-      triangle-up();
+      border-bottom: $arrow-size solid black;
 
       &.scheduled {
         border-bottom-color: $scheduled-trip;
       }
     }
   }
+
   &.down {
     margin: 0 0 3px 0;
     text-align: right;
     .train {
-      vertical-align: top;
-      triangle-down();
+      border-top: $arrow-size solid black;
 
       &.scheduled {
         border-top-color: $scheduled-trip;
@@ -256,8 +271,20 @@ triangle-down( $size = 20px ) {
 
 .arrival-predictions {
   list-style: none;
+  // Clear the columns, when floated on larger screens
+  overflow: hidden;
 
   li {
+    // Two-column layout at larger screen sizes
+    // Note: can't use @extend with multiple classes
+    +respond-above($md-screen) {
+      float: left;
+      width: 48%;
+      margin-left: 4%;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
     margin-bottom: 3.5rem;
   }
 
