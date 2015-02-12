@@ -66,7 +66,7 @@ a {
 // ==============================================
 .footer {
   padding: 5px 10px;
-  margin-top: 20px;
+  margin-top: 25px;
   width: 100%;
   border-top: 1px solid #e1e1e1;
 
@@ -172,6 +172,11 @@ triangle-down( $size = 20px ) {
     list-style-type: none;
   }
 
+  // .station li's get 0 bottom padding due to .train divs
+  .station {
+    margin-bottom: 0;
+  }
+
   .button {
     margin: 0;
     color: white;
@@ -213,7 +218,7 @@ triangle-down( $size = 20px ) {
 
 .trains {
   overflow: hidden;
-  max-height: 13px;
+  height: 13px;
 
   .train {
     display: inline-block;
@@ -252,7 +257,27 @@ triangle-down( $size = 20px ) {
 .arrival-predictions {
   list-style: none;
 
+  li {
+    margin-bottom: 3.5rem;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  h3 {
+    margin-top: 3.5rem;
+    margin-bottom: 2rem;
+  }
+
+  td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
   th {
+    padding-top: 0;
+    padding-bottom: 10px;
     width: 50%;
   }
 
@@ -271,10 +296,6 @@ triangle-down( $size = 20px ) {
 
   .scheduled {
     color: $scheduled-trip;
-  }
-
-  table {
-    width: 100%;
   }
 }
 
