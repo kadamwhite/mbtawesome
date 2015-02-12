@@ -6,7 +6,7 @@ var IndexView = BaseView.extend({
 
   el: '.container',
 
-  template: require( './tmpl.nunj' ),
+  template: require( './index.tmpl' ),
 
   initialize: function( opts ) {
     // Auto-render, and listen for subsequent changes (there are unlikely to be any)

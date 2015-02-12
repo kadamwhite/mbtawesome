@@ -21,7 +21,8 @@ require( './views/filters' ).setEnvironment( templateEnv );
 browserify.settings({
   transform: [
     [ 'nunjucksify', {
-      env: templateEnv
+      env: templateEnv,
+      extension: '.tmpl'
     } ]
   ]
 });
@@ -71,7 +72,7 @@ app.use(function( req, res, next ) {
 if ( app.get( 'env' ) === 'development' ) {
   app.use(function( err, req, res, next ) {
     res.status( err.status || 500 );
-    res.render( 'error.nunj', {
+    res.render( 'error.tmpl', {
       message: err.message,
       error: err,
       __dirname: __dirname
@@ -83,7 +84,7 @@ if ( app.get( 'env' ) === 'development' ) {
 // no stacktraces leaked to user
 app.use(function( err, req, res, next ) {
   res.status( err.status || 500 );
-  res.render( 'error.nunj', {
+  res.render( 'error.tmpl', {
     message: err.message,
     error: {
       stack: ''

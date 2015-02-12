@@ -28,7 +28,7 @@ function lineOverviewRoute( req, res, next ) {
   Promise.props({
     title: title
   }).then(function( context ) {
-    res.render( 'line-overview.nunj', context );
+    res.render( 'layouts/main.tmpl', context );
   }).catch( next );
 }
 

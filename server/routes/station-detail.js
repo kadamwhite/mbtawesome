@@ -26,7 +26,7 @@ function stationDetailRoute( req, res, next ) {
   Promise.props({
     title: title
   }).then(function( context ) {
-    res.render( 'station-detail.nunj', context );
+    res.render( 'layouts/main.tmpl', context );
   }).catch( next );
 }
 

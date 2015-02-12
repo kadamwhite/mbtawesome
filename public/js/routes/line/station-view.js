@@ -9,7 +9,7 @@ var StationView = BaseView.extend({
 
   className: 'station',
 
-  template: require( './station.nunj' ),
+  template: require( './station.tmpl' ),
 
   initialize: function( opts ) {
     this.station = opts.station;

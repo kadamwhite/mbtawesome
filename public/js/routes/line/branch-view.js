@@ -9,7 +9,7 @@ var BranchView = BaseView.extend({
 
   tagName: 'li',
 
-  template: require( './branch.nunj' ),
+  template: require( './branch.tmpl' ),
 
   initialize: function( opts ) {
     // Branches is an array of arrays containing stops from a specific branch
