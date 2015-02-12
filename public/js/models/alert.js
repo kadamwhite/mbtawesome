@@ -1,31 +1,10 @@
 /*jshint -W106 */// Disable underscore_case warnings: the API uses them
 'use strict';
 
+var _ = require( 'lodash' );
 var Backbone = require( 'backbone' );
 
 var Alert = Backbone.Model.extend({
-
-  /**
-   * Get a Date object representing when this alert goes into effect
-   *
-   * @method effectStart
-   * @return {Date} The JS date object representing when the alert starts
-   */
-  effectStart: function() {
-    // API times are in seconds
-    return new Date( this.get( 'effect_periods' ).effect_start * 1000 );
-  },
-
-  /**
-   * Get a Date object representing when this alert ends
-   *
-   * @method effectEnd
-   * @return {Date} The JS date object representing when the alert ends
-   */
-  effectEnd: function() {
-    // API times are in seconds
-    return new Date( this.get( 'effect_periods' ).effect_end * 1000 );
-  },
 
   /**
    * Identify whether this alert is currently in effect, based on effect_periods
@@ -35,7 +14,20 @@ var Alert = Backbone.Model.extend({
    */
   inEffect: function() {
     var now = new Date();
-    return this.effectStart() < now && now < this.effectEnd();
+
+    function alertIsActive( effectPeriod ) {
+      var start = effectPeriod.effect_start;
+      var end = effectPeriod.effect_end;
+
+      // Sometimes alerts don't have a start or end date, meaning they're unbounded:
+      // e.g. the 2015 February snow delay alert had effect_end ''.
+      var startedInPast = start ? start < now : true;
+      var notOverYet = end ? now < end : true;
+      return startedInPast && notOverYet;
+    }
+
+    // Iterate through effect_periods array to determine status
+    return _.any( this.get( 'effect_periods' ), alertIsActive);
   },
 
   /**
@@ -46,7 +38,13 @@ var Alert = Backbone.Model.extend({
    */
   upcoming: function() {
     var now = new Date();
-    return now < this.effectStart();
+
+    // Iterate through effect_periods array to determine status
+    return _.any( this.get( 'effect_periods' ), function( effectPeriod ) {
+      var start = effectPeriod.effect_start;
+      // If start time is missing, assume it's in effect now
+      return start ? now < start : false;
+    });
   },
 
   /**

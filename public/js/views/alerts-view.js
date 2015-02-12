@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require( 'lodash' );
 var BaseView = require( './base-view' );
 
 var AlertsView = BaseView.extend({
@@ -18,8 +19,9 @@ var AlertsView = BaseView.extend({
   },
 
   serialize: function() {
+    var activeAlerts = this.collection.inEffect();
     return {
-      alerts: this.collection.toJSON()
+      alerts: _.invoke( activeAlerts, 'toJSON' )
     };
   },
 
