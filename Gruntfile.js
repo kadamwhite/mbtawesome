@@ -33,6 +33,30 @@ module.exports = function( grunt ) {
 
     pkg: grunt.file.readJSON( 'package.json' ),
 
+    browserify: {
+      dist: {
+        files: {
+          'public/js/app.min.js': 'public/js/client-app.js',
+        },
+        options: {
+          browserifyOptions: {
+            debug: true
+          },
+          plugin: [
+            [ 'minifyify', {
+              map: 'app.min.map',
+              output: 'public/js/app.min.map'
+            } ]
+          ],
+          transform: [
+            [ 'nunjucksify', {
+              extension: '.tmpl'
+            } ]
+          ]
+        }
+      }
+    },
+
     jscs: {
       options: {
         config: '.jscsrc',

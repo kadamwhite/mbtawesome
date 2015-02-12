@@ -10,7 +10,7 @@
     "dev": "nodemon ./bin/www",
     "preprod": "npm run build",
     "prod": "NODE_ENV=production nodemon ./bin/www",
-    "build:js": "browserify -d -t [ nunjucksify --extension .tmpl ] -p [minifyify --compressPath . --map app.min.map --output public/js/app.min.map ]  ./public/js/client-app.js > ./public/js/app.min.js",
+    "build:js": "grunt browserify",
     "build:css": "grunt stylus",
     "build": "npm run build:js && npm run build:css",
     "migrate": "knex migrate:latest",
@@ -36,7 +36,6 @@
   "devDependencies": {
     "bluebird": "^2.8.0",
     "bower": "^1.3.12",
-    "browserify": "^8.1.3",
     "chai": "^1.10.0",
     "chai-as-promised": "^4.1.1",
     "grunt": "^0.4.5",
