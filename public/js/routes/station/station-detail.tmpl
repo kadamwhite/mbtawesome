@@ -44,12 +44,12 @@
 
 {% if station.transfer.length %}
 <p class="transfers">
-  <strong>Transfers available</strong>
   {% for transfer in station.transfer %}
   <span class="xfer-icon xfer-{{ transfer }}" title="{{ transfer | capitalize }} Line">
     <span>{{ transfer | capitalize }} Line</span>
   </span>
   {% endfor %}
+  <strong>Transfers available</strong>
 </p>
 {% endif %}
 
