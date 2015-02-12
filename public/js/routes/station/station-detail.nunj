@@ -14,10 +14,10 @@
     <table>
       <thead>
         <tr>
-          <th>Destination</th>
           <th>
             <acronym title="Estimated Time of Arrival">ETA</acronym>
           </th>
+          <th>Destination</th>
         </tr>
       </thead>
       <tbody>
@@ -25,8 +25,8 @@
       {% if direction.trips.length %}
         {% for trip in direction.trips %}
         <tr {{ 'class="scheduled"' if trip.scheduled }}>
-          <td>{{ trip.headsign }}</td>
           <td>{{ trip.timeUntil }}</td>
+          <td>{{ trip.headsign }}</td>
         </tr>
         {% endfor %}
       {% else %}
