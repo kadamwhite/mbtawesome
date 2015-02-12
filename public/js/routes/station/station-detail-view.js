@@ -10,75 +10,51 @@ var StopsListView = StationView.extend({
   template: require( './station-detail.nunj' ),
 
   initialize: function( opts ) {
-    // Nested array defining the layout of the stops
+    // Object containing the details about this station
     this.station = opts.station;
 
     // this.line is a Line model instance
     this.line = opts.line;
 
-    // this.collection is a TripsCollection instance:
-    this.predictions = opts.predictions;
+    // this.trips is a TripsCollection instance:
+    this.trips = opts.trips;
 
     // Listen for new predictions data
-    this.listenTo( this.predictions, 'sync reset', this.render );
+    this.listenTo( this.trips, 'sync reset', this.render );
 
     // Auto-render on load
     this.render();
   },
 
-  /**
-   * Convenience method to get any predictions in the view's collection
-   * that visit stops contained within this view's parent station
-   *
-   * @method scheduled
-   * @return {Array} Array of Trip models
-   */
-  scheduled: function() {
-    var predictions = this.predictions;
-    return _.chain( this.stations() )
-      .map(function( stop ) {
-        // Get all trips visiting this stop, and set a property
-        // containing the message to be displayed
-        return _.chain( predictions.scheduled( stop.id ) )
-          .map(function( trip ) {
-            var tripObj = trip.toJSON();
-            // For grouping
-            tripObj.stop = stop.id;
-            // For display
-            tripObj.timeUntil = trip.timeUntil( stop.id );
-            tripObj.scheduled = ! trip.active();
-            // For sorting
-            tripObj.seconds = trip.visits( stop.id );
-            return tripObj;
+  serialize: function() {
+    var trips = this.trips;
+    var tripsByDirection = _.chain( this.station.stops )
+      // Sort by direction (alphabetically)
+      .sortBy( 'dir' )
+      // Get all trips visiting this stop
+      .map(function getsTripsVisiting( stop ) {
+        var tripsForStop = _.chain( trips.visits( stop.id ) )
+          .map(function createRenderableTrip( trip ) {
+            // Use overloaded toJSON to produce a renderable object including
+            // relevant computed properties like "active" or "seconds"
+            return trip.toJSON( stop.id );
           })
+          // Sort the created objects by
           .sortBy( 'seconds' )
           .value();
-      })
-      .flatten()
-      .value();
-  },
 
-  serialize: function() {
-    var predictions = this.scheduled();
-
-    var directions = _.chain( this.station.stops )
-      .map(function( stop ) {
-        var trips = _.where( predictions, {
-          direction: stop.dir
-        });
+        // Return a renderable object
         return {
-          direction: stop.dir,
           name: stop.dirName,
-          trips: trips
+          trips: tripsForStop
         };
       })
-      .sortBy( 'direction' )
       .value();
 
     return {
       station: this.station,
       line: this.line.get( 'slug' ),
-      directions: directions
+      tripsByDirection: tripsByDirection
     };
   }
 

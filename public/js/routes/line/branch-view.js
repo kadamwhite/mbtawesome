@@ -12,15 +12,18 @@ var BranchView = BaseView.extend({
   template: require( './branch.nunj' ),
 
   initialize: function( opts ) {
+    // Branches is an array of arrays containing stops from a specific branch
     this.branches = opts.branches;
-    // Store the line slug (to pass through to the view)
+    // Store the Line instance (to pass through to the view)
     this.line = opts.line;
+    // Store the trip predictions collection
+    this.trips = opts.trips;
 
     if ( ! this.branches ) {
       throw new Error( 'BranchView initialized without branches' );
     }
-    if ( ! this.collection ) {
-      throw new Error( 'BranchView initialized without a collection' );
+    if ( ! this.trips ) {
+      throw new Error( 'BranchView initialized without a TripsCollection' );
     }
   },
 
@@ -31,7 +34,7 @@ var BranchView = BaseView.extend({
     }));
 
     var $branches = this.$el.find( '.branch' );
-    var trips = this.collection;
+    var trips = this.trips;
     var line = this.line;
 
     _.forEach( this.branches, function( branch, index ) {
@@ -39,7 +42,7 @@ var BranchView = BaseView.extend({
         return new StationView({
           line: line,
           station: station,
-          collection: trips
+          trips: trips
         });
       });
 

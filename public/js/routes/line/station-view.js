@@ -13,7 +13,10 @@ var StationView = BaseView.extend({
 
   initialize: function( opts ) {
     this.station = opts.station;
+    // line is a Line instance holding the active line
     this.line = opts.line;
+    // trips is the TripsCollection instance holding this line's predictions
+    this.trips = opts.trips;
   },
 
   /**
@@ -37,28 +40,22 @@ var StationView = BaseView.extend({
    * @return {Object} An object, with '0' or '1' properties
    */
   approaching: function() {
-    var trips = this.collection;
+    var trips = this.trips;
 
-    return _.chain( this.stations() )
-      // Get collection of Trip models for trains approaching this station
-      .map(function( stop ) {
-        return trips.approaching( stop.id );
-      })
-      // Flatten results
-      .flatten()
-      // Throw out any empty arrays
-      .reject(function( trips ) {
-        return trips.length === 0;
-      })
-      // Group by direction (0 or 1)
-      .groupBy(function( trip ) {
-        return trip.get( 'direction' );
-      })
-      .value();
+    var stops = _.pluck( this.station.stops, 'id' );
+    // TODO: make and utilize a TripsCollection method to pass in a station
+    // object and get back a list of approaching trips
+    //
+    // Get collection of Trip models for trains approaching this station,
+    // grouped by direction name
+    // console.log( this.trips.approachingAny( stops ) );
+    return _.groupBy( this.trips.approachingAny( stops ), function( trip ) {
+      return trip.get( 'direction' );
+    });
   },
 
   serialize: function() {
-    var stationIds = _.pluck( this.stations(), 'id' );
+    var stationIds = _.pluck( this.station.stops, 'id' );
 
     // Bake the trip objects down to the minimum values needed to render
     var approachingTrips = _.mapValues( this.approaching(), function( trips, key ) {

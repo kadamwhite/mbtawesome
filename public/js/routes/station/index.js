@@ -24,7 +24,7 @@ function stationDetailRoute( lineSlug, parentStation ) {
   new StationDetailView({
     line: line,
     station: station,
-    predictions: trips
+    trips: trips
   });
 
   // Kick off or refresh the trip predictions data

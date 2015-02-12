@@ -51,7 +51,7 @@ var StopsListView = BaseView.extend({
         return new StationView({
           line: line,
           station: station,
-          collection: trips
+          trips: trips
         });
       }
 
@@ -59,7 +59,7 @@ var StopsListView = BaseView.extend({
       return new BranchView({
         line: line,
         branches: station,
-        collection: trips
+        trips: trips
       });
     });
 

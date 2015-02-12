@@ -18,8 +18,8 @@ var Trip = Backbone.Model.extend({
    * @method visits
    * @return {Boolean} Whether or not the trip stops at the specified station
    * */
-  visits: function( stationId ) {
-    return this.secondsToStation( stationId ) > 0;
+  visits: function( stopId ) {
+    return this.secondsToStop( stopId ) > 0;
   },
 
   /**
@@ -29,8 +29,8 @@ var Trip = Backbone.Model.extend({
    * @method messageForStation
    * @return {String} A string message, e.g. "Forest Hills train in 15 minutes"
    */
-  messageForStation: function( stationId ) {
-    var timeUntil = this.timeUntil( stationId );
+  messageForStation: function( stopId ) {
+    var timeUntil = this.timeUntil( stopId );
 
     if ( ! timeUntil ) {
       return '';
@@ -50,23 +50,23 @@ var Trip = Backbone.Model.extend({
    * trip at the specified station (e.g: 'Arriving', '4 minutes', etc)
    *
    * @method timeUntil
-   * @param  {String} stationId The station_id of a station on this trip
+   * @param  {String} stopId The station_id of a station on this trip
    * @return {String} A string representing when this trip arrives at the station
    */
-  timeUntil: function( stationId ) {
-    var secondsToStation = this.secondsToStation( stationId );
+  timeUntil: function( stopId ) {
+    var secondsToStop = this.secondsToStop( stopId );
 
-    if ( secondsToStation < 0 ) {
+    if ( secondsToStop < 0 ) {
       return '';
     }
 
-    if ( secondsToStation < 30 ) {
+    if ( secondsToStop < 30 ) {
       return 'Arriving';
     }
-    if ( secondsToStation < 90 ) {
+    if ( secondsToStop < 90 ) {
       return 'Approaching';
     }
-    return Math.floor( secondsToStation / 60 ) + ' min';
+    return Math.floor( secondsToStop / 60 ) + ' min';
   },
 
   /**
@@ -76,9 +76,9 @@ var Trip = Backbone.Model.extend({
    * @method visits
    * @return {Number} The number of seconds until this trip reaches the specified station
    * */
-  secondsToStation: function( stationId ) {
+  secondsToStop: function( stopId ) {
     var station = this.stops().findWhere({
-      id: stationId
+      id: stopId
     });
     return station ? station.get( 'seconds' ) : -1;
   },
@@ -87,12 +87,12 @@ var Trip = Backbone.Model.extend({
    * Identify whether the provided station is this train's next stop
    *
    * @method approaching
-   * @param {String} stationId The ID of the station to check for
+   * @param {String} stopId The ID of the station to check for
    * @return {Boolean} Whether that station is this train's next stop
    */
-  approaching: function( stationId ) {
+  approaching: function( stopId ) {
     var nextStop = this.stops().first();
-    return stationId === nextStop.get( 'id' );
+    return stopId === nextStop.get( 'id' );
   },
 
   /**
@@ -146,6 +146,31 @@ var Trip = Backbone.Model.extend({
       lon: vehicle.get( 'lon' ),
       bearing: vehicle.get( 'bearing' )
     };
+  },
+
+  /**
+   * Extend toJSON to include some of the computed properties: if a stopId is
+   * provided, "timeUntil", "seconds" and "stop" will all be included
+   *
+   * Note: this feels janky, toJSON (a) isn't really intended for this and
+   * (b) doesn't usually take an argument in this way. TODO: reevaluate.
+   *
+   * @method toJSON
+   * @param {String} [stopId] An optional stop_id string
+   */
+  toJSON: function( stopId ) {
+    var attrs = Backbone.Model.prototype.toJSON.apply( this );
+
+    // Render out computed properties
+    attrs.scheduled = ! this.active();
+
+    // Include stop-specific properties, if a stop is provided
+    if ( stopId ) {
+      attrs.stop = stopId;
+      attrs.timeUntil = this.timeUntil( stopId );
+      attrs.seconds = this.secondsToStop( stopId );
+    }
+    return attrs;
   }
 });
 

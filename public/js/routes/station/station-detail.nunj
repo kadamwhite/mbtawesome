@@ -7,7 +7,7 @@
 <hr class="divider-{{ line }}" />
 
 <ul class="arrival-predictions {{ line }}">
-  {% for direction in directions %}
+  {% for direction in tripsByDirection %}
   <li>
     <h3>{{ direction.name }}</h3>
 
