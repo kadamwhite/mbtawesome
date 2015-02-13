@@ -34,7 +34,4 @@ Backbone.history.start({
 // router navigation actions
 require( './views/window-view' );
 
-// TopNav is self-governing
-require( './views/top-navigation-view' );
-
 module.exports = MBTApp;
