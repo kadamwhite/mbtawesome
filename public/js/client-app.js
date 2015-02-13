@@ -18,13 +18,6 @@ var MBTApp = {};
 // ==============================================
 MBTApp.router = require( './router' );
 
-// Convenience wrapper to always set { trigger: true }
-MBTApp.navigate = function( target ) {
-  MBTApp.router.navigate( target, {
-    trigger: true
-  });
-};
-
 Backbone.history.start({
   // silent: true,
   pushState: true

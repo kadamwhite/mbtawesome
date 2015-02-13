@@ -20,7 +20,7 @@ var WindowView = Backbone.View.extend({
 
     evt.preventDefault();
 
-    require( '../client-app' ).navigate( targetUrl );
+    require( '../router' ).goTo( targetUrl );
   }
 
 });
