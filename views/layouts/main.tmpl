@@ -15,9 +15,11 @@
   <body>
     <nav class="top-nav">
       {% block top_nav %}
+      <a href="/">
       {% if _homepage %}<h1{% else %}<p{% endif %} class="site-title">
         MBTAwesome
       {% if _homepage %}</h1>{% else %}</p>{% endif %}
+      </a>
       {% endblock %}
     </nav>
 

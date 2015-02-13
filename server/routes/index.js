@@ -7,4 +7,6 @@ router.get( '/', require( './homepage' ) );
 router.get( '/:line', require( './line-overview' ) );
 router.get( '/:line/:station', require( './station-detail' ) );
 
+router.use( require( './middleware/404' ) );
+
 module.exports = router;

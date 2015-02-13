@@ -14,7 +14,12 @@ function stationDetailRoute( req, res, next ) {
   // Prime API cache
   mbtapi.predictionsByLine( line );
 
-  // 404 handled on the client (where the dictionary of page titles lives)
+  // 404 early if we're not requesting a "valid" line
+  // (Green gets its own template, because it is SO AWESOME)
+  if ( [ 'red', 'orange', 'blue' ].indexOf( line ) < 0 ) {
+    next();
+  }
+  // 404 client-side if the station doesn't find a match
 
   // Title placeholder (title also set on client)
   // TODO (long term): Get the station name from the DB

@@ -57,7 +57,9 @@ a {
 
   h1, p {
     margin: 0;
+    color: black;
     font-size: 2.5rem;
+    line-height: 1.5;
     +respond-above($md-screen) { font-size: 3.5rem; }
   }
 }
@@ -401,11 +403,6 @@ xfer-border( $color, $color2 = $color ) {
   vertical-align: sub;
   border-radius: 10px;
 
-  // Hide text within icons
-  span {
-    text-hidden();
-  }
-
   &.xfer-blue { background-color: $mbta-blue; }
   &.xfer-green { background-color: $mbta-green; }
   &.xfer-orange { background-color: $mbta-orange; }
@@ -472,4 +469,30 @@ xfer-border( $color, $color2 = $color ) {
 }
 .alert-minor {
   background-image: url( '/images/alert-minor.png' );
+}
+
+// Error Pages
+// ==============================================
+
+.error-square {
+  width: 175px;
+  height: 175px;
+  margin: 0 auto 3.5rem;
+  border: 5px solid;
+  border-top-color: $mbta-green;
+  border-right-color: $mbta-blue;
+  border-bottom-color: $mbta-orange;
+  border-left-color: $mbta-red;
+  background: center center no-repeat;
+}
+
+.error-404 .error-square { background-image: url( '/images/404.png' ); }
+.error-500 .error-square { background-image: url( '/images/error.png' ); }
+
+.error-page {
+  text-align: center;
+
+  h3 {
+    text-transform: uppercase;
+  }
 }
