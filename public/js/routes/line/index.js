@@ -14,6 +14,7 @@ function lineOverviewRoute( lineSlug ) {
   var invalidLineSlug = [ 'red', 'orange', 'blue' ].indexOf( lineSlug ) < 0;
 
   if ( invalidLineSlug ) {
+    /* jshint: validthis: true */
     return this.error404();
   }
 

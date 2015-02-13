@@ -13,6 +13,7 @@ function stationDetailRoute( lineSlug, parentStation ) {
   var invalidLineSlug = [ 'red', 'orange', 'blue' ].indexOf( lineSlug ) < 0;
 
   if ( invalidLineSlug ) {
+    /* jshint: validthis: true */
     return this.error404();
   }
 
@@ -22,6 +23,7 @@ function stationDetailRoute( lineSlug, parentStation ) {
   var station = line.station( parentStation );
 
   if ( ! station ) {
+    /* jshint: validthis: true */
     return this.error404();
   }
 
