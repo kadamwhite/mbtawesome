@@ -6,10 +6,12 @@ var expect = chai.expect;
 // var sinon = require( 'sinon' );
 chai.use( require( 'sinon-chai' ) );
 var proxyquire = require( 'proxyquire' );
+var _ = require( 'lodash' );
 
 proxyquire.noCallThru();
+var Backbone = require( '../../mocks/backbone' );
 var TripModel = proxyquire( '../../../public/js/models/trip', {
-  backbone: require( '../../mocks/backbone' )
+  backbone: Backbone
 });
 
 var tripSampleData = {
@@ -94,6 +96,49 @@ describe( 'TripModel', function() {
       expect( eta ).to.be.undefined;
     });
 
+    // Should we provide the IDs to multiple stops that this trip
+    // visits, it should return the lowest one regardless of the
+    // order in which the stops occur.
+    it ( 'returns the shortest time out of any matching stops', function() {
+      // Alewife, Davis & Porter
+      var eta = trip.secondsToAny( [ '70061', '70066', '70064' ] );
+      expect( eta ).to.equal( 376 );
+
+      // Set up trips in the wrong order
+      trip.set( 'stops', [{
+        // Alewife
+        id: '70061',
+        seconds: 664
+      }, {
+        // Davis
+        id: '70064',
+        seconds: 503
+      }]);
+
+      eta = trip.secondsToAny( [ '70061', '70064' ] );
+
+      expect( eta ).to.equal( 503 );
+    });
+
+  });
+
+  describe( 'approaching method', function() {
+
+    it ( 'is defined', function() {
+      expect( trip.approaching ).to.exist;
+      expect( trip.approaching ).to.be.a( 'function' );
+    });
+
+    it ( 'returns true if the provided station is the next stop', function() {
+      var approaching = trip.approaching( '70068' ); // Harvard
+      expect( approaching ).to.equal( true );
+    });
+
+    it ( 'returns true if the provided station is the next stop', function() {
+      var approaching = trip.approaching( '70064' ); // Davis
+      expect( approaching ).to.equal( false );
+    });
+
   });
 
   describe( 'active method', function() {
@@ -112,6 +157,43 @@ describe( 'TripModel', function() {
       trip.unset( 'vehicle' );
       var isActive = trip.active();
       expect( isActive ).to.equal( false );
+    });
+
+  });
+
+  describe( 'stops method', function() {
+
+    it ( 'is defined', function() {
+      expect( trip.stops ).to.exist;
+      expect( trip.stops ).to.be.a( 'function' );
+    });
+
+    it ( 'returns the stops property of the trip as a collection', function() {
+      var stops = trip.stops();
+      expect( stops ).to.be.an.instanceof( Backbone.Collection );
+    });
+
+  });
+
+  describe( 'toJSON method', function() {
+
+    it ( 'extends the native Backbone.Model toJSON', function() {
+      var defaultOutput = new Backbone.Model( trip.attributes ).toJSON();
+      var output = trip.toJSON();
+
+      // Can't use deepEqual b/c trip.toJSON extends default:
+      // instead, check that all default properties still exist
+      _.forEach( defaultOutput, function( val, key ) {
+        expect( output[ key ] ).to.equal( val );
+      });
+    });
+
+    it ( 'adds a .scheduled property based on the inverse of .active()', function() {
+      var output = trip.toJSON();
+      expect( output.scheduled ).to.equal( false );
+      trip.unset( 'vehicle' );
+      output = trip.toJSON();
+      expect( output.scheduled ).to.equal( true );
     });
 
   });
