@@ -148,37 +148,6 @@ var Trip = Backbone.Model.extend({
   },
 
   /**
-   * Access the ETA of the trip as a Date object
-   * (NOT CURRENTLY IN USE)
-   * TODO: Is this useful in any way, given the "seconds" property?
-   *
-   * @method eta
-   * @return {Date} A Date object representing when the train will arrive
-   */
-  eta: function() {
-    return new Date( this.get( 'eta' ) );
-  },
-
-  /**
-   * Get a representation of the trip's vehicle position, if available
-   * (NOT CURRENTLY IN USE)
-   *
-   * @method position
-   * @return {Object|null} An object with "lat", "lon" and "bearing", or null
-   */
-  position: function() {
-    var vehicle = this.get( 'vehicle' );
-    if ( ! vehicle ) {
-      return null;
-    }
-    return {
-      lat: vehicle.get( 'lat' ),
-      lon: vehicle.get( 'lon' ),
-      bearing: vehicle.get( 'bearing' )
-    };
-  },
-
-  /**
    * Extend toJSON to include some of the computed properties: if a stopId is
    * provided, "timeUntil", "seconds" and "stop" will all be included
    *
