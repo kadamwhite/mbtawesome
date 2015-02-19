@@ -20,7 +20,13 @@
       <span class="alert-icon alert-{{ alert.severity | lower }}"></span>
       {{ alert.effect_name }}
     </p>
-    <p>{{ alert.header_text }}</p>
+    <p>
+      {{ alert.header_text }}
+      {% if alert.url %}
+      <br>
+      <em><a href="{{ alert.url }}">Learn More</a></em>
+      {% endif %}
+    </p>
   </li>
   {% endfor %}
 </ul>

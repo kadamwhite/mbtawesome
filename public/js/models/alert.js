@@ -15,19 +15,23 @@ var Alert = Backbone.Model.extend({
   inEffect: function() {
     var now = new Date();
 
-    function alertIsActive( effectPeriod ) {
-      var start = effectPeriod.effect_start;
-      var end = effectPeriod.effect_end;
-
+    // Iterate through effect_periods array to determine status
+    return _.any( this.get( 'effect_periods' ), function( effectPeriod ) {
+      // Convert this effect period's start and end values (epoch time in seconds,
+      // represented as strings) into JS Dates, providing that the value is present.
       // Sometimes alerts don't have a start or end date, meaning they're unbounded:
       // e.g. the 2015 February snow delay alert had effect_end ''.
+      var start = effectPeriod.effect_start && new Date( 1000 * effectPeriod.effect_start );
+      var end = effectPeriod.effect_end && new Date( 1000 * effectPeriod.effect_end );
+
+      // Use those start and end values to reason about the alert: the ternary
+      // accounts for the unbounded alert periods (as detailed above)
       var startedInPast = start ? start < now : true;
       var notOverYet = end ? now < end : true;
-      return startedInPast && notOverYet;
-    }
 
-    // Iterate through effect_periods array to determine status
-    return _.any( this.get( 'effect_periods' ), alertIsActive);
+      // If both conditions are satisfied, this effect period is current
+      return startedInPast && notOverYet;
+    });
   },
 
   /**
