@@ -36,7 +36,7 @@ module.exports = function( grunt ) {
     browserify: {
       dist: {
         files: {
-          'public/js/app.min.js': 'public/js/client-app.js',
+          'public/js/app.min.js': 'public/js/client-app.js'
         },
         options: {
           browserifyOptions: {
@@ -118,11 +118,15 @@ module.exports = function( grunt ) {
     stylus: {
       compile: {
         options: {
-          banner: '/*! <%= pkg.name %>, v<%= pkg.version %>. Build by K Adam White at Bocoup. */',
+          banner: [
+            '/*! <%= pkg.name %>, v<%= pkg.version %>.',
+            'Build by K. Adam White at Bocoup. */'
+          ].join( ' ' ),
           compress: true,
           // Give Stylus compiler a root directory for import lookups
           paths: [ 'public/stylus' ]
-          // urlfunc: 'embedurl', // use embedurl( 'test.png' ) in our code to trigger Data URI embedding
+          // use embedurl( 'test.png' ) in our code to trigger Data URI embedding
+          // urlfunc: 'embedurl',
         },
         files: {
           'public/css/app.min.css': 'public/stylus/app.styl'

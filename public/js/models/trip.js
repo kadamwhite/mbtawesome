@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require( 'lodash' );
 var Backbone = require( 'backbone' );
 
 // Predictions collection structures the "stops" property of a Trip model.
@@ -80,6 +81,36 @@ var Trip = Backbone.Model.extend({
       id: stopId
     });
     return station ? station.get( 'seconds' ) : -1;
+  },
+
+  /**
+   * Get the lowest secondsToStop for the provided station IDs
+   *
+   * Example: If two stop_ids "1" and "2" exist within a parent station,
+   * `secondsToAny([ "1", "2" ])` will return the secondsToStop for either
+   * "1" or "2" (trips only hit one stop within a station, by direction)
+   *
+   * @method secondsToAny
+   * @param  {Array}  stopIds An array of stop_id strings
+   * @
+   * @return {Number} The soonest this trip will reach any provided stop
+   */
+  secondsToAny: function( stopIds ) {
+    var thisTrip = this;
+    return _.chain( stopIds )
+      // De-dupe to handle line-terminal stations like Alewife
+      .unique()
+      // Get the secondsToStop for each provided stop_id
+      .map(function( stopId ) {
+        return thisTrip.secondsToStop( stopId );
+      })
+      // Remove stops that this trip won't be visiting
+      .without( -1 )
+      // sort from low to high
+      .sort()
+      // get the lowest
+      .first()
+      .value();
   },
 
   /**

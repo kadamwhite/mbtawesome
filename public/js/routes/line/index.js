@@ -9,12 +9,12 @@ var data = require( '../../data' );
 var setTitle = require( '../../lib/set-title' );
 
 function lineOverviewRoute( lineSlug ) {
+  /* jshint validthis: true */
 
   // Error out early if the route didn't get a valid line slug
   var invalidLineSlug = [ 'red', 'orange', 'blue' ].indexOf( lineSlug ) < 0;
 
   if ( invalidLineSlug ) {
-    /* jshint: validthis: true */
     return this.error404();
   }
 

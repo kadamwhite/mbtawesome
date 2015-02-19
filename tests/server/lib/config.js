@@ -10,7 +10,7 @@ var proxyquire = require( 'proxyquire' );
 describe( 'makeQueryHandler', function() {
 
   it ( 'loads and parses the configuration file', function() {
-    var config = require( '../../server/lib/config' );
+    var config = require( '../../../server/lib/config' );
 
     // Error out if any required parameters are missing: good sanity-check
     expect( config ).to.exist;
@@ -25,7 +25,7 @@ describe( 'makeQueryHandler', function() {
 
   it ( 'throws an error if the API key is not present in the config', function() {
     expect(function requireModule() {
-      var config = proxyquire( '../../server/lib/config', {
+      var config = proxyquire( '../../../server/lib/config', {
         'js-yaml': {
           safeLoad: function() { return { api: {} }; }
         }

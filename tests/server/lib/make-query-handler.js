@@ -8,7 +8,7 @@ chai.use( require( 'sinon-chai' ) );
 chai.use( require( 'chai-as-promised' ) );
 var proxyquire = require( 'proxyquire' );
 
-var mockConfig = require( '../mocks/mock-config' );
+var mockConfig = require( '../../mocks/mock-config' );
 // var url = require( 'url' );
 
 describe( 'makeQueryHandler', function() {
@@ -32,7 +32,7 @@ describe( 'makeQueryHandler', function() {
       get: sinon.stub().returns({ on: fireCbOn( 'success' ) })
     };
 
-    makeQueryHandler = proxyquire( '../../server/lib/make-query-handler', {
+    makeQueryHandler = proxyquire( '../../../server/lib/make-query-handler', {
       'restler': mockRestler,
       './config': mockConfig
     });

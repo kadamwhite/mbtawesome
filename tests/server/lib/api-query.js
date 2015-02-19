@@ -8,7 +8,7 @@ chai.use( require( 'sinon-chai' ) );
 chai.use( require( 'chai-as-promised' ) );
 var proxyquire = require( 'proxyquire' );
 
-var mockConfig = require( '../mocks/mock-config' );
+var mockConfig = require( '../../mocks/mock-config' );
 // var url = require( 'url' );
 
 describe( 'api-query module', function() {
@@ -26,9 +26,9 @@ describe( 'api-query module', function() {
       get: sinon.stub().returns({ on: basicOn })
     };
 
-    query = proxyquire( '../../server/lib/api-query', {
+    query = proxyquire( '../../../server/lib/api-query', {
       // Mock out the deps for the module api-query uses to create endpoint handlers
-      './make-query-handler': proxyquire( '../../server/lib/make-query-handler', {
+      './make-query-handler': proxyquire( '../../../server/lib/make-query-handler', {
         'restler': mockRestler,
         './config': mockConfig
       })
