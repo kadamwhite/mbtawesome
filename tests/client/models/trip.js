@@ -59,6 +59,10 @@ describe( 'TripModel', function() {
     trip = new TripModel( tripSampleData );
   });
 
+  it( 'should extend Backbone.Model', function() {
+    expect( trip ).to.be.an.instanceof( Backbone.Model );
+  });
+
   describe( 'secondsToStop method', function() {
 
     it ( 'is defined', function() {
