@@ -2,6 +2,8 @@
 
 var Backbone = require( 'backbone' );
 
+var analytics = require( './lib/analytics' );
+
 var Router = Backbone.Router.extend({
 
   routes: {
@@ -24,6 +26,7 @@ var Router = Backbone.Router.extend({
     this.navigate( target, {
       trigger: true
     });
+    analytics.pageView();
   }
 
 });

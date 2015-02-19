@@ -22,6 +22,10 @@ var templateEnv = nunjucks.configure( 'views', {
 require( './views/filters' ).setEnvironment( templateEnv );
 templateEnv.addGlobal( 'production', PROD_MODE );
 
+// Analytics setup
+var config = require( './server/lib/config' );
+templateEnv.addGlobal( 'trackingId', config.analytics && config.analytics.trackingId );
+
 if ( ! PROD_MODE ) {
   // Specify transforms here instead of "browserify" section in package.json,
   // for maximum obviousness

@@ -10,6 +10,8 @@ require( '../../views/filters' ).setEnvironment( nunjucks.env );
 
 var Backbone = require( 'backbone' );
 
+var analytics = require( './lib/analytics' );
+
 // Namespace
 // ==============================================
 var MBTApp = {};
@@ -22,6 +24,9 @@ Backbone.history.start({
   // silent: true,
   pushState: true
 });
+
+// Fire off first analytics hit
+analytics.pageView();
 
 // WindowView intercepts all local navigation clicks and converts them to
 // router navigation actions

@@ -53,5 +53,6 @@
     {% block scripts %}
       <script src="/js/app{% if production %}.min{% endif %}.js"></script>
     {% endblock %}
+    {% include 'partials/analytics.tmpl' %}
   </body>
 </html>
