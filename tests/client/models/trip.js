@@ -8,7 +8,6 @@ chai.use( require( 'sinon-chai' ) );
 var proxyquire = require( 'proxyquire' );
 var _ = require( 'lodash' );
 
-proxyquire.noCallThru();
 var Backbone = require( '../../mocks/backbone' );
 var TripModel = proxyquire( '../../../public/js/models/trip', {
   backbone: Backbone
