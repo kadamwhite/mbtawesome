@@ -144,6 +144,25 @@ describe( 'TripModel', function() {
 
   });
 
+  describe( 'visits method', function() {
+
+    it( 'is defined', function() {
+      expect( trip.active ).to.exist;
+      expect( trip.active ).to.be.a( 'function' );
+    });
+
+    it( 'returns true if the trip visits the provided stop', function() {
+      var visits = trip.visits( '70064' ); // Davis
+      expect( visits ).to.equal( true );
+    });
+
+    it( 'returns false if the trip visits the provided stop', function() {
+      var visits = trip.visits( '70078' ); // DTX
+      expect( visits ).to.equal( false );
+    });
+
+  });
+
   describe( 'active method', function() {
 
     it ( 'is defined', function() {
@@ -160,6 +179,108 @@ describe( 'TripModel', function() {
       trip.unset( 'vehicle' );
       var isActive = trip.active();
       expect( isActive ).to.equal( false );
+    });
+
+  });
+
+  describe( 'timeUntil method', function() {
+
+    it ( 'is defined', function() {
+      expect( trip.timeUntil ).to.exist;
+      expect( trip.timeUntil ).to.be.a( 'function' );
+    });
+
+    it( 'returns a string time (in minutes) until a train arrives at a station', function() {
+      trip.set( 'stops', [{
+        id: 'foo',
+        seconds: 600
+      }]);
+      var message = trip.timeUntil( 'foo' );
+      expect( message ).to.equal( '10 min' );
+
+      trip.set( 'stops', [{
+        id: 'foo',
+        seconds: 91
+      }]);
+      message = trip.timeUntil( 'foo' );
+      expect( message ).to.equal( '1 min' );
+    });
+
+    it( 'rounds times down to the nearest minute', function() {
+      trip.set( 'stops', [{
+        id: 'foo',
+        seconds: 645
+      }]);
+      var message = trip.timeUntil( 'foo' );
+      expect( message ).to.equal( '10 min' );
+    });
+
+    it( 'returns a special string when a train is arriving', function() {
+      trip.set( 'stops', [{
+        id: 'foo',
+        seconds: 89
+      }]);
+      var message = trip.timeUntil( 'foo' );
+      expect( message ).to.equal( 'Approaching' );
+
+      trip.set( 'stops', [{
+        id: 'foo',
+        seconds: 31
+      }]);
+      message = trip.timeUntil( 'foo' );
+      expect( message ).to.equal( 'Approaching' );
+    });
+
+    it( 'returns a special string when a train is arriving', function() {
+      trip.set( 'stops', [{
+        id: 'foo',
+        seconds: 29
+      }]);
+      var message = trip.timeUntil( 'foo' );
+      expect( message ).to.equal( 'Arriving' );
+
+      trip.set( 'stops', [{
+        id: 'foo',
+        seconds: 0
+      }]);
+      message = trip.timeUntil( 'foo' );
+      expect( message ).to.equal( 'Arriving' );
+    });
+
+  });
+
+  describe( 'messageForStation method', function() {
+
+    it ( 'is defined', function() {
+      expect( trip.messageForStation ).to.exist;
+      expect( trip.messageForStation ).to.be.a( 'function' );
+    });
+
+    it( 'returns a readable message for trains en route', function() {
+      trip.set( 'stops', [{
+        id: 'foo',
+        seconds: 480
+      }]);
+      var message = trip.messageForStation( 'foo' );
+      expect( message ).to.equal( 'Alewife train in 8 min' );
+    });
+
+    it( 'returns a readable message for approaching trains', function() {
+      trip.set( 'stops', [{
+        id: 'foo',
+        seconds: 80
+      }]);
+      var message = trip.messageForStation( 'foo' );
+      expect( message ).to.equal( 'Alewife train approaching' );
+    });
+
+    it( 'returns a readable message for arriving trains', function() {
+      trip.set( 'stops', [{
+        id: 'foo',
+        seconds: 20
+      }]);
+      var message = trip.messageForStation( 'foo' );
+      expect( message ).to.equal( 'Alewife train arriving' );
     });
 
   });

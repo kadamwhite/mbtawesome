@@ -30,7 +30,7 @@ var Trip = Backbone.Model.extend({
    * @return {String} A string message, e.g. "Forest Hills train in 15 minutes"
    */
   messageForStation: function( stopId ) {
-    var timeUntil = this.timeUntil( stopId );
+    var timeUntil = this.timeUntil( stopId ).toLowerCase();
 
     if ( ! timeUntil ) {
       return '';
@@ -38,7 +38,7 @@ var Trip = Backbone.Model.extend({
 
     var headsign = this.get( 'headsign' );
 
-    if ( timeUntil === 'Arriving' || timeUntil === 'Approaching' ) {
+    if ( timeUntil === 'arriving' || timeUntil === 'approaching' ) {
       return headsign + ' train ' + timeUntil;
     }
 
