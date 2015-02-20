@@ -1,14 +1,8 @@
 /*! adapted from SpinKit v1.0.1 | MIT License | https://github.com/tobiasahlin/SpinKit | Tobias Ahlin */
 // Adapted from https://github.com/tobiasahlin/SpinKit, by Tobias Ahlin
-$spinner-size = 60px;
-$spinner-margin = $spinner-size / 3;
 
-.loading-spinner {
-  p {
-    text-align: center;
-    animate( hide-loading-text 0s 1 linear forwards );
-  }
-
+spinner( $spinner-size ) {
+  $spinner-margin = $spinner-size / 3;
   .rotating-plane {
     width: $spinner-size;
     height: $spinner-size;
@@ -24,6 +18,15 @@ $spinner-margin = $spinner-size / 3;
   }
 }
 
+.loading-spinner {
+  p {
+    text-align: center;
+    animate( hide-loading-text 0s 1 linear forwards );
+  }
+
+  spinner( 60px );
+}
+
 @keyframes hide-loading-text {
   0% {
     color: black;
@@ -33,20 +36,27 @@ $spinner-margin = $spinner-size / 3;
 }
 
 @keyframes spinkit-rotate-plane {
+  // Stylus does not appear to expand `transform` to `-webkit-transform`
+  // inside of a @keyframes rule, so we have to do that ourselves
   0% {
+    background: $mbta-red;
+    -webkit-transform: perspective( 120px ) rotateX( 0deg ) rotateY( 0deg );
     transform: perspective( 120px ) rotateX( 0deg ) rotateY( 0deg );
-    background-color: $mbta-red;
   } 25% {
+    background: $mbta-green;
+    -webkit-transform: perspective( 120px ) rotateX( -180.1deg ) rotateY( 0deg );
     transform: perspective( 120px ) rotateX( -180.1deg ) rotateY( 0deg );
-    background-color: $mbta-green;
   } 50% {
+    background: $mbta-orange;
+    -webkit-transform: perspective( 120px ) rotateX( -180deg ) rotateY( -179.9deg );
     transform: perspective( 120px ) rotateX( -180deg ) rotateY( -179.9deg );
-    background-color: $mbta-orange;
   } 75% {
+    background: $mbta-blue;
+    -webkit-transform: perspective( 120px ) rotateX( 0deg ) rotateY( -179.9deg );
     transform: perspective( 120px ) rotateX( 0deg ) rotateY( -179.9deg );
-    background-color: $mbta-blue;
   } 100% {
+    background: $mbta-red;
+    -webkit-transform: perspective( 120px ) rotateX( 0deg ) rotateY( -360deg );
     transform: perspective( 120px ) rotateX( 0deg ) rotateY( -360deg );
-    background-color: $mbta-red;
   }
 }
