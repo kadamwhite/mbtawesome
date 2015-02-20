@@ -17,7 +17,7 @@ var StopsListView = BaseView.extend({
 
   template: require( './station-list.tmpl' ),
 
-  initialize: function( opts ) {
+  initialize: function initializeStationListView( opts ) {
     // Alerts collection, to hand off to a sub-view
     this.alerts = opts.alerts;
 
@@ -37,7 +37,7 @@ var StopsListView = BaseView.extend({
     this.render();
   },
 
-  render: function() {
+  render: function renderStationListView() {
     // Render the template into the container
     this.$el.html( this.template.render( this.serialize() ) );
 
@@ -45,7 +45,7 @@ var StopsListView = BaseView.extend({
     var line = this.model;
 
     // Build an array of subviews (StationView or BranchView)
-    var subViews = _.map( this.stations, function( station ) {
+    function createStationOrBranchView( station ) {
       if ( ! _.isArray( station ) ) {
         // Non-array station gets rendered as-is
         return new StationView({
@@ -61,12 +61,14 @@ var StopsListView = BaseView.extend({
         branches: station,
         trips: trips
       });
-    });
+    }
+    var subViews = _.map( this.stations, createStationOrBranchView );
 
     // Render subviews into the parent element
-    this.$el.find( '.stations' ).append( _.map( subViews, function( subView ) {
+    function renderStationView( subView ) {
       return subView.render().el;
-    }));
+    }
+    this.$el.find( '.stations' ).append( _.map( subViews, renderStationView ) );
 
     var alertsView = new AlertsView({
       collection: this.alerts,

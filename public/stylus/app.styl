@@ -281,7 +281,6 @@ xfer-border( $color, $color2 = $color ) {
 
 .trains {
   overflow: hidden;
-  height: 13px;
 
   $arrow-size = 10px;
 
@@ -290,14 +289,12 @@ xfer-border( $color, $color2 = $color ) {
     overflow: visible;
     width: 0;
     height: 0;
-    vertical-align: top;
     border-left: $arrow-size solid transparent;
     border-right: $arrow-size solid transparent;
   }
 
   &.up {
     margin: 3px 0 0;
-    text-align: left;
     .train {
       border-bottom: $arrow-size solid black;
 
@@ -309,7 +306,6 @@ xfer-border( $color, $color2 = $color ) {
 
   &.down {
     margin: 0 0 3px 0;
-    text-align: right;
     .train {
       border-top: $arrow-size solid black;
 
@@ -317,6 +313,21 @@ xfer-border( $color, $color2 = $color ) {
         border-top-color: $scheduled-trip;
       }
     }
+  }
+}
+.stations .trains {
+  height: 13px;
+
+  .train {
+    vertical-align: top;
+  }
+
+  &.up {
+    text-align: left;
+  }
+
+  &.down {
+    text-align: right;
   }
 }
 
@@ -469,6 +480,20 @@ xfer-border( $color, $color2 = $color ) {
 }
 .alert-minor {
   background-image: url( '/images/alert-minor.png' );
+}
+
+// Line Status
+// ==============================================
+.status {
+  .loading-spinner {
+    float: left;
+    display: inline-block;
+    // Position inline with the <p> text alongside which this is floated
+    margin: -7px 10px 0 0;
+  }
+  hr {
+    margin: 2.5rem 0;
+  }
 }
 
 // Error Pages

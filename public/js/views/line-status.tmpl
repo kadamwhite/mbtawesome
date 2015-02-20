@@ -1,1 +1,45 @@
-<p>I've seen the T look better in other weather</p>
+<div class="status">
+{% if loading %}
+
+  <div class="loading-spinner">
+    <div class="rotating-plane small-spinner"></div>
+  </div>
+  <p>
+    <em>Loading...</em>
+  </p>
+
+{% elif totalTrainsInService %}
+
+  <hr>
+
+  <p><em>I've seen the T look better in other weather</em></p>
+
+  <hr>
+
+  {# Debug code
+  <pre>{{ trainsInService['0'] | serialize }}</pre>
+  <pre>{{ averageWaitTime | serialize }}</pre>
+  #}
+
+  {# Iterate through both travel directions and render out trains in service #}
+  {% for direction in [{ class: 'down', key: '0' }, { class: 'up', key: '1' }] %}
+  {% for destination in trainsInService[ direction.key ] %}
+  <div class="trains {{ direction.class }}">
+    <span
+      class="train"
+      title="{{ destination.headsign }} Train">
+    </span>
+    {{ destination.count }}
+    {{ destination.headsign }} trains in service
+  </div>
+  {% endfor %}
+  {% endfor %}
+
+  <hr>
+
+{% elif noTrainsInService %}
+
+  <p><strong>No trains currently in service</strong></p>
+
+{% endif %}
+</div>

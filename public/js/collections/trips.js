@@ -8,9 +8,21 @@ var TripsCollection = Backbone.Collection.extend({
   initialize: function( arr, opts ) {
     this.line = opts.line;
 
+    // Set a flag so that this collections' consumers can tell when the
+    // data is ready for use
+    this.loaded = false;
+    this.once( 'sync', this.setLoaded );
+
     if ( ! this.line ) {
       throw new Error( 'TripsCollection requires a line to be specified' );
     }
+  },
+
+  /**
+   * Event listener to set a "loaded" flag on the collection once it is fetched
+   */
+  setLoaded: function() {
+    this.loaded = true;
   },
 
   model: require( '../models/trip' ),

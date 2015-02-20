@@ -25,8 +25,6 @@ var LineStatus = Backbone.Model.extend({
     this.stations = opts.stations;
     // this.predictions is a TripsCollection
     this.predictions = opts.predictions;
-
-    window.s = this;
   },
 
   /**
@@ -68,6 +66,8 @@ var LineStatus = Backbone.Model.extend({
   /**
    * Get the average wait time for each direction of the train
    *
+   * TODO: This is slow. Find out why.
+   *
    * @method averageWait
    * @return {Object} An object with key-value pairs for wait by direction
    */
@@ -84,7 +84,7 @@ var LineStatus = Backbone.Model.extend({
         var tripsVisitingStation = predictions.visitsAny( stopIds );
 
         return _.map( tripsVisitingStation, function( trip ) {
-          console.log( station.name, tripsVisitingStation.length );
+          // console.log( station.name, tripsVisitingStation.length );
           return trip.secondsToAny( stopIds );
         });
       })
@@ -102,31 +102,33 @@ var LineStatus = Backbone.Model.extend({
         }, 0 );
 
         return total / tripETAs.length;
-
-        // var timeToStation = _.map( station.stops, function( stop ) ) {
-        //   return _.where( tripsVisitingStation, functiontrainsVisitingStation, function( trip ) {
-        //   return trip.visits( station.id );
-        // });
-        // return {
-        //   station: station.name,
-        //   timesToStation: timesToStation,
-        //   trips: tripsVisitingStation
-        // }
       })
       .value();
-    // return _.map( this.predictions.visitsAny( stopIds ), function( trip ) {
-    //   var trainsVisitingStation = predictions.visits( station.id );
-    //   var timeToStation = _.map( trainsVisitingStation, function( trip ) {
-    //     return trip.visits( station.id );
-    //   });
-    //   return {
-    //     station: station.name,
-    //     trip: trip
-    //   };
-    //   //   visiting: trainsVisitingStation,
-    //   //   timeToStation: timeToStation
-    //   // };
-    // });
+  },
+
+  /**
+   * Extend toJSON to include some of the computed properties: if a stopId is
+   * provided, "timeUntil", "seconds" and "stop" will all be included
+   *
+   * Note: this feels janky, toJSON (a) isn't really intended for this and
+   * (b) doesn't usually take an argument in this way. TODO: reevaluate.
+   *
+   * @method toJSON
+   * @param {String} [stopId] An optional stop_id string
+   */
+  toJSON: function( stopId ) {
+    var attrs = Backbone.Model.prototype.toJSON.apply( this );
+
+    // Render out computed properties
+    attrs.trainsInService = this.trainsInService();
+    // attrs.averageWaitTime = this.averageWaitTime();
+
+    // TODO: Should these be set within the view?
+    attrs.totalTrainsInService = this.predictions.length;
+    attrs.loading = ! this.predictions.loaded;
+    attrs.noTrainsInService = attrs.totalTrainsInService === 0;
+
+    return attrs;
   }
 });
 
