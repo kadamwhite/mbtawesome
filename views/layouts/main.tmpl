@@ -47,8 +47,8 @@
     </div>
 
     <script>{% block fixtures %}{% endblock %}</script>
-    <script src="/js/vendor/lodash/dist/lodash.compat.min.js"></script>
-    <script src="/js/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/js/vendor/lodash/dist/lodash.compat{% if production %}.min{% endif %}.js"></script>
+    <script src="/js/vendor/jquery/dist/jquery{% if production %}.min{% endif %}.js"></script>
     <script src="/js/vendor/backbone/backbone.js"></script>
     {% block scripts %}
       <script src="/js/app{% if production %}.min{% endif %}.js"></script>
