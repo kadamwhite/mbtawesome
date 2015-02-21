@@ -64,7 +64,7 @@ var StopsListView = StationView.extend({
       // final grouping and mapping action to merge the trip lists for
       // different lines running in the same direction
       .groupBy( 'dir' )
-      .map(function mergeTripsInDirectionGroup( group, direction ) {
+      .map(function mergeTripsInDirectionGroup( group ) {
         var tripsForDirection = _.chain( group )
           .pluck( 'trips' )
           .union()
