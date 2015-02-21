@@ -16,15 +16,74 @@ var Backbone = require( 'backbone' );
 //   ]
 // };
 
+// Utility comparator for use when sorting numeric arrays
+function sortNumeric( a, b ) {
+  return a - b;
+}
+
+// Iterator function for use when summing the values in an array
+function sumTimes( sum, timeToTrain ) {
+  return sum + timeToTrain;
+}
+
+// Utility method for summing and averaging a numeric array
+function getAverage( arr ) {
+  return Math.ceil( _.reduce( arr, sumTimes, 0 ) / arr.length );
+}
+
+
+// Used by calculateAvgWaitTimes
+function getAverageWaitForStop( timesToStop ) {
+  // No trains, move along
+  if ( ! timesToStop.length ) {
+    return;
+  }
+
+  // Simple case: only one train
+  if ( timesToStop.length === 1 ) {
+    return _.first( timesToStop );
+  }
+
+  // Sort times in arrival order, low to small
+  // Why in seven hells isn't this the default behavior
+  var sortedTimes = timesToStop.sort( sortNumeric );
+
+  // Calculate the wait time between each scheduled train
+  function calculateWaitTimeIntervals( memo, secondsToTrain, index ) {
+    var secondsToPreviousTrain = index > 1 ? sortedTimes[ index - 1 ] : 0;
+    memo.push( secondsToTrain - secondsToPreviousTrain );
+    return memo;
+  }
+  var waitTimes = _.reduce( sortedTimes, calculateWaitTimeIntervals, []);
+
+  // Return the average wait time between trains (in seconds)
+  return getAverage( waitTimes );
+}
+
+// used by updateAverageWaitTimes
+function calculateAvgWaitTimes( directionObj ) {
+  var averageWaitByStop = _.mapValues( directionObj.stops, getAverageWaitForStop );
+
+  console.log( directionObj.stops );
+  console.log( averageWaitByStop );
+
+  return {
+    name: directionObj.name,
+    stops: averageWaitByStop
+  };
+}
+
 var LineStatus = Backbone.Model.extend({
 
-  initialize: function( opts ) {
+  initialize: function initializeLineStatusModel( opts ) {
     // this.alerts is an AlertsCollection
     this.alerts = opts.alerts;
     // this.stations is a flat array of stations on this line
     this.stations = opts.stations;
     // this.predictions is a TripsCollection
     this.predictions = opts.predictions;
+
+    this.listenTo( this.predictions, 'sync reset', this.updateAverageWaitTimes );
   },
 
   /**
@@ -39,7 +98,7 @@ var LineStatus = Backbone.Model.extend({
    *
    * @return {[type]} [description]
    */
-  trainsInService: function() {
+  trainsInService: function trainsInService() {
     return this.predictions.chain()
       // break into groups by direction_id
       .groupBy(function( trip ) {
@@ -83,9 +142,9 @@ var LineStatus = Backbone.Model.extend({
    *
    * @return {Object} Return the dictionary object, once built
    */
-  buildStationDictionary: function() {
-    // Build the directions dictionary object
-    return _.reduce( this.stations, function( directions, station ) {
+  buildStationDictionary: function buildStationDictionary() {
+    // Iterator function for use in building station dictionary
+    function addStopToStationDictionary( memo, station ) {
       /* Station object
       {
         name: 'Wonderland',
@@ -96,19 +155,22 @@ var LineStatus = Backbone.Model.extend({
         ]
       }
       */
+      // memo[ direction_id ] is an object with a name and stops dictionary object
+      memo[ station.dir ] = memo[ station.dir ] || {
+        name: station.dirName,
+        stops: {}
+      };
+
+      // memo[ dirId ].stops[ stopId ] is an array of trips visiting that stopId
+      memo[ station.dir ].stops[ station.id ] = memo[ station.dir ].stops[ station.id ] || [];
+
+      return memo;
+    }
+
+    // Build the directions dictionary object
+    return _.reduce( this.stations, function( directions, station ) {
       // Add this station's stops to the directions dictionary object
-      directions = _.reduce( station.stops, function( memo, stop ) {
-        // memo[ dirId ] is a dictionary of direction_ids to objects
-        memo[ stop.dir ] = memo[ stop.dir ] || {
-          name: stop.dirName,
-          stops: {}
-        };
-
-        // memo[ dirId ].stops[ stopId ] is an array of trips visiting that stopId
-        memo[ stop.dir ].stops[ stop.id ] = memo[ stop.dir ].stops[ stop.id ] || [];
-
-        return memo;
-      }, directions );
+      directions = _.reduce( station.stops, addStopToStationDictionary, directions );
 
       return directions;
     }, {});
@@ -117,21 +179,16 @@ var LineStatus = Backbone.Model.extend({
   /**
    * Get the average wait time for each direction of the train
    *
-   * TODO: This is slow. Find out why.
-   *
    * @method averageWait
    * @return {Object} An object with key-value pairs for wait by direction
    */
-  averageWaitTime: function() {
+  updateAverageWaitTimes: function updateAverageWaitTimes() {
     // Local reference to model's TripsCollection instance
     var directions = this.buildStationDictionary();
 
-    window.directions = directions;
-    window.ls = this;
-
     // Iterate through all the predictions, adding each arrival time prediction
     // to the directions dictionary
-    this.predictions.forEach(function( trip ) {
+    this.predictions.forEach(function addPredictionsToStationDictionary( trip ) {
       /* Trip object
       {
         'id': '25375441',
@@ -151,47 +208,18 @@ var LineStatus = Backbone.Model.extend({
         ]
       }
       */
-      trip.stops().forEach(function( stop ) {
+      trip.stops().forEach(function addTripToStationDictionary( stop ) {
         var dirId = trip.get( 'direction' );
         var stopId = stop.get( 'id' );
         directions[ dirId ].stops[ stopId ].push( stop.get( 'seconds' ) );
       });
     });
 
-    console.log( directions );
+    var averageWaitTimeByDirection = _.mapValues( directions, calculateAvgWaitTimes );
 
-    return;
+    this.set( 'averageWaitTimes', averageWaitTimeByDirection );
 
-    // return _.chain( this.predictions )
-    //   // Convert each station into an array of ETAs (in seconds) for trips
-    //   // that will reach that station, going either direction
-    //   .map(function( station ) {
-    //     console.log( station );
-    //     var stopIds = _.pluck( station.stops, 'id' );
-
-    //     var tripsVisitingStation = predictions.visitsAny( stopIds );
-
-    //     return _.map( tripsVisitingStation, function( trip ) {
-    //       // console.log( station.name, tripsVisitingStation.length );
-    //       return trip.secondsToAny( stopIds );
-    //     });
-    //   })
-    //   // This has no meaning atm because it is not grouped by direction.
-    //   // FBOFW, we need to group by direction.
-    //   .map(function( tripETAs ) {
-    //     // Figure out the difference in time between each scheduled trip:
-    //     // use a reduce to sum up the time betwen each trip,
-    //     var total = _.reduce( tripETAs, function( memo, eta, idx ) {
-    //       // Figure out the time for the trip preceding this one, if any
-    //       var lastETA = idx > 0 ? tripETAs[ idx - 1 ] : 0;
-    //       var delta = eta - lastETA;
-    //       // Add the new delta to the running total
-    //       return memo + delta;
-    //     }, 0 );
-
-    //     return total / tripETAs.length;
-    //   })
-    //   .value();
+    return averageWaitTimeByDirection;
   },
 
   /**
@@ -209,7 +237,7 @@ var LineStatus = Backbone.Model.extend({
 
     // Render out computed properties
     attrs.trainsInService = this.trainsInService();
-    attrs.averageWaitTime = this.averageWaitTime();
+    // attrs.averageWaitTime = this.averageWaitTime();
 
     // TODO: Should these be set within the view?
     attrs.totalTrainsInService = this.predictions.length;
