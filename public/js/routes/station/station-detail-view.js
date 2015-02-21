@@ -54,8 +54,27 @@ var StopsListView = StationView.extend({
 
         // Return a renderable object
         return {
+          dir: stop.dir,
           name: stop.dirName,
           trips: tripsForStop
+        };
+      })
+      // JFK UMass has two platforms, one for Braintree service and one for
+      // Ashmont service: to properly account for these, we need to do one
+      // final grouping and mapping action to merge the trip lists for
+      // different lines running in the same direction
+      .groupBy( 'dir' )
+      .map(function mergeTripsInDirectionGroup( group, direction ) {
+        var tripsForDirection = _.chain( group )
+          .pluck( 'trips' )
+          .union()
+          .flatten()
+          .value();
+        var direction = _.first( group );
+        return {
+          dir: direction.dir,
+          name: direction.dirName,
+          trips: tripsForDirection
         };
       })
       .value();
