@@ -22,6 +22,7 @@
       </thead>
       <tbody>
 
+      {# TODO: add loading indicator #}
       {% if direction.trips.length %}
         {% for trip in direction.trips %}
         <tr {{ 'class="scheduled"' if trip.scheduled }}>
@@ -46,7 +47,7 @@
 <p class="transfers">
   {% for transfer in station.transfer %}
   <span class="xfer-icon xfer-{{ transfer }}" title="{{ transfer | capitalize }} Line">
-    <span>{{ transfer | capitalize }} Line</span>
+    <span class="sr">{{ transfer | capitalize }} Line</span>
   </span>
   {% endfor %}
   Transfers available

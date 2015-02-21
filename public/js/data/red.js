@@ -206,10 +206,22 @@ var stations = [{
   //   lon: -71.0524
   // },
   stops: [{
+    // Ashmont
+    dir: 0,
+    dirName: 'Southbound',
+    id: '70085'
+  }, {
+    // Braintree
     dir: 0,
     dirName: 'Southbound',
     id: '70095'
   }, {
+    // Ashmont
+    dir: 1,
+    dirName: 'Northbound',
+    id: '70086'
+  }, {
+    // Braintree
     dir: 1,
     dirName: 'Northbound',
     id: '70096'
