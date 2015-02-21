@@ -46,9 +46,15 @@
 {% if station.transfer.length %}
 <p class="transfers">
   {% for transfer in station.transfer %}
+  {% if transfer | supportedLine %}
+  <a href="/{{ transfer }}">
+  {% endif %}
   <span class="xfer-icon xfer-{{ transfer }}" title="{{ transfer | capitalize }} Line">
     <span class="sr">{{ transfer | capitalize }} Line</span>
   </span>
+  {% if transfer | supportedLine %}
+  </a>
+  {% endif %}
   {% endfor %}
   Transfers available
 </p>

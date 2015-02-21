@@ -11,7 +11,13 @@ var WindowView = Backbone.View.extend({
   },
 
   navigate: function( evt ) {
-    var targetUrl = this.$( evt.target ).attr( 'href' );
+    var $el = this.$( evt.target );
+    if ( ! $el.is( 'a' ) ) {
+      $el = $el.closest( 'a' );
+    }
+    var targetUrl = $el.attr( 'href' );
+
+    console.log( targetUrl );
 
     // Don't hijack any off-site links
     if ( /http/.test( targetUrl ) ) {
