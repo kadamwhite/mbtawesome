@@ -14,19 +14,14 @@
 
   <p><em>I've seen the T look better in other weather</em></p>
 
-  <hr>
-
-  {# Debug code
-  <pre>{{ trainsInService['0'] | serialize }}</pre>
   <pre>{{ averageWaitTime | serialize }}</pre>
-  #}
 
   {# Iterate through both travel directions and render out trains in service #}
   {% for direction in [{ class: 'down', key: '0' }, { class: 'up', key: '1' }] %}
   {% for destination in trainsInService[ direction.key ] %}
   <div class="trains {{ direction.class }}">
     <span
-      class="train"
+      class="train scheduled"
       title="{{ destination.headsign }} Train">
     </span>
     {{ destination.count }}
