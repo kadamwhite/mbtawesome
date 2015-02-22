@@ -50,10 +50,12 @@ function predictionsByRoute( routeId ) {
  */
 function predictionsByLine( lineSlug ) {
   var routeIds = routes[ lineSlug ];
+  var errorMessage;
 
   if ( ! routeIds ) {
     // Fail out
-    return Promise.reject( new Error( 'No routes available for the provided line' ) );
+    errorMessage = 'No routes available for the provided line (' + lineSlug + ')';
+    return Promise.reject( new Error( errorMessage ) );
   }
 
   return batchRequests( routeIds, predictionsByRoute ).then( getTripsFromRoutes );
@@ -87,10 +89,12 @@ function alertsByRoute( routeId ) {
  */
 function alertsByLine( lineSlug ) {
   var routeIds = routes[ lineSlug ];
+  var errorMessage;
 
   if ( ! routeIds ) {
     // Fail out
-    return Promise.reject( new Error( 'No routes available for the provided line' ) );
+    errorMessage = 'No routes available for the provided line (' + lineSlug + ')';
+    return Promise.reject( new Error( errorMessage ) );
   }
 
   return batchRequests( routeIds, alertsByRoute ).then(function( alerts ) {
