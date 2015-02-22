@@ -8,12 +8,15 @@ var Router = Backbone.Router.extend({
 
   routes: {
     '':               'index',
+    'green':          'green',
     ':line':          'line',
     ':line/:station': 'station',
     '*notFound':      'error404'
   },
 
   index: require( './routes/index' ),
+
+  green: require( './routes/green' ),
 
   line: require( './routes/line' ),
 

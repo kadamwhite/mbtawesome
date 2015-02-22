@@ -69,7 +69,8 @@ a {
 .footer {
   margin-top: 2.5rem;
   width: 100%;
-  +respond-above($md-screen) {
+  +respond-above($md-screen) { text-align: center; }
+  +respond-above($lg-screen) {
     padding: 10px 20px;
     border-top: 1px solid #e1e1e1;
   }
@@ -79,13 +80,13 @@ a {
     padding: 5px 10px;
     font-size: 1.5rem;
     border-top: 1px solid #e1e1e1;
-    +respond-above($md-screen) {
+    +respond-above($lg-screen) {
       display: inline-block;
       padding: 0;
       border-top: 0;
 
       &:after {
-        content: " | ";
+        content: " \2022 ";
       }
       &:last-child:after {
         content: "";
@@ -171,6 +172,9 @@ coloring( $color ) {
   }
   &.blue {
     mbta-color( $mbta-blue );
+  }
+  &.green {
+    mbta-color( $mbta-green );
   }
 
   // On larger screens, make the home page buttons bigger
@@ -501,12 +505,6 @@ xfer-border( $color, $color2 = $color ) {
 // Line Status
 // ==============================================
 .status {
-  .loading-spinner {
-    float: left;
-    display: inline-block;
-    // Position inline with the <p> text alongside which this is floated
-    margin: -7px 10px 0 0;
-  }
   hr {
     margin: 2.5rem 0;
   }
@@ -518,6 +516,19 @@ xfer-border( $color, $color2 = $color ) {
   }
   span:last-child:after {
     content: "";
+  }
+}
+
+// Green Line
+// ==============================================
+
+.green-line {
+  h2 {
+    text-align: center;
+    br {
+      +respond-above($sm-screen) { display: none; }
+    }
+    +respond-above($sm-screen) { text-align: left}
   }
 }
 

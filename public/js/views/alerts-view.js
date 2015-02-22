@@ -11,21 +11,22 @@ var AlertsView = BaseView.extend({
     'click .alert-list-toggle': 'toggle'
   },
 
-  initialize: function() {
+  initialize: function initializeAlertsView() {
     this.listenTo( this.collection, 'sync reset', this.render );
 
     // Auto-render on load
     this.render();
   },
 
-  serialize: function() {
+  serialize: function serializeAlertsView() {
     var activeAlerts = this.collection.inEffect();
     return {
-      alerts: _.invoke( activeAlerts, 'toJSON' )
+      alerts: _.invoke( activeAlerts, 'toJSON' ),
+      loading: ! this.collection.loaded
     };
   },
 
-  toggle: function() {
+  toggle: function toggleAlertsView() {
     this.$el.toggleClass( 'alert-list-open' );
   }
 

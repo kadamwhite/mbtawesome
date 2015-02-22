@@ -1,4 +1,14 @@
-{% if alerts.length %}
+{% if loading %}
+
+  <div class="loading-spinner inline">
+    <div class="rotating-plane small-spinner"></div>
+  </div>
+  <p>
+    <em>Loading...</em>
+  </p>
+
+{% elif alerts.length %}
+
 <button class="alert-list-toggle" title="Show alert details">
   <span class="alerts-expand">
     {% for alert in alerts %}
@@ -30,4 +40,5 @@
   </li>
   {% endfor %}
 </ul>
+
 {% endif %}

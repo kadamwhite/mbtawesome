@@ -14,15 +14,27 @@ var AlertsCollection = Backbone.Collection.extend({
 
   model: require( '../models/alert' ),
 
-  initialize: function( arr, opts ) {
+  initialize: function initializeAlertsCollection( arr, opts ) {
     this.line = opts && opts.line || arr.line;
+
+    // Set a flag so that this collections' consumers can tell when the
+    // data is ready for use
+    this.loaded = false;
+    this.once( 'sync', this.setLoaded );
   },
 
-  url: function() {
+  /**
+   * Event listener to set a "loaded" flag on the collection once it is fetched
+   */
+  setLoaded: function setLoaded() {
+    this.loaded = true;
+  },
+
+  url: function url() {
     return '/api/v1/lines/' + this.line + '/alerts';
   },
 
-  refresh: function() {
+  refresh: function refreshAlertsCollection() {
     var now = new Date();
     // If we updated less than 2 minutes ago, don't fetch new data
     if ( this.lastRefreshed && this.lastRefreshed > now - 1000 * 60 * 2 ) {
@@ -42,7 +54,7 @@ var AlertsCollection = Backbone.Collection.extend({
   /**
    * Comparator function to order collection by severity (high to low)
    */
-  comparator: function( model ) {
+  comparator: function comparator( model ) {
     return severity[ model.get( 'severity' ).toLowerCase() ];
   },
 
@@ -52,9 +64,9 @@ var AlertsCollection = Backbone.Collection.extend({
    * @method banners
    * @return {Array} Array of banner text strings
    */
-  banners: function() {
+  banners: function banners() {
     return this.chain()
-      .map(function( model ) {
+      .map(function getBannerFromAlert( model ) {
         return model.banner();
       })
       .without( '' )
@@ -68,8 +80,8 @@ var AlertsCollection = Backbone.Collection.extend({
    * @method inEffect
    * @return {Array} An array of Alert models
    */
-  inEffect: function() {
-    return this.filter(function( alert ) {
+  inEffect: function inEffect() {
+    return this.filter(function isAlertInEffect( alert ) {
       return alert.inEffect();
     });
   }

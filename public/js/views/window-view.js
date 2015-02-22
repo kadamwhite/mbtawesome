@@ -17,8 +17,6 @@ var WindowView = Backbone.View.extend({
     }
     var targetUrl = $el.attr( 'href' );
 
-    console.log( targetUrl );
-
     // Don't hijack any off-site links
     if ( /http/.test( targetUrl ) ) {
       return;

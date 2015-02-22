@@ -1,6 +1,6 @@
 <ul class="lines row">
 {% for line in lines %}
-  <li class="line four columns">
+  <li class="line three columns">
     <h2 class="line button {{ line.slug }}">
       <a href="/{{ line.slug }}">
         {{ line.name }}
@@ -8,4 +8,9 @@
     </h2>
   </li>
 {% endfor %}
+  <li class="line three columns">
+    <h2 class="line button green">
+      <a href="/green">Green Line</a>
+    </h2>
+  </li>
 </ul>

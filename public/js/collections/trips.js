@@ -21,7 +21,7 @@ var TripsCollection = Backbone.Collection.extend({
   /**
    * Event listener to set a "loaded" flag on the collection once it is fetched
    */
-  setLoaded: function() {
+  setLoaded: function setLoaded() {
     this.loaded = true;
   },
 

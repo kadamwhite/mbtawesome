@@ -16,6 +16,13 @@ spinner( $spinner-size ) {
 
     animate( spinkit-rotate-plane 2s infinite ease-in-out );
   }
+
+  &.inline {
+    float: left;
+    display: inline-block;
+    // Position inline with the <p> text alongside which these get floated
+    margin: -7px 10px 0 0;
+  }
 }
 
 .loading-spinner {
