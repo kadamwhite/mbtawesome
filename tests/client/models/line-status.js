@@ -5,13 +5,12 @@ var chai = require( 'chai' );
 var expect = chai.expect;
 // var sinon = require( 'sinon' );
 chai.use( require( 'sinon-chai' ) );
-var proxyquire = require( 'proxyquire' );
+// var proxyquire = require( 'proxyquire' );
 var _ = require( 'lodash' );
 
-var Backbone = require( '../../mocks/backbone' );
-var LineStatusModel = proxyquire( '../../../public/js/models/line-status', {
-  backbone: Backbone
-});
+var Backbone = require( 'backbone' );
+var LineStatusModel = require( '../../../public/js/models/line-status' );
+var TripsCollection = require( '../../../public/js/collections/trips' );
 
 // Flat array of station objects
 var testStations = [{
@@ -38,11 +37,54 @@ var testStations = [{
   ]
 }];
 
+// Northbound average wait: ceil( 701s / 60 ) = 12min
+// Southbound average wait: ceil( 235s / 60 ) = 4min
+var testTrips = [{
+  id: '25730054',
+  headsign: 'Oak Grove',
+  direction: 1,
+  vehicle: {},
+  stops: [
+    { id: '70035', seconds: 179 },
+    { id: '70036', seconds: 364 }
+  ]
+}, {
+  id: '25729993',
+  headsign: 'Oak Grove',
+  direction: 1,
+  vehicle: {},
+  stops: [
+    // average wait 879
+    { id: '70033', seconds: 879 },
+    // average wait 566
+    { id: '70035', seconds: 1132 },
+    // average wait 657
+    { id: '70036', seconds: 1317 }
+  ]
+}, {
+  id: '25730165',
+  headsign: 'Forest Hills',
+  direction: 0,
+  vehicle: {},
+  stops: [
+    // average wait 155
+    { id: '70034', seconds: 155 },
+    // average wait 314
+    { id: '70032', seconds: 314 }
+  ]
+}];
+
+// THE TESTS
+// ==============================================
+
 describe( 'TripModel', function() {
   var lineStatus;
 
   beforeEach(function() {
     lineStatus = new LineStatusModel({
+      predictions: new TripsCollection( testTrips, {
+        line: {}
+      }),
       stations: testStations
     });
   });
@@ -92,6 +134,34 @@ describe( 'TripModel', function() {
           expect( stop.length ).to.equal( 0 );
         });
       });
+    });
+
+  });
+
+  describe( 'updateAverageWaitTimes method', function() {
+
+    it( 'exists', function() {
+      expect( lineStatus.updateAverageWaitTimes ).to.exist;
+      expect( lineStatus.updateAverageWaitTimes ).to.be.a( 'function' );
+    });
+
+    it( 'sets the averageWaitTimes property on the model', function() {
+      expect( lineStatus.get( 'averageWaitTimes' ) ).to.be.undefined;
+      lineStatus.updateAverageWaitTimes();
+      expect( lineStatus.get( 'averageWaitTimes' ) ).to.exist;
+      expect( lineStatus.get( 'averageWaitTimes' ) ).to.be.an( 'object' );
+    });
+
+    it( 'produces a dictionary of wait time objects', function() {
+      var waitTimes = lineStatus.updateAverageWaitTimes();
+      expect( waitTimes[ '0' ] ).to.exist;
+      expect( waitTimes[ '0' ] ).to.be.an( 'object' );
+      expect( waitTimes[ '0' ].name ).to.equal( 'Southbound' );
+      expect( waitTimes[ '0' ].wait ).to.equal( 4 );
+      expect( waitTimes[ '1' ] ).to.exist;
+      expect( waitTimes[ '1' ] ).to.be.an( 'object' );
+      expect( waitTimes[ '1' ].name ).to.equal( 'Northbound' );
+      expect( waitTimes[ '1' ].wait ).to.equal( 12 );
     });
 
   });

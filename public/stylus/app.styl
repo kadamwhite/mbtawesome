@@ -270,6 +270,7 @@ xfer-border( $color, $color2 = $color ) {
 .divider-red {
   border: none;
   border-top: 5px solid;
+  margin: 2.5rem 0;
 }
 .divider-blue { border-top-color: $mbta-blue; }
 .divider-green { border-top-color: $mbta-green; }
@@ -493,6 +494,15 @@ xfer-border( $color, $color2 = $color ) {
   }
   hr {
     margin: 2.5rem 0;
+  }
+}
+
+.wait-times {
+  span:after {
+    content: ", ";
+  }
+  span:last-child:after {
+    content: "";
   }
 }
 

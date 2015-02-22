@@ -12,9 +12,17 @@
 
   <hr>
 
-  <p><em>I've seen the T look better in other weather</em></p>
+  {#<p><em>I've seen the T look better in other weather</em></p>#}
 
-  <pre>{{ averageWaitTime | serialize }}</pre>
+  <p class="wait-times">
+    Average wait:
+    {% for dirId, direction in averageWaitTimes %}
+    <span>
+      {{ direction.wait }}
+      {{ 'minute' | pluralize( direction.wait ) }}
+      {{ direction.name | lower }}</span>
+    {% endfor %}
+  </p>
 
   {# Iterate through both travel directions and render out trains in service #}
   {% for direction in [{ class: 'down', key: '0' }, { class: 'up', key: '1' }] %}

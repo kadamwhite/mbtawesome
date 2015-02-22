@@ -16,6 +16,11 @@ var Backbone = require( 'backbone' );
 //   ]
 // };
 
+// Helpers
+// ==============================================
+// (These methods do not need to be stored on the
+// model prototype)
+
 // Utility comparator for use when sorting numeric arrays
 function sortNumeric( a, b ) {
   return a - b;
@@ -28,9 +33,10 @@ function sumTimes( sum, timeToTrain ) {
 
 // Utility method for summing and averaging a numeric array
 function getAverage( arr ) {
-  return Math.ceil( _.reduce( arr, sumTimes, 0 ) / arr.length );
+  // Filter out undefined values: we use a separate metric for handling those
+  var arrValues = _.filter( arr );
+  return Math.ceil( _.reduce( arrValues, sumTimes, 0 ) / arrValues.length );
 }
-
 
 // Used by calculateAvgWaitTimes
 function getAverageWaitForStop( timesToStop ) {
@@ -50,7 +56,7 @@ function getAverageWaitForStop( timesToStop ) {
 
   // Calculate the wait time between each scheduled train
   function calculateWaitTimeIntervals( memo, secondsToTrain, index ) {
-    var secondsToPreviousTrain = index > 1 ? sortedTimes[ index - 1 ] : 0;
+    var secondsToPreviousTrain = index > 0 ? sortedTimes[ index - 1 ] : 0;
     memo.push( secondsToTrain - secondsToPreviousTrain );
     return memo;
   }
@@ -64,14 +70,14 @@ function getAverageWaitForStop( timesToStop ) {
 function calculateAvgWaitTimes( directionObj ) {
   var averageWaitByStop = _.mapValues( directionObj.stops, getAverageWaitForStop );
 
-  console.log( directionObj.stops );
-  console.log( averageWaitByStop );
-
   return {
     name: directionObj.name,
-    stops: averageWaitByStop
+    wait: Math.ceil( getAverage( averageWaitByStop ) / 60 )
   };
 }
+
+// Model Definition
+// ==============================================
 
 var LineStatus = Backbone.Model.extend({
 
@@ -96,7 +102,8 @@ var LineStatus = Backbone.Model.extend({
    *       1: [{ headsign: 'Ashmont', count: 1 }, { headsign: 'Braintree', count: 4 }]
    *     }
    *
-   * @return {[type]} [description]
+   * @method trainsInService
+   * @return {Object} An object with the count of trains in service in each direction
    */
   trainsInService: function trainsInService() {
     return this.predictions.chain()
@@ -140,6 +147,8 @@ var LineStatus = Backbone.Model.extend({
    *       }
    *     }
    *
+   * @method buildStationDictionary
+   * @private
    * @return {Object} Return the dictionary object, once built
    */
   buildStationDictionary: function buildStationDictionary() {
@@ -179,7 +188,8 @@ var LineStatus = Backbone.Model.extend({
   /**
    * Get the average wait time for each direction of the train
    *
-   * @method averageWait
+   * @method updateAverageWaitTimes
+   * @private
    * @return {Object} An object with key-value pairs for wait by direction
    */
   updateAverageWaitTimes: function updateAverageWaitTimes() {
