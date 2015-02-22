@@ -67,19 +67,34 @@ a {
 // Footer
 // ==============================================
 .footer {
-  padding: 5px 10px;
-  margin-top: 25px;
+  margin-top: 2.5rem;
   width: 100%;
-  border-top: 1px solid #e1e1e1;
+  +respond-above($md-screen) {
+    padding: 10px 20px;
+    border-top: 1px solid #e1e1e1;
+  }
 
   p {
     margin: 0;
+    padding: 5px 10px;
     font-size: 1.5rem;
+    border-top: 1px solid #e1e1e1;
+    +respond-above($md-screen) {
+      display: inline-block;
+      padding: 0;
+      border-top: 0;
+
+      &:after {
+        content: " | ";
+      }
+      &:last-child:after {
+        content: "";
+      }
+    }
   }
 }
 
-.top-nav,
-.footer {
+.top-nav {
   padding: 5px 10px;
   +respond-above($sm-screen) { padding: 10px 20px; }
   +respond-above($md-screen) { padding: 20px 20px; }
