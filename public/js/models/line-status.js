@@ -89,6 +89,13 @@ var LineStatus = Backbone.Model.extend({
     // this.predictions is a TripsCollection
     this.predictions = opts.predictions;
 
+    // Initialize data parsing: This will either do nothing (if we are still
+    // waiting for the server), or else prevent the UI from loading with
+    // incomplete data (if we already have in-memory results and are just
+    // initializing this status object afresh)
+    this.updateAverageWaitTimes();
+
+    // Set data parsing to happen on sync
     this.listenTo( this.predictions, 'sync reset', this.updateAverageWaitTimes );
   },
 

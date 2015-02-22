@@ -4,6 +4,7 @@ var StopsListView = require( './station-list-view' );
 
 var AlertsCollection = require( '../../collections/alerts' );
 var TripsCollection = require( '../../collections/trips' );
+var LineStatusModel = require( '../../models/line-status' );
 
 var data = require( '../../data' );
 var setTitle = require( '../../lib/set-title' );
@@ -37,8 +38,19 @@ function lineOverviewRoute( lineSlug ) {
     data.alerts.set( lineSlug, alerts );
   }
 
+  var status = data.status.get( lineSlug );
+  if ( ! status ) {
+    status = new LineStatusModel({
+      alerts: alerts,
+      stations: line.stops({ flatten: true }),
+      predictions: trips
+    });
+    data.status.set( lineSlug, status );
+  }
+
   new StopsListView({
     alerts: alerts,
+    status: status,
     model: line,
     collection: trips
   });
