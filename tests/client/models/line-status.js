@@ -77,7 +77,7 @@ var testTrips = [{
 // THE TESTS
 // ==============================================
 
-describe( 'TripModel', function() {
+describe( 'LineStatusModel', function() {
   var lineStatus;
 
   beforeEach(function() {
@@ -146,6 +146,8 @@ describe( 'TripModel', function() {
     });
 
     it( 'sets the averageWaitTimes property on the model', function() {
+      // set during initialization: remove to test that it is set in this method
+      lineStatus.unset( 'averageWaitTimes' );
       expect( lineStatus.get( 'averageWaitTimes' ) ).to.be.undefined;
       lineStatus.updateAverageWaitTimes();
       expect( lineStatus.get( 'averageWaitTimes' ) ).to.exist;
