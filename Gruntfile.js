@@ -110,7 +110,7 @@ module.exports = function( grunt ) {
       tests: {
         src: files.tests,
         options: {
-          reporter: 'nyan'
+          reporter: process.env.CI ? 'list' : 'nyan'
         }
       }
     },
