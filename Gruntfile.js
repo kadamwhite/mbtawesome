@@ -12,7 +12,7 @@ module.exports = function( grunt ) {
       '!public/js/vendor/**/*.js'
     ],
     lib: [
-      'app.js',
+      'server.js',
       'db/**/*.js',
       'models/**/*.js',
       'routes/**/*.js',

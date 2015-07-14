@@ -4,7 +4,7 @@
     "bin",
     "server",
     "views",
-    "app.js",
+    "server.js",
     "config.yml"
   ],
   "ext": "js,html,yml"
