@@ -17,14 +17,14 @@ var longCache = require( './_long-cache' );
 
 // Hard-coded route ID list (saves an otherwise useless DB round-trip)
 var routes = {
-  blue: [ '946_', '948_', 'Blue' ],
-  orange: [ '903_', '913_', 'Orange' ],
-  red: [ '931_', '933_', 'Red' ],
+  blue: [ 'Blue' ],
+  orange: [ 'Orange' ],
+  red: [ 'Red' ],
   green: [
-    '810_', '813_', '823_', 'Green-B',
-    '830_', '831_', 'Green-C',
-    '842_', '840_', '851_', '852_', 'Green-D',
-    '880_', '882_', 'Green-E'
+    'Green-B',
+    'Green-C',
+    'Green-D',
+    'Green-E'
   ]
 }
 

@@ -183,6 +183,6 @@ var stations = [{
 module.exports = {
   name: 'Blue Line',
   slug: 'blue',
-  routes: [ '946_', '948_', 'Blue' ],
+  routes: [ 'Blue' ],
   stops: stations
 };
