@@ -109,6 +109,8 @@ function alertsByLine( lineSlug ) {
       .pluck( 'alerts' )
       // Flatten alerts from multiple routes into a single array
       .flatten()
+      // Remove leftovers from empty alerts arrays
+      .filter()
       // De-dupe on ID (one alert can affect many lines, and may be returned twice)
       .unique( 'alert_id' )
       .value()
