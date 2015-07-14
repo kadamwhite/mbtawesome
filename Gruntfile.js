@@ -36,7 +36,7 @@ module.exports = function( grunt ) {
     browserify: {
       dist: {
         files: {
-          'public/js/app.min.js': 'public/js/client-app.js'
+          'public/js/app.min.js': 'public/js/client.js'
         },
         options: {
           browserifyOptions: {
