@@ -1,53 +1,62 @@
 'use strict';
 
+var analytics = require( '../../lib/analytics' );
+var pageTitle = require( '../../../../server/services/page-title' );
+
 var StationDetailView = require( './station-detail-view' );
 
 var TripsCollection = require( '../../collections/trips' );
 
 var data = require( '../../data' );
-var setTitle = require( '../../lib/set-title' );
 
-function stationDetailRoute( lineSlug, parentStation ) {
-  /* jshint validthis: true */
+module.exports = {
+  url: '^/:line(red|orange|blue)/:station',
 
-  // Error out early if the route didn't get a valid line slug
-  var invalidLineSlug = [ 'red', 'orange', 'blue' ].indexOf( lineSlug ) < 0;
+  update: function( opts ) {
+    this.enter( opts );
+  },
 
-  if ( invalidLineSlug ) {
-    return this.error404();
-  }
+  enter: function( opts ) {
+    /* jshint validthis: true */
+    var lineSlug = opts.param.line;
+    var parentStation = opts.param.station;
 
-  // Look up the data with the line slug route parameter
-  var line = data.lines.bySlug( lineSlug );
+    // Look up the data with the line slug route parameter
+    var line = data.lines.bySlug( lineSlug );
 
-  var station = line.station( parentStation );
+    var station = line.station( parentStation );
 
-  if ( ! station ) {
-    return this.error404();
-  }
+    if ( ! station ) {
+      // Trigger 404 if the provided station isn't in our data
+      return this.parent.go( '$notfound', {
+        encode: false
+      });
+    }
 
-  var trips = data.predictions.get( lineSlug );
-  if ( ! trips ) {
-    trips = new TripsCollection([], {
-      line: lineSlug
+    var trips = data.predictions.get( lineSlug );
+    if ( ! trips ) {
+      trips = new TripsCollection([], {
+        line: lineSlug
+      });
+      data.predictions.set( lineSlug, trips );
+    }
+
+    new StationDetailView({
+      line: line,
+      station: station,
+      trips: trips
     });
-    data.predictions.set( lineSlug, trips );
+
+    // Kick off or refresh the trip predictions data
+    trips.refresh();
+
+    // Set the title: we do this here instead of in a `title` function on
+    // the router state object because it uses some of the data above
+    this.title = pageTitle([
+      station.name,
+      lineSlug + ' Line'
+    ]);
+
+    analytics.pageView();
   }
-
-  new StationDetailView({
-    line: line,
-    station: station,
-    trips: trips
-  });
-
-  // Kick off or refresh the trip predictions data
-  trips.refresh();
-
-  setTitle([
-    station.name,
-    lineSlug + ' Line'
-  ]);
-
-}
-
-module.exports = stationDetailRoute;
+};

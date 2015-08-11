@@ -1,20 +1,23 @@
 'use strict';
 
+var analytics = require( '../../lib/analytics' );
+var pageTitle = require( '../../../../server/services/page-title' );
+
 var IndexView = require( './view' );
 
 // Get the (hard-coded) lines collection
 var lines = require( '../../data' ).lines;
-var setTitle = require( '../../lib/set-title' );
 
-function homeRoute() {
+module.exports = {
+  url: '^/',
 
-  new IndexView({
-    collection: lines
-  });
+  enter: function() {
+    new IndexView({
+      collection: lines
+    });
 
-  // Reset title to "MBTAwesome" home page default
-  setTitle();
+    analytics.pageView();
+  },
 
-}
-
-module.exports = homeRoute;
+  title: pageTitle()
+};

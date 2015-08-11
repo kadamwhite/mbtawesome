@@ -24,7 +24,7 @@ var WindowView = Backbone.View.extend({
 
     evt.preventDefault();
 
-    require( '../router' ).goTo( targetUrl );
+    require( '../router' ).nav( targetUrl );
   }
 
 });

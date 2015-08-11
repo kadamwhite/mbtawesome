@@ -77,6 +77,7 @@
     "nunjucksify": "^0.2.0",
     "pg": "^4.2.0",
     "serve-favicon": "^2.2.0",
+    "stateman": "^0.1.8",
     "stylus": "^0.49.3"
   }
 }

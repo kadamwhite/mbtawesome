@@ -8,10 +8,6 @@ var nunjucks = require( 'nunjucks' );
 nunjucks.env = new nunjucks.Environment();
 require( '../../views/filters' ).setEnvironment( nunjucks.env );
 
-var Backbone = require( 'backbone' );
-
-var analytics = require( './lib/analytics' );
-
 // Namespace
 // ==============================================
 var MBTApp = {};
@@ -20,13 +16,12 @@ var MBTApp = {};
 // ==============================================
 MBTApp.router = require( './router' );
 
-Backbone.history.start({
-  // silent: true,
-  pushState: true
+MBTApp.router.start({
+  // Autoprefixer only acts on #-prefixed links: turning it off avoids
+  // auto-binding an unneeded event handler
+  autoprefix: false,
+  html5: true
 });
-
-// Fire off first analytics hit
-analytics.pageView();
 
 // WindowView intercepts all local navigation clicks and converts them to
 // router navigation actions

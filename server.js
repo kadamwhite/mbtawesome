@@ -50,7 +50,9 @@ if ( ! PROD_MODE ) {
   }) );
 
   // Bundle and serve first-party application code
-  app.get( '/js/app.js', browserify( './public/js/client.js' ) );
+  app.get( '/js/app.js', browserify( './public/js/client.js' ), {
+    debug: true
+  });
 }
 
 // Other middleware & static assets

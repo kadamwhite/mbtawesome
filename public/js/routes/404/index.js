@@ -1,18 +1,18 @@
 'use strict';
 
+var analytics = require( '../../lib/analytics' );
+var pageTitle = require( '../../../../server/services/page-title' );
+
 var Error400View = require( './view' );
 
-// Get the (hard-coded) lines collection
-var setTitle = require( '../../lib/set-title' );
+module.exports = {
+  enter: function() {
+    new Error400View();
 
-function homeRoute() {
+    analytics.pageView();
+  },
 
-  new Error400View();
-
-  setTitle([
+  title: pageTitle([
     '404: Not Found'
-  ]);
-
-}
-
-module.exports = homeRoute;
+  ])
+};

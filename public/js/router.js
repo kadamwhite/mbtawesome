@@ -1,37 +1,17 @@
 'use strict';
 
-var Backbone = require( 'backbone' );
+var StateManager = require( 'stateman' );
 
-var analytics = require( './lib/analytics' );
-
-var Router = Backbone.Router.extend({
-
-  routes: {
-    '':               'index',
-    'green':          'green',
-    ':line':          'line',
-    ':line/:station': 'station',
-    '*notFound':      'error404'
-  },
-
-  index: require( './routes/index' ),
-
-  green: require( './routes/green' ),
-
-  line: require( './routes/line' ),
-
-  station: require( './routes/station' ),
-
-  error404: require( './routes/404' ),
-
-  // Convenience wrapper for navigation (always sets { trigger: true })
-  goTo: function( target ) {
-    this.navigate( target, {
-      trigger: true
-    });
-    analytics.pageView();
-  }
-
+var router = new StateManager({
+  title: 'MBTAwesome'
 });
 
-module.exports = new Router();
+router.state({
+  'home': require( './routes/index' ),
+  'green': require( './routes/green' ),
+  'line': require( './routes/line' ),
+  'station': require( './routes/station' ),
+  '$notfound': require( './routes/404' )
+});
+
+module.exports = router;
