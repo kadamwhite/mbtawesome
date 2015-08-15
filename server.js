@@ -79,9 +79,9 @@ app.use( '/', require( './server/routes' ) );
 
 // error handlers
 
-// development error handler
-// will print stacktrace
 if ( ! PROD_MODE ) {
+  // development error handler
+  // will print stacktrace
   app.use(function( err, req, res, next ) {
     res.status( err.status || 500 );
     res.render( 'error', {
@@ -90,18 +90,18 @@ if ( ! PROD_MODE ) {
       __dirname: __dirname
     });
   });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function( err, req, res, next ) {
-  res.status( err.status || 500 );
-  res.render( 'error', {
-    message: err.message,
-    error: {
-      stack: ''
-    }
+} else {
+  // production error handler
+  // no stacktraces leaked to user
+  app.use(function( err, req, res, next ) {
+    res.status( err.status || 500 );
+    res.render( 'error', {
+      message: err.message,
+      error: {
+        stack: ''
+      }
+    });
   });
-});
+}
 
 module.exports = app;
