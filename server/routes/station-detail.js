@@ -11,15 +11,15 @@ var mbtapi = require( '../services/api' );
 function stationDetailRoute( req, res, next ) {
   var line = req.params.line;
 
-  // Prime API cache
-  mbtapi.predictionsByLine( line );
-
   // 404 early if we're not requesting a "valid" line
   // (Green gets its own template, because it is SO AWESOME)
   if ( [ 'red', 'orange', 'blue' ].indexOf( line ) < 0 ) {
-    next();
+    return next();
   }
   // 404 client-side if the station doesn't find a match
+
+  // Prime API cache
+  mbtapi.predictionsByLine( line );
 
   // Title placeholder (title also set on client)
   // TODO (long term): Get the station name from the DB
@@ -31,7 +31,7 @@ function stationDetailRoute( req, res, next ) {
   Promise.props({
     title: title
   }).then(function( context ) {
-    res.render( 'layouts/main.tmpl', context );
+    res.render( 'index', context );
   }).catch( next );
 }
 

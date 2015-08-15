@@ -7,6 +7,7 @@ var logger = require( 'morgan' );
 var cookieParser = require( 'cookie-parser' );
 var bodyParser = require( 'body-parser' );
 var nunjucks = require( 'nunjucks' );
+var combynExpress = require( 'combynexpress' );
 var stylus = require( 'stylus' );
 var browserify = require( 'browserify-middleware' );
 
@@ -15,16 +16,21 @@ var app = express();
 var PROD_MODE = process.env.NODE_ENV === 'production';
 
 // view engine setup:
-var templateEnv = nunjucks.configure( 'views', {
-  autoescape: true,
-  express: app
-});
-require( './views/filters' ).setEnvironment( templateEnv );
-templateEnv.addGlobal( 'production', PROD_MODE );
+app.engine( 'html', combynExpress() );
+app.set( 'view engine', 'html' );
 
-// Analytics setup
+// Environment-specific template configuration
+combynExpress.registerFilter( 'if-prod', function( str ) {
+  return PROD_MODE ? str : '';
+});
+
+// Analytics template setup
 var config = require( './server/lib/config' );
-templateEnv.addGlobal( 'trackingId', config.analytics && config.analytics.trackingId );
+
+// Defined as a filter so it can be used for conditionals and for output
+combynExpress.registerFilter( 'tracking-id', function() {
+  return config.analytics && config.analytics.trackingId;
+});
 
 if ( ! PROD_MODE ) {
   // Specify transforms here instead of "browserify" section in package.json,
@@ -78,7 +84,7 @@ app.use( '/', require( './server/routes' ) );
 if ( ! PROD_MODE ) {
   app.use(function( err, req, res, next ) {
     res.status( err.status || 500 );
-    res.render( 'error.tmpl', {
+    res.render( 'error', {
       message: err.message,
       error: err,
       __dirname: __dirname
@@ -90,7 +96,7 @@ if ( ! PROD_MODE ) {
 // no stacktraces leaked to user
 app.use(function( err, req, res, next ) {
   res.status( err.status || 500 );
-  res.render( 'error.tmpl', {
+  res.render( 'error', {
     message: err.message,
     error: {
       stack: ''

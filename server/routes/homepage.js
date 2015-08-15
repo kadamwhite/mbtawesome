@@ -13,7 +13,7 @@ function homepageRoute( req, res, next ) {
     _homepage: true, // Sets H1 in template
     title: pageTitle()
   }).then(function( context ) {
-    res.render( 'layouts/main.tmpl', context );
+    res.render( 'index', context );
   }).catch( next );
 }
 

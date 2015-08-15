@@ -11,14 +11,14 @@ var mbtapi = require( '../services/api' );
 function lineOverviewRoute( req, res, next ) {
   var line = req.params.line;
 
-  // Prime API cache
-  mbtapi.predictionsByLine( line );
-
   // 404 early if we're not requesting a "valid" line
   // (Green gets its own template, because it is SO AWESOME)
   if ( [ 'red', 'orange', 'blue' ].indexOf( line ) < 0 ) {
-    next();
+    return next();
   }
+
+  // Prime API cache
+  mbtapi.predictionsByLine( line );
 
   // Determine the title
   var title = pageTitle([
@@ -28,7 +28,7 @@ function lineOverviewRoute( req, res, next ) {
   Promise.props({
     title: title
   }).then(function( context ) {
-    res.render( 'layouts/main.tmpl', context );
+    res.render( 'index', context );
   }).catch( next );
 }
 

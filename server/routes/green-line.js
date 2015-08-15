@@ -21,7 +21,7 @@ function lineOverviewRoute( req, res, next ) {
   Promise.props({
     title: title
   }).then(function( context ) {
-    res.render( 'layouts/main.tmpl', context );
+    res.render( 'index', context );
   }).catch( next );
 }
 

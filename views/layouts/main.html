@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <meta charset="utf-8">
+
+    <meta name="description" content="A real-time MBTA Subway Status application by K. Adam White. We <3 the T!">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="images/touch-icon.png">
+
+    <link rel="stylesheet" href="/css/app{{ '.min' | if-prod }}.css" />
+  </head>
+  <body>
+    <nav class="top-nav">
+      <a href="/">
+        <h1 class="site-title">MBTAwesome</h1>
+      </a>
+    </nav>
+
+    <div class="container">
+      {%partial content %}
+    </div>
+
+    <div class="footer">
+      <p>
+        Built by <a href="https://twitter.com/kadamwhite">K. Adam White</a>
+        at <a href="http://bocoup.com">Bocoup</a>
+      </p>
+      <p>Follow <a href="https://twitter.com/mbtawesome">@mbtawesome</a> for app updates!</p>
+      <p>&copy; 2015 <a href="https://twitter.com/kadamwhite">K. Adam White</a></p>
+    </div>
+
+    <script src="/js/vendor/lodash/dist/lodash.compat{{ '.min' | if-prod }}.js"></script>
+    <script src="/js/vendor/jquery/dist/jquery{{ '.min' | if-prod }}.js"></script>
+    <script src="/js/vendor/backbone/backbone.js"></script>
+    {%-- <script src="/js/app{{ '.min' | if-prod }}.js"></script> --%}
+    {%partial partials/analytics %}
+  </body>
+</html>
