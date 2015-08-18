@@ -8,5 +8,5 @@
  * @return {Boolean} Whether that line slug matches a supported line
  */
 module.exports = function isLineSupported( line ) {
-  return line === 'blue' || line === 'orange' || line === 'red' || line === 'green';
+  return [ 'blue', 'orange', 'red', 'green' ].indexOf( line ) >= 0;
 };

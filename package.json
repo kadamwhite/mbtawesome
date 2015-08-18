@@ -28,7 +28,6 @@
   "author": "K.Adam White <adam@kadamwhite.com> (http://www.kadamwhite.com/)",
   "license": "MIT",
   "browser": {
-    "nunjucks": "nunjucks/browser/nunjucks-slim",
     "backbone": "./public/js/vendor/backbone.js",
     "jquery": "./public/js/vendor/jquery.js",
     "lodash": "./public/js/vendor/lodash.js"
@@ -39,7 +38,9 @@
     "bower": "^1.3.12",
     "chai": "^1.10.0",
     "chai-as-promised": "^4.1.1",
+    "combyne": "^0.8.1",
     "combynexpress": "^1.0.0",
+    "combynify": "^1.0.0",
     "grunt": "^0.4.5",
     "grunt-browserify": "^3.3.0",
     "grunt-cli": "^0.1.13",
@@ -60,6 +61,7 @@
     "sinon": "^1.12.2",
     "sinon-chai": "^2.6.0",
     "transform-loader": "^0.2.1",
+    "visit-combyne": "^1.0.2",
     "webpack": "^1.5.3"
   },
   "dependencies": {
@@ -74,8 +76,6 @@
     "lodash": "^2.4.1",
     "lru-cache": "^2.5.0",
     "morgan": "^1.5.1",
-    "nunjucks": "^1.2.0",
-    "nunjucksify": "^0.2.0",
     "pg": "^4.2.0",
     "serve-favicon": "^2.2.0",
     "stateman": "^0.1.8",

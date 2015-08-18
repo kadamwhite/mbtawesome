@@ -49,9 +49,7 @@ module.exports = function( grunt ) {
             } ]
           ],
           transform: [
-            [ 'nunjucksify', {
-              extension: '.tmpl'
-            } ]
+            [ 'combynify' ]
           ]
         }
       }

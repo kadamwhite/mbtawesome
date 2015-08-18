@@ -6,7 +6,7 @@ var IndexView = BaseView.extend({
 
   el: '.container',
 
-  template: require( './index.tmpl' ),
+  template: require( './index.html' ),
 
   initialize: function( opts ) {
     // Auto-render, and listen for subsequent changes (there are unlikely to be any)

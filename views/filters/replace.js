@@ -8,5 +8,8 @@
  * @return {String}        str, with instances of fromStr replaced with toStr
  */
 module.exports = function replace( str, fromStr, toStr ) {
+  if ( typeof str !== 'string' ) {
+    return '';
+  }
   return str.replace( fromStr, toStr );
 };

@@ -34,12 +34,11 @@ describe( 'makeQueryHandler', function() {
 
   it ( 'throws an error if the API key is not present in the config', function() {
     expect(function requireModule() {
-      var config = proxyquire( '../../../server/lib/config', {
+      proxyquire( '../../../server/lib/config', {
         'js-yaml': {
           safeLoad: function() { return { api: {} }; }
         }
       });
-      console.log( config );
     }).to.throw();
   });
 

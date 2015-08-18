@@ -1,0 +1,39 @@
+<div class="status">
+{%if loading %}
+  {%-- loading spinner duties handled by AlertsView --%}
+{%elsif totalTrainsInService %}
+
+  {%--<p><em>I've seen the T look better in other weather</em></p>--%}
+
+  <p class="wait-times">
+    Average wait:
+    {%each averageWaitTimes as direction dirId %}
+    <span>
+      {{ direction.wait }}
+      {{ 'minute' | pluralize direction.wait }}
+      {{ direction.name | lower }}</span>
+    {%endeach %}
+  </p>
+
+  {%-- Iterate through both travel directions and render out trains in service --%}
+  {%each directions as direction %}
+  {%each trainsInService | get direction.key as destination %}
+  <div class="trains {{ direction.class }}">
+    <span
+      class="train scheduled"
+      title="{{ destination.headsign }} Train">
+    </span>
+    {{ destination.count }}
+    {{ destination.headsign }} trains in service
+  </div>
+  {%endeach %}
+  {%endeach %}
+
+  <hr>
+
+{%elsif noTrainsInService %}
+
+  <p><strong>No trains currently in service</strong></p>
+
+{%endif %}
+</div>

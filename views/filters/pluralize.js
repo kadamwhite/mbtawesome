@@ -7,5 +7,8 @@
  * @return {String}       Word, contextually appended with "s"
  */
 module.exports = function pluralize( str, count ) {
+  if ( typeof str !== 'string' ) {
+    return '';
+  }
   return count === 1 ? str : str + 's';
 };

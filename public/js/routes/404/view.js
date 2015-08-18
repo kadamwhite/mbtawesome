@@ -1,22 +1,22 @@
 'use strict';
 
-var BaseView = require( '../../views/base-view' );
+var Backbone = require( 'backbone' );
 
-var IndexView = BaseView.extend({
+var IndexView = Backbone.View.extend({
 
   el: '.container',
 
   // Re-use serverside 404 template
-  template: require( '../../../../views/partials/404.tmpl' ),
+  template: require( '../../../../views/partials/404.html' ),
 
   initialize: function( opts ) {
     // Auto-render
     this.render();
   },
 
-  // This view is model-less, so override BaseView's serialize
-  serialize: function() {
-    return {};
+  render: function() {
+    this.$el.html( this.template.render() );
+    return this;
   }
 
 });

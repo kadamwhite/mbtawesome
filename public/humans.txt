@@ -13,4 +13,4 @@
 
     CSS3, HTML5
     Express, Nginx, Backbone, Lodash, jQuery, skeleton.css, Normalize.css
-    Stylus, Browserify, Nunjucks, Grunt
+    Stylus, Browserify, Combyne, Grunt

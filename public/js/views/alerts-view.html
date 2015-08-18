@@ -1,4 +1,4 @@
-{% if loading %}
+{%if loading %}
 
   <div class="loading-spinner inline">
     <div class="rotating-plane small-spinner"></div>
@@ -7,24 +7,24 @@
     <em>Loading...</em>
   </p>
 
-{% elif alerts.length %}
+{%elsif alerts.length %}
 
 <button class="alert-list-toggle" title="Show alert details">
   <span class="alerts-expand">
-    {% for alert in alerts %}
+    {%each alerts as alert %}
     <span
       class="alert-icon alert-{{ alert.severity | lower }}"
       title="{{ alert.severity }} issue">
     </span>
-    {% endfor %}
-    Show {{ alerts.length }} {{ 'alert' | pluralize( alerts.length ) }}
+    {%endeach %}
+    Show {{ alerts.length }} {{ 'alert' | pluralize alerts.length }}
   </span>
   <span class="alerts-minimize">
     Hide Alert Details
   </span>
 </button>
 <ul>
-  {% for alert in alerts %}
+  {%each alerts as alert %}
   <li>
     <p class="alert-type">
       <span class="alert-icon alert-{{ alert.severity | lower }}"></span>
@@ -32,13 +32,13 @@
     </p>
     <p>
       {{ alert.header_text }}
-      {% if alert.url %}
+      {%if alert.url %}
       <br>
       <em><a href="{{ alert.url }}">Learn More</a></em>
-      {% endif %}
+      {%endif %}
     </p>
   </li>
-  {% endfor %}
+  {%endeach %}
 </ul>
 
-{% endif %}
+{%endif %}

@@ -1,5 +1,5 @@
 <ul class="lines row">
-{% for line in lines %}
+{%each lines as line %}
   <li class="line three columns">
     <h2 class="line button {{ line.slug }}">
       <a href="/{{ line.slug }}">
@@ -7,7 +7,7 @@
       </a>
     </h2>
   </li>
-{% endfor %}
+{%endeach %}
   <li class="line three columns">
     <h2 class="line button green">
       <a href="/green">Green Line</a>

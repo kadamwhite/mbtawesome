@@ -7,7 +7,7 @@
 <hr class="divider-{{ line }}" />
 
 <ul class="arrival-predictions {{ line }}">
-  {% for direction in tripsByDirection %}
+  {%each tripsByDirection as direction %}
   <li>
     <h3>{{ direction.name }}</h3>
 
@@ -22,43 +22,43 @@
       </thead>
       <tbody>
 
-      {# TODO: add loading indicator #}
-      {% if direction.trips.length %}
-        {% for trip in direction.trips %}
+      {%-- TODO: add loading indicator --%}
+      {%if direction.trips.length %}
+        {%each direction.trips as trip %}
         <tr {{ 'class="scheduled"' if trip.scheduled }}>
           <td>{{ trip.timeUntil }}</td>
           <td>{{ trip.headsign }}</td>
         </tr>
-        {% endfor %}
-      {% else %}
+        {%endeach %}
+      {%else %}
         <tr>
           <td colspan="2">
             <em>No trains in service</em>
           </td>
         </tr>
-      {% endif %}
+      {%endif %}
       </tbody>
     </table>
   </li>
-  {% endfor %}
+  {%endeach %}
 </ul>
 
-{% if station.transfer.length %}
+{%if station.transfer %}
 <p class="transfers">
-  {% for transfer in station.transfer %}
-  {% if transfer | supportedLine %}
+  {%each station.transfer as transfer %}
+  {%if transfer | supported-line %}
   <a href="/{{ transfer }}">
-  {% endif %}
+  {%endif %}
   <span class="xfer-icon xfer-{{ transfer }}" title="{{ transfer | capitalize }} Line">
     <span class="sr">{{ transfer | capitalize }} Line</span>
   </span>
-  {% if transfer | supportedLine %}
+  {%if transfer | supported-line %}
   </a>
-  {% endif %}
-  {% endfor %}
+  {%endif %}
+  {%endeach %}
   Transfers available
 </p>
-{% endif %}
+{%endif %}
 
 <div class="line">
   <h2 class="line button {{ line }}">
