@@ -13,7 +13,7 @@ var StopsListView = BaseView.extend({
 
   el: '.container',
 
-  template: require( './station-list.html' ),
+  template: require( './station-list.tmpl' ),
 
   initialize: function initializeStationListView( opts ) {
     // Alerts collection, to hand off to a sub-view

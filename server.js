@@ -15,8 +15,8 @@ var app = express();
 var PROD_MODE = process.env.NODE_ENV === 'production';
 
 // view engine setup:
-app.engine( 'html', combynExpress() );
-app.set( 'view engine', 'html' );
+app.engine( 'tmpl', combynExpress() );
+app.set( 'view engine', 'tmpl' );
 
 // Environment-specific template configuration
 combynExpress.registerFilter( 'if-prod', function( str ) {
@@ -36,7 +36,9 @@ if ( ! PROD_MODE ) {
   // for maximum obviousness
   browserify.settings({
     transform: [
-      [ 'combynify' ]
+      [ 'combynify', {
+        extension: '.tmpl'
+      } ]
     ]
   });
 

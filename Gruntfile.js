@@ -49,7 +49,9 @@ module.exports = function( grunt ) {
             } ]
           ],
           transform: [
-            [ 'combynify' ]
+            [ 'combynify', {
+              extension: '.tmpl'
+            } ]
           ]
         }
       }

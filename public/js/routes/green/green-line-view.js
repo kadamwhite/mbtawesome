@@ -7,7 +7,7 @@ var GreenLineView = BaseView.extend({
 
   el: '.container',
 
-  template: require( './green-line.html' ),
+  template: require( './green-line.tmpl' ),
 
   initialize: function initializeGreenLineView( opts ) {
     // Object containing the system alerts for this line

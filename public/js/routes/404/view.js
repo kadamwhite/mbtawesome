@@ -7,7 +7,7 @@ var IndexView = Backbone.View.extend({
   el: '.container',
 
   // Re-use serverside 404 template
-  template: require( '../../../../views/partials/404.html' ),
+  template: require( '../../../../views/partials/404.tmpl' ),
 
   initialize: function( opts ) {
     // Auto-render

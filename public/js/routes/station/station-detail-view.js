@@ -7,7 +7,7 @@ var StopsListView = StationView.extend({
 
   el: '.container',
 
-  template: require( './station-detail.html' ),
+  template: require( './station-detail.tmpl' ),
 
   initialize: function( opts ) {
     // Object containing the details about this station

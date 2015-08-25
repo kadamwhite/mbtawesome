@@ -5,7 +5,7 @@ var BaseView = require( './base-view' );
 
 var AlertsView = BaseView.extend({
 
-  template: require( './alerts-view.html' ),
+  template: require( './alerts-view.tmpl' ),
 
   events: {
     'click .alert-list-toggle': 'toggle'
