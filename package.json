@@ -32,6 +32,8 @@
     "lodash": "./public/js/vendor/lodash.js"
   },
   "devDependencies": {
+    "ampersand-model": "^6.0.1",
+    "ampersand-rest-collection": "^5.0.0",
     "backbone": "^1.2.2",
     "bluebird": "^2.9.34",
     "bower": "^1.5.1",

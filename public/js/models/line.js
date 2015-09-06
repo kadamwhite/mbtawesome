@@ -1,26 +1,27 @@
 'use strict';
 
 var _ = require( 'lodash' );
-var Backbone = require( 'backbone' );
+var Model = require( 'ampersand-model' );
 
-var Line = Backbone.Model.extend({
+var Line = Model.extend({
   // No API request for this: it's basically static data
 
-  /**
-   * Get the nested stops array, optionally flattened into a single list
-   *
-   * @method stops
-   * @param {Object} [opts] An options hash
-   * @param {Boolean} [opts.flatten] Whether to flatten the returned array
-   * @return {Array} An array of stop objects
-   */
-  stops: function( opts ) {
-    var flatten = opts ? opts.flatten : false;
-    var stops = this.get( 'stops' );
+  props: {
+    name: 'string',
+    slug: 'string',
+    routes: 'array',
+    stops: 'array'
+  },
 
-    // Optionally eliminate any branch nesting in the stops array
-    // Note: _.flatten defaults to deep flatten in lodash.compat
-    return flatten ? _.flatten( stops ) : stops;
+  derived: {
+    stopsFlattened: {
+      deps: [ 'stops' ],
+      fn: function() {
+        // Eliminate any branch nesting in the stops array
+        // Note: _.flatten defaults to deep flatten in lodash.compat
+        return _.flatten( this.stops );
+      }
+    }
   },
 
   /**
@@ -30,12 +31,8 @@ var Line = Backbone.Model.extend({
    * @return {[type]} The object for this station from the stops array
    */
   station: function( parentStation ) {
-    var stops = this.stops({
-      flatten: true
-    });
-
     // Get the stop with the provided parentStation
-    return _.findWhere( stops, {
+    return _.findWhere( this.stopsFlattened, {
       station: parentStation
     });
   },

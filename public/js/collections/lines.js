@@ -1,8 +1,8 @@
 'use strict';
 
-var Backbone = require( 'backbone' );
+var Collection = require( 'ampersand-rest-collection' );
 
-var LinesCollection = Backbone.Collection.extend({
+var LinesCollection = Collection.extend({
 
   model: require( '../models/line' ),
 

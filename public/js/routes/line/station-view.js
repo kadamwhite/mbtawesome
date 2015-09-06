@@ -52,7 +52,7 @@ var StationView = BaseView.extend({
       .value();
 
     return {
-      line: this.line.get( 'slug' ),
+      line: this.line.slug,
       station: this.station,
       directions: tripsByDirection
     };

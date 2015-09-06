@@ -44,7 +44,7 @@ module.exports = {
     if ( ! status ) {
       status = new LineStatusModel({
         alerts: alerts,
-        stations: line.stops({ flatten: true }),
+        stations: line.stopsFlattened,
         predictions: trips
       });
       data.status.set( lineSlug, status );
@@ -53,7 +53,7 @@ module.exports = {
     new StopsListView({
       alerts: alerts,
       status: status,
-      model: line,
+      line: line,
       collection: trips
     });
 

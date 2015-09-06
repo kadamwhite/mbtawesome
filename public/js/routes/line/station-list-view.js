@@ -1,15 +1,14 @@
 'use strict';
 
 var _ = require( 'lodash' );
-var BaseView = require( '../../views/base-view' );
+var Backbone = require( 'backbone' );
 
 var BranchView = require( './branch-view' );
 var StationView = require( './station-view' );
 var AlertsView = require( '../../views/alerts-view' );
 var LineStatusView = require( '../../views/line-status-view' );
 
-// Takes both a model and a collection
-var StopsListView = BaseView.extend({
+var StopsListView = Backbone.View.extend({
 
   el: '.container',
 
@@ -22,8 +21,11 @@ var StopsListView = BaseView.extend({
     // LineStatus model, to hand off to a sub-view
     this.lineStatus = opts.status;
 
+    // List of stations on this line
+    this.line = opts.line;
+
     // Nested array defining the layout of the stops
-    this.stations = this.model.stops();
+    this.stations = this.line.stops;
 
     // Listen for new predictions data
     this.listenTo( this.collection, 'sync reset', this.render );
@@ -34,10 +36,10 @@ var StopsListView = BaseView.extend({
 
   render: function renderStationListView() {
     // Render the template into the container
-    this.$el.html( this.template.render( this.serialize() ) );
+    this.$el.html( this.template.render( this.line ) );
 
     var trips = this.collection;
-    var line = this.model;
+    var line = this.line;
 
     // Build an array of subviews (StationView or BranchView)
     function createStationOrBranchView( station ) {
