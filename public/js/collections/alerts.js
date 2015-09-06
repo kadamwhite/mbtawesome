@@ -55,7 +55,7 @@ var AlertsCollection = Backbone.Collection.extend({
    * Comparator function to order collection by severity (high to low)
    */
   comparator: function comparator( model ) {
-    return severity[ model.get( 'severity' ).toLowerCase() ];
+    return severity[ model.severity.toLowerCase() ];
   },
 
   /**
@@ -67,7 +67,7 @@ var AlertsCollection = Backbone.Collection.extend({
   banners: function banners() {
     return this.chain()
       .map(function getBannerFromAlert( model ) {
-        return model.banner();
+        return model.banner;
       })
       .without( '' )
       .unique()
@@ -82,7 +82,7 @@ var AlertsCollection = Backbone.Collection.extend({
    */
   inEffect: function inEffect() {
     return this.filter(function isAlertInEffect( alert ) {
-      return alert.inEffect();
+      return alert.inEffect;
     });
   }
 
