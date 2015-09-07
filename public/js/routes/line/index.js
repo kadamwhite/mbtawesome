@@ -22,7 +22,9 @@ module.exports = {
     var lineSlug = opts.param.line;
 
     // Look up the data with the line slug route parameter
-    var line = data.lines.bySlug( lineSlug );
+    var line = data.lines.findWhere({
+      slug: lineSlug
+    });
 
     var trips = data.predictions.get( lineSlug );
     if ( ! trips ) {

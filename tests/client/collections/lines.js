@@ -7,6 +7,7 @@ var expect = chai.expect;
 chai.use( require( 'sinon-chai' ) );
 
 var LinesCollection = require( '../../../public/js/collections/lines' );
+var LineModel = require( '../../../public/js/models/line' );
 
 describe( 'LinesCollection', function() {
   var lines;
@@ -24,22 +25,11 @@ describe( 'LinesCollection', function() {
     }]);
   });
 
-  describe( 'bySlug method', function() {
-
-    it ( 'is defined', function() {
-      expect( lines.bySlug ).to.exist;
-      expect( lines.bySlug ).to.be.a( 'function' );
+  it( 'creates LineModel instances for each provided data object', function() {
+    expect( lines.length ).to.equal( 3 );
+    lines.forEach(function( line ) {
+      expect( line ).to.be.an.instanceof( LineModel );
     });
-
-    it( 'retrieves the first line in the collection with the matching slug', function() {
-      var lineBySlug = lines.bySlug( 'c' );
-      expect( lineBySlug.get( 'slug' ) ).to.equal( 'c' );
-      expect( lineBySlug.get( 'name' ) ).to.equal( 'Line 3' );
-      lineBySlug = lines.bySlug( 'a' );
-      expect( lineBySlug.get( 'slug' ) ).to.equal( 'a' );
-      expect( lineBySlug.get( 'name' ) ).to.equal( 'Line 1' );
-    });
-
   });
 
 });
