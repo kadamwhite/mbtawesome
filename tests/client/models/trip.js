@@ -310,7 +310,7 @@ describe( 'TripModel', function() {
 
   describe( 'toJSON method', function() {
 
-    it ( 'extends the native Backbone.Model toJSON', function() {
+    it ( 'extends the native Ampersand Model\'s toJSON', function() {
       var defaultOutput = new Model( trip.attributes ).toJSON();
       var output = trip.toJSON();
 
