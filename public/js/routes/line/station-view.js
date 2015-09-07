@@ -45,7 +45,7 @@ var StationView = BaseView.extend({
             // Message to display as hover text
             message: message,
             // Return whether the train is scheduled
-            scheduled:  ! tripModel.active()
+            scheduled:  tripModel.scheduled
           };
         });
       })

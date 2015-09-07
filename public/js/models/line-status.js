@@ -225,10 +225,14 @@ var LineStatus = Backbone.Model.extend({
         ]
       }
       */
-      trip.stops().forEach(function addTripToStationDictionary( stop ) {
-        var dirId = trip.get( 'direction' );
-        var stopId = stop.get( 'id' );
-        directions[ dirId ].stops[ stopId ].push( stop.get( 'seconds' ) );
+      trip.stops.forEach(function addTripToStationDictionary( stop ) {
+        if ( ! stop.seconds ) {
+          // TODO: Figure out why one of these is empty after ampersand migration
+          return;
+        }
+        var dirId = trip.direction;
+        var stopId = stop.id;
+        directions[ dirId ].stops[ stopId ].push( stop.seconds );
       });
     });
 

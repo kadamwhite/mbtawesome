@@ -5,13 +5,11 @@ var chai = require( 'chai' );
 var expect = chai.expect;
 // var sinon = require( 'sinon' );
 chai.use( require( 'sinon-chai' ) );
-var proxyquire = require( 'proxyquire' );
 var _ = require( 'lodash' );
 
-var Backbone = require( '../../mocks/backbone' );
-var TripModel = proxyquire( '../../../public/js/models/trip', {
-  backbone: Backbone
-});
+var Model = require( 'ampersand-model' );
+var Collection = require( 'ampersand-rest-collection' );
+var TripModel = require( '../../../public/js/models/trip' );
 
 var tripSampleData = {
   direction: 1,
@@ -59,8 +57,8 @@ describe( 'TripModel', function() {
     trip = new TripModel( tripSampleData );
   });
 
-  it( 'should extend Backbone.Model', function() {
-    expect( trip ).to.be.an.instanceof( Backbone.Model );
+  it( 'should extend ampersand-model', function() {
+    expect( trip ).to.be.an.instanceof( Model );
   });
 
   describe( 'secondsToStop method', function() {
@@ -147,8 +145,8 @@ describe( 'TripModel', function() {
   describe( 'visits method', function() {
 
     it( 'is defined', function() {
-      expect( trip.active ).to.exist;
-      expect( trip.active ).to.be.a( 'function' );
+      expect( trip.visits ).to.exist;
+      expect( trip.visits ).to.be.a( 'function' );
     });
 
     it( 'returns true if the trip visits the provided stop', function() {
@@ -163,22 +161,38 @@ describe( 'TripModel', function() {
 
   });
 
-  describe( 'active method', function() {
+  describe( 'active property', function() {
 
     it ( 'is defined', function() {
-      expect( trip.active ).to.exist;
-      expect( trip.active ).to.be.a( 'function' );
+      expect( trip ).to.have.property( 'active' );
+      expect( trip.active ).to.be.a( 'boolean' );
     });
 
     it ( 'returns true if the trip has a vehicle', function() {
-      var isActive = trip.active();
-      expect( isActive ).to.equal( true );
+      expect( trip.active ).to.equal( true );
     });
 
     it ( 'returns false if the trip does not have a vehicle', function() {
       trip.unset( 'vehicle' );
-      var isActive = trip.active();
-      expect( isActive ).to.equal( false );
+      expect( trip.active ).to.equal( false );
+    });
+
+  });
+
+  describe( 'scheduled property', function() {
+
+    it ( 'is defined', function() {
+      expect( trip ).to.have.property( 'scheduled' );
+      expect( trip.scheduled ).to.be.a( 'boolean' );
+    });
+
+    it ( 'returns true if the trip does not have a vehicle', function() {
+      trip.unset( 'vehicle' );
+      expect( trip.scheduled ).to.equal( true );
+    });
+
+    it ( 'returns false if the trip has a vehicle', function() {
+      expect( trip.scheduled ).to.equal( false );
     });
 
   });
@@ -285,16 +299,11 @@ describe( 'TripModel', function() {
 
   });
 
-  describe( 'stops method', function() {
+  describe( 'stops collection', function() {
 
     it ( 'is defined', function() {
       expect( trip.stops ).to.exist;
-      expect( trip.stops ).to.be.a( 'function' );
-    });
-
-    it ( 'returns the stops property of the trip as a collection', function() {
-      var stops = trip.stops();
-      expect( stops ).to.be.an.instanceof( Backbone.Collection );
+      expect( trip.stops ).to.be.an.instanceof( Collection );
     });
 
   });
@@ -302,7 +311,7 @@ describe( 'TripModel', function() {
   describe( 'toJSON method', function() {
 
     it ( 'extends the native Backbone.Model toJSON', function() {
-      var defaultOutput = new Backbone.Model( trip.attributes ).toJSON();
+      var defaultOutput = new Model( trip.attributes ).toJSON();
       var output = trip.toJSON();
 
       // Can't use deepEqual b/c trip.toJSON extends default:

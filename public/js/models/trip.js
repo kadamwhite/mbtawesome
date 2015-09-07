@@ -1,17 +1,76 @@
 'use strict';
 
 var _ = require( 'lodash' );
-var Backbone = require( 'backbone' );
+var Model = require( 'ampersand-model' );
+var Collection = require( 'ampersand-rest-collection' );
 
 // Predictions collection structures the "stops" property of a Trip model.
 // Each entry in the "stops" array has properties "id", "eta" and "seconds",
 // e.g. `{ id: '70087', eta: 1423524933, seconds: 136 }`.
-var PredictionsCollection = Backbone.Collection.extend({
+var PredictionsCollection = Collection.extend({
+  // Use no model for this data: raw JS objects
+  // TODO: Define a model that takes id, seq, eta & seconds props
   // Ensure stops are sorted in arrival order
   comparator: 'seq'
 });
 
-var Trip = Backbone.Model.extend({
+var Trip = Model.extend({
+
+  props: {
+    /**
+     * @property {Number} direction GTFS direction identifier (1 or 0)
+     */
+    direction: 'number',
+
+    /**
+     * @property {String} headsign The human-readable destination of this trip
+     */
+    headsign: 'string',
+
+    /**
+     * @property {String} id Unique ID for this trip
+     */
+    id: 'string',
+
+    /**
+     * @property {Object} vehicle An object describing the trip's vehicular position
+     */
+    vehicle: 'object'
+  },
+
+  children: {
+    /**
+     * A PredictionsCollection instance containing this trip's predicted arrival times
+     * @property {PredictionsCollection} stops
+     */
+    stops: PredictionsCollection
+  },
+
+  derived: {
+    /**
+     * Boolean representation of whether the trip has a vehicle position, indicating whether it
+     * is a trip in motion (and therefore a reliable prediction) or an upcoming (scheduled) trip
+     *
+     * @property {Boolean} active
+     */
+    active: {
+      deps: [ 'vehicle' ],
+      fn: function() {
+        return ! ! this.vehicle;
+      }
+    },
+
+    /**
+     * @property {Boolean} scheduled The inverse of "active"
+     */
+    scheduled: {
+      deps: [ 'active' ],
+      fn: function() {
+        return ! this.active;
+      }
+    }
+  },
+
   /**
    * Return a Boolean indicating whether this trip visits the provided station
    *
@@ -36,13 +95,11 @@ var Trip = Backbone.Model.extend({
       return '';
     }
 
-    var headsign = this.get( 'headsign' );
-
     if ( timeUntil === 'arriving' || timeUntil === 'approaching' ) {
-      return headsign + ' train ' + timeUntil;
+      return this.headsign + ' train ' + timeUntil;
     }
 
-    return headsign + ' train in ' + timeUntil;
+    return this.headsign + ' train in ' + timeUntil;
   },
 
   /**
@@ -77,10 +134,10 @@ var Trip = Backbone.Model.extend({
    * @return {Number} The number of seconds until this trip reaches the specified station
    * */
   secondsToStop: function( stopId ) {
-    var station = this.stops().findWhere({
+    var station = this.stops.findWhere({
       id: stopId
     });
-    return station ? station.get( 'seconds' ) : -1;
+    return station ? station.seconds : -1;
   },
 
   /**
@@ -121,30 +178,8 @@ var Trip = Backbone.Model.extend({
    * @return {Boolean} Whether that station is this train's next stop
    */
   approaching: function( stopId ) {
-    var nextStop = this.stops().first();
-    return stopId === nextStop.get( 'id' );
-  },
-
-  /**
-   * Return a boolean representing whether the trip has a vehicle position,
-   * indicating whether it is a trip in motion or an upcoming scheduled trip
-   *
-   * @method active
-   * @return {Boolean} Whether or not the trip is "active"
-   */
-  active: function() {
-    return typeof this.get( 'vehicle' ) !== 'undefined';
-  },
-
-  /**
-   * Access the "stops" property as a collection
-   *
-   * @method stops
-   * @return {PredictionsCollection} A PredictionsCollection instance containing
-   *                                 this trip's predicted arrival times
-   */
-  stops: function() {
-    return new PredictionsCollection( this.get( 'stops' ) );
+    var nextStop = this.stops.first();
+    return stopId === nextStop.id;
   },
 
   /**
@@ -158,10 +193,10 @@ var Trip = Backbone.Model.extend({
    * @param {String} [stopId] An optional stop_id string
    */
   toJSON: function( stopId ) {
-    var attrs = Backbone.Model.prototype.toJSON.apply( this );
-
-    // Render out computed properties
-    attrs.scheduled = ! this.active();
+    var attrs = this.getAttributes({
+      props: true,
+      derived: true
+    });
 
     // Include stop-specific properties, if a stop is provided
     if ( stopId ) {
