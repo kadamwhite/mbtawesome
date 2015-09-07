@@ -10,50 +10,50 @@ var _ = require( 'lodash' );
 var Model = require( 'ampersand-model' );
 var Collection = require( 'ampersand-rest-collection' );
 var TripModel = require( '../../../public/js/models/trip' );
-
-var tripSampleData = {
-  direction: 1,
-  headsign: 'Alewife',
-  id: '98369808',
-  scheduled: false,
-  stops: [{
-    // Harvard
-    eta: 1424371317,
-    id: '70068',
-    seconds: 191,
-    seq: 14
-  }, {
-    // Porter
-    eta: 1424371502,
-    id: '70066',
-    seconds: 376,
-    seq: 15
-  }, {
-    // Davis
-    eta: 1424371629,
-    id: '70064',
-    seconds: 503,
-    seq: 16
-  }, {
-    // Alewife
-    eta: 1424371790,
-    id: '70061',
-    seconds: 664,
-    seq: 17
-  }],
-  vehicle: {
-    bearing: 275,
-    id: '1510',
-    lat: 42.36316,
-    lon: -71.09416,
-    timestamp: 1424371060
-  }
-};
+var TripsCollection = require( '../../../public/js/collections/trips' );
 
 describe( 'TripModel', function() {
+  var tripSampleData;
   var trip;
 
   beforeEach(function() {
+    tripSampleData = {
+      direction: 1,
+      headsign: 'Alewife',
+      id: '98369808',
+      stops: [{
+        // Harvard
+        eta: 1424371317,
+        id: '70068',
+        seconds: 191,
+        seq: 14
+      }, {
+        // Porter
+        eta: 1424371502,
+        id: '70066',
+        seconds: 376,
+        seq: 15
+      }, {
+        // Davis
+        eta: 1424371629,
+        id: '70064',
+        seconds: 503,
+        seq: 16
+      }, {
+        // Alewife
+        eta: 1424371790,
+        id: '70061',
+        seconds: 664,
+        seq: 17
+      }],
+      vehicle: {
+        bearing: 275,
+        id: '1510',
+        lat: 42.36316,
+        lon: -71.09416,
+        timestamp: 1424371060
+      }
+    };
     trip = new TripModel( tripSampleData );
   });
 
@@ -327,6 +327,40 @@ describe( 'TripModel', function() {
       trip.unset( 'vehicle' );
       output = trip.toJSON();
       expect( output.scheduled ).to.equal( true );
+    });
+
+  });
+
+  describe( 'AJAX refresh behavior', function() {
+    var tripsCollection;
+
+    beforeEach(function() {
+      tripsCollection = new TripsCollection([ tripSampleData ], {
+        line: {
+          slug: 'red'
+        }
+      });
+    });
+
+    it( 'properly persists updated stop prediction data', function() {
+      expect(function() {
+        // Simulate a subsequent API call returning updated arrival countdown times
+        tripsCollection.set([{
+          direction: 1,
+          headsign: 'Alewife',
+          id: '98369808',
+          stops: tripSampleData.stops.map(function( stop ) {
+            return _.extend({
+              seconds: stop.seconds - 20
+            }, _.pick( stop, [ 'eta', 'id', 'seq' ]));
+          })
+        }], {
+          // Simulate the "parse" option that the rest mixin passes:
+          // If "stops" is not a collection of actual models, "parse" will fail & throw
+          parse: true
+        });
+      }).not.to.throw();
+      expect( tripsCollection.first().stops.first().seconds ).to.equal( 171 );
     });
 
   });

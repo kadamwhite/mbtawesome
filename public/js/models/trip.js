@@ -3,13 +3,11 @@
 var _ = require( 'lodash' );
 var Model = require( 'ampersand-model' );
 var Collection = require( 'ampersand-rest-collection' );
+var PredictionModel = require( '../models/prediction' );
 
-// Predictions collection structures the "stops" property of a Trip model.
-// Each entry in the "stops" array has properties "id", "eta" and "seconds",
-// e.g. `{ id: '70087', eta: 1423524933, seconds: 136 }`.
+// Predictions collection structures the "stops" property of a Trip model
 var PredictionsCollection = Collection.extend({
-  // Use no model for this data: raw JS objects
-  // TODO: Define a model that takes id, seq, eta & seconds props
+  model: PredictionModel,
   // Ensure stops are sorted in arrival order
   comparator: 'seq'
 });
