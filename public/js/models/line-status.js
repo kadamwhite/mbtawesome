@@ -113,7 +113,7 @@ var LineStatus = Backbone.Model.extend({
    * @return {Object} An object with the count of trains in service in each direction
    */
   trainsInService: function trainsInService() {
-    return this.predictions.chain()
+    return _.chain( this.predictions.models )
       // break into groups by direction_id
       .groupBy(function( trip ) {
         return trip.get( 'direction' );

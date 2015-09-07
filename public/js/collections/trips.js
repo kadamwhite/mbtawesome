@@ -1,9 +1,22 @@
 'use strict';
 
 var _ = require( 'lodash' );
-var Backbone = require( 'backbone' );
+var Collection = require( 'ampersand-rest-collection' );
+var LineModel = require( '../models/line' );
+var TripModel = require( '../models/trip' );
 
-var TripsCollection = Backbone.Collection.extend({
+var TripsCollection = Collection.extend({
+
+  props: {
+    lastRefreshed: 'date',
+    loaded: 'boolean'
+  },
+
+  children: {
+    line: LineModel
+  },
+
+  model: TripModel,
 
   initialize: function( arr, opts ) {
     this.line = opts.line;
@@ -24,8 +37,6 @@ var TripsCollection = Backbone.Collection.extend({
   setLoaded: function setLoaded() {
     this.loaded = true;
   },
-
-  model: require( '../models/trip' ),
 
   url: function() {
     return '/api/v1/lines/' + this.line + '/predictions';
