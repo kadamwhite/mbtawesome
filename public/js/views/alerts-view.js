@@ -1,9 +1,8 @@
 'use strict';
 
-var _ = require( 'lodash' );
-var BaseView = require( './base-view' );
+var Backbone = require( 'backbone' );
 
-var AlertsView = BaseView.extend({
+var AlertsView = Backbone.View.extend({
 
   template: require( './alerts-view.tmpl' ),
 
@@ -11,22 +10,21 @@ var AlertsView = BaseView.extend({
     'click .alert-list-toggle': 'toggle'
   },
 
-  initialize: function initializeAlertsView() {
+  initialize: function() {
     this.listenTo( this.collection, 'sync reset', this.render );
 
     // Auto-render on load
     this.render();
   },
 
-  serialize: function serializeAlertsView() {
-    var activeAlerts = this.collection.inEffect();
-    return {
-      alerts: _.invoke( activeAlerts, 'toJSON' ),
+  render: function() {
+    this.$el.html( this.template.render({
+      alerts: this.collection.filter( 'inEffect' ),
       loading: ! this.collection.loaded
-    };
+    }));
   },
 
-  toggle: function toggleAlertsView() {
+  toggle: function() {
     this.$el.toggleClass( 'alert-list-open' );
   }
 

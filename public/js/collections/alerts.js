@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require( 'lodash' );
-var Backbone = require( 'backbone' );
+var Collection = require( 'ampersand-rest-collection' );
 
 // Dictionary to use when determining issue severity (used in sorting)
 var severity = {
@@ -10,12 +10,17 @@ var severity = {
   minor: 3
 };
 
-var AlertsCollection = Backbone.Collection.extend({
+var AlertsCollection = Collection.extend({
 
   model: require( '../models/alert' ),
 
-  initialize: function initializeAlertsCollection( arr, opts ) {
-    this.line = opts && opts.line || arr.line;
+  props: {
+    line: 'string',
+    loaded: 'boolean'
+  },
+
+  initialize: function( arr, opts ) {
+    this.line = opts.line;
 
     // Set a flag so that this collections' consumers can tell when the
     // data is ready for use
@@ -26,15 +31,15 @@ var AlertsCollection = Backbone.Collection.extend({
   /**
    * Event listener to set a "loaded" flag on the collection once it is fetched
    */
-  setLoaded: function setLoaded() {
+  setLoaded: function() {
     this.loaded = true;
   },
 
-  url: function url() {
+  url: function() {
     return '/api/v1/lines/' + this.line + '/alerts';
   },
 
-  refresh: function refreshAlertsCollection() {
+  refresh: function() {
     var now = new Date();
     // If we updated less than 2 minutes ago, don't fetch new data
     if ( this.lastRefreshed && this.lastRefreshed > now - 1000 * 60 * 2 ) {
@@ -54,7 +59,7 @@ var AlertsCollection = Backbone.Collection.extend({
   /**
    * Comparator function to order collection by severity (high to low)
    */
-  comparator: function comparator( model ) {
+  comparator: function( model ) {
     return severity[ model.severity.toLowerCase() ];
   },
 
@@ -64,26 +69,12 @@ var AlertsCollection = Backbone.Collection.extend({
    * @method banners
    * @return {Array} Array of banner text strings
    */
-  banners: function banners() {
+  banners: function() {
     return this.chain()
-      .map(function getBannerFromAlert( model ) {
-        return model.banner;
-      })
+      .pluck( 'banner' )
       .without( '' )
       .unique()
       .value();
-  },
-
-  /**
-   * Filter the collection to only those alerts currently in effect
-   *
-   * @method inEffect
-   * @return {Array} An array of Alert models
-   */
-  inEffect: function inEffect() {
-    return this.filter(function isAlertInEffect( alert ) {
-      return alert.inEffect;
-    });
   }
 
 });
@@ -96,7 +87,7 @@ var AlertsCollection = Backbone.Collection.extend({
  * @param {Array} An array of AlertsCollection instances
  * @return {Array} An array of banner strings
  */
-AlertsCollection.banners = function getAllBanners( collections ) {
+AlertsCollection.banners = function( collections ) {
   return _.chain( collections )
     .map(function( collection ) {
       return collection.banners();
