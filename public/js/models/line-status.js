@@ -272,11 +272,15 @@ var LineStatus = Model.extend({
 
   initialize: function( opts ) {
     // Allow collection changes to trigger derived property regeneration
-    this.listenTo( this.predictions, 'sync reset add remove', this.triggerPredictionsChange );
+    this.listenTo( this.predictions, 'sync reset add remove', this._triggerPredictionsChange );
   },
 
-  // Helper method to fire a change event that will trigger derived property recomputation
-  triggerPredictionsChange: function() {
+  /**
+   * Helper method to fire a change event that will trigger derived property recomputation
+   *
+   * @private
+   */
+  _triggerPredictionsChange: function() {
     this.trigger( 'change:predictions' );
   },
 

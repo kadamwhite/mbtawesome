@@ -20,7 +20,7 @@ var AlertsCollection = Collection.extend({
   },
 
   initialize: function( arr, opts ) {
-    this.line = opts.line;
+    this.line = opts && opts.line;
 
     // Set a flag so that this collections' consumers can tell when the
     // data is ready for use
