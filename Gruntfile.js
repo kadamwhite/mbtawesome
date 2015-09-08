@@ -40,7 +40,9 @@ module.exports = function( grunt ) {
         },
         options: {
           browserifyOptions: {
-            debug: true
+            debug: true,
+            // For use with the "npm run bundle-analysis" task
+            fullPaths: process.env.DISCIFY ? true : void 0
           },
           plugin: [
             [ 'minifyify', {

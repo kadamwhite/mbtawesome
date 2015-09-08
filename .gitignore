@@ -28,3 +28,6 @@ test.js
 
 # Logs
 *.log
+
+# Discify analyzer for browserify bundle
+disc.html
