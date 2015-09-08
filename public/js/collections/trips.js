@@ -2,18 +2,14 @@
 
 var _ = require( 'lodash' );
 var Collection = require( 'ampersand-rest-collection' );
-var LineModel = require( '../models/line' );
 var TripModel = require( '../models/trip' );
 
 var TripsCollection = Collection.extend({
 
   props: {
     lastRefreshed: 'date',
+    line: 'model',
     loaded: 'boolean'
-  },
-
-  children: {
-    line: LineModel
   },
 
   model: TripModel,
