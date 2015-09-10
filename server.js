@@ -9,8 +9,12 @@ var bodyParser = require( 'body-parser' );
 var combynExpress = require( 'combynexpress' );
 var stylus = require( 'stylus' );
 var browserify = require( 'browserify-middleware' );
+var compression = require( 'compression' );
 
 var app = express();
+
+// Use GZip
+app.use( compression() );
 
 var PROD_MODE = process.env.NODE_ENV === 'production';
 
