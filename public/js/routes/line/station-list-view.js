@@ -8,7 +8,7 @@ var StationView = require( './station-view' );
 var AlertsView = require( '../../views/alerts-view' );
 var LineStatusView = require( '../../views/line-status-view' );
 
-var StopsListView = Backbone.View.extend({
+var StationListView = Backbone.View.extend({
 
   el: '.container',
 
@@ -87,4 +87,4 @@ var StopsListView = Backbone.View.extend({
 
 });
 
-module.exports = StopsListView;
+module.exports = StationListView;

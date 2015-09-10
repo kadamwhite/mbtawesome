@@ -3,7 +3,7 @@
 var analytics = require( '../../lib/analytics' );
 var pageTitle = require( '../../../../server/services/page-title' );
 
-var StopsListView = require( './station-list-view' );
+var StationListView = require( './station-list-view' );
 
 var AlertsCollection = require( '../../collections/alerts' );
 var TripsCollection = require( '../../collections/trips' );
@@ -52,7 +52,7 @@ module.exports = {
       data.status.set( lineSlug, status );
     }
 
-    new StopsListView({
+    new StationListView({
       alerts: alerts,
       status: status,
       line: line,

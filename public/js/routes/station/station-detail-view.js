@@ -3,7 +3,7 @@
 var _ = require( 'lodash' );
 var StationView = require( '../line/station-view' );
 
-var StopsListView = StationView.extend({
+var StationDetailView = StationView.extend({
 
   el: '.container',
 
@@ -88,4 +88,4 @@ var StopsListView = StationView.extend({
 
 });
 
-module.exports = StopsListView;
+module.exports = StationDetailView;
