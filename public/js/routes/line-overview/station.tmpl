@@ -1,21 +1,23 @@
-<div class="trains down">
-  {%each directions | get '0' | reverse as train %}
-  <span
-    class="train {%if train.scheduled %}{{ 'scheduled' }}{%endif %}"
-    title="{{ train.message }}">
-  </span>
-  {%endeach %}
-</div>
-<h2 class="button {%each station.transfer as transfer %}xfer-{{ transfer }} {%endeach %}">
-  <a href="/{{ line }}/{{ station.station }}">
-    {{ station.name }}
-  </a>
-</h2>
-<div class="trains up">
-  {%each directions| get '1' as train %}
-  <span
-    class="train {%if train.scheduled %}{{ 'scheduled' }}{%endif %}"
-    title="{{ train.message }}">
-  </span>
-  {%endeach %}
+<li class="station">
+  <div class="trains down">
+    {%each tripsByDirection | get '0' | reverse as train %}
+    <span
+      class="train {%if train.scheduled %}{{ 'scheduled' }}{%endif %}"
+      title="{{ train.message }}">
+    </span>
+    {%endeach %}
+  </div>
+  <h2 class="button {%each station.transfer as transfer %}xfer-{{ transfer }} {%endeach %}">
+    <a href="/{{ line.slug }}/{{ station.station }}">
+      {{ station.name }}
+    </a>
+  </h2>
+  <div class="trains up">
+    {%each tripsByDirection| get '1' as train %}
+    <span
+      class="train {%if train.scheduled %}{{ 'scheduled' }}{%endif %}"
+      title="{{ train.message }}">
+    </span>
+    {%endeach %}
+  </div>
 </div>
