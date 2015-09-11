@@ -1,6 +1,5 @@
 'use strict';
 
-var $ = require( 'jquery' );
 var _ = require( 'lodash' );
 var BaseView = require( './new-base-view' );
 var alertsTemplate = require( './alerts-view.tmpl' );

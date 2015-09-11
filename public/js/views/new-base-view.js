@@ -10,10 +10,10 @@ var BaseView = View.extend({
       deps: [ 'el' ],
       fn: function() {
         if ( this.el ) {
-          return $( this.el )
-        };
+          return $( this.el );
+        }
       }
-    },
+    }
   },
 
   $: function( selector ) {
