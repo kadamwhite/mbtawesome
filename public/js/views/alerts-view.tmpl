@@ -1,44 +1,46 @@
-{%if loading %}
+<div class="alert-list">
+  {%if not alerts.loaded %}
 
-  <div class="loading-spinner inline">
-    <div class="rotating-plane small-spinner"></div>
-  </div>
-  <p>
-    <em>Loading...</em>
-  </p>
-
-{%elsif alerts.length %}
-
-<button class="alert-list-toggle" title="Show alert details">
-  <span class="alerts-expand">
-    {%each alerts as alert %}
-    <span
-      class="alert-icon alert-{{ alert.severity | lower }}"
-      title="{{ alert.severity }} issue">
-    </span>
-    {%endeach %}
-    Show {{ alerts.length }} {{ 'alert' | pluralize alerts.length }}
-  </span>
-  <span class="alerts-minimize">
-    Hide Alert Details
-  </span>
-</button>
-<ul>
-  {%each alerts as alert %}
-  <li>
-    <p class="alert-type">
-      <span class="alert-icon alert-{{ alert.severity | lower }}"></span>
-      {{ alert.effect_name }}
-    </p>
+    <div class="loading-spinner inline">
+      <div class="rotating-plane small-spinner"></div>
+    </div>
     <p>
-      {{ alert.header_text }}
-      {%if alert.url %}
-      <br>
-      <em><a href="{{ alert.url }}">Learn More</a></em>
-      {%endif %}
+      <em>Loading...</em>
     </p>
-  </li>
-  {%endeach %}
-</ul>
 
-{%endif %}
+  {%elsif alertsInEffect.length %}
+
+  <button class="alert-list-toggle" title="Show alert details">
+    <span class="alerts-expand">
+      {%each alertsInEffect as alert %}
+      <span
+        class="alert-icon alert-{{ alert.severity | lower }}"
+        title="{{ alert.severity }} issue">
+      </span>
+      {%endeach %}
+      Show {{ alertsInEffect.length }} {{ 'alert' | pluralize alertsInEffect }}
+    </span>
+    <span class="alerts-minimize">
+      Hide Alert Details
+    </span>
+  </button>
+  <ul>
+    {%each alertsInEffect as alert %}
+    <li>
+      <p class="alert-type">
+        <span class="alert-icon alert-{{ alert.severity | lower }}"></span>
+        {{ alert.effect_name }}
+      </p>
+      <p>
+        {{ alert.header_text }}
+        {%if alert.url %}
+        <br>
+        <em><a href="{{ alert.url }}">Learn More</a></em>
+        {%endif %}
+      </p>
+    </li>
+    {%endeach %}
+  </ul>
+
+  {%endif %}
+</div>

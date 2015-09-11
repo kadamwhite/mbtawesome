@@ -15,23 +15,39 @@ var AlertsCollection = Collection.extend({
   model: require( '../models/alert' ),
 
   props: {
+    /**
+     * Slug of the line to which this alerts collection applies, for use
+     * constructing the collection's URL
+     *
+     * @property {String} line
+     */
     line: 'string',
-    loaded: 'boolean'
+    /**
+     * Whether the collection has synced (for use displaying the loading indicator)
+     *
+     * @property {Boolean} loaded
+     */
+    loaded: {
+      type: 'boolean',
+      default: false
+    }
   },
 
   initialize: function( arr, opts ) {
+    // Props don't get auto-assigned from options in Collections: set .line manually
     this.line = opts && opts.line;
 
     // Set a flag so that this collections' consumers can tell when the
     // data is ready for use
-    this.loaded = false;
-    this.once( 'sync', this.setLoaded );
+    this.once( 'sync', this._setLoaded );
   },
 
   /**
    * Event listener to set a "loaded" flag on the collection once it is fetched
+   *
+   * @private
    */
-  setLoaded: function() {
+  _setLoaded: function() {
     this.loaded = true;
   },
 

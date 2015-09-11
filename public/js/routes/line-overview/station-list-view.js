@@ -35,6 +35,13 @@ var StationListView = Backbone.View.extend({
   },
 
   render: function renderStationListView() {
+    // Subviews are completely re-rendered each time: remove the old ones
+    if ( this.subViews ) {
+      this.subViews.forEach(function( view ) {
+        view.remove();
+      });
+    }
+
     // Render the template into the container
     this.$el.html( this.template.render( this.line ) );
 
@@ -68,9 +75,9 @@ var StationListView = Backbone.View.extend({
     this.$el.find( '.stations' ).append( _.map( subViews, renderStationView ) );
 
     var alertsView = new AlertsView({
-      collection: this.alerts,
-      el: '.alert-list'
+      alerts: this.alerts
     });
+    this.$el.find( '.alert-list' ).replaceWith( alertsView.el );
 
     var lineStatusView = new LineStatusView({
       stations: this.stations,

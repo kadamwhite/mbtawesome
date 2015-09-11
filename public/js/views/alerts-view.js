@@ -1,27 +1,42 @@
 'use strict';
 
-var Backbone = require( 'backbone' );
+var $ = require( 'jquery' );
+var _ = require( 'lodash' );
+var BaseView = require( './new-base-view' );
+var alertsTemplate = require( './alerts-view.tmpl' );
 
-var AlertsView = Backbone.View.extend({
+var AlertsView = BaseView.extend({
 
-  template: require( './alerts-view.tmpl' ),
+  autoRender: true,
+
+  template: alertsTemplate.render.bind( alertsTemplate ),
 
   events: {
     'click .alert-list-toggle': 'toggle'
   },
 
-  initialize: function() {
-    this.listenTo( this.collection, 'sync reset', this.render );
-
-    // Auto-render on load
-    this.render();
+  props: {
+    alerts: 'collection'
   },
 
-  render: function() {
-    this.$el.html( this.template.render({
-      alerts: this.collection.filter( 'inEffect' ),
-      loading: ! this.collection.loaded
-    }));
+  derived: {
+    alertsInEffect: {
+      deps: [ 'alerts' ],
+      fn: function() {
+        return this.alerts.filter( 'inEffect' );
+      }
+    }
+  },
+
+  initialize: function() {
+    this.listenTo( this.alerts, 'sync reset', _.bind(function() {
+      // Force-update derived property when "alerts" changes: derived props do
+      // not update automatically based on collection events
+      this.trigger( 'change:alerts' );
+
+      // Render on change
+      this.render();
+    }, this ));
   },
 
   toggle: function() {

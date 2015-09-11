@@ -23,13 +23,11 @@ var GreenLineView = BaseView.extend({
     this.$el.html( this.template.render() );
 
     var alertsView = new AlertsView({
-      collection: this.alerts,
-      el: '.alert-list'
+      alerts: this.alerts
     });
+    this.$el.find( '.alert-list' ).replaceWith( alertsView.el );
 
     alertsView.listenTo( this.alerts, 'sync reset', alertsView.render );
-
-    this.alertsView = alertsView;
 
     return this;
   }
