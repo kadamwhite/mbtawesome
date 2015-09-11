@@ -8,5 +8,5 @@
     "server.js",
     "config.yml"
   ],
-  "ext": "js,html,yml"
+  "ext": "js,html,yml,fixture"
 }

@@ -15,4 +15,8 @@ date: Fri, 11 Sep 2015 17:24:50 GMT
 connection: close
 content-length: 62
 
-{"alerts":[],"route_id":"Green-C","route_name":"Green Line C"}
+{
+  "alerts": [],
+  "route_id": "Green-C",
+  "route_name": "Green Line C"
+}

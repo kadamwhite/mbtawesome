@@ -1,4 +1,4 @@
-GET /developer/api/v2/alertsbyroute?route=Green-E&api_key=wX9NwuHnZU2ToO7GmGR9uw&format=json
+GET /developer/api/v2/alertsbyroute?route=Green-D&api_key=wX9NwuHnZU2ToO7GmGR9uw&format=json
 accept: */*
 host: realtime.mbta.com
 accept-encoding: gzip, deflate
@@ -15,4 +15,8 @@ date: Fri, 11 Sep 2015 17:24:50 GMT
 connection: close
 content-length: 62
 
-{"alerts":[],"route_id":"Green-E","route_name":"Green Line E"}
+{
+  "alerts": [],
+  "route_id": "Green-D",
+  "route_name": "Green Line D"
+}
