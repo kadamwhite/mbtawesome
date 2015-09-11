@@ -4,7 +4,11 @@
 var _ = require( 'lodash' );
 /*jshint -W079 */// Suppress warning about redefiniton of `Promise`
 var Promise = require( 'bluebird' );
-var api = require( '../../lib/api-query' );
+
+var config = require( '../config' );
+var api = require( 'mbtapi' ).create({
+  apiKey: config.api.key
+});
 
 var getTripsFromRoutes = require( './_get-trips-from-routes' );
 var batchRequests = require( './_batch-requests' );

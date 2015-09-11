@@ -28,7 +28,7 @@ combynExpress.registerFilter( 'if-prod', function( str ) {
 });
 
 // Analytics template setup
-var config = require( './server/lib/config' );
+var config = require( './server/services/config' );
 
 // Defined as a filter so it can be used for conditionals and for output
 combynExpress.registerFilter( 'tracking-id', function() {
