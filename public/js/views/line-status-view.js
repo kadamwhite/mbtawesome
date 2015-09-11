@@ -1,16 +1,20 @@
 'use strict';
 
-var BaseView = require( './base-view' );
+var View = require( 'ampersand-view' );
+var lineStatusTemplate = require( './line-status.tmpl' );
 
-var LineStatusView = BaseView.extend({
+var LineStatusView = View.extend({
 
-  template: require( './line-status.tmpl' ),
+  autoRender: true,
+
+  props: {
+    status: 'model'
+  },
+
+  template: lineStatusTemplate.render.bind( lineStatusTemplate ),
 
   initialize: function() {
-    this.listenTo( this.model, 'change', this.render );
-
-    // Auto-render on load
-    this.render();
+    this.listenTo( this.status, 'change', this.render );
   }
 
 });

@@ -80,10 +80,9 @@ var StationListView = Backbone.View.extend({
     this.$el.find( '.alert-list' ).replaceWith( alertsView.el );
 
     var lineStatusView = new LineStatusView({
-      stations: this.stations,
-      model: this.lineStatus,
-      el: '.line-status'
+      status: this.lineStatus
     });
+    this.$el.find( '.line-status' ).replaceWith( lineStatusView.el );
 
     subViews.push( alertsView, lineStatusView );
 
