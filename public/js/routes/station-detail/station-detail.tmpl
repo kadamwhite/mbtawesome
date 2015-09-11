@@ -1,69 +1,72 @@
-<h1 class="station-detail {{ line }}">
-  {{ station.name }}
-</h1>
+<div class="container">
 
-<div class="alert-list"></div>
+  <h1 class="station-detail {{ line.slug }}">
+    {{ station.name }}
+  </h1>
 
-<hr class="divider-{{ line }}" />
+  <div class="alert-list"></div>
 
-<ul class="arrival-predictions {{ line }}">
-  {%each tripsByDirection as direction %}
-  <li>
-    <h3>{{ direction.name }}</h3>
+  <hr class="divider-{{ line.slug }}" />
 
-    <table>
-      <thead>
-        <tr>
-          <th>
-            <acronym title="Estimated Time of Arrival">ETA</acronym>
-          </th>
-          <th>Destination</th>
-        </tr>
-      </thead>
-      <tbody>
+  <ul class="arrival-predictions {{ line.slug }}">
+    {%each tripsByDirection as direction %}
+    <li>
+      <h3>{{ direction.name }}</h3>
 
-      {%-- TODO: add loading indicator --%}
-      {%if direction.trips.length %}
-        {%each direction.trips as trip %}
-        <tr {{ 'class="scheduled"' if trip.scheduled }}>
-          <td>{{ trip.timeUntil }}</td>
-          <td>{{ trip.headsign }}</td>
-        </tr>
-        {%endeach %}
-      {%else %}
-        <tr>
-          <td colspan="2">
-            <em>No trains in service</em>
-          </td>
-        </tr>
-      {%endif %}
-      </tbody>
-    </table>
-  </li>
-  {%endeach %}
-</ul>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <acronym title="Estimated Time of Arrival">ETA</acronym>
+            </th>
+            <th>Destination</th>
+          </tr>
+        </thead>
+        <tbody>
 
-{%if station.transfer %}
-<p class="transfers">
-  {%each station.transfer as transfer %}
-  {%if transfer | supported-line %}
-  <a href="/{{ transfer }}">
-  {%endif %}
-  <span class="xfer-icon xfer-{{ transfer }}" title="{{ transfer | capitalize }} Line">
-    <span class="sr">{{ transfer | capitalize }} Line</span>
-  </span>
-  {%if transfer | supported-line %}
-  </a>
-  {%endif %}
-  {%endeach %}
-  Transfers available
-</p>
-{%endif %}
+        {%-- TODO: add loading indicator --%}
+        {%if direction.trips.length %}
+          {%each direction.trips as trip %}
+          <tr {{ 'class="scheduled"' if trip.scheduled }}>
+            <td>{{ trip.timeUntil }}</td>
+            <td>{{ trip.headsign }}</td>
+          </tr>
+          {%endeach %}
+        {%else %}
+          <tr>
+            <td colspan="2">
+              <em>No trains in service</em>
+            </td>
+          </tr>
+        {%endif %}
+        </tbody>
+      </table>
+    </li>
+    {%endeach %}
+  </ul>
 
-<div class="line">
-  <h2 class="line button {{ line }}">
-    <a href="/{{ line }}">
-      Back to {{ line | capitalize }} Line
+  {%if station.transfer %}
+  <p class="transfers">
+    {%each station.transfer as transfer %}
+    {%if transfer | supported-line %}
+    <a href="/{{ transfer }}">
+    {%endif %}
+    <span class="xfer-icon xfer-{{ transfer }}" title="{{ transfer | capitalize }} Line">
+      <span class="sr">{{ transfer | capitalize }} Line</span>
+    </span>
+    {%if transfer | supported-line %}
     </a>
-  </h2>
+    {%endif %}
+    {%endeach %}
+    Transfers available
+  </p>
+  {%endif %}
+
+  <div class="line">
+    <h2 class="line button {{ line.slug }}">
+      <a href="/{{ line.slug }}">
+        Back to {{ line.slug | capitalize }} Line
+      </a>
+    </h2>
+  </div>
 </div>

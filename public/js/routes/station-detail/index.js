@@ -1,5 +1,6 @@
 'use strict';
 
+var $ = require( 'jquery' );
 var analytics = require( '../../lib/analytics' );
 var pageTitle = require( '../../../../server/services/page-title' );
 
@@ -43,11 +44,12 @@ module.exports = {
       data.predictions.set( lineSlug, trips );
     }
 
-    new StationDetailView({
+    var view = new StationDetailView({
       line: line,
       station: station,
       trips: trips
     });
+    $( '.container' ).replaceWith( view.el );
 
     // Kick off or refresh the trip predictions data
     trips.refresh();
