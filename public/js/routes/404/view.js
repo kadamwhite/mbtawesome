@@ -1,23 +1,15 @@
 'use strict';
 
-var Backbone = require( 'backbone' );
+var View = require( 'ampersand-view' );
+var _ = require( 'lodash' );
+var template404 = require( '../../../../views/partials/404.tmpl' );
 
-var IndexView = Backbone.View.extend({
+var IndexView = View.extend({
 
-  el: '.container',
+  autoRender: true,
 
   // Re-use serverside 404 template
-  template: require( '../../../../views/partials/404.tmpl' ),
-
-  initialize: function( opts ) {
-    // Auto-render
-    this.render();
-  },
-
-  render: function() {
-    this.$el.html( this.template.render() );
-    return this;
-  }
+  template: _.bind( template404.render, template404 )
 
 });
 

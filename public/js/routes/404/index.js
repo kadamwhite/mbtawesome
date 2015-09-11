@@ -1,13 +1,16 @@
 'use strict';
 
+var $ = require( 'jquery' );
 var analytics = require( '../../lib/analytics' );
 var pageTitle = require( '../../../../server/services/page-title' );
 
-var Error400View = require( './view' );
+var Error404View = require( './view' );
 
 module.exports = {
   enter: function() {
-    new Error400View();
+    var view = new Error404View();
+
+    $( '.container' ).replaceWith( view.el );
 
     analytics.pageView();
   },
