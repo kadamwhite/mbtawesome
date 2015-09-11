@@ -1,36 +1,36 @@
 'use strict';
 
-var BaseView = require( '../../views/base-view' );
+var _ = require( 'lodash' );
+var View = require( 'ampersand-view' );
 var AlertsView = require( '../../views/alerts-view' );
+var greenLineTemplate = require( './green-line.tmpl' );
 
-var GreenLineView = BaseView.extend({
+var GreenLineView = View.extend({
 
-  el: '.container',
+  autoRender: true,
 
-  template: require( './green-line.tmpl' ),
-
-  initialize: function initializeGreenLineView( opts ) {
-    // Object containing the system alerts for this line
-    this.alerts = opts.alerts;
-
-    // Auto-render on load
-    this.render();
+  props: {
+    /**
+     * AlertsCollection containing the alerts for the green line
+     *
+     * @property {AlertsCollection} alerts
+     */
+    alerts: 'collection'
   },
 
-  // This view is model-less, so override BaseView's serialize
-  render: function renderGreenLineView() {
-    // Render the static content
-    this.$el.html( this.template.render() );
+  subviews: {
+    alertsView: {
+      selector: '[data-hook=alerts-list]',
+      prepareView: function( el ) {
+        return new AlertsView({
+          alerts: this.alerts,
+          el: el
+        });
+      }
+    }
+  },
 
-    var alertsView = new AlertsView({
-      alerts: this.alerts
-    });
-    this.$el.find( '.alert-list' ).replaceWith( alertsView.el );
-
-    alertsView.listenTo( this.alerts, 'sync reset', alertsView.render );
-
-    return this;
-  }
+  template: _.bind( greenLineTemplate.render, greenLineTemplate )
 
 });
 

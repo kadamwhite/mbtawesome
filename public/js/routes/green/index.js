@@ -1,5 +1,6 @@
 'use strict';
 
+var $ = require( 'jquery' );
 var analytics = require( '../../lib/analytics' );
 var pageTitle = require( '../../../../server/services/page-title' );
 
@@ -21,9 +22,10 @@ module.exports = {
       data.alerts.set( lineSlug, alerts );
     }
 
-    new GreenLineView({
+    var view = new GreenLineView({
       alerts: alerts
     });
+    $( '.container' ).replaceWith( view.el );
 
     // Kick off alerts data request
     alerts.refresh();
