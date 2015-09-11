@@ -1,23 +1,14 @@
 'use strict';
 
-var BaseView = require( '../../views/base-view' );
+var bind = require( 'lodash.bind' );
+var View = require( 'ampersand-view' );
+var indexTemplate = require( './index.tmpl' );
 
-var IndexView = BaseView.extend({
+var IndexView = View.extend({
 
-  el: '.container',
+  autoRender: true,
 
-  template: require( './index.tmpl' ),
-
-  initialize: function( opts ) {
-    // Auto-render, and listen for subsequent changes (there are unlikely to be any)
-    this.render().listenTo( this.collection, 'change', this.render );
-  },
-
-  serialize: function() {
-    return {
-      lines: this.collection.toJSON()
-    };
-  }
+  template: bind( indexTemplate.render, indexTemplate )
 
 });
 

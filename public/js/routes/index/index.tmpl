@@ -1,16 +1,24 @@
-<ul class="lines row">
-{%each lines as line %}
-  <li class="line three columns">
-    <h2 class="line button {{ line.slug }}">
-      <a href="/{{ line.slug }}">
-        {{ line.name }}
-      </a>
-    </h2>
-  </li>
-{%endeach %}
-  <li class="line three columns">
-    <h2 class="line button green">
-      <a href="/green">Green Line</a>
-    </h2>
-  </li>
-</ul>
+<div class="container">
+  <ul class="lines row">
+    <li class="line three columns">
+      <h2 class="line button blue">
+        <a href="/blue">Blue Line</a>
+      </h2>
+    </li>
+    <li class="line three columns">
+      <h2 class="line button orange">
+        <a href="/orange">Orange Line</a>
+      </h2>
+    </li>
+    <li class="line three columns">
+      <h2 class="line button red">
+        <a href="/red">Red Line</a>
+      </h2>
+    </li>
+    <li class="line three columns">
+      <h2 class="line button green">
+        <a href="/green">Green Line</a>
+      </h2>
+    </li>
+  </ul>
+</div>
