@@ -12,14 +12,14 @@ var data = require( '../../data' );
 module.exports = {
   url: '^/green',
 
-  enter: function( lineSlug, parentStation ) {
-    var alerts = data.alerts.get( lineSlug );
+  enter: function() {
+    var alerts = data.alerts.get( 'green' );
 
     if ( ! alerts ) {
       alerts = new AlertsCollection([], {
         line: 'green'
       });
-      data.alerts.set( lineSlug, alerts );
+      data.alerts.set( 'green', alerts );
     }
 
     var view = new GreenLineView({

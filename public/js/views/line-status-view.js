@@ -1,5 +1,6 @@
 'use strict';
 
+var bind = require( 'lodash.bind' );
 var View = require( 'ampersand-view' );
 var lineStatusTemplate = require( './line-status.tmpl' );
 
@@ -11,7 +12,7 @@ var LineStatusView = View.extend({
     status: 'model'
   },
 
-  template: lineStatusTemplate.render.bind( lineStatusTemplate ),
+  template: bind( lineStatusTemplate.render, lineStatusTemplate ),
 
   initialize: function() {
     this.listenTo( this.status, 'change', this.render );

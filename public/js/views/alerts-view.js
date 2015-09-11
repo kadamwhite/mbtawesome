@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require( 'lodash' );
+var bind = require( 'lodash.bind' );
 var BaseView = require( './new-base-view' );
 var alertsTemplate = require( './alerts-view.tmpl' );
 
@@ -8,7 +8,7 @@ var AlertsView = BaseView.extend({
 
   autoRender: true,
 
-  template: alertsTemplate.render.bind( alertsTemplate ),
+  template: bind( alertsTemplate.render, alertsTemplate ),
 
   events: {
     'click .alert-list-toggle': 'toggle'
@@ -28,7 +28,7 @@ var AlertsView = BaseView.extend({
   },
 
   initialize: function() {
-    this.listenTo( this.alerts, 'sync reset', _.bind(function() {
+    this.listenTo( this.alerts, 'sync reset', bind(function() {
       // Force-update derived property when "alerts" changes: derived props do
       // not update automatically based on collection events
       this.trigger( 'change:alerts' );

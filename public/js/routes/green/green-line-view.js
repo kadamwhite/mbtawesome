@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require( 'lodash' );
+var bind = require( 'lodash.bind' );
 var View = require( 'ampersand-view' );
 var AlertsView = require( '../../views/alerts-view' );
 var greenLineTemplate = require( './green-line.tmpl' );
@@ -30,7 +30,7 @@ var GreenLineView = View.extend({
     }
   },
 
-  template: _.bind( greenLineTemplate.render, greenLineTemplate )
+  template: bind( greenLineTemplate.render, greenLineTemplate )
 
 });
 
