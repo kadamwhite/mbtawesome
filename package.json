@@ -7,6 +7,7 @@
     "bower": "bower install",
     "start": "./bin/www",
     "dev": "nodemon ./bin/www",
+    "with-fixtures": "nodemon ./bin/debug",
     "preprod": "npm run build",
     "prod": "NODE_ENV=production nodemon ./bin/www",
     "build:js": "grunt browserify",
@@ -58,6 +59,7 @@
     "minifyify": "^7.0.5",
     "mocha": "^2.1.0",
     "proxyquire": "^1.3.1",
+    "replay": "^2.0.6",
     "restler": "^3.3.0",
     "sinon": "^1.12.2",
     "sinon-chai": "^2.6.0"

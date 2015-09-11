@@ -1,7 +1,8 @@
 {
   "verbose": false,
   "watch": [
-    "bin",
+    "bin/www",
+    "bin/debug",
     "server",
     "views",
     "server.js",

@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+var debug = require( 'debug' )( 'init' );
+var app = require( '../server' );
+
+app.set( 'port', process.env.PORT || 3000 );
+
+var server = app.listen( app.get( 'port' ), function() {
+  debug( 'Express server listening on port ' + server.address().port );
+});
+
+// Use data fixtures: Configure Replay behavior based on config
+// Get application config
+var config = require( '../server/services/config' );
+
+// Set up replay to mock API with fixtures if config.api.replay is true
+var Replay = require( 'replay' );
+// Use the fixture set specified in the config
+var path = require( 'path' );
+Replay.fixtures = path.join( __dirname, '../fixtures/' + config.api.fixtures );
