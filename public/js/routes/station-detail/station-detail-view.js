@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require( 'lodash' );
-var StationView = require( '../line/station-view' );
+var StationView = require( '../line-overview/station-view' );
 
 var StationDetailView = StationView.extend({
 

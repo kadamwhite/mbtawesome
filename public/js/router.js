@@ -9,8 +9,8 @@ var router = new StateManager({
 router.state({
   'home': require( './routes/index' ),
   'green': require( './routes/green' ),
-  'line': require( './routes/line' ),
-  'station': require( './routes/station' ),
+  'line': require( './routes/line-overview' ),
+  'station': require( './routes/station-detail' ),
   '$notfound': require( './routes/404' )
 });
 
