@@ -1,9 +1,9 @@
 'use strict';
 
-var Backbone = require( 'backbone' );
+var router = require( '../router' );
+var BaseView = require( './new-base-view' );
 
-var WindowView = Backbone.View.extend({
-  el: 'body',
+var WindowView = BaseView.extend({
 
   // Auto-wrapping of links with navigate method
   events: {
@@ -24,9 +24,11 @@ var WindowView = Backbone.View.extend({
 
     evt.preventDefault();
 
-    require( '../router' ).nav( targetUrl );
+    router.nav( targetUrl );
   }
 
 });
 
-module.exports = new WindowView();
+module.exports = new WindowView({
+  el: document.body
+});
