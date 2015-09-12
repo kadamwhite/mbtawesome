@@ -30,7 +30,6 @@ var LineOverviewView = Backbone.View.extend({
     this.trips = opts.trips;
 
     // Listen for new predictions data
-    this.listenTo( this.trips, 'sync reset', this.render );
 
     // Auto-render on load
     this.render();

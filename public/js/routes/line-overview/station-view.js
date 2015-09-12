@@ -7,6 +7,8 @@ var stationTemplate = require( './station.tmpl' );
 
 var StationView = View.extend({
 
+  autoRender: true,
+
   tagName: 'li',
 
   className: 'station',
@@ -69,6 +71,13 @@ var StationView = View.extend({
           .value();
       }
     }
+  },
+
+  initialize: function() {
+    this.listenTo( this.trips, 'sync reset', bind(function() {
+      this.trigger( 'change:trips' );
+      this.render();
+    }, this ));
   }
 
 });

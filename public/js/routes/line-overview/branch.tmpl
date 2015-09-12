@@ -1,5 +1,5 @@
 <ul class="branches row">
-  {%each branch in branches %}
+  {%each branches as branch %}
   <li class="branch six columns">
     <em>To {{ branch | last | get 'name' }}</em>
     <ul></ul>

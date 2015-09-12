@@ -38,19 +38,16 @@ var BranchView = BaseView.extend({
     var line = this.line;
 
     _.forEach( this.branches, function( branch, index ) {
-      var branchStopViews = _.map( branch, function( station ) {
-        return new StationView({
+      var stationViewElements = _.map( branch, function( station ) {
+        var view = new StationView({
           line: line,
           station: station,
           trips: trips
         });
+        return view.el;
       });
 
-      var $stationList = $branches.eq( index ).find( 'ul' );
-
-      $stationList.append( _.map( branchStopViews, function( view ) {
-        return view.render().el;
-      }));
+      $branches.eq( index ).find( 'ul' ).append( stationViewElements );
     });
 
     return this;
