@@ -5,6 +5,7 @@ var _ = {
   first: require( 'lodash.first' ),
   forEach: require( 'lodash.foreach' ),
   groupBy: require( 'lodash.groupby' ),
+  isArray: require( 'lodash.isarray' ),
   map: require( 'lodash.map' ),
   mapValues: require( 'lodash.mapvalues' ),
   reduce: require( 'lodash.reduce' )
@@ -255,8 +256,11 @@ var LineStatus = Model.extend({
               return;
             }
             var dirId = trip.direction;
-            var stopId = stop.id;
-            directions[ dirId ].stops[ stopId ].push( stop.seconds );
+            if ( _.isArray( directions[ dirId ].stops[ stop.id ] ) ) {
+              // TODO: Figure out how to handle data with mis-matched directions
+              // and stop IDs (see bad-sequencing fixtures)
+              directions[ dirId ].stops[ stop.id ].push( stop.seconds );
+            }
           });
         });
 
