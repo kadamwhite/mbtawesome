@@ -1,0 +1,100 @@
+GET /developer/api/v2/predictionsbyroute?route=Blue&api_key=wX9NwuHnZU2ToO7GmGR9uw&format=json
+accept: */*
+host: realtime.mbta.com
+accept-encoding: gzip, deflate
+
+HTTP/1.1 200 OK
+cache-control: no-cache
+pragma: no-cache
+content-type: application/json; charset=utf-8
+expires: -1
+server: Microsoft-IIS/7.5
+x-aspnet-version: 4.0.30319
+x-powered-by: ASP.NET
+date: Sat, 12 Sep 2015 06:13:59 GMT
+connection: close
+content-length: 1535
+
+{
+  "route_id": "Blue",
+  "route_name": "Blue Line",
+  "route_type": "1",
+  "mode_name": "Subway",
+  "direction": [{
+    "direction_id": "1",
+    "direction_name": "Eastbound",
+    "trip": [{
+      "trip_id": "98A6B76E",
+      "trip_name": "Bowdoin to Wonderland",
+      "trip_headsign": "Wonderland",
+      "stop": [{
+        "stop_sequence": "1",
+        "stop_id": "70038",
+        "stop_name": "Bowdoin",
+        "pre_dt": "1442038544",
+        "pre_away": "110"
+      }, {
+        "stop_sequence": "20",
+        "stop_id": "70042",
+        "stop_name": "State Street - to Wonderland",
+        "pre_dt": "1442038644",
+        "pre_away": "210"
+      }, {
+        "stop_sequence": "30",
+        "stop_id": "70044",
+        "stop_name": "Aquarium - Outbound",
+        "pre_dt": "1442038723",
+        "pre_away": "289"
+      }, {
+        "stop_sequence": "40",
+        "stop_id": "70046",
+        "stop_name": "Maverick - Outbound",
+        "pre_dt": "1442038872",
+        "pre_away": "438"
+      }, {
+        "stop_sequence": "50",
+        "stop_id": "70048",
+        "stop_name": "Airport - Outbound",
+        "pre_dt": "1442039012",
+        "pre_away": "578"
+      }, {
+        "stop_sequence": "60",
+        "stop_id": "70050",
+        "stop_name": "Wood Island - Outbound",
+        "pre_dt": "1442039115",
+        "pre_away": "681"
+      }, {
+        "stop_sequence": "70",
+        "stop_id": "70052",
+        "stop_name": "Orient Heights - Outbound",
+        "pre_dt": "1442039298",
+        "pre_away": "864"
+      }, {
+        "stop_sequence": "80",
+        "stop_id": "70054",
+        "stop_name": "Suffolk Downs - Outbound",
+        "pre_dt": "1442039414",
+        "pre_away": "980"
+      }, {
+        "stop_sequence": "90",
+        "stop_id": "70056",
+        "stop_name": "Beachmont - Outbound",
+        "pre_dt": "1442039503",
+        "pre_away": "1069"
+      }, {
+        "stop_sequence": "100",
+        "stop_id": "70058",
+        "stop_name": "Revere Beach - Outbound",
+        "pre_dt": "1442039641",
+        "pre_away": "1207"
+      }, {
+        "stop_sequence": "110",
+        "stop_id": "70060",
+        "stop_name": "Wonderland",
+        "pre_dt": "1442039746",
+        "pre_away": "1312"
+      }]
+    }]
+  }],
+  "alert_headers": []
+}

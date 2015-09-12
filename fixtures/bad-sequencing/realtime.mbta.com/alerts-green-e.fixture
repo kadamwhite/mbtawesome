@@ -1,0 +1,18 @@
+GET /developer/api/v2/alertsbyroute?route=Green-E&api_key=wX9NwuHnZU2ToO7GmGR9uw&format=json
+accept: */*
+host: realtime.mbta.com
+accept-encoding: gzip, deflate
+
+HTTP/1.1 200 OK
+cache-control: no-cache
+pragma: no-cache
+content-type: application/json; charset=utf-8
+expires: -1
+server: Microsoft-IIS/7.5
+x-aspnet-version: 4.0.30319
+x-powered-by: ASP.NET
+date: Sat, 12 Sep 2015 14:13:11 GMT
+connection: close
+content-length: 62
+
+{"alerts":[],"route_id":"Green-E","route_name":"Green Line E"}

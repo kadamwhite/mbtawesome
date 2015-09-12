@@ -1,0 +1,577 @@
+GET /developer/api/v2/predictionsbyroute?route=Orange&api_key=wX9NwuHnZU2ToO7GmGR9uw&format=json
+accept: */*
+host: realtime.mbta.com
+accept-encoding: gzip, deflate
+
+HTTP/1.1 200 OK
+cache-control: no-cache
+pragma: no-cache
+content-type: application/json; charset=utf-8
+expires: -1
+server: Microsoft-IIS/7.5
+x-aspnet-version: 4.0.30319
+x-powered-by: ASP.NET
+date: Sat, 12 Sep 2015 05:31:34 GMT
+connection: close
+content-length: 12174
+
+{
+  "route_id": "Orange",
+  "route_name": "Orange Line",
+  "route_type": "1",
+  "mode_name": "Subway",
+  "direction": [{
+    "direction_id": "0",
+    "direction_name": "Southbound",
+    "trip": [{
+      "trip_id": "28190954",
+      "trip_name": "1:10 am from Oak Grove to Forest Hills Orange Line",
+      "trip_headsign": "Forest Hills",
+      "vehicle": {
+        "vehicle_id": "1233",
+        "vehicle_lat": "42.36912",
+        "vehicle_lon": "-71.06371",
+        "vehicle_bearing": "150",
+        "vehicle_timestamp": "1442035865"
+      },
+      "stop": [{
+        "stop_sequence": "60",
+        "stop_id": "70026",
+        "stop_name": "North Station - Orange Line Inbound",
+        "sch_arr_dt": "1442035320",
+        "sch_dep_dt": "1442035320",
+        "pre_dt": "1442035905",
+        "pre_away": "23"
+      }, {
+        "stop_sequence": "70",
+        "stop_id": "70024",
+        "stop_name": "Haymarket - Orange Line Inbound",
+        "sch_arr_dt": "1442035380",
+        "sch_dep_dt": "1442035380",
+        "pre_dt": "1442035975",
+        "pre_away": "93"
+      }, {
+        "stop_sequence": "80",
+        "stop_id": "70022",
+        "stop_name": "State Street - to Forest Hills",
+        "sch_arr_dt": "1442035440",
+        "sch_dep_dt": "1442035440",
+        "pre_dt": "1442036060",
+        "pre_away": "178"
+      }, {
+        "stop_sequence": "90",
+        "stop_id": "70020",
+        "stop_name": "Downtown Crossing - to Forest Hills",
+        "sch_arr_dt": "1442035560",
+        "sch_dep_dt": "1442035560",
+        "pre_dt": "1442036131",
+        "pre_away": "249"
+      }, {
+        "stop_sequence": "100",
+        "stop_id": "70018",
+        "stop_name": "Chinatown - Outbound",
+        "sch_arr_dt": "1442035680",
+        "sch_dep_dt": "1442035680",
+        "pre_dt": "1442036204",
+        "pre_away": "322"
+      }, {
+        "stop_sequence": "110",
+        "stop_id": "70016",
+        "stop_name": "Tufts Medical Center - Outbound",
+        "sch_arr_dt": "1442035740",
+        "sch_dep_dt": "1442035740",
+        "pre_dt": "1442036269",
+        "pre_away": "387"
+      }, {
+        "stop_sequence": "120",
+        "stop_id": "70014",
+        "stop_name": "Back Bay - Outbound",
+        "sch_arr_dt": "1442035860",
+        "sch_dep_dt": "1442035860",
+        "pre_dt": "1442036381",
+        "pre_away": "499"
+      }, {
+        "stop_sequence": "130",
+        "stop_id": "70012",
+        "stop_name": "Massachusetts Avenue - Outbound",
+        "sch_arr_dt": "1442035980",
+        "sch_dep_dt": "1442035980",
+        "pre_dt": "1442036521",
+        "pre_away": "639"
+      }, {
+        "stop_sequence": "140",
+        "stop_id": "70010",
+        "stop_name": "Ruggles - Outbound",
+        "sch_arr_dt": "1442036100",
+        "sch_dep_dt": "1442036100",
+        "pre_dt": "1442036602",
+        "pre_away": "720"
+      }, {
+        "stop_sequence": "150",
+        "stop_id": "70008",
+        "stop_name": "Roxbury Crossing - Outbound",
+        "sch_arr_dt": "1442036160",
+        "sch_dep_dt": "1442036160",
+        "pre_dt": "1442036698",
+        "pre_away": "816"
+      }, {
+        "stop_sequence": "160",
+        "stop_id": "70006",
+        "stop_name": "Jackson Square - Outbound",
+        "sch_arr_dt": "1442036280",
+        "sch_dep_dt": "1442036280",
+        "pre_dt": "1442036789",
+        "pre_away": "907"
+      }, {
+        "stop_sequence": "170",
+        "stop_id": "70004",
+        "stop_name": "Stony Brook - Outbound",
+        "sch_arr_dt": "1442036340",
+        "sch_dep_dt": "1442036340",
+        "pre_dt": "1442036899",
+        "pre_away": "1017"
+      }, {
+        "stop_sequence": "180",
+        "stop_id": "70002",
+        "stop_name": "Green Street - Outbound",
+        "sch_arr_dt": "1442036460",
+        "sch_dep_dt": "1442036460",
+        "pre_dt": "1442036987",
+        "pre_away": "1105"
+      }, {
+        "stop_sequence": "190",
+        "stop_id": "70001",
+        "stop_name": "Forest Hills Orange Line",
+        "sch_arr_dt": "1442036580",
+        "sch_dep_dt": "1442036580",
+        "pre_dt": "1442037126",
+        "pre_away": "1244"
+      }]
+    }, {
+      "trip_id": "28190957",
+      "trip_name": "1:29 am from Oak Grove to Forest Hills Orange Line",
+      "trip_headsign": "Forest Hills",
+      "stop": [{
+        "stop_sequence": "1",
+        "stop_id": "70036",
+        "stop_name": "Oak Grove",
+        "sch_arr_dt": "1442035740",
+        "sch_dep_dt": "1442035740",
+        "pre_dt": "1442035999",
+        "pre_away": "117"
+      }, {
+        "stop_sequence": "10",
+        "stop_id": "70034",
+        "stop_name": "Malden - Inbound",
+        "sch_arr_dt": "1442035860",
+        "sch_dep_dt": "1442035860",
+        "pre_dt": "1442036097",
+        "pre_away": "215"
+      }, {
+        "stop_sequence": "20",
+        "stop_id": "70032",
+        "stop_name": "Wellington - Inbound",
+        "sch_arr_dt": "1442036040",
+        "sch_dep_dt": "1442036040",
+        "pre_dt": "1442036315",
+        "pre_away": "433"
+      }, {
+        "stop_sequence": "30",
+        "stop_id": "70278",
+        "stop_name": "Assembly - Inbound",
+        "sch_arr_dt": "1442036100",
+        "sch_dep_dt": "1442036100",
+        "pre_dt": "1442036442",
+        "pre_away": "560"
+      }, {
+        "stop_sequence": "40",
+        "stop_id": "70030",
+        "stop_name": "Sullivan Square - Inbound",
+        "sch_arr_dt": "1442036220",
+        "sch_dep_dt": "1442036220",
+        "pre_dt": "1442036562",
+        "pre_away": "680"
+      }, {
+        "stop_sequence": "50",
+        "stop_id": "70028",
+        "stop_name": "Community College - Inbound",
+        "sch_arr_dt": "1442036340",
+        "sch_dep_dt": "1442036340",
+        "pre_dt": "1442036685",
+        "pre_away": "803"
+      }, {
+        "stop_sequence": "60",
+        "stop_id": "70026",
+        "stop_name": "North Station - Orange Line Inbound",
+        "sch_arr_dt": "1442036460",
+        "sch_dep_dt": "1442036460",
+        "pre_dt": "1442036814",
+        "pre_away": "932"
+      }, {
+        "stop_sequence": "70",
+        "stop_id": "70024",
+        "stop_name": "Haymarket - Orange Line Inbound",
+        "sch_arr_dt": "1442036520",
+        "sch_dep_dt": "1442036520",
+        "pre_dt": "1442036884",
+        "pre_away": "1002"
+      }, {
+        "stop_sequence": "80",
+        "stop_id": "70022",
+        "stop_name": "State Street - to Forest Hills",
+        "sch_arr_dt": "1442036580",
+        "sch_dep_dt": "1442036580",
+        "pre_dt": "1442036969",
+        "pre_away": "1087"
+      }, {
+        "stop_sequence": "90",
+        "stop_id": "70020",
+        "stop_name": "Downtown Crossing - to Forest Hills",
+        "sch_arr_dt": "1442036700",
+        "sch_dep_dt": "1442036700",
+        "pre_dt": "1442037040",
+        "pre_away": "1158"
+      }, {
+        "stop_sequence": "100",
+        "stop_id": "70018",
+        "stop_name": "Chinatown - Outbound",
+        "sch_arr_dt": "1442036820",
+        "sch_dep_dt": "1442036820",
+        "pre_dt": "1442037113",
+        "pre_away": "1231"
+      }]
+    }, {
+      "trip_id": "28190958",
+      "trip_name": "1:49 am from Oak Grove to Forest Hills Orange Line",
+      "trip_headsign": "Forest Hills",
+      "stop": [{
+        "stop_sequence": "1",
+        "stop_id": "70036",
+        "stop_name": "Oak Grove",
+        "sch_arr_dt": "1442036940",
+        "sch_dep_dt": "1442036940",
+        "pre_dt": "1442036970",
+        "pre_away": "1088"
+      }, {
+        "stop_sequence": "10",
+        "stop_id": "70034",
+        "stop_name": "Malden - Inbound",
+        "sch_arr_dt": "1442037060",
+        "sch_dep_dt": "1442037060",
+        "pre_dt": "1442037068",
+        "pre_away": "1186"
+      }, {
+        "stop_sequence": "20",
+        "stop_id": "70032",
+        "stop_name": "Wellington - Inbound",
+        "sch_arr_dt": "1442037240",
+        "sch_dep_dt": "1442037240",
+        "pre_dt": "1442037286",
+        "pre_away": "1404"
+      }, {
+        "stop_sequence": "30",
+        "stop_id": "70278",
+        "stop_name": "Assembly - Inbound",
+        "sch_arr_dt": "1442037300",
+        "sch_dep_dt": "1442037300",
+        "pre_dt": "1442037413",
+        "pre_away": "1531"
+      }, {
+        "stop_sequence": "40",
+        "stop_id": "70030",
+        "stop_name": "Sullivan Square - Inbound",
+        "sch_arr_dt": "1442037420",
+        "sch_dep_dt": "1442037420",
+        "pre_dt": "1442037533",
+        "pre_away": "1651"
+      }, {
+        "stop_sequence": "50",
+        "stop_id": "70028",
+        "stop_name": "Community College - Inbound",
+        "sch_arr_dt": "1442037540",
+        "sch_dep_dt": "1442037540",
+        "pre_dt": "1442037656",
+        "pre_away": "1774"
+      }, {
+        "stop_sequence": "60",
+        "stop_id": "70026",
+        "stop_name": "North Station - Orange Line Inbound",
+        "sch_arr_dt": "1442037660",
+        "sch_dep_dt": "1442037660",
+        "pre_dt": "1442037785",
+        "pre_away": "1903"
+      }, {
+        "stop_sequence": "70",
+        "stop_id": "70024",
+        "stop_name": "Haymarket - Orange Line Inbound",
+        "sch_arr_dt": "1442037720",
+        "sch_dep_dt": "1442037720",
+        "pre_dt": "1442037855",
+        "pre_away": "1973"
+      }, {
+        "stop_sequence": "80",
+        "stop_id": "70022",
+        "stop_name": "State Street - to Forest Hills",
+        "sch_arr_dt": "1442037780",
+        "sch_dep_dt": "1442037780",
+        "pre_dt": "1442037940",
+        "pre_away": "2058"
+      }, {
+        "stop_sequence": "90",
+        "stop_id": "70020",
+        "stop_name": "Downtown Crossing - to Forest Hills",
+        "sch_arr_dt": "1442037900",
+        "sch_dep_dt": "1442037900",
+        "pre_dt": "1442038011",
+        "pre_away": "2129"
+      }, {
+        "stop_sequence": "100",
+        "stop_id": "70018",
+        "stop_name": "Chinatown - Outbound",
+        "sch_arr_dt": "1442038020",
+        "sch_dep_dt": "1442038020",
+        "pre_dt": "1442038084",
+        "pre_away": "2202"
+      }]
+    }]
+  }, {
+    "direction_id": "1",
+    "direction_name": "Northbound",
+    "trip": [{
+      "trip_id": "28190952",
+      "trip_name": "1:10 am from Forest Hills Orange Line to Oak Grove",
+      "trip_headsign": "Oak Grove",
+      "vehicle": {
+        "vehicle_id": "1227",
+        "vehicle_lat": "42.36514",
+        "vehicle_lon": "-71.05999",
+        "vehicle_bearing": "330",
+        "vehicle_timestamp": "1442035870"
+      },
+      "stop": [{
+        "stop_sequence": "140",
+        "stop_id": "70029",
+        "stop_name": "Community College - Outbound",
+        "sch_arr_dt": "1442036040",
+        "sch_dep_dt": "1442036040",
+        "pre_dt": "1442036005",
+        "pre_away": "123"
+      }, {
+        "stop_sequence": "150",
+        "stop_id": "70031",
+        "stop_name": "Sullivan Square - Outbound",
+        "sch_arr_dt": "1442036160",
+        "sch_dep_dt": "1442036160",
+        "pre_dt": "1442036130",
+        "pre_away": "248"
+      }, {
+        "stop_sequence": "160",
+        "stop_id": "70279",
+        "stop_name": "Assembly - Outbound",
+        "sch_arr_dt": "1442036220",
+        "sch_dep_dt": "1442036220",
+        "pre_dt": "1442036236",
+        "pre_away": "354"
+      }, {
+        "stop_sequence": "170",
+        "stop_id": "70033",
+        "stop_name": "Wellington - Outbound",
+        "sch_arr_dt": "1442036280",
+        "sch_dep_dt": "1442036280",
+        "pre_dt": "1442036365",
+        "pre_away": "483"
+      }, {
+        "stop_sequence": "180",
+        "stop_id": "70035",
+        "stop_name": "Malden - Outbound",
+        "sch_arr_dt": "1442036460",
+        "sch_dep_dt": "1442036460",
+        "pre_dt": "1442036602",
+        "pre_away": "720"
+      }, {
+        "stop_sequence": "190",
+        "stop_id": "70036",
+        "stop_name": "Oak Grove",
+        "sch_arr_dt": "1442036580",
+        "sch_dep_dt": "1442036580",
+        "pre_dt": "1442036773",
+        "pre_away": "891"
+      }]
+    }, {
+      "trip_id": "28190955",
+      "trip_name": "1:30 am from Forest Hills Orange Line to Oak Grove",
+      "trip_headsign": "Oak Grove",
+      "stop": [{
+        "stop_sequence": "1",
+        "stop_id": "70001",
+        "stop_name": "Forest Hills Orange Line",
+        "sch_arr_dt": "1442035800",
+        "sch_dep_dt": "1442035800",
+        "pre_dt": "1442035991",
+        "pre_away": "109"
+      }, {
+        "stop_sequence": "10",
+        "stop_id": "70003",
+        "stop_name": "Green Street - Inbound",
+        "sch_arr_dt": "1442035920",
+        "sch_dep_dt": "1442035920",
+        "pre_dt": "1442036085",
+        "pre_away": "203"
+      }, {
+        "stop_sequence": "20",
+        "stop_id": "70005",
+        "stop_name": "Stony Brook - Inbound",
+        "sch_arr_dt": "1442036040",
+        "sch_dep_dt": "1442036040",
+        "pre_dt": "1442036177",
+        "pre_away": "295"
+      }, {
+        "stop_sequence": "30",
+        "stop_id": "70007",
+        "stop_name": "Jackson Square - Inbound",
+        "sch_arr_dt": "1442036160",
+        "sch_dep_dt": "1442036160",
+        "pre_dt": "1442036280",
+        "pre_away": "398"
+      }, {
+        "stop_sequence": "40",
+        "stop_id": "70009",
+        "stop_name": "Roxbury Crossing - Inbound",
+        "sch_arr_dt": "1442036280",
+        "sch_dep_dt": "1442036280",
+        "pre_dt": "1442036394",
+        "pre_away": "512"
+      }, {
+        "stop_sequence": "50",
+        "stop_id": "70011",
+        "stop_name": "Ruggles - Inbound",
+        "sch_arr_dt": "1442036400",
+        "sch_dep_dt": "1442036400",
+        "pre_dt": "1442036495",
+        "pre_away": "613"
+      }, {
+        "stop_sequence": "60",
+        "stop_id": "70013",
+        "stop_name": "Massachusetts Avenue - Inbound",
+        "sch_arr_dt": "1442036520",
+        "sch_dep_dt": "1442036520",
+        "pre_dt": "1442036584",
+        "pre_away": "702"
+      }, {
+        "stop_sequence": "70",
+        "stop_id": "70015",
+        "stop_name": "Back Bay - Inbound",
+        "sch_arr_dt": "1442036640",
+        "sch_dep_dt": "1442036640",
+        "pre_dt": "1442036709",
+        "pre_away": "827"
+      }, {
+        "stop_sequence": "80",
+        "stop_id": "70017",
+        "stop_name": "Tufts Medical Center - Inbound",
+        "sch_arr_dt": "1442036760",
+        "sch_dep_dt": "1442036760",
+        "pre_dt": "1442036834",
+        "pre_away": "952"
+      }, {
+        "stop_sequence": "90",
+        "stop_id": "70019",
+        "stop_name": "Chinatown - Inbound",
+        "sch_arr_dt": "1442036820",
+        "sch_dep_dt": "1442036820",
+        "pre_dt": "1442036918",
+        "pre_away": "1036"
+      }]
+    }, {
+      "trip_id": "28190956",
+      "trip_name": "1:45 am from Forest Hills Orange Line to Oak Grove",
+      "trip_headsign": "Oak Grove",
+      "stop": [{
+        "stop_sequence": "1",
+        "stop_id": "70001",
+        "stop_name": "Forest Hills Orange Line",
+        "sch_arr_dt": "1442036700",
+        "sch_dep_dt": "1442036700",
+        "pre_dt": "1442037290",
+        "pre_away": "1408"
+      }, {
+        "stop_sequence": "10",
+        "stop_id": "70003",
+        "stop_name": "Green Street - Inbound",
+        "sch_arr_dt": "1442036820",
+        "sch_dep_dt": "1442036820",
+        "pre_dt": "1442037384",
+        "pre_away": "1502"
+      }, {
+        "stop_sequence": "20",
+        "stop_id": "70005",
+        "stop_name": "Stony Brook - Inbound",
+        "sch_arr_dt": "1442036940",
+        "sch_dep_dt": "1442036940",
+        "pre_dt": "1442037476",
+        "pre_away": "1594"
+      }, {
+        "stop_sequence": "30",
+        "stop_id": "70007",
+        "stop_name": "Jackson Square - Inbound",
+        "sch_arr_dt": "1442037060",
+        "sch_dep_dt": "1442037060",
+        "pre_dt": "1442037579",
+        "pre_away": "1697"
+      }, {
+        "stop_sequence": "40",
+        "stop_id": "70009",
+        "stop_name": "Roxbury Crossing - Inbound",
+        "sch_arr_dt": "1442037180",
+        "sch_dep_dt": "1442037180",
+        "pre_dt": "1442037693",
+        "pre_away": "1811"
+      }, {
+        "stop_sequence": "50",
+        "stop_id": "70011",
+        "stop_name": "Ruggles - Inbound",
+        "sch_arr_dt": "1442037300",
+        "sch_dep_dt": "1442037300",
+        "pre_dt": "1442037794",
+        "pre_away": "1912"
+      }, {
+        "stop_sequence": "60",
+        "stop_id": "70013",
+        "stop_name": "Massachusetts Avenue - Inbound",
+        "sch_arr_dt": "1442037420",
+        "sch_dep_dt": "1442037420",
+        "pre_dt": "1442037883",
+        "pre_away": "2001"
+      }, {
+        "stop_sequence": "70",
+        "stop_id": "70015",
+        "stop_name": "Back Bay - Inbound",
+        "sch_arr_dt": "1442037540",
+        "sch_dep_dt": "1442037540",
+        "pre_dt": "1442038008",
+        "pre_away": "2126"
+      }, {
+        "stop_sequence": "80",
+        "stop_id": "70017",
+        "stop_name": "Tufts Medical Center - Inbound",
+        "sch_arr_dt": "1442037660",
+        "sch_dep_dt": "1442037660",
+        "pre_dt": "1442038133",
+        "pre_away": "2251"
+      }, {
+        "stop_sequence": "90",
+        "stop_id": "70019",
+        "stop_name": "Chinatown - Inbound",
+        "sch_arr_dt": "1442037720",
+        "sch_dep_dt": "1442037720",
+        "pre_dt": "1442038217",
+        "pre_away": "2335"
+      }]
+    }]
+  }],
+  "alert_headers": [{
+    "alert_id": 88088,
+    "header_text": "Downtown Crossing: The Franklin St entrance will be closed on Monday, August 10, and will remain closed until Summer 2016 to accommodate ongoing construction for the Millennium Tower Project.",
+    "effect_name": "Station Issue"
+  }]
+}

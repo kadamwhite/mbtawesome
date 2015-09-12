@@ -1,0 +1,116 @@
+GET /developer/api/v2/alertsbyroute?route=Blue&api_key=wX9NwuHnZU2ToO7GmGR9uw&format=json
+accept: */*
+host: realtime.mbta.com
+accept-encoding: gzip, deflate
+
+HTTP/1.1 200 OK
+cache-control: no-cache
+pragma: no-cache
+content-type: application/json; charset=utf-8
+expires: -1
+server: Microsoft-IIS/7.5
+x-aspnet-version: 4.0.30319
+x-powered-by: ASP.NET
+date: Sat, 12 Sep 2015 14:13:09 GMT
+connection: close
+content-length: 3901
+
+{
+  "alerts": [{
+    "alert_id": 93195,
+    "effect_name": "Service Change",
+    "effect": "UNKNOWN_EFFECT",
+    "cause_name": "construction",
+    "cause": "CONSTRUCTION",
+    "header_text": "All passengers will board and exit on the westbound platform at Bowdoin Sept 12-13, 19-20, and 26-27 from start to end of service.",
+    "short_header_text": "All passengers will board and exit on the westbound platform at Bowdoin Sept 12-13, 19-20, and 26-27 from start to end of service.",
+    "url": "http://www.mbta.com/riding_the_t/default.asp?id=26899",
+    "description_text": "As part of the project to make Government Center Station fully accessible, all passengers will board and exit on the westbound platform at Bowdoin Station from start to end of service during the following weekends:\r\n\r\n- Saturday, September 12, 2015, through Sunday, September 13, 2015\r\n- Saturday, September 19, 2015, through Sunday, September 20, 2015\r\n- Saturday, September 26, 2015, through Sunday, September 27, 2015\r\n\r\nThe eastbound platform at Bowdoin will be available the following Mondays. The Government Center shuttle bus between State, Government Center, Bowdoin, and Haymarket is unaffected by this service change.\r\n\r\nAffected stops:\r\nBowdoin",
+    "severity": "Minor",
+    "created_dt": "1441904256",
+    "last_modified_dt": "1441904256",
+    "service_effect_text": "Blue Line notice",
+    "timeframe_text": "through September 27",
+    "alert_lifecycle": "New",
+    "recurrence_text": "weekends",
+    "effect_periods": [{
+      "effect_start": "1442046600",
+      "effect_end": "1442125800"
+    }, {
+      "effect_start": "1442133000",
+      "effect_end": "1442212200"
+    }, {
+      "effect_start": "1442651400",
+      "effect_end": "1442730600"
+    }, {
+      "effect_start": "1442737800",
+      "effect_end": "1442817000"
+    }, {
+      "effect_start": "1443256200",
+      "effect_end": "1443335400"
+    }, {
+      "effect_start": "1443342600",
+      "effect_end": "1443421800"
+    }],
+    "affected_services": {
+      "services": [{
+        "route_type": "1",
+        "mode_name": "Subway",
+        "route_id": "Blue",
+        "route_name": "Blue Line",
+        "stop_id": "70038",
+        "stop_name": "Bowdoin"
+      }],
+      "elevators": []
+    }
+  }, {
+    "alert_id": 93195,
+    "effect_name": "Service Change",
+    "effect": "UNKNOWN_EFFECT",
+    "cause_name": "construction",
+    "cause": "CONSTRUCTION",
+    "header_text": "All passengers will board and exit on the westbound platform at Bowdoin Sept 12-13, 19-20, and 26-27 from start to end of service.",
+    "short_header_text": "All passengers will board and exit on the westbound platform at Bowdoin Sept 12-13, 19-20, and 26-27 from start to end of service.",
+    "url": "http://www.mbta.com/riding_the_t/default.asp?id=26899",
+    "description_text": "As part of the project to make Government Center Station fully accessible, all passengers will board and exit on the westbound platform at Bowdoin Station from start to end of service during the following weekends:\r\n\r\n- Saturday, September 12, 2015, through Sunday, September 13, 2015\r\n- Saturday, September 19, 2015, through Sunday, September 20, 2015\r\n- Saturday, September 26, 2015, through Sunday, September 27, 2015\r\n\r\nThe eastbound platform at Bowdoin will be available the following Mondays. The Government Center shuttle bus between State, Government Center, Bowdoin, and Haymarket is unaffected by this service change.\r\n\r\nAffected stops:\r\nBowdoin",
+    "severity": "Minor",
+    "created_dt": "1441904256",
+    "last_modified_dt": "1441904256",
+    "service_effect_text": "Blue Line notice",
+    "timeframe_text": "through September 27",
+    "alert_lifecycle": "New",
+    "recurrence_text": "weekends",
+    "effect_periods": [{
+      "effect_start": "1442046600",
+      "effect_end": "1442125800"
+    }, {
+      "effect_start": "1442133000",
+      "effect_end": "1442212200"
+    }, {
+      "effect_start": "1442651400",
+      "effect_end": "1442730600"
+    }, {
+      "effect_start": "1442737800",
+      "effect_end": "1442817000"
+    }, {
+      "effect_start": "1443256200",
+      "effect_end": "1443335400"
+    }, {
+      "effect_start": "1443342600",
+      "effect_end": "1443421800"
+    }],
+    "affected_services": {
+      "services": [{
+        "route_type": "1",
+        "mode_name": "Subway",
+        "route_id": "Blue",
+        "route_name": "Blue Line",
+        "stop_id": "70038",
+        "stop_name": "Bowdoin"
+      }],
+      "elevators": []
+    }
+  }],
+  "route_id": "Blue",
+  "route_name": "Blue Line"
+}

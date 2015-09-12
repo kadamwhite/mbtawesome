@@ -1,0 +1,1116 @@
+GET /developer/api/v2/predictionsbyroute?route=Red&api_key=wX9NwuHnZU2ToO7GmGR9uw&format=json
+accept: */*
+host: realtime.mbta.com
+accept-encoding: gzip, deflate
+
+HTTP/1.1 200 OK
+cache-control: no-cache
+pragma: no-cache
+content-type: application/json; charset=utf-8
+expires: -1
+server: Microsoft-IIS/7.5
+x-aspnet-version: 4.0.30319
+x-powered-by: ASP.NET
+date: Sat, 12 Sep 2015 14:12:51 GMT
+connection: close
+content-length: 22796
+
+{
+  "route_id": "Red",
+  "route_name": "Red Line",
+  "route_type": "1",
+  "mode_name": "Subway",
+  "direction": [{
+    "direction_id": "",
+    "direction_name": "",
+    "trip": [{
+      "trip_id": "9838554A",
+      "trip_name": "Quincy Center to Braintree",
+      "trip_headsign": "Braintree",
+      "vehicle": {
+        "vehicle_id": "1863",
+        "vehicle_lat": "42.25494",
+        "vehicle_lon": "-71.00804",
+        "vehicle_bearing": "315",
+        "vehicle_timestamp": "1442066655"
+      },
+      "stop": [{
+        "stop_sequence": "",
+        "stop_id": "70064",
+        "stop_name": "Davis - Outbound",
+        "pre_dt": "1442068945",
+        "pre_away": "1776"
+      }, {
+        "stop_sequence": "",
+        "stop_id": "70066",
+        "stop_name": "Porter - Outbound",
+        "pre_dt": "1442068826",
+        "pre_away": "1657"
+      }, {
+        "stop_sequence": "",
+        "stop_id": "70068",
+        "stop_name": "Harvard - Outbound",
+        "pre_dt": "1442068629",
+        "pre_away": "1460"
+      }, {
+        "stop_sequence": "",
+        "stop_id": "70070",
+        "stop_name": "Central - Outbound",
+        "pre_dt": "1442068436",
+        "pre_away": "1267"
+      }, {
+        "stop_sequence": "",
+        "stop_id": "70072",
+        "stop_name": "Kendall/MIT - Outbound",
+        "pre_dt": "1442068291",
+        "pre_away": "1122"
+      }, {
+        "stop_sequence": "",
+        "stop_id": "70074",
+        "stop_name": "Charles/MGH - Outbound",
+        "pre_dt": "1442068139",
+        "pre_away": "970"
+      }, {
+        "stop_sequence": "",
+        "stop_id": "70076",
+        "stop_name": "Park Street - to Alewife",
+        "pre_dt": "1442068015",
+        "pre_away": "846"
+      }, {
+        "stop_sequence": "",
+        "stop_id": "70078",
+        "stop_name": "Downtown Crossing - to Alewife",
+        "pre_dt": "1442067916",
+        "pre_away": "747"
+      }, {
+        "stop_sequence": "",
+        "stop_id": "70080",
+        "stop_name": "South Station - Inbound",
+        "pre_dt": "1442067836",
+        "pre_away": "667"
+      }, {
+        "stop_sequence": "",
+        "stop_id": "70082",
+        "stop_name": "Broadway - Inbound",
+        "pre_dt": "1442067682",
+        "pre_away": "513"
+      }, {
+        "stop_sequence": "",
+        "stop_id": "70084",
+        "stop_name": "Andrew - Inbound",
+        "pre_dt": "1442067549",
+        "pre_away": "380"
+      }]
+    }]
+  }, {
+    "direction_id": "0",
+    "direction_name": "Southbound",
+    "trip": [{
+      "trip_id": "28194307",
+      "trip_name": "9:42 am from Alewife to Ashmont - Outbound",
+      "trip_headsign": "Ashmont",
+      "vehicle": {
+        "vehicle_id": "1512",
+        "vehicle_lat": "42.3168",
+        "vehicle_lon": "-71.05238",
+        "vehicle_bearing": "170",
+        "vehicle_timestamp": "1442067140"
+      },
+      "stop": [{
+        "stop_sequence": "140",
+        "stop_id": "70087",
+        "stop_name": "Savin Hill - Outbound",
+        "sch_arr_dt": "1442067000",
+        "sch_dep_dt": "1442067000",
+        "pre_dt": "1442067206",
+        "pre_away": "37"
+      }, {
+        "stop_sequence": "150",
+        "stop_id": "70089",
+        "stop_name": "Fields Corner - Outbound",
+        "sch_arr_dt": "1442067180",
+        "sch_dep_dt": "1442067180",
+        "pre_dt": "1442067381",
+        "pre_away": "212"
+      }, {
+        "stop_sequence": "160",
+        "stop_id": "70091",
+        "stop_name": "Shawmut - Outbound",
+        "sch_arr_dt": "1442067360",
+        "sch_dep_dt": "1442067360",
+        "pre_dt": "1442067519",
+        "pre_away": "350"
+      }, {
+        "stop_sequence": "170",
+        "stop_id": "70093",
+        "stop_name": "Ashmont - Outbound",
+        "sch_arr_dt": "1442067480",
+        "sch_dep_dt": "1442067480",
+        "pre_dt": "1442067665",
+        "pre_away": "496"
+      }]
+    }, {
+      "trip_id": "28194418",
+      "trip_name": "9:49 am from Alewife to Braintree",
+      "trip_headsign": "Braintree",
+      "vehicle": {
+        "vehicle_id": "1619",
+        "vehicle_lat": "42.35252",
+        "vehicle_lon": "-71.05533",
+        "vehicle_bearing": "130",
+        "vehicle_timestamp": "1442067158"
+      },
+      "stop": [{
+        "stop_sequence": "100",
+        "stop_id": "70081",
+        "stop_name": "Broadway - Outbound",
+        "sch_arr_dt": "1442067060",
+        "sch_dep_dt": "1442067060",
+        "pre_dt": "1442067303",
+        "pre_away": "134"
+      }, {
+        "stop_sequence": "110",
+        "stop_id": "70083",
+        "stop_name": "Andrew - Outbound",
+        "sch_arr_dt": "1442067180",
+        "sch_dep_dt": "1442067180",
+        "pre_dt": "1442067435",
+        "pre_away": "266"
+      }, {
+        "stop_sequence": "210",
+        "stop_id": "70103",
+        "stop_name": "Quincy Adams - Outbound",
+        "sch_arr_dt": "1442068440",
+        "sch_dep_dt": "1442068440",
+        "pre_dt": "1442068934",
+        "pre_away": "1765"
+      }, {
+        "stop_sequence": "220",
+        "stop_id": "70105",
+        "stop_name": "Braintree",
+        "sch_arr_dt": "1442068680",
+        "sch_dep_dt": "1442068680",
+        "pre_dt": "1442069200",
+        "pre_away": "2031"
+      }]
+    }, {
+      "trip_id": "28194315",
+      "trip_name": "10:10 am from Alewife to Ashmont - Outbound",
+      "trip_headsign": "Ashmont",
+      "vehicle": {
+        "vehicle_id": "1606",
+        "vehicle_lat": "42.36553",
+        "vehicle_lon": "-71.10403",
+        "vehicle_bearing": "130",
+        "vehicle_timestamp": "1442067157"
+      },
+      "stop": [{
+        "stop_sequence": "50",
+        "stop_id": "70071",
+        "stop_name": "Kendall/MIT - Inbound",
+        "sch_arr_dt": "1442067780",
+        "sch_dep_dt": "1442067780",
+        "pre_dt": "1442067315",
+        "pre_away": "146"
+      }, {
+        "stop_sequence": "60",
+        "stop_id": "70073",
+        "stop_name": "Charles/MGH - Inbound",
+        "sch_arr_dt": "1442067900",
+        "sch_dep_dt": "1442067900",
+        "pre_dt": "1442067462",
+        "pre_away": "293"
+      }, {
+        "stop_sequence": "70",
+        "stop_id": "70075",
+        "stop_name": "Park Street - to Ashmont/Braintree",
+        "sch_arr_dt": "1442068020",
+        "sch_dep_dt": "1442068020",
+        "pre_dt": "1442067585",
+        "pre_away": "416"
+      }, {
+        "stop_sequence": "80",
+        "stop_id": "70077",
+        "stop_name": "Downtown Crossing - to Ashmont/Braintree",
+        "sch_arr_dt": "1442068140",
+        "sch_dep_dt": "1442068140",
+        "pre_dt": "1442067701",
+        "pre_away": "532"
+      }, {
+        "stop_sequence": "90",
+        "stop_id": "70079",
+        "stop_name": "South Station - Outbound",
+        "sch_arr_dt": "1442068260",
+        "sch_dep_dt": "1442068260",
+        "pre_dt": "1442067795",
+        "pre_away": "626"
+      }, {
+        "stop_sequence": "100",
+        "stop_id": "70081",
+        "stop_name": "Broadway - Outbound",
+        "sch_arr_dt": "1442068380",
+        "sch_dep_dt": "1442068380",
+        "pre_dt": "1442067940",
+        "pre_away": "771"
+      }, {
+        "stop_sequence": "110",
+        "stop_id": "70083",
+        "stop_name": "Andrew - Outbound",
+        "sch_arr_dt": "1442068500",
+        "sch_dep_dt": "1442068500",
+        "pre_dt": "1442068072",
+        "pre_away": "903"
+      }, {
+        "stop_sequence": "140",
+        "stop_id": "70087",
+        "stop_name": "Savin Hill - Outbound",
+        "sch_arr_dt": "1442068800",
+        "sch_dep_dt": "1442068800",
+        "pre_dt": "1442068397",
+        "pre_away": "1228"
+      }, {
+        "stop_sequence": "150",
+        "stop_id": "70089",
+        "stop_name": "Fields Corner - Outbound",
+        "sch_arr_dt": "1442068980",
+        "sch_dep_dt": "1442068980",
+        "pre_dt": "1442068572",
+        "pre_away": "1403"
+      }, {
+        "stop_sequence": "160",
+        "stop_id": "70091",
+        "stop_name": "Shawmut - Outbound",
+        "sch_arr_dt": "1442069160",
+        "sch_dep_dt": "1442069160",
+        "pre_dt": "1442068710",
+        "pre_away": "1541"
+      }, {
+        "stop_sequence": "170",
+        "stop_id": "70093",
+        "stop_name": "Ashmont - Outbound",
+        "sch_arr_dt": "1442069280",
+        "sch_dep_dt": "1442069280",
+        "pre_dt": "1442068856",
+        "pre_away": "1687"
+      }]
+    }, {
+      "trip_id": "28194420",
+      "trip_name": "10:17 am from Alewife to Braintree",
+      "trip_headsign": "Braintree",
+      "vehicle": {
+        "vehicle_id": "1860",
+        "vehicle_lat": "42.39454",
+        "vehicle_lon": "-71.11951",
+        "vehicle_bearing": "170",
+        "vehicle_timestamp": "1442067137"
+      },
+      "stop": [{
+        "stop_sequence": "20",
+        "stop_id": "70065",
+        "stop_name": "Porter - Inbound",
+        "sch_arr_dt": "1442067660",
+        "sch_dep_dt": "1442067660",
+        "pre_dt": "1442067181",
+        "pre_away": "12"
+      }, {
+        "stop_sequence": "30",
+        "stop_id": "70067",
+        "stop_name": "Harvard - Inbound",
+        "sch_arr_dt": "1442067840",
+        "sch_dep_dt": "1442067840",
+        "pre_dt": "1442067346",
+        "pre_away": "177"
+      }, {
+        "stop_sequence": "40",
+        "stop_id": "70069",
+        "stop_name": "Central - Inbound",
+        "sch_arr_dt": "1442068020",
+        "sch_dep_dt": "1442068020",
+        "pre_dt": "1442067560",
+        "pre_away": "391"
+      }, {
+        "stop_sequence": "50",
+        "stop_id": "70071",
+        "stop_name": "Kendall/MIT - Inbound",
+        "sch_arr_dt": "1442068200",
+        "sch_dep_dt": "1442068200",
+        "pre_dt": "1442067718",
+        "pre_away": "549"
+      }, {
+        "stop_sequence": "60",
+        "stop_id": "70073",
+        "stop_name": "Charles/MGH - Inbound",
+        "sch_arr_dt": "1442068320",
+        "sch_dep_dt": "1442068320",
+        "pre_dt": "1442067865",
+        "pre_away": "696"
+      }, {
+        "stop_sequence": "70",
+        "stop_id": "70075",
+        "stop_name": "Park Street - to Ashmont/Braintree",
+        "sch_arr_dt": "1442068440",
+        "sch_dep_dt": "1442068440",
+        "pre_dt": "1442067988",
+        "pre_away": "819"
+      }, {
+        "stop_sequence": "80",
+        "stop_id": "70077",
+        "stop_name": "Downtown Crossing - to Ashmont/Braintree",
+        "sch_arr_dt": "1442068560",
+        "sch_dep_dt": "1442068560",
+        "pre_dt": "1442068104",
+        "pre_away": "935"
+      }, {
+        "stop_sequence": "90",
+        "stop_id": "70079",
+        "stop_name": "South Station - Outbound",
+        "sch_arr_dt": "1442068680",
+        "sch_dep_dt": "1442068680",
+        "pre_dt": "1442068198",
+        "pre_away": "1029"
+      }, {
+        "stop_sequence": "100",
+        "stop_id": "70081",
+        "stop_name": "Broadway - Outbound",
+        "sch_arr_dt": "1442068800",
+        "sch_dep_dt": "1442068800",
+        "pre_dt": "1442068343",
+        "pre_away": "1174"
+      }, {
+        "stop_sequence": "110",
+        "stop_id": "70083",
+        "stop_name": "Andrew - Outbound",
+        "sch_arr_dt": "1442068920",
+        "sch_dep_dt": "1442068920",
+        "pre_dt": "1442068475",
+        "pre_away": "1306"
+      }, {
+        "stop_sequence": "210",
+        "stop_id": "70103",
+        "stop_name": "Quincy Adams - Outbound",
+        "sch_arr_dt": "1442070180",
+        "sch_dep_dt": "1442070180",
+        "pre_dt": "1442069974",
+        "pre_away": "2805"
+      }, {
+        "stop_sequence": "220",
+        "stop_id": "70105",
+        "stop_name": "Braintree",
+        "sch_arr_dt": "1442070420",
+        "sch_dep_dt": "1442070420",
+        "pre_dt": "1442070240",
+        "pre_away": "3071"
+      }]
+    }, {
+      "trip_id": "28194308",
+      "trip_name": "10:24 am from Alewife to Ashmont - Outbound",
+      "trip_headsign": "Ashmont",
+      "stop": [{
+        "stop_sequence": "1",
+        "stop_id": "70061",
+        "stop_name": "Alewife",
+        "sch_arr_dt": "1442067840",
+        "sch_dep_dt": "1442067840",
+        "pre_dt": "1442067900",
+        "pre_away": "731"
+      }, {
+        "stop_sequence": "10",
+        "stop_id": "70063",
+        "stop_name": "Davis - Inbound",
+        "sch_arr_dt": "1442067960",
+        "sch_dep_dt": "1442067960",
+        "pre_dt": "1442067985",
+        "pre_away": "816"
+      }, {
+        "stop_sequence": "20",
+        "stop_id": "70065",
+        "stop_name": "Porter - Inbound",
+        "sch_arr_dt": "1442068080",
+        "sch_dep_dt": "1442068080",
+        "pre_dt": "1442068110",
+        "pre_away": "941"
+      }, {
+        "stop_sequence": "30",
+        "stop_id": "70067",
+        "stop_name": "Harvard - Inbound",
+        "sch_arr_dt": "1442068260",
+        "sch_dep_dt": "1442068260",
+        "pre_dt": "1442068277",
+        "pre_away": "1108"
+      }, {
+        "stop_sequence": "40",
+        "stop_id": "70069",
+        "stop_name": "Central - Inbound",
+        "sch_arr_dt": "1442068440",
+        "sch_dep_dt": "1442068440",
+        "pre_dt": "1442068491",
+        "pre_away": "1322"
+      }, {
+        "stop_sequence": "50",
+        "stop_id": "70071",
+        "stop_name": "Kendall/MIT - Inbound",
+        "sch_arr_dt": "1442068620",
+        "sch_dep_dt": "1442068620",
+        "pre_dt": "1442068649",
+        "pre_away": "1480"
+      }]
+    }, {
+      "trip_id": "28194363",
+      "trip_name": "10:38 am from Alewife to Ashmont - Outbound",
+      "trip_headsign": "Ashmont",
+      "stop": [{
+        "stop_sequence": "1",
+        "stop_id": "70061",
+        "stop_name": "Alewife",
+        "sch_arr_dt": "1442068680",
+        "sch_dep_dt": "1442068680",
+        "pre_dt": "1442069100",
+        "pre_away": "1931"
+      }, {
+        "stop_sequence": "10",
+        "stop_id": "70063",
+        "stop_name": "Davis - Inbound",
+        "sch_arr_dt": "1442068800",
+        "sch_dep_dt": "1442068800",
+        "pre_dt": "1442069210",
+        "pre_away": "2041"
+      }, {
+        "stop_sequence": "20",
+        "stop_id": "70065",
+        "stop_name": "Porter - Inbound",
+        "sch_arr_dt": "1442068920",
+        "sch_dep_dt": "1442068920",
+        "pre_dt": "1442069332",
+        "pre_away": "2163"
+      }, {
+        "stop_sequence": "30",
+        "stop_id": "70067",
+        "stop_name": "Harvard - Inbound",
+        "sch_arr_dt": "1442069100",
+        "sch_dep_dt": "1442069100",
+        "pre_dt": "1442069497",
+        "pre_away": "2328"
+      }, {
+        "stop_sequence": "40",
+        "stop_id": "70069",
+        "stop_name": "Central - Inbound",
+        "sch_arr_dt": "1442069280",
+        "sch_dep_dt": "1442069280",
+        "pre_dt": "1442069711",
+        "pre_away": "2542"
+      }, {
+        "stop_sequence": "50",
+        "stop_id": "70071",
+        "stop_name": "Kendall/MIT - Inbound",
+        "sch_arr_dt": "1442069460",
+        "sch_dep_dt": "1442069460",
+        "pre_dt": "1442069869",
+        "pre_away": "2700"
+      }]
+    }, {
+      "trip_id": "9838554C",
+      "trip_name": "Quincy Center to Braintree",
+      "trip_headsign": "Braintree",
+      "stop": [{
+        "stop_sequence": "1",
+        "stop_id": "70061",
+        "stop_name": "Alewife",
+        "pre_dt": "1442069998",
+        "pre_away": "2829"
+      }, {
+        "stop_sequence": "10",
+        "stop_id": "70063",
+        "stop_name": "Davis - Inbound",
+        "pre_dt": "1442070108",
+        "pre_away": "2939"
+      }, {
+        "stop_sequence": "20",
+        "stop_id": "70065",
+        "stop_name": "Porter - Inbound",
+        "pre_dt": "1442070230",
+        "pre_away": "3061"
+      }, {
+        "stop_sequence": "30",
+        "stop_id": "70067",
+        "stop_name": "Harvard - Inbound",
+        "pre_dt": "1442070395",
+        "pre_away": "3226"
+      }, {
+        "stop_sequence": "40",
+        "stop_id": "70069",
+        "stop_name": "Central - Inbound",
+        "pre_dt": "1442070609",
+        "pre_away": "3440"
+      }, {
+        "stop_sequence": "50",
+        "stop_id": "70071",
+        "stop_name": "Kendall/MIT - Inbound",
+        "pre_dt": "1442070767",
+        "pre_away": "3598"
+      }]
+    }]
+  }, {
+    "direction_id": "1",
+    "direction_name": "Northbound",
+    "trip": [{
+      "trip_id": "28194233",
+      "trip_name": "9:41 am from Ashmont - Inbound to Alewife",
+      "trip_headsign": "Alewife",
+      "vehicle": {
+        "vehicle_id": "1801",
+        "vehicle_lat": "42.39676",
+        "vehicle_lon": "-71.12241",
+        "vehicle_bearing": "285",
+        "vehicle_timestamp": "1442067156"
+      },
+      "stop": [{
+        "stop_sequence": "220",
+        "stop_id": "70061",
+        "stop_name": "Alewife",
+        "sch_arr_dt": "1442067540",
+        "sch_dep_dt": "1442067540",
+        "pre_dt": "1442067313",
+        "pre_away": "144"
+      }]
+    }, {
+      "trip_id": "28194401",
+      "trip_name": "9:55 am from Ashmont - Inbound to Alewife",
+      "trip_headsign": "Alewife",
+      "vehicle": {
+        "vehicle_id": "1717",
+        "vehicle_lat": "42.35107",
+        "vehicle_lon": "-71.05232",
+        "vehicle_bearing": "355",
+        "vehicle_timestamp": "1442067129"
+      },
+      "stop": [{
+        "stop_sequence": "130",
+        "stop_id": "70080",
+        "stop_name": "South Station - Inbound",
+        "sch_arr_dt": "1442067120",
+        "sch_dep_dt": "1442067120",
+        "pre_dt": "1442067169",
+        "pre_away": "0"
+      }, {
+        "stop_sequence": "140",
+        "stop_id": "70078",
+        "stop_name": "Downtown Crossing - to Alewife",
+        "sch_arr_dt": "1442067240",
+        "sch_dep_dt": "1442067240",
+        "pre_dt": "1442067249",
+        "pre_away": "80"
+      }, {
+        "stop_sequence": "150",
+        "stop_id": "70076",
+        "stop_name": "Park Street - to Alewife",
+        "sch_arr_dt": "1442067360",
+        "sch_dep_dt": "1442067360",
+        "pre_dt": "1442067360",
+        "pre_away": "191"
+      }, {
+        "stop_sequence": "160",
+        "stop_id": "70074",
+        "stop_name": "Charles/MGH - Outbound",
+        "sch_arr_dt": "1442067480",
+        "sch_dep_dt": "1442067480",
+        "pre_dt": "1442067484",
+        "pre_away": "315"
+      }, {
+        "stop_sequence": "170",
+        "stop_id": "70072",
+        "stop_name": "Kendall/MIT - Outbound",
+        "sch_arr_dt": "1442067600",
+        "sch_dep_dt": "1442067600",
+        "pre_dt": "1442067636",
+        "pre_away": "467"
+      }, {
+        "stop_sequence": "180",
+        "stop_id": "70070",
+        "stop_name": "Central - Outbound",
+        "sch_arr_dt": "1442067720",
+        "sch_dep_dt": "1442067720",
+        "pre_dt": "1442067781",
+        "pre_away": "612"
+      }, {
+        "stop_sequence": "190",
+        "stop_id": "70068",
+        "stop_name": "Harvard - Outbound",
+        "sch_arr_dt": "1442067900",
+        "sch_dep_dt": "1442067900",
+        "pre_dt": "1442067974",
+        "pre_away": "805"
+      }, {
+        "stop_sequence": "200",
+        "stop_id": "70066",
+        "stop_name": "Porter - Outbound",
+        "sch_arr_dt": "1442068080",
+        "sch_dep_dt": "1442068080",
+        "pre_dt": "1442068157",
+        "pre_away": "988"
+      }, {
+        "stop_sequence": "210",
+        "stop_id": "70064",
+        "stop_name": "Davis - Outbound",
+        "sch_arr_dt": "1442068260",
+        "sch_dep_dt": "1442068260",
+        "pre_dt": "1442068276",
+        "pre_away": "1107"
+      }, {
+        "stop_sequence": "220",
+        "stop_id": "70061",
+        "stop_name": "Alewife",
+        "sch_arr_dt": "1442068440",
+        "sch_dep_dt": "1442068440",
+        "pre_dt": "1442068433",
+        "pre_away": "1264"
+      }]
+    }, {
+      "trip_id": "28194329",
+      "trip_name": "10:05 am from Braintree to Alewife",
+      "trip_headsign": "Alewife",
+      "vehicle": {
+        "vehicle_id": "1824",
+        "vehicle_lat": "42.23337",
+        "vehicle_lon": "-71.00682",
+        "vehicle_bearing": "15",
+        "vehicle_timestamp": "1442067126"
+      },
+      "stop": [{
+        "stop_sequence": "110",
+        "stop_id": "70084",
+        "stop_name": "Andrew - Inbound",
+        "sch_arr_dt": "1442068140",
+        "sch_dep_dt": "1442068140",
+        "pre_dt": "1442068208",
+        "pre_away": "1039"
+      }, {
+        "stop_sequence": "120",
+        "stop_id": "70082",
+        "stop_name": "Broadway - Inbound",
+        "sch_arr_dt": "1442068260",
+        "sch_dep_dt": "1442068260",
+        "pre_dt": "1442068343",
+        "pre_away": "1174"
+      }, {
+        "stop_sequence": "130",
+        "stop_id": "70080",
+        "stop_name": "South Station - Inbound",
+        "sch_arr_dt": "1442068380",
+        "sch_dep_dt": "1442068380",
+        "pre_dt": "1442068495",
+        "pre_away": "1326"
+      }, {
+        "stop_sequence": "140",
+        "stop_id": "70078",
+        "stop_name": "Downtown Crossing - to Alewife",
+        "sch_arr_dt": "1442068500",
+        "sch_dep_dt": "1442068500",
+        "pre_dt": "1442068575",
+        "pre_away": "1406"
+      }, {
+        "stop_sequence": "150",
+        "stop_id": "70076",
+        "stop_name": "Park Street - to Alewife",
+        "sch_arr_dt": "1442068620",
+        "sch_dep_dt": "1442068620",
+        "pre_dt": "1442068686",
+        "pre_away": "1517"
+      }, {
+        "stop_sequence": "160",
+        "stop_id": "70074",
+        "stop_name": "Charles/MGH - Outbound",
+        "sch_arr_dt": "1442068740",
+        "sch_dep_dt": "1442068740",
+        "pre_dt": "1442068810",
+        "pre_away": "1641"
+      }, {
+        "stop_sequence": "170",
+        "stop_id": "70072",
+        "stop_name": "Kendall/MIT - Outbound",
+        "sch_arr_dt": "1442068860",
+        "sch_dep_dt": "1442068860",
+        "pre_dt": "1442068962",
+        "pre_away": "1793"
+      }, {
+        "stop_sequence": "180",
+        "stop_id": "70070",
+        "stop_name": "Central - Outbound",
+        "sch_arr_dt": "1442068980",
+        "sch_dep_dt": "1442068980",
+        "pre_dt": "1442069107",
+        "pre_away": "1938"
+      }, {
+        "stop_sequence": "190",
+        "stop_id": "70068",
+        "stop_name": "Harvard - Outbound",
+        "sch_arr_dt": "1442069160",
+        "sch_dep_dt": "1442069160",
+        "pre_dt": "1442069300",
+        "pre_away": "2131"
+      }, {
+        "stop_sequence": "200",
+        "stop_id": "70066",
+        "stop_name": "Porter - Outbound",
+        "sch_arr_dt": "1442069340",
+        "sch_dep_dt": "1442069340",
+        "pre_dt": "1442069483",
+        "pre_away": "2314"
+      }, {
+        "stop_sequence": "210",
+        "stop_id": "70064",
+        "stop_name": "Davis - Outbound",
+        "sch_arr_dt": "1442069520",
+        "sch_dep_dt": "1442069520",
+        "pre_dt": "1442069602",
+        "pre_away": "2433"
+      }, {
+        "stop_sequence": "220",
+        "stop_id": "70061",
+        "stop_name": "Alewife",
+        "sch_arr_dt": "1442069700",
+        "sch_dep_dt": "1442069700",
+        "pre_dt": "1442069759",
+        "pre_away": "2590"
+      }]
+    }, {
+      "trip_id": "28194360",
+      "trip_name": "10:09 am from Ashmont - Inbound to Alewife",
+      "trip_headsign": "Alewife",
+      "vehicle": {
+        "vehicle_id": "1812",
+        "vehicle_lat": "42.30029",
+        "vehicle_lon": "-71.05826",
+        "vehicle_bearing": "85",
+        "vehicle_timestamp": "1442067142"
+      },
+      "stop": [{
+        "stop_sequence": "80",
+        "stop_id": "70088",
+        "stop_name": "Savin Hill - Inbound",
+        "sch_arr_dt": "1442067360",
+        "sch_dep_dt": "1442067360",
+        "pre_dt": "1442067233",
+        "pre_away": "64"
+      }, {
+        "stop_sequence": "110",
+        "stop_id": "70084",
+        "stop_name": "Andrew - Inbound",
+        "sch_arr_dt": "1442067720",
+        "sch_dep_dt": "1442067720",
+        "pre_dt": "1442067556",
+        "pre_away": "387"
+      }, {
+        "stop_sequence": "120",
+        "stop_id": "70082",
+        "stop_name": "Broadway - Inbound",
+        "sch_arr_dt": "1442067840",
+        "sch_dep_dt": "1442067840",
+        "pre_dt": "1442067691",
+        "pre_away": "522"
+      }, {
+        "stop_sequence": "130",
+        "stop_id": "70080",
+        "stop_name": "South Station - Inbound",
+        "sch_arr_dt": "1442067960",
+        "sch_dep_dt": "1442067960",
+        "pre_dt": "1442067843",
+        "pre_away": "674"
+      }, {
+        "stop_sequence": "140",
+        "stop_id": "70078",
+        "stop_name": "Downtown Crossing - to Alewife",
+        "sch_arr_dt": "1442068080",
+        "sch_dep_dt": "1442068080",
+        "pre_dt": "1442067923",
+        "pre_away": "754"
+      }, {
+        "stop_sequence": "150",
+        "stop_id": "70076",
+        "stop_name": "Park Street - to Alewife",
+        "sch_arr_dt": "1442068200",
+        "sch_dep_dt": "1442068200",
+        "pre_dt": "1442068034",
+        "pre_away": "865"
+      }, {
+        "stop_sequence": "160",
+        "stop_id": "70074",
+        "stop_name": "Charles/MGH - Outbound",
+        "sch_arr_dt": "1442068320",
+        "sch_dep_dt": "1442068320",
+        "pre_dt": "1442068158",
+        "pre_away": "989"
+      }, {
+        "stop_sequence": "170",
+        "stop_id": "70072",
+        "stop_name": "Kendall/MIT - Outbound",
+        "sch_arr_dt": "1442068440",
+        "sch_dep_dt": "1442068440",
+        "pre_dt": "1442068310",
+        "pre_away": "1141"
+      }, {
+        "stop_sequence": "180",
+        "stop_id": "70070",
+        "stop_name": "Central - Outbound",
+        "sch_arr_dt": "1442068560",
+        "sch_dep_dt": "1442068560",
+        "pre_dt": "1442068455",
+        "pre_away": "1286"
+      }, {
+        "stop_sequence": "190",
+        "stop_id": "70068",
+        "stop_name": "Harvard - Outbound",
+        "sch_arr_dt": "1442068740",
+        "sch_dep_dt": "1442068740",
+        "pre_dt": "1442068648",
+        "pre_away": "1479"
+      }, {
+        "stop_sequence": "200",
+        "stop_id": "70066",
+        "stop_name": "Porter - Outbound",
+        "sch_arr_dt": "1442068920",
+        "sch_dep_dt": "1442068920",
+        "pre_dt": "1442068831",
+        "pre_away": "1662"
+      }, {
+        "stop_sequence": "210",
+        "stop_id": "70064",
+        "stop_name": "Davis - Outbound",
+        "sch_arr_dt": "1442069100",
+        "sch_dep_dt": "1442069100",
+        "pre_dt": "1442068950",
+        "pre_away": "1781"
+      }, {
+        "stop_sequence": "220",
+        "stop_id": "70061",
+        "stop_name": "Alewife",
+        "sch_arr_dt": "1442069280",
+        "sch_dep_dt": "1442069280",
+        "pre_dt": "1442069107",
+        "pre_away": "1938"
+      }]
+    }, {
+      "trip_id": "28194184",
+      "trip_name": "10:19 am from Braintree to Alewife",
+      "trip_headsign": "Alewife",
+      "stop": [{
+        "stop_sequence": "1",
+        "stop_id": "70105",
+        "stop_name": "Braintree",
+        "sch_arr_dt": "1442067540",
+        "sch_dep_dt": "1442067540",
+        "pre_dt": "1442067300",
+        "pre_away": "131"
+      }, {
+        "stop_sequence": "10",
+        "stop_id": "70104",
+        "stop_name": "Quincy Adams - Inbound",
+        "sch_arr_dt": "1442067780",
+        "sch_dep_dt": "1442067780",
+        "pre_dt": "1442067560",
+        "pre_away": "391"
+      }]
+    }, {
+      "trip_id": "9838550C",
+      "trip_name": "Ashmont to Alewife",
+      "trip_headsign": "Alewife",
+      "stop": [{
+        "stop_sequence": "50",
+        "stop_id": "70094",
+        "stop_name": "Ashmont - Inbound",
+        "pre_dt": "1442067360",
+        "pre_away": "191"
+      }, {
+        "stop_sequence": "60",
+        "stop_id": "70092",
+        "stop_name": "Shawmut - Inbound",
+        "pre_dt": "1442067432",
+        "pre_away": "263"
+      }, {
+        "stop_sequence": "70",
+        "stop_id": "70090",
+        "stop_name": "Fields Corner - Inbound",
+        "pre_dt": "1442067541",
+        "pre_away": "372"
+      }, {
+        "stop_sequence": "80",
+        "stop_id": "70088",
+        "stop_name": "Savin Hill - Inbound",
+        "pre_dt": "1442067709",
+        "pre_away": "540"
+      }]
+    }, {
+      "trip_id": "9838550A",
+      "trip_name": "Ashmont to Alewife",
+      "trip_headsign": "Alewife",
+      "vehicle": {
+        "vehicle_id": "1725",
+        "vehicle_lat": "42.36203",
+        "vehicle_lon": "-71.08088",
+        "vehicle_bearing": "275",
+        "vehicle_timestamp": "1442067132"
+      },
+      "stop": [{
+        "stop_sequence": "170",
+        "stop_id": "70072",
+        "stop_name": "Kendall/MIT - Outbound",
+        "pre_dt": "1442067183",
+        "pre_away": "14"
+      }, {
+        "stop_sequence": "180",
+        "stop_id": "70070",
+        "stop_name": "Central - Outbound",
+        "pre_dt": "1442067328",
+        "pre_away": "159"
+      }, {
+        "stop_sequence": "190",
+        "stop_id": "70068",
+        "stop_name": "Harvard - Outbound",
+        "pre_dt": "1442067521",
+        "pre_away": "352"
+      }, {
+        "stop_sequence": "200",
+        "stop_id": "70066",
+        "stop_name": "Porter - Outbound",
+        "pre_dt": "1442067704",
+        "pre_away": "535"
+      }, {
+        "stop_sequence": "210",
+        "stop_id": "70064",
+        "stop_name": "Davis - Outbound",
+        "pre_dt": "1442067823",
+        "pre_away": "654"
+      }, {
+        "stop_sequence": "220",
+        "stop_id": "70061",
+        "stop_name": "Alewife",
+        "pre_dt": "1442067980",
+        "pre_away": "811"
+      }]
+    }, {
+      "trip_id": "28194479",
+      "trip_name": "10:37 am from Ashmont - Inbound to Alewife",
+      "trip_headsign": "Alewife",
+      "stop": [{
+        "stop_sequence": "50",
+        "stop_id": "70094",
+        "stop_name": "Ashmont - Inbound",
+        "sch_arr_dt": "1442068620",
+        "sch_dep_dt": "1442068620",
+        "pre_dt": "1442068560",
+        "pre_away": "1391"
+      }, {
+        "stop_sequence": "60",
+        "stop_id": "70092",
+        "stop_name": "Shawmut - Inbound",
+        "sch_arr_dt": "1442068740",
+        "sch_dep_dt": "1442068740",
+        "pre_dt": "1442068632",
+        "pre_away": "1463"
+      }, {
+        "stop_sequence": "70",
+        "stop_id": "70090",
+        "stop_name": "Fields Corner - Inbound",
+        "sch_arr_dt": "1442068860",
+        "sch_dep_dt": "1442068860",
+        "pre_dt": "1442068741",
+        "pre_away": "1572"
+      }, {
+        "stop_sequence": "80",
+        "stop_id": "70088",
+        "stop_name": "Savin Hill - Inbound",
+        "sch_arr_dt": "1442069040",
+        "sch_dep_dt": "1442069040",
+        "pre_dt": "1442068909",
+        "pre_away": "1740"
+      }]
+    }, {
+      "trip_id": "28194221",
+      "trip_name": "10:47 am from Braintree to Alewife",
+      "trip_headsign": "Alewife",
+      "stop": [{
+        "stop_sequence": "1",
+        "stop_id": "70105",
+        "stop_name": "Braintree",
+        "sch_arr_dt": "1442069220",
+        "sch_dep_dt": "1442069220",
+        "pre_dt": "1442069368",
+        "pre_away": "2199"
+      }, {
+        "stop_sequence": "10",
+        "stop_id": "70104",
+        "stop_name": "Quincy Adams - Inbound",
+        "sch_arr_dt": "1442069460",
+        "sch_dep_dt": "1442069460",
+        "pre_dt": "1442069628",
+        "pre_away": "2459"
+      }]
+    }, {
+      "trip_id": "28194289",
+      "trip_name": "11:05 am from Ashmont - Inbound to Alewife",
+      "trip_headsign": "Alewife",
+      "stop": [{
+        "stop_sequence": "50",
+        "stop_id": "70094",
+        "stop_name": "Ashmont - Inbound",
+        "sch_arr_dt": "1442070300",
+        "sch_dep_dt": "1442070300",
+        "pre_dt": "1442070360",
+        "pre_away": "3191"
+      }, {
+        "stop_sequence": "60",
+        "stop_id": "70092",
+        "stop_name": "Shawmut - Inbound",
+        "sch_arr_dt": "1442070420",
+        "sch_dep_dt": "1442070420",
+        "pre_dt": "1442070432",
+        "pre_away": "3263"
+      }, {
+        "stop_sequence": "70",
+        "stop_id": "70090",
+        "stop_name": "Fields Corner - Inbound",
+        "sch_arr_dt": "1442070540",
+        "sch_dep_dt": "1442070540",
+        "pre_dt": "1442070541",
+        "pre_away": "3372"
+      }, {
+        "stop_sequence": "80",
+        "stop_id": "70088",
+        "stop_name": "Savin Hill - Inbound",
+        "sch_arr_dt": "1442070720",
+        "sch_dep_dt": "1442070720",
+        "pre_dt": "1442070709",
+        "pre_away": "3540"
+      }]
+    }, {
+      "trip_id": "28194295",
+      "trip_name": "11:15 am from Braintree to Alewife",
+      "trip_headsign": "Alewife",
+      "stop": [{
+        "stop_sequence": "1",
+        "stop_id": "70105",
+        "stop_name": "Braintree",
+        "sch_arr_dt": "1442070900",
+        "sch_dep_dt": "1442070900",
+        "pre_dt": "1442070900",
+        "pre_away": "3731"
+      }, {
+        "stop_sequence": "10",
+        "stop_id": "70104",
+        "stop_name": "Quincy Adams - Inbound",
+        "sch_arr_dt": "1442071140",
+        "sch_dep_dt": "1442071140",
+        "pre_dt": "1442071160",
+        "pre_away": "3991"
+      }]
+    }]
+  }],
+  "alert_headers": [{
+    "alert_id": 88088,
+    "header_text": "Downtown Crossing: The Franklin St entrance will be closed on Monday, August 10, and will remain closed until Summer 2016 to accommodate ongoing construction for the Millennium Tower Project.",
+    "effect_name": "Station Issue"
+  }, {
+    "alert_id": 90418,
+    "header_text": "Buses replacing Red Line service between JFK/UMass and Quincy Center Stations on Sep 12-13, 19-20, and 26-27 from start to end of service.",
+    "effect_name": "Shuttle"
+  }]
+}
