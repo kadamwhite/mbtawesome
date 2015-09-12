@@ -2,12 +2,12 @@
 
 var _ = require( 'lodash' );
 var bind = require( 'lodash.bind' );
-var BaseView = require( '../../views/new-base-view' );
+var jQueryView = require( '../../views/jq-view' );
 var branchTemplate = require( './branch.tmpl' );
 
 var StationView = require( './station-view' );
 
-var BranchView = BaseView.extend({
+var BranchView = jQueryView.extend({
 
   template: bind( branchTemplate.render, branchTemplate ),
 

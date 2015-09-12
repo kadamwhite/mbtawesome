@@ -1,10 +1,10 @@
 'use strict';
 
 var bind = require( 'lodash.bind' );
-var BaseView = require( './new-base-view' );
+var jQueryView = require( './jq-view' );
 var alertsTemplate = require( './alerts-view.tmpl' );
 
-var AlertsView = BaseView.extend({
+var AlertsView = jQueryView.extend({
 
   autoRender: true,
 

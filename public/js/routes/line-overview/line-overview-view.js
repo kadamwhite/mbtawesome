@@ -2,7 +2,7 @@
 
 var _ = require( 'lodash' );
 var bind = require( 'lodash.bind' );
-var BaseView = require( '../../views/new-base-view' );
+var jQueryView = require( '../../views/jq-view' );
 
 var BranchView = require( './branch-view' );
 var StationView = require( './station-view' );
@@ -10,7 +10,7 @@ var AlertsView = require( '../../views/alerts-view' );
 var LineStatusView = require( '../../views/line-status-view' );
 var lineOverviewTemplate = require( './line-overview.tmpl' );
 
-var LineOverviewView = BaseView.extend({
+var LineOverviewView = jQueryView.extend({
 
   autoRender: true,
 

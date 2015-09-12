@@ -1,9 +1,9 @@
 'use strict';
 
 var router = require( '../router' );
-var BaseView = require( './new-base-view' );
+var jQueryView = require( './jq-view' );
 
-var WindowView = BaseView.extend({
+var WindowView = jQueryView.extend({
 
   // Auto-wrapping of links with navigate method
   events: {
