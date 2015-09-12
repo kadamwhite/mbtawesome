@@ -8,11 +8,11 @@ var StationView = require( './station-view' );
 var AlertsView = require( '../../views/alerts-view' );
 var LineStatusView = require( '../../views/line-status-view' );
 
-var StationListView = Backbone.View.extend({
+var LineOverviewView = Backbone.View.extend({
 
   el: '.container',
 
-  template: require( './station-list.tmpl' ),
+  template: require( './line-overview.tmpl' ),
 
   initialize: function initializeStationListView( opts ) {
     // Alerts collection, to hand off to a sub-view
@@ -93,4 +93,4 @@ var StationListView = Backbone.View.extend({
 
 });
 
-module.exports = StationListView;
+module.exports = LineOverviewView;
