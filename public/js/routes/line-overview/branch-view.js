@@ -1,53 +1,74 @@
 'use strict';
 
 var _ = require( 'lodash' );
-var BaseView = require( '../../views/base-view' );
+var bind = require( 'lodash.bind' );
+var BaseView = require( '../../views/new-base-view' );
+var branchTemplate = require( './branch.tmpl' );
 
 var StationView = require( './station-view' );
 
 var BranchView = BaseView.extend({
 
-  tagName: 'li',
+  template: bind( branchTemplate.render, branchTemplate ),
 
-  template: require( './branch.tmpl' ),
+  props: {
+    /**
+     * Branches is an array of arrays containing stops from a specific branch
+     *
+     * @property {Array} branches
+     */
+    branches: {
+      type: 'array',
+      required: true
+    },
 
-  initialize: function( opts ) {
-    // Branches is an array of arrays containing stops from a specific branch
-    this.branches = opts.branches;
-    // Store the Line instance (to pass through to the view)
-    this.line = opts.line;
-    // Store the trip predictions collection
-    this.trips = opts.trips;
+    /**
+     * Store the Line instance (to pass through to the view)
+     *
+     * @property {LineModel} line
+     */
+    line: {
+      type: 'model',
+      required: true
+    },
 
-    if ( ! this.branches ) {
-      throw new Error( 'BranchView initialized without branches' );
-    }
-    if ( ! this.trips ) {
-      throw new Error( 'BranchView initialized without a TripsCollection' );
+    /**
+     * Store the trip predictions collection
+     *
+     * @property {TripsCollection} trips
+     */
+    trips: {
+      type: 'collection',
+      required: true
     }
   },
 
   render: function() {
     // Iterate through each branch
-    this.$el.html( this.template.render({
-      branches: this.branches
-    }));
+    this.renderWithTemplate( this );
 
-    var $branches = this.$el.find( '.branch' );
+    var $branches = this.$( '.branch' );
     var trips = this.trips;
     var line = this.line;
+    var branchView = this;
 
     _.forEach( this.branches, function( branch, index ) {
-      var stationViewElements = _.map( branch, function( station ) {
+      // Create the subviews for this branch and return their elements
+      var subviewElements = _.map( branch, function( station ) {
         var view = new StationView({
           line: line,
           station: station,
           trips: trips
         });
+
+        // Register all views for later cleanup
+        branchView.registerSubview( view );
+
         return view.el;
       });
 
-      $branches.eq( index ).find( 'ul' ).append( stationViewElements );
+      // Append the returned array of DOM nodes to the ul container for this branch
+      $branches.eq( index ).find( 'ul' ).append( subviewElements );
     });
 
     return this;
