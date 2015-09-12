@@ -1,6 +1,5 @@
 'use strict';
 
-var lodash = require( 'lodash' );
 var RestCollection = require( './rest-collection' );
 
 // Dictionary to use when determining issue severity (used in sorting)
@@ -69,11 +68,8 @@ var AlertsCollection = RestCollection.extend({
    * @return {Array} Array of banner text strings
    */
   banners: function() {
-    return lodash.chain( this.models )
-      .pluck( 'banner' )
-      .without( '' )
-      .unique()
-      .value();
+    var banners = _.pluck( this.models,  'banner' );
+    return _.unique( _.without( banners, '' ) );
   }
 
 });
@@ -87,14 +83,10 @@ var AlertsCollection = RestCollection.extend({
  * @return {Array} An array of banner strings
  */
 AlertsCollection.banners = function( collections ) {
-  return lodash.chain( collections )
-    .map(function( collection ) {
-      return collection.banners();
-    })
-    .flatten()
-    .without( '' )
-    .unique()
-    .value();
+  var banners = _.map( collections, function( collection ) {
+    return collection.banners();
+  });
+  return _.unique( _.flatten( banners ) );
 };
 
 module.exports = AlertsCollection;

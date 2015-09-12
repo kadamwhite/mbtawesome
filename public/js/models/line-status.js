@@ -1,9 +1,11 @@
 'use strict';
 
-var lodash = require( 'lodash' );
 var _ = {
   filter: require( 'lodash.filter' ),
   first: require( 'lodash.first' ),
+  forEach: require( 'lodash.foreach' ),
+  groupBy: require( 'lodash.groupby' ),
+  map: require( 'lodash.map' ),
   mapValues: require( 'lodash.mapvalues' ),
   reduce: require( 'lodash.reduce' )
 };
@@ -148,23 +150,18 @@ var LineStatus = Model.extend({
     trainsInService: {
       deps: [ 'predictions' ],
       fn: function() {
-        return lodash.chain( this.predictions.models )
-          // break into groups by direction_id
-          .groupBy( 'direction' )
-          .mapValues(function( tripsGroup ) {
-            // Subdivide each direction group by headsign
-            return lodash.chain( tripsGroup )
-              .groupBy( 'headsign' )
-              .map(function( group, headsign ) {
-                return {
-                  headsign: headsign,
-                  count: group.length
-                };
-              })
-              .sortBy( 'headsign' )
-              .value();
-          })
-          .value();
+        // break into groups by direction_id
+        var groupsByDirection = _.groupBy( this.predictions.models, 'direction' );
+        return _.mapValues( groupsByDirection, function( tripsGroup ) {
+          // Subdivide each direction group by headsign
+          var groupsByHeadsign = _.groupBy( tripsGroup, 'headsign' );
+          return _.map( groupsByHeadsign, function( group, headsign ) {
+            return {
+              headsign: headsign,
+              count: group.length
+            };
+          });
+        });
       }
     },
 
@@ -240,7 +237,7 @@ var LineStatus = Model.extend({
 
         // Iterate through all the predictions, adding each arrival time prediction
         // to the directions dictionary
-        this.predictions.forEach(function addPredictionsToStationDictionary( trip ) {
+        _.forEach( this.predictions.models, function addPredictionsToStationDictionary( trip ) {
           /* Trip object
           {
             'id': '25375441',
@@ -252,7 +249,7 @@ var LineStatus = Model.extend({
             ]
           }
           */
-          trip.stops.forEach(function addTripToStationDictionary( stop ) {
+          _.forEach( trip.stops.models, function addTripToStationDictionary( stop ) {
             if ( ! stop.seconds ) {
               // TODO: Figure out why one of these is empty after ampersand migration
               return;
@@ -278,16 +275,23 @@ var LineStatus = Model.extend({
 
   initialize: function( opts ) {
     // Allow collection changes to trigger derived property regeneration
-    this.listenTo( this.predictions, 'sync reset add remove', this._triggerPredictionsChange );
+    this.listenTo( this.predictions, 'sync reset', this._triggerPredictionsChange );
   },
 
   /**
-   * Helper method to fire a change event that will trigger derived property recomputation
+   * Helper method to fire a change event that will trigger derived property
+   * recomputation and alert any listeners that this model has changed
    *
    * @private
    */
   _triggerPredictionsChange: function() {
+    // Trigger derived property recomputation
     this.trigger( 'change:predictions' );
+
+    // Trigger top-level change so that any objects listening to this model will
+    // know an update has occurred (not fired directly by derived properties;
+    // they produce change:propName events)
+    this.trigger( 'change' );
   },
 
   /**
