@@ -56,7 +56,7 @@ module.exports = {
       alerts: alerts,
       status: status,
       line: line,
-      collection: trips
+      trips: trips
     });
 
     // Kick off trips data request

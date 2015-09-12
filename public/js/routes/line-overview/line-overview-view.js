@@ -27,8 +27,10 @@ var LineOverviewView = Backbone.View.extend({
     // Nested array defining the layout of the stops
     this.stations = this.line.stops;
 
+    this.trips = opts.trips;
+
     // Listen for new predictions data
-    this.listenTo( this.collection, 'sync reset', this.render );
+    this.listenTo( this.trips, 'sync reset', this.render );
 
     // Auto-render on load
     this.render();
@@ -45,7 +47,7 @@ var LineOverviewView = Backbone.View.extend({
     // Render the template into the container
     this.$el.html( this.template.render( this.line ) );
 
-    var trips = this.collection;
+    var trips = this.trips;
     var line = this.line;
 
     // Build an array of subviews (StationView or BranchView)
