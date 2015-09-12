@@ -335,5 +335,5 @@ module.exports = {
   name: 'Orange Line',
   slug: 'orange',
   routes: [ 'Orange' ],
-  stops: stations
+  stations: stations
 };

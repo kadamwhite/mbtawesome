@@ -1,93 +1,93 @@
 'use strict';
 
 var _ = require( 'lodash' );
-var Backbone = require( 'backbone' );
+var bind = require( 'lodash.bind' );
+var BaseView = require( '../../views/new-base-view' );
 
 var BranchView = require( './branch-view' );
 var StationView = require( './station-view' );
 var AlertsView = require( '../../views/alerts-view' );
 var LineStatusView = require( '../../views/line-status-view' );
+var lineOverviewTemplate = require( './line-overview.tmpl' );
 
-var LineOverviewView = Backbone.View.extend({
+var LineOverviewView = BaseView.extend({
 
-  el: '.container',
+  autoRender: true,
 
-  template: require( './line-overview.tmpl' ),
+  template: bind( lineOverviewTemplate.render, lineOverviewTemplate ),
 
-  initialize: function initializeStationListView( opts ) {
+  props: {
     // Alerts collection, to hand off to a sub-view
-    this.alerts = opts.alerts;
-
+    alerts: 'collection',
     // LineStatus model, to hand off to a sub-view
-    this.lineStatus = opts.status;
-
+    status: 'model',
     // List of stations on this line
-    this.line = opts.line;
-
-    // Nested array defining the layout of the stops
-    this.stations = this.line.stops;
-
-    this.trips = opts.trips;
-
-    // Listen for new predictions data
-
-    // Auto-render on load
-    this.render();
+    line: 'model',
+    // Trip predictions, to hand off to subviews
+    trips: 'collection',
   },
 
-  render: function renderStationListView() {
-    // Subviews are completely re-rendered each time: remove the old ones
-    if ( this.subViews ) {
-      this.subViews.forEach(function( view ) {
-        view.remove();
-      });
+  derived: {
+    stations: {
+      deps: [ 'line' ],
+      fn: function() {
+        return this.line.stations;
+      }
     }
+  },
 
+  subviews: {
+    alertsView: {
+      selector: '[data-hook=alert-list]',
+      prepareView: function( el ) {
+        return new AlertsView({
+          alerts: this.alerts,
+          el: el
+        });
+      }
+    },
+    lineStatusView: {
+      selector: '[data-hook=line-status]',
+      waitFor: 'status',
+      prepareView: function( el ) {
+        return new LineStatusView({
+          status: this.status,
+          el: el
+        });
+      }
+    }
+  },
+
+  render: function() {
     // Render the template into the container
-    this.$el.html( this.template.render( this.line ) );
+    this.renderWithTemplate();
 
     var trips = this.trips;
     var line = this.line;
+    var view = this;
 
-    // Build an array of subviews (StationView or BranchView)
-    function createStationOrBranchView( station ) {
+    // Build an array of subview elements (StationView or BranchView)
+    var subviewElements = _.map( this.stations, function createStationOrBranchView( station ) {
       if ( ! _.isArray( station ) ) {
         // Non-array station gets rendered as-is
-        return new StationView({
+        view = new StationView({
           line: line,
           station: station,
           trips: trips
         });
+      } else {
+        // If station is an array, we're branching:
+        view = new BranchView({
+          line: line,
+          branches: station,
+          trips: trips
+        });
       }
-
-      // If station is an array, we're branching:
-      return new BranchView({
-        line: line,
-        branches: station,
-        trips: trips
-      });
-    }
-    var subViews = _.map( this.stations, createStationOrBranchView );
-
-    // Render subviews into the parent element
-    function renderStationView( subView ) {
-      return subView.render().el;
-    }
-    this.$el.find( '.stations' ).append( _.map( subViews, renderStationView ) );
-
-    var alertsView = new AlertsView({
-      alerts: this.alerts
+      view.registerSubview( view );
+      return view.render().el;
     });
-    this.$el.find( '.alert-list' ).replaceWith( alertsView.el );
 
-    var lineStatusView = new LineStatusView({
-      status: this.lineStatus
-    });
-    this.$el.find( '.line-status' ).replaceWith( lineStatusView.el );
-
-    subViews.push( alertsView, lineStatusView );
-
-    this.subViews = subViews;
+    this.$( '.stations' ).append( subviewElements );
 
     return this;
   }

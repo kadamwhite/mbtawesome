@@ -1,19 +1,21 @@
-<div class="lg-max-ten-columns">
+<div class="container">
+  <div class="lg-max-ten-columns">
 
-  <h1>{{ name }}</h1>
+    <h1>{{ line.name }}</h1>
 
-  <hr class="divider-{{ slug }}" />
+    <hr class="divider-{{ line.slug }}" />
 
-  <div class="line-status"></div>
+    <div class="line-status" data-hook="line-status"></div>
 
-  <div class="alert-list"></div>
+    <div class="alert-list" data-hook="alert-list"></div>
 
-  <ul class="stations {{ slug }}"></ul>
+    <ul class="stations {{ line.slug }}"></ul>
 
-  <small>
-    <em>
-      Black arrows represent active trips, grey arrows represent scheduled trips
-    </em>
-  </small>
+    <small>
+      <em>
+        Black arrows represent active trips, grey arrows represent scheduled trips
+      </em>
+    </small>
 
+  </div>
 </div>

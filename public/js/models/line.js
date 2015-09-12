@@ -10,17 +10,15 @@ var Line = Model.extend({
     name: 'string',
     slug: 'string',
     routes: 'array',
-    stops: 'array'
+    stations: 'array'
   },
 
   derived: {
-    stopsFlattened: {
-      deps: [ 'stops' ],
+    stationsFlattened: {
+      deps: [ 'stations' ],
       fn: function() {
-        // Eliminate any branch nesting in the stops array
-        // Note: _.flatten defaults to shallow flatten in lodash, second "true"
-        // parameter forces a deep flatten
-        return _.flatten( this.stops, true );
+        // Eliminate any branch nesting in the stations array
+        return _.flattenDeep( this.stations );
       }
     }
   },
@@ -33,7 +31,7 @@ var Line = Model.extend({
    */
   station: function( parentStation ) {
     // Get the stop with the provided parentStation
-    return _.findWhere( this.stopsFlattened, {
+    return _.findWhere( this.stationsFlattened, {
       station: parentStation
     });
   },

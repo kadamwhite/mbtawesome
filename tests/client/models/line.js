@@ -20,7 +20,7 @@ describe( 'LineModel', function() {
       slug: 'red',
       routes: [ 'Red' ],
       // Red Line sample because it contains branching
-      stops: [
+      stations: [
         { name: 'Andrew', station: 'place-andrw', stops: [
           { dir: 0, dirName: 'Southbound', id: '70083' },
           { dir: 1, dirName: 'Northbound', id: '70084' }
@@ -69,27 +69,27 @@ describe( 'LineModel', function() {
       expect(function() { line.routes = {}; }).to.throw(); // Strict typing
     });
 
-    it( '"stops" should be an array', function() {
-      expect( line ).to.have.property( 'stops' );
-      expect( line.stops ).to.be.an( 'array' );
-      expect( line.stops.length ).to.equal( 3 );
-      expect(function() { line.stops = 'foo'; }).to.throw(); // Strict typing
+    it( '"stations" should be an array', function() {
+      expect( line ).to.have.property( 'stations' );
+      expect( line.stations ).to.be.an( 'array' );
+      expect( line.stations.length ).to.equal( 3 );
+      expect(function() { line.stations = 'foo'; }).to.throw(); // Strict typing
     });
 
   });
 
   describe( 'derived properties', function() {
 
-    describe( '"stopsFlattened"', function() {
+    describe( '"stationsFlattened"', function() {
       it( 'should be an array', function() {
-        expect( line ).to.have.property( 'stopsFlattened' );
-        expect( line.stopsFlattened ).to.be.an( 'array' );
-        expect( line.stopsFlattened.length ).to.equal( 5 );
+        expect( line ).to.have.property( 'stationsFlattened' );
+        expect( line.stationsFlattened ).to.be.an( 'array' );
+        expect( line.stationsFlattened.length ).to.equal( 5 );
       });
 
-      it( 'should be updated whenever stops changes', function() {
-        line.stops.pop();
-        expect( line.stopsFlattened.length ).to.equal( 2 );
+      it( 'should be updated whenever stations changes', function() {
+        line.stations.pop();
+        expect( line.stationsFlattened.length ).to.equal( 2 );
       });
 
     });

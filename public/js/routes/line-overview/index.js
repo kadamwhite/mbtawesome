@@ -1,5 +1,6 @@
 'use strict';
 
+var $ = require( 'jquery' );
 var analytics = require( '../../lib/analytics' );
 var pageTitle = require( '../../../../server/services/page-title' );
 
@@ -46,18 +47,19 @@ module.exports = {
     if ( ! status ) {
       status = new LineStatusModel({
         alerts: alerts,
-        stations: line.stopsFlattened,
+        stations: line.stationsFlattened,
         predictions: trips
       });
       data.status.set( lineSlug, status );
     }
 
-    new LineOverviewView({
+    var view = new LineOverviewView({
       alerts: alerts,
       status: status,
       line: line,
       trips: trips
     });
+    $( '.container' ).replaceWith( view.el );
 
     // Kick off trips data request
     alerts.refresh();

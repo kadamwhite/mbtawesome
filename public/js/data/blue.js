@@ -184,5 +184,5 @@ module.exports = {
   name: 'Blue Line',
   slug: 'blue',
   routes: [ 'Blue' ],
-  stops: stations
+  stations: stations
 };
