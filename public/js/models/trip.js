@@ -181,16 +181,13 @@ var Trip = Model.extend({
   },
 
   /**
-   * Extend toJSON to include some of the computed properties: if a stopId is
-   * provided, "timeUntil", "seconds" and "stop" will all be included
+   * Return a raw JS object that includes computed properties ("timeUntil",
+   * "seconds" and "stop") relative to a given stop if a stopId is provided
    *
-   * Note: this feels janky, toJSON (a) isn't really intended for this and
-   * (b) doesn't usually take an argument in this way. TODO: reevaluate.
-   *
-   * @method toJSON
+   * @method serializeForStop
    * @param {String} [stopId] An optional stop_id string
    */
-  toJSON: function( stopId ) {
+  serializeForStop: function( stopId ) {
     var attrs = this.getAttributes({
       props: true,
       derived: true

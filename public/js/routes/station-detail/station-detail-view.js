@@ -1,6 +1,5 @@
 'use strict';
 
-var lodash = require( 'lodash' );
 var _ = {
   filter: require( 'lodash.filter' ),
   first: require( 'lodash.first' ),
@@ -48,6 +47,7 @@ var StationDetailView = View.extend({
     tripsByDirection: {
       deps: [ 'station', 'trips' ],
       fn: function() {
+        // De-dupe IDs to simplify processing of line-terminal stations
         var stopIds = _.unique( _.pluck( this.station.stops, 'id' ) );
 
         // Get all trips that visit one of this station's stops
@@ -60,24 +60,20 @@ var StationDetailView = View.extend({
         // Get all trips visiting this specific stop & direction (filtering on
         // both is necessary due to terminal stations like Alewife or Bowdoin)
         var tripsForStops = _.map( stopsByDirection, function getsTripsVisiting( stop ) {
-          var tripsForStop = lodash.chain( tripsForStation )
-            .filter(function( trip ) {
-              return trip.visits( stop.id ) && trip.get( 'direction' ) === stop.dir;
-            })
-            .map(function createRenderableTrip( trip ) {
-              // Use overloaded toJSON to produce a renderable object including
-              // relevant computed properties like "active" or "seconds"
-              return trip.toJSON( stop.id );
-            })
-            // Sort the created objects by
-            .sortBy( 'seconds' )
-            .value();
+          var tripsForStop = _.filter( tripsForStation, function( trip ) {
+            return trip.visits( stop.id ) && trip.direction === stop.dir;
+          });
+          var renderableTrips = _.map( tripsForStop, function createRenderable( trip ) {
+            // Produce a renderable object including stop-relative computed properties
+            return trip.serializeForStop( stop.id );
+          });
 
           // Return a renderable object
           return {
             dir: stop.dir,
             name: stop.dirName,
-            trips: tripsForStop
+            // Sort the created objects by arrival time
+            trips: _.sortBy( renderableTrips, 'seconds' )
           };
         });
 
@@ -86,11 +82,7 @@ var StationDetailView = View.extend({
         // final grouping and mapping action to merge the trip lists for
         // different lines running in the same direction
         return _.map( _.groupBy( tripsForStops, 'dir' ), function mergeTrips( group ) {
-          var tripsForDirection = lodash.chain( group )
-            .pluck( 'trips' )
-            .union()
-            .flatten()
-            .value();
+          var tripsForDirection = _.flatten( _.union( _.pluck( group, 'trips' ) ) );
           var direction = _.first( group );
           return {
             dir: direction.dir,

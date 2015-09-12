@@ -9,7 +9,7 @@ var proxyquire = require( 'proxyquire' );
 
 describe( 'makeQueryHandler', function() {
 
-  it ( 'loads and parses the configuration file', function() {
+  it( 'loads and parses the configuration file', function() {
     var config = proxyquire( '../../../server/services/config', {
       'js-yaml': {
         safeLoad: function() {
@@ -32,7 +32,7 @@ describe( 'makeQueryHandler', function() {
     expect( config.api.root ).to.be.a( 'string' );
   });
 
-  it ( 'throws an error if the API key is not present in the config', function() {
+  it( 'throws an error if the API key is not present in the config', function() {
     expect(function requireModule() {
       proxyquire( '../../../server/services/config', {
         'js-yaml': {

@@ -5,7 +5,6 @@ var chai = require( 'chai' );
 var expect = chai.expect;
 // var sinon = require( 'sinon' );
 chai.use( require( 'sinon-chai' ) );
-var _ = require( 'lodash' );
 
 var Model = require( 'ampersand-model' );
 var Collection = require( 'ampersand-collection' );
@@ -63,17 +62,17 @@ describe( 'TripModel', function() {
 
   describe( 'secondsToStop method', function() {
 
-    it ( 'is defined', function() {
+    it( 'is defined', function() {
       expect( trip.secondsToStop ).to.exist;
       expect( trip.secondsToStop ).to.be.a( 'function' );
     });
 
-    it ( 'returns the number of seconds until the provided stop', function() {
+    it( 'returns the number of seconds until the provided stop', function() {
       var eta = trip.secondsToStop( '70066' ); // Porter
       expect( eta ).to.equal( 376 );
     });
 
-    it ( 'returns -1 if this trip does not visit the provided stop', function() {
+    it( 'returns -1 if this trip does not visit the provided stop', function() {
       var eta = trip.secondsToStop( '70078' ); // DTX
       expect( eta ).to.equal( -1 );
     });
@@ -82,17 +81,17 @@ describe( 'TripModel', function() {
 
   describe( 'secondsToAny method', function() {
 
-    it ( 'is defined', function() {
+    it( 'is defined', function() {
       expect( trip.secondsToAny ).to.exist;
       expect( trip.secondsToAny ).to.be.a( 'function' );
     });
 
-    it ( 'finds and returns the lowest station ETA', function() {
+    it( 'finds and returns the lowest station ETA', function() {
       var eta = trip.secondsToAny( [ '70063', '70064' ] ); // Davis
       expect( eta ).to.equal( 503 );
     });
 
-    it ( 'returns undefined if trip does not visit provided stops', function() {
+    it( 'returns undefined if trip does not visit provided stops', function() {
       var eta = trip.secondsToAny( [ '70101', '70102' ] ); // Quincy Center
       expect( eta ).to.be.undefined;
     });
@@ -100,7 +99,7 @@ describe( 'TripModel', function() {
     // Should we provide the IDs to multiple stops that this trip
     // visits, it should return the lowest one regardless of the
     // order in which the stops occur.
-    it ( 'returns the shortest time out of any matching stops', function() {
+    it( 'returns the shortest time out of any matching stops', function() {
       // Alewife, Davis & Porter
       var eta = trip.secondsToAny( [ '70061', '70066', '70064' ] );
       expect( eta ).to.equal( 376 );
@@ -125,17 +124,17 @@ describe( 'TripModel', function() {
 
   describe( 'approaching method', function() {
 
-    it ( 'is defined', function() {
+    it( 'is defined', function() {
       expect( trip.approaching ).to.exist;
       expect( trip.approaching ).to.be.a( 'function' );
     });
 
-    it ( 'returns true if the provided station is the next stop', function() {
+    it( 'returns true if the provided station is the next stop', function() {
       var approaching = trip.approaching( '70068' ); // Harvard
       expect( approaching ).to.equal( true );
     });
 
-    it ( 'returns true if the provided station is the next stop', function() {
+    it( 'returns true if the provided station is the next stop', function() {
       var approaching = trip.approaching( '70064' ); // Davis
       expect( approaching ).to.equal( false );
     });
@@ -163,16 +162,16 @@ describe( 'TripModel', function() {
 
   describe( 'active property', function() {
 
-    it ( 'is defined', function() {
+    it( 'is defined', function() {
       expect( trip ).to.have.property( 'active' );
       expect( trip.active ).to.be.a( 'boolean' );
     });
 
-    it ( 'returns true if the trip has a vehicle', function() {
+    it( 'returns true if the trip has a vehicle', function() {
       expect( trip.active ).to.equal( true );
     });
 
-    it ( 'returns false if the trip does not have a vehicle', function() {
+    it( 'returns false if the trip does not have a vehicle', function() {
       trip.unset( 'vehicle' );
       expect( trip.active ).to.equal( false );
     });
@@ -181,17 +180,17 @@ describe( 'TripModel', function() {
 
   describe( 'scheduled property', function() {
 
-    it ( 'is defined', function() {
+    it( 'is defined', function() {
       expect( trip ).to.have.property( 'scheduled' );
       expect( trip.scheduled ).to.be.a( 'boolean' );
     });
 
-    it ( 'returns true if the trip does not have a vehicle', function() {
+    it( 'returns true if the trip does not have a vehicle', function() {
       trip.unset( 'vehicle' );
       expect( trip.scheduled ).to.equal( true );
     });
 
-    it ( 'returns false if the trip has a vehicle', function() {
+    it( 'returns false if the trip has a vehicle', function() {
       expect( trip.scheduled ).to.equal( false );
     });
 
@@ -199,7 +198,7 @@ describe( 'TripModel', function() {
 
   describe( 'timeUntil method', function() {
 
-    it ( 'is defined', function() {
+    it( 'is defined', function() {
       expect( trip.timeUntil ).to.exist;
       expect( trip.timeUntil ).to.be.a( 'function' );
     });
@@ -265,7 +264,7 @@ describe( 'TripModel', function() {
 
   describe( 'messageForStation method', function() {
 
-    it ( 'is defined', function() {
+    it( 'is defined', function() {
       expect( trip.messageForStation ).to.exist;
       expect( trip.messageForStation ).to.be.a( 'function' );
     });
@@ -301,32 +300,39 @@ describe( 'TripModel', function() {
 
   describe( 'stops collection', function() {
 
-    it ( 'is defined', function() {
+    it( 'is defined', function() {
       expect( trip.stops ).to.exist;
       expect( trip.stops ).to.be.an.instanceof( Collection );
     });
 
   });
 
-  describe( 'toJSON method', function() {
+  describe( '.serializeForStop()', function() {
 
-    it ( 'extends the native Ampersand Model\'s toJSON', function() {
-      var defaultOutput = new Model( trip.attributes ).toJSON();
-      var output = trip.toJSON();
-
-      // Can't use deepEqual b/c trip.toJSON extends default:
-      // instead, check that all default properties still exist
-      _.forEach( defaultOutput, function( val, key ) {
-        expect( output[ key ] ).to.equal( val );
-      });
+    it( 'exists', function() {
+      expect( trip ).to.have.property( 'serializeForStop' );
     });
 
-    it ( 'adds a .scheduled property based on the inverse of .active()', function() {
-      var output = trip.toJSON();
-      expect( output.scheduled ).to.equal( false );
-      trip.unset( 'vehicle' );
-      output = trip.toJSON();
-      expect( output.scheduled ).to.equal( true );
+    it( 'is a function', function() {
+      expect( trip.serializeForStop ).to.be.a( 'function' );
+    });
+
+    it( 'returns the model properties, including derived properties', function() {
+      var serializedTrip = trip.serializeForStop();
+      expect( serializedTrip ).to.deep.equal({
+        direction: 1,
+        headsign: 'Alewife',
+        id: '98369808',
+        vehicle: {
+          bearing: 275,
+          id: '1510',
+          lat: 42.36316,
+          lon: -71.09416,
+          timestamp: 1424371060
+        },
+        active: true,
+        scheduled: false
+      });
     });
 
   });
