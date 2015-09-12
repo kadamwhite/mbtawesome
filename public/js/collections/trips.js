@@ -1,10 +1,13 @@
 'use strict';
 
-var _ = require( 'lodash' );
-var Collection = require( 'ampersand-rest-collection' );
+var lodash = require( 'lodash' );
+var _ = {
+  filter: require( 'lodash.filter' )
+};
+var RestCollection = require( './rest-collection' );
 var TripModel = require( '../models/trip' );
 
-var TripsCollection = Collection.extend({
+var TripsCollection = RestCollection.extend({
 
   props: {
     lastRefreshed: 'date',
@@ -38,23 +41,6 @@ var TripsCollection = Collection.extend({
     return '/api/v1/lines/' + this.line + '/predictions';
   },
 
-  refresh: function() {
-    var now = new Date();
-    // If we updated less than 20 seconds ago, don't fetch new data
-    if ( this.lastRefreshed && this.lastRefreshed > now - 1000 * 20 ) {
-      return {
-        // Mock promise interface, just in case
-        then: function( cb ) {
-          cb( this.toJSON() );
-        }
-      };
-    }
-
-    // We updated more than 20 seconds ago: get new data from the API
-    this.lastRefreshed = now;
-    return this.fetch();
-  },
-
   /**
    * Filter collection down to only those trips which are scheduled to
    * stop at the specified station
@@ -63,7 +49,7 @@ var TripsCollection = Collection.extend({
    * @return {Array} An array of Trip instances which visit the provided stop
    */
   visits: function( stopId ) {
-    return this.filter(function( trip ) {
+    return _.filter( this.models, function( trip ) {
       return trip.visits( stopId );
     });
   },
@@ -78,7 +64,7 @@ var TripsCollection = Collection.extend({
   visitsAny: function( stopIds ) {
     var theseTrips = this;
 
-    return _.chain( stopIds )
+    return lodash.chain( stopIds )
       // De-dupe stopIds to avoid double-counting trips to terminal
       // stations (Alewife, Oak Grove, Bowdoin etc)
       .unique()
@@ -103,7 +89,7 @@ var TripsCollection = Collection.extend({
    * @return {Array} Array of Trip instances approaching this stop
    */
   approaching: function( stopId ) {
-    return this.filter(function( trip ) {
+    return _.filter( this.models, function( trip ) {
       return trip.approaching( stopId );
     });
   },
@@ -119,7 +105,7 @@ var TripsCollection = Collection.extend({
   approachingAny: function( stopIds ) {
     var theseTrips = this;
 
-    return _.chain( stopIds )
+    return lodash.chain( stopIds )
       // De-dupe stopIds to avoid double-counting trips to terminal
       // stations (Alewife, Oak Grove, Bowdoin etc)
       .unique()

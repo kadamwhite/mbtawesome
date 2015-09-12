@@ -1,7 +1,9 @@
 /*jshint -W106 */// Disable underscore_case warnings: the API uses them
 'use strict';
 
-var _ = require( 'lodash' );
+var _ = {
+  any: require( 'lodash.some' )
+};
 var Model = require( 'ampersand-model' );
 
 var Alert = Model.extend({

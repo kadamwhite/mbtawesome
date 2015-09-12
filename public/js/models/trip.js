@@ -1,8 +1,12 @@
 'use strict';
 
-var _ = require( 'lodash' );
+var lodash = require( 'lodash' );
+var _ = {
+  findWhere: require( 'lodash.findwhere' ),
+  first: require( 'lodash.first' )
+};
 var Model = require( 'ampersand-model' );
-var Collection = require( 'ampersand-rest-collection' );
+var Collection = require( 'ampersand-collection' );
 var PredictionModel = require( '../models/prediction' );
 
 // Predictions collection structures the "stops" property of a Trip model
@@ -132,7 +136,7 @@ var Trip = Model.extend({
    * @return {Number} The number of seconds until this trip reaches the specified station
    * */
   secondsToStop: function( stopId ) {
-    var station = this.stops.findWhere({
+    var station = _.findWhere( this.stops.models, {
       id: stopId
     });
     return station ? station.seconds : -1;
@@ -152,7 +156,7 @@ var Trip = Model.extend({
    */
   secondsToAny: function( stopIds ) {
     var thisTrip = this;
-    return _.chain( stopIds )
+    return lodash.chain( stopIds )
       // De-dupe to handle line-terminal stations like Alewife
       .unique()
       // Get the secondsToStop for each provided stop_id
@@ -176,7 +180,7 @@ var Trip = Model.extend({
    * @return {Boolean} Whether that station is this train's next stop
    */
   approaching: function( stopId ) {
-    var nextStop = this.stops.first();
+    var nextStop = _.first( this.stops.models );
     return stopId === nextStop.id;
   },
 

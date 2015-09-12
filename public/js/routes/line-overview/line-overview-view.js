@@ -1,7 +1,10 @@
 'use strict';
 
-var _ = require( 'lodash' );
-var bind = require( 'lodash.bind' );
+var _ = {
+  bind: require( 'lodash.bind' ),
+  isArray: require( 'lodash.isarray' ),
+  map: require( 'lodash.map' )
+};
 var jQueryView = require( '../../views/jq-view' );
 
 var BranchView = require( './branch-view' );
@@ -14,7 +17,7 @@ var LineOverviewView = jQueryView.extend({
 
   autoRender: true,
 
-  template: bind( lineOverviewTemplate.render, lineOverviewTemplate ),
+  template: _.bind( lineOverviewTemplate.render, lineOverviewTemplate ),
 
   props: {
     // Alerts collection, to hand off to a sub-view
@@ -24,7 +27,7 @@ var LineOverviewView = jQueryView.extend({
     // List of stations on this line
     line: 'model',
     // Trip predictions, to hand off to subviews
-    trips: 'collection',
+    trips: 'collection'
   },
 
   derived: {

@@ -1,7 +1,10 @@
 'use strict';
 
-var _ = require( 'lodash' );
-var bind = require( 'lodash.bind' );
+var _ = {
+  bind: require( 'lodash.bind' ),
+  forEach: require( 'lodash.foreach' ),
+  map: require( 'lodash.map' )
+};
 var jQueryView = require( '../../views/jq-view' );
 var branchTemplate = require( './branch.tmpl' );
 
@@ -9,7 +12,7 @@ var StationView = require( './station-view' );
 
 var BranchView = jQueryView.extend({
 
-  template: bind( branchTemplate.render, branchTemplate ),
+  template: _.bind( branchTemplate.render, branchTemplate ),
 
   props: {
     /**

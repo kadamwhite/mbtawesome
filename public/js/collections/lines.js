@@ -1,6 +1,6 @@
 'use strict';
 
-var Collection = require( 'ampersand-rest-collection' );
+var Collection = require( 'ampersand-collection' );
 
 var LinesCollection = Collection.extend({
 

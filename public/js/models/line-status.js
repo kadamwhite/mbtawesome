@@ -1,6 +1,12 @@
 'use strict';
 
-var _ = require( 'lodash' );
+var lodash = require( 'lodash' );
+var _ = {
+  filter: require( 'lodash.filter' ),
+  first: require( 'lodash.first' ),
+  mapValues: require( 'lodash.mapvalues' ),
+  reduce: require( 'lodash.reduce' )
+};
 var Model = require( 'ampersand-model' );
 
 // var statuses = {
@@ -142,12 +148,12 @@ var LineStatus = Model.extend({
     trainsInService: {
       deps: [ 'predictions' ],
       fn: function() {
-        return _.chain( this.predictions.models )
+        return lodash.chain( this.predictions.models )
           // break into groups by direction_id
           .groupBy( 'direction' )
           .mapValues(function( tripsGroup ) {
             // Subdivide each direction group by headsign
-            return _.chain( tripsGroup )
+            return lodash.chain( tripsGroup )
               .groupBy( 'headsign' )
               .map(function( group, headsign ) {
                 return {

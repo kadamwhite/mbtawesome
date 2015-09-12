@@ -1,7 +1,7 @@
 'use strict';
 
-var _ = require( 'lodash' );
-var Collection = require( 'ampersand-rest-collection' );
+var lodash = require( 'lodash' );
+var RestCollection = require( './rest-collection' );
 
 // Dictionary to use when determining issue severity (used in sorting)
 var severity = {
@@ -10,7 +10,7 @@ var severity = {
   minor: 3
 };
 
-var AlertsCollection = Collection.extend({
+var AlertsCollection = RestCollection.extend({
 
   model: require( '../models/alert' ),
 
@@ -55,23 +55,6 @@ var AlertsCollection = Collection.extend({
     return '/api/v1/lines/' + this.line + '/alerts';
   },
 
-  refresh: function() {
-    var now = new Date();
-    // If we updated less than 2 minutes ago, don't fetch new data
-    if ( this.lastRefreshed && this.lastRefreshed > now - 1000 * 60 * 2 ) {
-      return {
-        // Mock promise interface, just in case
-        then: function( cb ) {
-          cb( this.toJSON() );
-        }
-      };
-    }
-
-    // We updated more than 20 seconds ago: get new data from the API
-    this.lastRefreshed = now;
-    return this.fetch();
-  },
-
   /**
    * Comparator function to order collection by severity (high to low)
    */
@@ -86,7 +69,7 @@ var AlertsCollection = Collection.extend({
    * @return {Array} Array of banner text strings
    */
   banners: function() {
-    return this.chain()
+    return lodash.chain( this.models )
       .pluck( 'banner' )
       .without( '' )
       .unique()
@@ -104,7 +87,7 @@ var AlertsCollection = Collection.extend({
  * @return {Array} An array of banner strings
  */
 AlertsCollection.banners = function( collections ) {
-  return _.chain( collections )
+  return lodash.chain( collections )
     .map(function( collection ) {
       return collection.banners();
     })

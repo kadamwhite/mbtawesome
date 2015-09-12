@@ -1,6 +1,9 @@
 'use strict';
 
 var $ = require( 'jquery' );
+var _ = {
+  findWhere: require( 'lodash.findwhere' )
+};
 var analytics = require( '../../lib/analytics' );
 var pageTitle = require( '../../../../server/services/page-title' );
 
@@ -23,7 +26,7 @@ module.exports = {
     var parentStation = opts.param.station;
 
     // Look up the data with the line slug route parameter
-    var line = data.lines.findWhere({
+    var line = _.findWhere( data.lines.models, {
       slug: lineSlug
     });
 

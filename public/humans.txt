@@ -12,5 +12,5 @@
 # TECHNOLOGY COLOPHON
 
     CSS3, HTML5
-    Express, Nginx, Backbone, Lodash, jQuery, skeleton.css, Normalize.css
+    Express, Nginx, Ampersand, Lodash, jQuery, skeleton.css, Normalize.css
     Stylus, Browserify, Combyne, Grunt

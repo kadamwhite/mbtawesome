@@ -1,6 +1,9 @@
 'use strict';
 
 var bind = require( 'lodash.bind' );
+var _ = {
+  filter: require( 'lodash.filter' )
+};
 var jQueryView = require( './jq-view' );
 var alertsTemplate = require( './alerts-view.tmpl' );
 
@@ -22,7 +25,7 @@ var AlertsView = jQueryView.extend({
     alertsInEffect: {
       deps: [ 'alerts' ],
       fn: function() {
-        return this.alerts.filter( 'inEffect' );
+        return _.filter( this.alerts.models, 'inEffect' );
       }
     }
   },

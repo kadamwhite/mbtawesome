@@ -1,6 +1,10 @@
 'use strict';
 
-var _ = require( 'lodash' );
+var _ = {
+  findWhere: require( 'lodash.findwhere' ),
+  flattenDeep: require( 'lodash.flattendeep' ),
+  unique: require( 'lodash.uniq' )
+};
 var Model = require( 'ampersand-model' );
 
 var Line = Model.extend({

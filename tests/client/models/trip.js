@@ -8,7 +8,7 @@ chai.use( require( 'sinon-chai' ) );
 var _ = require( 'lodash' );
 
 var Model = require( 'ampersand-model' );
-var Collection = require( 'ampersand-rest-collection' );
+var Collection = require( 'ampersand-collection' );
 var TripModel = require( '../../../public/js/models/trip' );
 var TripsCollection = require( '../../../public/js/collections/trips' );
 
@@ -350,9 +350,12 @@ describe( 'TripModel', function() {
           headsign: 'Alewife',
           id: '98369808',
           stops: tripSampleData.stops.map(function( stop ) {
-            return _.extend({
-              seconds: stop.seconds - 20
-            }, _.pick( stop, [ 'eta', 'id', 'seq' ]));
+            return {
+              eta: stop.eta,
+              id: stop.id,
+              seconds: stop.seconds - 20,
+              seq: stop.seq
+            };
           })
         }], {
           // Simulate the "parse" option that the rest mixin passes:
@@ -360,7 +363,7 @@ describe( 'TripModel', function() {
           parse: true
         });
       }).not.to.throw();
-      expect( tripsCollection.first().stops.first().seconds ).to.equal( 171 );
+      expect( tripsCollection.at( 0 ).stops.at( 0 ).seconds ).to.equal( 171 );
     });
 
   });

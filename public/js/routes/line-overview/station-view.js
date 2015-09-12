@@ -1,6 +1,10 @@
 'use strict';
 
-var _ = require( 'lodash' );
+var lodash = require( 'lodash' );
+var _ = {
+  map: require( 'lodash.map' ),
+  pluck: require( 'lodash.pluck' )
+};
 var bind = require( 'lodash.bind' );
 var View = require( 'ampersand-view' );
 var stationTemplate = require( './station.tmpl' );
@@ -41,7 +45,7 @@ var StationView = View.extend({
       deps: [ 'trips', 'stopIds' ],
       fn: function() {
         var stopIds = this.stopIds;
-        return _.chain( this.trips.approachingAny( stopIds ) )
+        return lodash.chain( this.trips.approachingAny( stopIds ) )
           .groupBy(function( trip ) {
             return trip.get( 'direction' );
           })
@@ -52,7 +56,7 @@ var StationView = View.extend({
               // actual station_id of the station it is approaching: Check each of
               // the station IDs associated with this view to get the message. (only
               // one of them will be valid, hence the .without('').first()).
-              var message = _.chain( stopIds )
+              var message = lodash.chain( stopIds )
                 .map(function( stopId ) {
                   return tripModel.messageForStation( stopId );
                 })
