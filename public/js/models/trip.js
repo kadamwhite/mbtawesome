@@ -1,9 +1,11 @@
 'use strict';
 
-var lodash = require( 'lodash' );
 var _ = {
   findWhere: require( 'lodash.findwhere' ),
-  first: require( 'lodash.first' )
+  first: require( 'lodash.first' ),
+  map: require( 'lodash.map' ),
+  unique: require( 'lodash.uniq' ),
+  without: require( 'lodash.without' )
 };
 var Model = require( 'ampersand-model' );
 var Collection = require( 'ampersand-collection' );
@@ -156,20 +158,14 @@ var Trip = Model.extend({
    */
   secondsToAny: function( stopIds ) {
     var thisTrip = this;
-    return lodash.chain( stopIds )
-      // De-dupe to handle line-terminal stations like Alewife
-      .unique()
-      // Get the secondsToStop for each provided stop_id
-      .map(function( stopId ) {
-        return thisTrip.secondsToStop( stopId );
-      })
-      // Remove stops that this trip won't be visiting
-      .without( -1 )
-      // sort from low to high
-      .sort()
-      // get the lowest
-      .first()
-      .value();
+    // De-dupe to handle line-terminal stations like Alewife, then get the
+    // secondsToStop for each provided stop_id
+    var seconds = _.map( _.unique( stopIds ), function( stopId ) {
+      return thisTrip.secondsToStop( stopId );
+    });
+    // Remove stops that this trip won't be visiting, then sort low to high
+    // and return the first
+    return _.first( _.without( seconds, -1 ).sort() );
   },
 
   /**
