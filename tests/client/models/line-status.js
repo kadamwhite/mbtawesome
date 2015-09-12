@@ -147,8 +147,7 @@ describe( 'LineStatusModel', function() {
       });
 
       it( 'is recomputed when predictions change', function() {
-        lineStatus.predictions.remove( '25730054' );
-        lineStatus.predictions.remove( '25730165' );
+        lineStatus.predictions.reset([ testTrips[ 1 ] ]);
         expect( lineStatus.trainsInService ).to.deep.equal({
           '1': [{
             headsign: 'Oak Grove',
@@ -171,7 +170,7 @@ describe( 'LineStatusModel', function() {
       });
 
       it( 'should update when predictions change', function() {
-        lineStatus.predictions.remove( '25729993' );
+        lineStatus.predictions.reset([ testTrips[ 0 ], testTrips[ 2 ] ]);
         expect( lineStatus.totalTrainsInService ).to.equal( 2 );
         lineStatus.predictions.reset();
         expect( lineStatus.totalTrainsInService ).to.equal( 0 );
@@ -276,13 +275,8 @@ describe( 'LineStatusModel', function() {
 
       it( 'is recomputed when predictions change', function() {
         expect( lineStatus.averageWaitTimes[ '0' ].wait ).to.equal( 4 );
-        lineStatus.predictions.add({
-          direction: 0,
-          stops: [
-            { id: '70032', seconds: 2000 }
-          ]
-        });
-        expect( lineStatus.averageWaitTimes[ '0' ].wait ).to.equal( 10 );
+        lineStatus.predictions.reset([ testTrips[ 0 ], testTrips[ 2 ] ]);
+        expect( lineStatus.averageWaitTimes[ '1' ].wait ).to.equal( 12 );
       });
 
     });

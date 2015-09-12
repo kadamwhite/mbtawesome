@@ -1,5 +1,12 @@
 'use strict';
 
+var _ = {
+  pluck: require( 'lodash.pluck' ),
+  flatten: require( 'lodash.flatten' ),
+  map: require( 'lodash.map' ),
+  unique: require( 'lodash.uniq' ),
+  without: require( 'lodash.without' )
+};
 var RestCollection = require( './rest-collection' );
 
 // Dictionary to use when determining issue severity (used in sorting)

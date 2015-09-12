@@ -94,7 +94,19 @@ var StationDetailView = View.extend({
 
   initialize: function() {
     // Listen for new predictions data
-    this.listenTo( this.trips, 'sync reset', this.render );
+    this.listenTo( this.trips, 'sync reset', this._triggerPredictionsChange );
+
+    // Render when the trips to display change
+    this.on( 'change:tripsByDirection', this.render );
+  },
+
+  /**
+   * Helper method to fire a change event that will trigger derived property recomputation
+   *
+   * @private
+   */
+  _triggerPredictionsChange: function() {
+    this.trigger( 'change:trips' );
   }
 });
 

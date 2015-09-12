@@ -1,7 +1,7 @@
 'use strict';
 
-var lodash = require( 'lodash' );
 var _ = {
+  any: require( 'lodash.some' ),
   filter: require( 'lodash.filter' )
 };
 var RestCollection = require( './rest-collection' );
@@ -62,22 +62,12 @@ var TripsCollection = RestCollection.extend({
    * @return {Array} Array of Trip instances which visit these stops
    */
   visitsAny: function( stopIds ) {
-    var theseTrips = this;
-
-    return lodash.chain( stopIds )
-      // De-dupe stopIds to avoid double-counting trips to terminal
-      // stations (Alewife, Oak Grove, Bowdoin etc)
-      .unique()
-      .map(function( stopId ) {
-        return theseTrips.visits( stopId );
-      })
-      // Flatten results
-      .flatten()
-      // Throw out any empty arrays
-      .reject(function( trips ) {
-        return trips.length === 0;
-      })
-      .value();
+    // For every trip, check whether it visits any of the specified stops
+    return _.filter( this.models, function( trip ) {
+      return _.any( stopIds, function( stopId ) {
+        return trip.visits( stopId );
+      });
+    });
   },
 
   /**
@@ -103,22 +93,12 @@ var TripsCollection = RestCollection.extend({
    * @return {Array} Array of all trips approaching any of these stops
    */
   approachingAny: function( stopIds ) {
-    var theseTrips = this;
-
-    return lodash.chain( stopIds )
-      // De-dupe stopIds to avoid double-counting trips to terminal
-      // stations (Alewife, Oak Grove, Bowdoin etc)
-      .unique()
-      .map(function( stopId ) {
-        return theseTrips.approaching( stopId );
-      })
-      // Flatten results
-      .flatten()
-      // Throw out any empty arrays
-      .reject(function( trips ) {
-        return trips.length === 0;
-      })
-      .value();
+    // For every trip, check whether it is approaching any of the specified stops
+    return _.filter( this.models, function( trip ) {
+      return _.any( stopIds, function( stopId ) {
+        return trip.approaching( stopId );
+      });
+    });
   }
 
 });
