@@ -83,6 +83,7 @@
     "lodash.reduce": "^3.1.2",
     "lodash.reject": "^3.1.1",
     "lodash.some": "^3.2.3",
+    "lodash.sortby": "^3.1.5",
     "lodash.uniq": "^3.2.2",
     "lodash.without": "^3.2.1",
     "lru-cache": "^2.7.0",
