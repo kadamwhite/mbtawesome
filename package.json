@@ -27,7 +27,6 @@
   "devDependencies": {
     "bower": "^1.5.2",
     "chai": "^1.10.0",
-    "chai-as-promised": "^4.3.0",
     "disc": "^1.3.2",
     "grunt": "^0.4.5",
     "grunt-browserify": "^4.0.1",
@@ -43,9 +42,7 @@
     "load-grunt-tasks": "^2.0.0",
     "mocha": "^2.3.2",
     "proxyquire": "^1.7.2",
-    "replay": "^2.0.6",
-    "sinon": "^1.16.1",
-    "sinon-chai": "^2.8.0"
+    "replay": "^2.0.6"
   },
   "dependencies": {
     "ampersand-collection": "^1.5.0",
@@ -54,7 +51,6 @@
     "ampersand-view": "^8.0.1",
     "bluebird": "^2.10.0",
     "body-parser": "^1.13.3",
-    "bookshelf": "^0.7.9",
     "browserify": "^11.1.0",
     "browserify-middleware": "^4.1.0",
     "combynexpress": "^2.0.0",
@@ -71,6 +67,7 @@
     "lodash.filter": "^3.1.1",
     "lodash.findwhere": "^3.1.0",
     "lodash.first": "^3.0.0",
+    "lodash.flatten": "^3.0.2",
     "lodash.flattendeep": "^3.0.2",
     "lodash.foreach": "^3.0.3",
     "lodash.groupby": "^3.1.1",
@@ -81,7 +78,6 @@
     "lodash.pick": "^3.1.0",
     "lodash.pluck": "^3.1.2",
     "lodash.reduce": "^3.1.2",
-    "lodash.reject": "^3.1.1",
     "lodash.some": "^3.2.3",
     "lodash.sortby": "^3.1.5",
     "lodash.uniq": "^3.2.2",
@@ -91,7 +87,6 @@
     "minifyify": "^7.0.6",
     "morgan": "^1.6.1",
     "nodemon": "^1.4.1",
-    "pg": "^4.4.1",
     "serve-favicon": "^2.3.0",
     "stateman": "^0.1.8",
     "stylus": "^0.49.3"
