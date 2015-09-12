@@ -18,8 +18,9 @@ var Line = Model.extend({
       deps: [ 'stops' ],
       fn: function() {
         // Eliminate any branch nesting in the stops array
-        // Note: _.flatten defaults to deep flatten in lodash.compat
-        return _.flatten( this.stops );
+        // Note: _.flatten defaults to shallow flatten in lodash, second "true"
+        // parameter forces a deep flatten
+        return _.flatten( this.stops, true );
       }
     }
   },

@@ -26,8 +26,7 @@
   "license": "MIT",
   "browser": {
     "backbone": "./public/js/vendor/backbone.js",
-    "jquery": "./public/js/vendor/jquery.js",
-    "lodash": "./public/js/vendor/lodash.js"
+    "jquery": "./public/js/vendor/jquery.js"
   },
   "devDependencies": {
     "bower": "^1.5.2",
