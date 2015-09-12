@@ -3,8 +3,6 @@
 /*jshint -W106 */// Disable underscore_case warnings in this file
 var chai = require( 'chai' );
 var expect = chai.expect;
-// var sinon = require( 'sinon' );
-chai.use( require( 'sinon-chai' ) );
 
 var Model = require( 'ampersand-model' );
 var Collection = require( 'ampersand-collection' );
