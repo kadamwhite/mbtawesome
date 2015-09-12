@@ -57,7 +57,7 @@ function getTripsFromRoute( route ) {
 function getTripsFromRoutes( routes ) {
   return _.chain( routes )
     .map( getTripsFromRoute )
-    .flatten()
+    .flattenDeep()
     .value();
 }
 

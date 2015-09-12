@@ -112,7 +112,7 @@ function alertsByLine( lineSlug ) {
       // Extract alerts object from data (e.g. `[ { alerts: [ [Object], [Object] ] } ]`)
       .pluck( 'alerts' )
       // Flatten alerts from multiple routes into a single array
-      .flatten()
+      .flattenDeep()
       // Remove leftovers from empty alerts arrays
       .filter()
       // De-dupe on ID (one alert can affect many lines, and may be returned twice)
