@@ -27,6 +27,7 @@ config.yml
 test.js
 
 # Logs
+logs/
 *.log
 
 # Discify analyzer for browserify bundle

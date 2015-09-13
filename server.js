@@ -3,7 +3,6 @@
 var express = require( 'express' );
 var path = require( 'path' );
 var favicon = require( 'serve-favicon' );
-var logger = require( 'morgan' );
 var cookieParser = require( 'cookie-parser' );
 var bodyParser = require( 'body-parser' );
 var combynExpress = require( 'combynexpress' );
@@ -66,13 +65,22 @@ if ( ! PROD_MODE ) {
 
 // Other middleware & static assets
 app.use( favicon( __dirname + '/public/favicon.png' ) );
-app.use( logger( 'dev' ) );
+
+// Logger either uses combined format and logs to files, or uses dev format and logs
+// to stdout: which format is used is determined by PROD_MODE
+var loggerMode = PROD_MODE ? 'combined' : 'dev';
+var logger = require( './server/http-logger' ).mode( loggerMode, PROD_MODE );
+app.use( logger );
+
+// Serve static assets
+app.use( express.static( path.join( __dirname, 'public' ) ) );
+
+// Understand JSON, cookies, and URL-encoded data (via the querystring library)
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({ extended: false }) );
 app.use( cookieParser() );
 
-// Serve static assets
-app.use( express.static( path.join( __dirname, 'public' ) ) );
+// Routes
 
 // MBTAwesome API v1; MBTA API v2. Confusing? Natch.
 app.use( '/api/v1/', require( './server/routes/api' ) );
@@ -80,7 +88,7 @@ app.use( '/api/v1/', require( './server/routes/api' ) );
 // Publicly-accessible routes
 app.use( '/', require( './server/routes' ) );
 
-// error handlers
+// Error handlers
 
 if ( ! PROD_MODE ) {
   // development error handler
