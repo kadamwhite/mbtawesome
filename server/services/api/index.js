@@ -16,7 +16,7 @@ var batchRequests = require( './_batch-requests' );
 // 15 second cache expiry
 var shortCache = require( './_short-cache' );
 
-// 5 minute cache expiry
+// 2 minute cache expiry
 var longCache = require( './_long-cache' );
 
 // Hard-coded route ID list (saves an otherwise useless DB round-trip)
@@ -84,7 +84,7 @@ function alertsByRoute( routeId ) {
 
   if ( ! routeAlertsPromise ) {
     routeAlertsPromise = api.alertsByRoute( routeId );
-    shortCache.set( cacheKey, routeAlertsPromise );
+    longCache.set( cacheKey, routeAlertsPromise );
   }
 
   return routeAlertsPromise;

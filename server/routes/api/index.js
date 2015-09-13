@@ -7,6 +7,8 @@ var mbtapi = require( '../../services/api' );
 
 router.get( '/lines/:line/predictions', function( req, res ) {
   mbtapi.predictionsByLine( req.params.line ).then(function( data ) {
+    // predictions use short-cache, which re-fetches data every 15s
+    res.setHeader( 'Cache-Control', 'public, max-age=15' );
     res.status( 200 ).json( data );
   }).catch(function( err ) {
     console.error( err );
@@ -16,6 +18,8 @@ router.get( '/lines/:line/predictions', function( req, res ) {
 
 router.get( '/lines/:line/alerts', function( req, res ) {
   mbtapi.alertsByLine( req.params.line ).then(function( data ) {
+    // alerts use long-cache, which re-fetches every minute
+    res.setHeader( 'Cache-Control', 'public, max-age=60' );
     res.status( 200 ).json( data );
   }).catch(function( err ) {
     console.error( err );
