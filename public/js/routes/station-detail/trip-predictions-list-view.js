@@ -23,7 +23,40 @@ var PredictionsListView = jQueryView.extend({
       fn: function() {
         return this.model.trips;
       }
+    },
+    moreTripsAvailable: {
+      deps: [ 'trips' ],
+      fn: function() {
+        return this.trips.length > 2;
+      }
+    },
+    tripsPreview: {
+      deps: [ 'trips' ],
+      fn: function() {
+        return this.trips.slice( 0, 2 );
+      }
     }
+  },
+
+  session: {
+    /**
+     * Whether the list of predictions is expanded (view state property)
+     *
+     * @type {String} expanded
+     */
+    expanded: 'boolean'
+  },
+
+  events: {
+    'click .toggle': 'toggleListExpansion'
+  },
+
+  toggleListExpansion: function() {
+    this.expanded = ! this.expanded;
+  },
+
+  initialize: function() {
+    this.on( 'change:expanded', this.render );
   }
 
 });

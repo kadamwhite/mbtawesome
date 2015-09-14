@@ -1,7 +1,7 @@
 <li>
   <h3>{{ name }}</h3>
 
-  <table>
+  <table {%if moreTripsAvailable %}class="toggle"{%endif %}>
     <thead>
       <tr>
         <th>
@@ -14,12 +14,34 @@
 
     {%-- TODO: add loading indicator --%}
     {%if trips.length %}
-      {%each trips as trip %}
-      <tr {{ 'class="scheduled"' if trip.scheduled }}>
-        <td>{{ trip.timeUntil }}</td>
-        <td>{{ trip.headsign }}</td>
+      {%if not expanded %}
+        {%each tripsPreview as trip %}
+        <tr {{ 'class="scheduled"' if trip.scheduled }}>
+          <td>{{ trip.timeUntil }}</td>
+          <td>{{ trip.headsign }}</td>
+        </tr>
+        {%endeach %}
+      {%else %}
+        {%each trips as trip %}
+        <tr {{ 'class="scheduled"' if trip.scheduled }}>
+          <td>{{ trip.timeUntil }}</td>
+          <td>{{ trip.headsign }}</td>
+        </tr>
+        {%endeach %}
+      {%endif %}
+      {%if moreTripsAvailable %}
+      <tr>
+        <td colspan="2" class="list-expander">
+          <button>
+          {%if not expanded %}
+            Show All Upcoming Trips
+          {%else %}
+            Collapse
+          {%endif %}
+          </button>
+        </td>
       </tr>
-      {%endeach %}
+      {%endif %}
     {%else %}
       <tr>
         <td colspan="2">

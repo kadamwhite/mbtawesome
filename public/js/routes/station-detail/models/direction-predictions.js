@@ -14,10 +14,6 @@ var DirectionPredictionsModel = Model.extend({
      * @property {Array} trips
      */
     trips: 'array'
-  },
-
-  initialize: function() {
-    console.log( this.getAttributes() );
   }
 });
 
