@@ -14,6 +14,8 @@ var _ = {
 var bind = require( 'lodash.bind' );
 var View = require( 'ampersand-view' );
 var stationDetailTemplate = require( './station-detail.tmpl' );
+var PredictionListView = require( './trip-predictions-list-view' );
+var DirectionPredictionsCollection = require( './collections/direction-predictions' );
 
 var StationDetailView = View.extend({
 
@@ -81,15 +83,17 @@ var StationDetailView = View.extend({
         // Ashmont service: to properly account for these, we need to do one
         // final grouping and mapping action to merge the trip lists for
         // different lines running in the same direction
-        return _.map( _.groupBy( tripsForStops, 'dir' ), function mergeTrips( group ) {
+        var directions = _.map( _.groupBy( tripsForStops, 'dir' ), function( group ) {
           var tripsForDirection = _.flatten( _.union( _.pluck( group, 'trips' ) ) );
           var direction = _.first( group );
           return {
             dir: direction.dir,
-            name: direction.dirName,
+            name: direction.name,
             trips: tripsForDirection
           };
         });
+
+        return new DirectionPredictionsCollection( directions );
       }
     }
   },
@@ -109,6 +113,17 @@ var StationDetailView = View.extend({
    */
   _triggerPredictionsChange: function() {
     this.trigger( 'change:trips' );
+    window.tbd = this.tripsByDirection;
+  },
+
+  render: function() {
+    this.renderWithTemplate( this );
+
+    // Get a reference to the container for the lists of predictions by direction
+    this.predictionsLists = this.queryByHook( 'predictions-lists' );
+
+    // Render out a view for each direction
+    this.renderCollection( this.tripsByDirection, PredictionListView, this.predictionsLists );
   }
 });
 

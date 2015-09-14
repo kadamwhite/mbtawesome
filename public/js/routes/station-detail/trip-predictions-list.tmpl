@@ -1,0 +1,33 @@
+<li>
+  <h3>{{ name }}</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <acronym title="Estimated Time of Arrival">ETA</acronym>
+        </th>
+        <th>Destination</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {%-- TODO: add loading indicator --%}
+    {%if trips.length %}
+      {%each trips as trip %}
+      <tr {{ 'class="scheduled"' if trip.scheduled }}>
+        <td>{{ trip.timeUntil }}</td>
+        <td>{{ trip.headsign }}</td>
+      </tr>
+      {%endeach %}
+    {%else %}
+      <tr>
+        <td colspan="2">
+          <em>No trains in service</em>
+        </td>
+      </tr>
+    {%endif %}
+    </tbody>
+
+  </table>
+</li>
