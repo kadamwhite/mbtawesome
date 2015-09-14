@@ -28,6 +28,7 @@ module.exports = {
       // create a file-rotating write stream
       loggerOptions.stream = fileStreamRotator.getStream({
         filename: logDirPath + '/access-%DATE%.log',
+        date_format: "YYYY-MM-DD",
         frequency: 'daily',
         verbose: false
       });
