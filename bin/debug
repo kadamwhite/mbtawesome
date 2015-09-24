@@ -22,7 +22,7 @@ if ( _.isString( argv.f ) ) {
 var Replay = require( 'replay' );
 // Use the fixture set specified in the config
 var path = require( 'path' );
-Replay.fixtures = path.join( __dirname, '../fixtures/' + config.api.fixtures );
+Replay.fixtures = path.join( __dirname, '../fixtures/' + fixtureDir );
 
 // Optionally set record mode from the CLI
 if ( process.argv.record || process.argv.r ) {
