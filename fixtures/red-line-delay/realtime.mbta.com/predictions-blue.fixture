@@ -1,0 +1,775 @@
+GET /developer/api/v2/predictionsbyroute?route=Blue&api_key=wX9NwuHnZU2ToO7GmGR9uw&format=json
+accept: */*
+host: realtime.mbta.com
+accept-encoding: gzip, deflate
+
+HTTP/1.1 200 OK
+cache-control: no-cache
+pragma: no-cache
+content-type: application/json; charset=utf-8
+expires: -1
+server: Microsoft-IIS/7.5
+x-aspnet-version: 4.0.30319
+x-powered-by: ASP.NET
+date: Thu, 24 Sep 2015 14:41:35 GMT
+connection: close
+content-length: 15734
+
+{
+	"route_id": "Blue",
+	"route_name": "Blue Line",
+	"route_type": "1",
+	"mode_name": "Subway",
+	"direction": [{
+		"direction_id": "0",
+		"direction_name": "Westbound",
+		"trip": [{
+			"trip_id": "28187836",
+			"trip_name": "10:18 am from Wonderland to Bowdoin",
+			"trip_headsign": "Bowdoin",
+			"vehicle": {
+				"vehicle_id": "0763",
+				"vehicle_lat": "42.35889",
+				"vehicle_lon": "-71.0574",
+				"vehicle_bearing": "275",
+				"vehicle_timestamp": "1443105617"
+			},
+			"stop": [{
+				"stop_sequence": "110",
+				"stop_id": "70038",
+				"stop_name": "Bowdoin",
+				"sch_arr_dt": "1443105480",
+				"sch_dep_dt": "1443105480",
+				"pre_dt": "1443105794",
+				"pre_away": "101"
+			}]
+		}, {
+			"trip_id": "28187931",
+			"trip_name": "10:26 am from Wonderland to Bowdoin",
+			"trip_headsign": "Bowdoin",
+			"vehicle": {
+				"vehicle_id": "0793",
+				"vehicle_lat": "42.37437",
+				"vehicle_lon": "-71.0302",
+				"vehicle_bearing": "225",
+				"vehicle_timestamp": "1443105649"
+			},
+			"stop": [{
+				"stop_sequence": "70",
+				"stop_id": "70045",
+				"stop_name": "Maverick - Inbound",
+				"sch_arr_dt": "1443105480",
+				"sch_dep_dt": "1443105480",
+				"pre_dt": "1443105815",
+				"pre_away": "122"
+			}, {
+				"stop_sequence": "80",
+				"stop_id": "70043",
+				"stop_name": "Aquarium - Inbound",
+				"sch_arr_dt": "1443105600",
+				"sch_dep_dt": "1443105600",
+				"pre_dt": "1443105984",
+				"pre_away": "291"
+			}, {
+				"stop_sequence": "90",
+				"stop_id": "70041",
+				"stop_name": "State Street - to Bowdoin",
+				"sch_arr_dt": "1443105720",
+				"sch_dep_dt": "1443105720",
+				"pre_dt": "1443106083",
+				"pre_away": "390"
+			}, {
+				"stop_sequence": "110",
+				"stop_id": "70038",
+				"stop_name": "Bowdoin",
+				"sch_arr_dt": "1443105960",
+				"sch_dep_dt": "1443105960",
+				"pre_dt": "1443106260",
+				"pre_away": "567"
+			}]
+		}, {
+			"trip_id": "28187645",
+			"trip_name": "10:35 am from Wonderland to Bowdoin",
+			"trip_headsign": "Bowdoin",
+			"vehicle": {
+				"vehicle_id": "0752",
+				"vehicle_lat": "42.39043",
+				"vehicle_lon": "-70.99727",
+				"vehicle_bearing": "220",
+				"vehicle_timestamp": "1443105640"
+			},
+			"stop": [{
+				"stop_sequence": "40",
+				"stop_id": "70051",
+				"stop_name": "Orient Heights - Inbound",
+				"sch_arr_dt": "1443105660",
+				"sch_dep_dt": "1443105660",
+				"pre_dt": "1443105730",
+				"pre_away": "37"
+			}, {
+				"stop_sequence": "50",
+				"stop_id": "70049",
+				"stop_name": "Wood Island - Inbound",
+				"sch_arr_dt": "1443105780",
+				"sch_dep_dt": "1443105780",
+				"pre_dt": "1443105914",
+				"pre_away": "221"
+			}, {
+				"stop_sequence": "60",
+				"stop_id": "70047",
+				"stop_name": "Airport - Inbound",
+				"sch_arr_dt": "1443105900",
+				"sch_dep_dt": "1443105900",
+				"pre_dt": "1443106013",
+				"pre_away": "320"
+			}, {
+				"stop_sequence": "70",
+				"stop_id": "70045",
+				"stop_name": "Maverick - Inbound",
+				"sch_arr_dt": "1443106020",
+				"sch_dep_dt": "1443106020",
+				"pre_dt": "1443106179",
+				"pre_away": "486"
+			}, {
+				"stop_sequence": "80",
+				"stop_id": "70043",
+				"stop_name": "Aquarium - Inbound",
+				"sch_arr_dt": "1443106140",
+				"sch_dep_dt": "1443106140",
+				"pre_dt": "1443106348",
+				"pre_away": "655"
+			}, {
+				"stop_sequence": "90",
+				"stop_id": "70041",
+				"stop_name": "State Street - to Bowdoin",
+				"sch_arr_dt": "1443106260",
+				"sch_dep_dt": "1443106260",
+				"pre_dt": "1443106447",
+				"pre_away": "754"
+			}, {
+				"stop_sequence": "110",
+				"stop_id": "70038",
+				"stop_name": "Bowdoin",
+				"sch_arr_dt": "1443106500",
+				"sch_dep_dt": "1443106500",
+				"pre_dt": "1443106624",
+				"pre_away": "931"
+			}]
+		}, {
+			"trip_id": "28187706",
+			"trip_name": "10:44 am from Wonderland to Bowdoin",
+			"trip_headsign": "Bowdoin",
+			"stop": [{
+				"stop_sequence": "1",
+				"stop_id": "70060",
+				"stop_name": "Wonderland",
+				"sch_arr_dt": "1443105840",
+				"sch_dep_dt": "1443105840",
+				"pre_dt": "1443106140",
+				"pre_away": "447"
+			}, {
+				"stop_sequence": "10",
+				"stop_id": "70057",
+				"stop_name": "Revere Beach - Inbound",
+				"sch_arr_dt": "1443105900",
+				"sch_dep_dt": "1443105900",
+				"pre_dt": "1443106176",
+				"pre_away": "483"
+			}, {
+				"stop_sequence": "20",
+				"stop_id": "70055",
+				"stop_name": "Beachmont - Inbound",
+				"sch_arr_dt": "1443105960",
+				"sch_dep_dt": "1443105960",
+				"pre_dt": "1443106286",
+				"pre_away": "593"
+			}, {
+				"stop_sequence": "30",
+				"stop_id": "70053",
+				"stop_name": "Suffolk Downs - Inbound",
+				"sch_arr_dt": "1443106080",
+				"sch_dep_dt": "1443106080",
+				"pre_dt": "1443106372",
+				"pre_away": "679"
+			}, {
+				"stop_sequence": "40",
+				"stop_id": "70051",
+				"stop_name": "Orient Heights - Inbound",
+				"sch_arr_dt": "1443106200",
+				"sch_dep_dt": "1443106200",
+				"pre_dt": "1443106462",
+				"pre_away": "769"
+			}, {
+				"stop_sequence": "50",
+				"stop_id": "70049",
+				"stop_name": "Wood Island - Inbound",
+				"sch_arr_dt": "1443106320",
+				"sch_dep_dt": "1443106320",
+				"pre_dt": "1443106646",
+				"pre_away": "953"
+			}, {
+				"stop_sequence": "60",
+				"stop_id": "70047",
+				"stop_name": "Airport - Inbound",
+				"sch_arr_dt": "1443106440",
+				"sch_dep_dt": "1443106440",
+				"pre_dt": "1443106745",
+				"pre_away": "1052"
+			}, {
+				"stop_sequence": "70",
+				"stop_id": "70045",
+				"stop_name": "Maverick - Inbound",
+				"sch_arr_dt": "1443106560",
+				"sch_dep_dt": "1443106560",
+				"pre_dt": "1443106911",
+				"pre_away": "1218"
+			}, {
+				"stop_sequence": "80",
+				"stop_id": "70043",
+				"stop_name": "Aquarium - Inbound",
+				"sch_arr_dt": "1443106680",
+				"sch_dep_dt": "1443106680",
+				"pre_dt": "1443107080",
+				"pre_away": "1387"
+			}, {
+				"stop_sequence": "90",
+				"stop_id": "70041",
+				"stop_name": "State Street - to Bowdoin",
+				"sch_arr_dt": "1443106800",
+				"sch_dep_dt": "1443106800",
+				"pre_dt": "1443107179",
+				"pre_away": "1486"
+			}]
+		}, {
+			"trip_id": "28187745",
+			"trip_name": "10:52 am from Wonderland to Bowdoin",
+			"trip_headsign": "Bowdoin",
+			"stop": [{
+				"stop_sequence": "1",
+				"stop_id": "70060",
+				"stop_name": "Wonderland",
+				"sch_arr_dt": "1443106320",
+				"sch_dep_dt": "1443106320",
+				"pre_dt": "1443106759",
+				"pre_away": "1066"
+			}, {
+				"stop_sequence": "10",
+				"stop_id": "70057",
+				"stop_name": "Revere Beach - Inbound",
+				"sch_arr_dt": "1443106380",
+				"sch_dep_dt": "1443106380",
+				"pre_dt": "1443106795",
+				"pre_away": "1102"
+			}, {
+				"stop_sequence": "20",
+				"stop_id": "70055",
+				"stop_name": "Beachmont - Inbound",
+				"sch_arr_dt": "1443106440",
+				"sch_dep_dt": "1443106440",
+				"pre_dt": "1443106905",
+				"pre_away": "1212"
+			}, {
+				"stop_sequence": "30",
+				"stop_id": "70053",
+				"stop_name": "Suffolk Downs - Inbound",
+				"sch_arr_dt": "1443106560",
+				"sch_dep_dt": "1443106560",
+				"pre_dt": "1443106990",
+				"pre_away": "1297"
+			}, {
+				"stop_sequence": "40",
+				"stop_id": "70051",
+				"stop_name": "Orient Heights - Inbound",
+				"sch_arr_dt": "1443106680",
+				"sch_dep_dt": "1443106680",
+				"pre_dt": "1443107080",
+				"pre_away": "1387"
+			}, {
+				"stop_sequence": "50",
+				"stop_id": "70049",
+				"stop_name": "Wood Island - Inbound",
+				"sch_arr_dt": "1443106800",
+				"sch_dep_dt": "1443106800",
+				"pre_dt": "1443107264",
+				"pre_away": "1571"
+			}, {
+				"stop_sequence": "60",
+				"stop_id": "70047",
+				"stop_name": "Airport - Inbound",
+				"sch_arr_dt": "1443106920",
+				"sch_dep_dt": "1443106920",
+				"pre_dt": "1443107363",
+				"pre_away": "1670"
+			}, {
+				"stop_sequence": "70",
+				"stop_id": "70045",
+				"stop_name": "Maverick - Inbound",
+				"sch_arr_dt": "1443107040",
+				"sch_dep_dt": "1443107040",
+				"pre_dt": "1443107529",
+				"pre_away": "1836"
+			}, {
+				"stop_sequence": "80",
+				"stop_id": "70043",
+				"stop_name": "Aquarium - Inbound",
+				"sch_arr_dt": "1443107160",
+				"sch_dep_dt": "1443107160",
+				"pre_dt": "1443107698",
+				"pre_away": "2005"
+			}, {
+				"stop_sequence": "90",
+				"stop_id": "70041",
+				"stop_name": "State Street - to Bowdoin",
+				"sch_arr_dt": "1443107220",
+				"sch_dep_dt": "1443107220",
+				"pre_dt": "1443107797",
+				"pre_away": "2104"
+			}]
+		}]
+	}, {
+		"direction_id": "1",
+		"direction_name": "Eastbound",
+		"trip": [{
+			"trip_id": "28187744",
+			"trip_name": "10:23 am from Bowdoin to Wonderland",
+			"trip_headsign": "Wonderland",
+			"vehicle": {
+				"vehicle_id": "0755",
+				"vehicle_lat": "42.37185",
+				"vehicle_lon": "-71.03648",
+				"vehicle_bearing": "45",
+				"vehicle_timestamp": "1443105669"
+			},
+			"stop": [{
+				"stop_sequence": "50",
+				"stop_id": "70048",
+				"stop_name": "Airport - Outbound",
+				"sch_arr_dt": "1443105120",
+				"sch_dep_dt": "1443105120",
+				"pre_dt": "1443105729",
+				"pre_away": "36"
+			}, {
+				"stop_sequence": "60",
+				"stop_id": "70050",
+				"stop_name": "Wood Island - Outbound",
+				"sch_arr_dt": "1443105240",
+				"sch_dep_dt": "1443105240",
+				"pre_dt": "1443105833",
+				"pre_away": "140"
+			}, {
+				"stop_sequence": "70",
+				"stop_id": "70052",
+				"stop_name": "Orient Heights - Outbound",
+				"sch_arr_dt": "1443105360",
+				"sch_dep_dt": "1443105360",
+				"pre_dt": "1443106086",
+				"pre_away": "393"
+			}, {
+				"stop_sequence": "80",
+				"stop_id": "70054",
+				"stop_name": "Suffolk Downs - Outbound",
+				"sch_arr_dt": "1443105480",
+				"sch_dep_dt": "1443105480",
+				"pre_dt": "1443106178",
+				"pre_away": "485"
+			}, {
+				"stop_sequence": "90",
+				"stop_id": "70056",
+				"stop_name": "Beachmont - Outbound",
+				"sch_arr_dt": "1443105600",
+				"sch_dep_dt": "1443105600",
+				"pre_dt": "1443106267",
+				"pre_away": "574"
+			}, {
+				"stop_sequence": "100",
+				"stop_id": "70058",
+				"stop_name": "Revere Beach - Outbound",
+				"sch_arr_dt": "1443105720",
+				"sch_dep_dt": "1443105720",
+				"pre_dt": "1443106382",
+				"pre_away": "689"
+			}, {
+				"stop_sequence": "110",
+				"stop_id": "70060",
+				"stop_name": "Wonderland",
+				"sch_arr_dt": "1443105840",
+				"sch_dep_dt": "1443105840",
+				"pre_dt": "1443106484",
+				"pre_away": "791"
+			}]
+		}, {
+			"trip_id": "28187776",
+			"trip_name": "10:32 am from Bowdoin to Wonderland",
+			"trip_headsign": "Wonderland",
+			"stop": [{
+				"stop_sequence": "1",
+				"stop_id": "70038",
+				"stop_name": "Bowdoin",
+				"sch_arr_dt": "1443105120",
+				"sch_dep_dt": "1443105120",
+				"pre_dt": "1443105824",
+				"pre_away": "131"
+			}, {
+				"stop_sequence": "20",
+				"stop_id": "70042",
+				"stop_name": "State Street - to Wonderland",
+				"sch_arr_dt": "1443105240",
+				"sch_dep_dt": "1443105240",
+				"pre_dt": "1443105903",
+				"pre_away": "210"
+			}, {
+				"stop_sequence": "30",
+				"stop_id": "70044",
+				"stop_name": "Aquarium - Outbound",
+				"sch_arr_dt": "1443105360",
+				"sch_dep_dt": "1443105360",
+				"pre_dt": "1443105994",
+				"pre_away": "301"
+			}, {
+				"stop_sequence": "40",
+				"stop_id": "70046",
+				"stop_name": "Maverick - Outbound",
+				"sch_arr_dt": "1443105540",
+				"sch_dep_dt": "1443105540",
+				"pre_dt": "1443106148",
+				"pre_away": "455"
+			}, {
+				"stop_sequence": "50",
+				"stop_id": "70048",
+				"stop_name": "Airport - Outbound",
+				"sch_arr_dt": "1443105660",
+				"sch_dep_dt": "1443105660",
+				"pre_dt": "1443106283",
+				"pre_away": "590"
+			}, {
+				"stop_sequence": "60",
+				"stop_id": "70050",
+				"stop_name": "Wood Island - Outbound",
+				"sch_arr_dt": "1443105780",
+				"sch_dep_dt": "1443105780",
+				"pre_dt": "1443106387",
+				"pre_away": "694"
+			}, {
+				"stop_sequence": "70",
+				"stop_id": "70052",
+				"stop_name": "Orient Heights - Outbound",
+				"sch_arr_dt": "1443105900",
+				"sch_dep_dt": "1443105900",
+				"pre_dt": "1443106640",
+				"pre_away": "947"
+			}, {
+				"stop_sequence": "80",
+				"stop_id": "70054",
+				"stop_name": "Suffolk Downs - Outbound",
+				"sch_arr_dt": "1443106020",
+				"sch_dep_dt": "1443106020",
+				"pre_dt": "1443106732",
+				"pre_away": "1039"
+			}, {
+				"stop_sequence": "90",
+				"stop_id": "70056",
+				"stop_name": "Beachmont - Outbound",
+				"sch_arr_dt": "1443106140",
+				"sch_dep_dt": "1443106140",
+				"pre_dt": "1443106821",
+				"pre_away": "1128"
+			}, {
+				"stop_sequence": "100",
+				"stop_id": "70058",
+				"stop_name": "Revere Beach - Outbound",
+				"sch_arr_dt": "1443106260",
+				"sch_dep_dt": "1443106260",
+				"pre_dt": "1443106936",
+				"pre_away": "1243"
+			}, {
+				"stop_sequence": "110",
+				"stop_id": "70060",
+				"stop_name": "Wonderland",
+				"sch_arr_dt": "1443106380",
+				"sch_dep_dt": "1443106380",
+				"pre_dt": "1443107038",
+				"pre_away": "1345"
+			}]
+		}, {
+			"trip_id": "28187837",
+			"trip_name": "10:41 am from Bowdoin to Wonderland",
+			"trip_headsign": "Wonderland",
+			"stop": [{
+				"stop_sequence": "1",
+				"stop_id": "70038",
+				"stop_name": "Bowdoin",
+				"sch_arr_dt": "1443105660",
+				"sch_dep_dt": "1443105660",
+				"pre_dt": "1443105952",
+				"pre_away": "259"
+			}, {
+				"stop_sequence": "20",
+				"stop_id": "70042",
+				"stop_name": "State Street - to Wonderland",
+				"sch_arr_dt": "1443105780",
+				"sch_dep_dt": "1443105780",
+				"pre_dt": "1443106031",
+				"pre_away": "338"
+			}, {
+				"stop_sequence": "30",
+				"stop_id": "70044",
+				"stop_name": "Aquarium - Outbound",
+				"sch_arr_dt": "1443105900",
+				"sch_dep_dt": "1443105900",
+				"pre_dt": "1443106122",
+				"pre_away": "429"
+			}, {
+				"stop_sequence": "40",
+				"stop_id": "70046",
+				"stop_name": "Maverick - Outbound",
+				"sch_arr_dt": "1443106080",
+				"sch_dep_dt": "1443106080",
+				"pre_dt": "1443106276",
+				"pre_away": "583"
+			}, {
+				"stop_sequence": "50",
+				"stop_id": "70048",
+				"stop_name": "Airport - Outbound",
+				"sch_arr_dt": "1443106200",
+				"sch_dep_dt": "1443106200",
+				"pre_dt": "1443106411",
+				"pre_away": "718"
+			}, {
+				"stop_sequence": "60",
+				"stop_id": "70050",
+				"stop_name": "Wood Island - Outbound",
+				"sch_arr_dt": "1443106320",
+				"sch_dep_dt": "1443106320",
+				"pre_dt": "1443106515",
+				"pre_away": "822"
+			}, {
+				"stop_sequence": "70",
+				"stop_id": "70052",
+				"stop_name": "Orient Heights - Outbound",
+				"sch_arr_dt": "1443106440",
+				"sch_dep_dt": "1443106440",
+				"pre_dt": "1443106768",
+				"pre_away": "1075"
+			}, {
+				"stop_sequence": "80",
+				"stop_id": "70054",
+				"stop_name": "Suffolk Downs - Outbound",
+				"sch_arr_dt": "1443106560",
+				"sch_dep_dt": "1443106560",
+				"pre_dt": "1443106860",
+				"pre_away": "1167"
+			}, {
+				"stop_sequence": "90",
+				"stop_id": "70056",
+				"stop_name": "Beachmont - Outbound",
+				"sch_arr_dt": "1443106680",
+				"sch_dep_dt": "1443106680",
+				"pre_dt": "1443106949",
+				"pre_away": "1256"
+			}, {
+				"stop_sequence": "100",
+				"stop_id": "70058",
+				"stop_name": "Revere Beach - Outbound",
+				"sch_arr_dt": "1443106800",
+				"sch_dep_dt": "1443106800",
+				"pre_dt": "1443107064",
+				"pre_away": "1371"
+			}, {
+				"stop_sequence": "110",
+				"stop_id": "70060",
+				"stop_name": "Wonderland",
+				"sch_arr_dt": "1443106920",
+				"sch_dep_dt": "1443106920",
+				"pre_dt": "1443107166",
+				"pre_away": "1473"
+			}]
+		}, {
+			"trip_id": "28187932",
+			"trip_name": "10:49 am from Bowdoin to Wonderland",
+			"trip_headsign": "Wonderland",
+			"stop": [{
+				"stop_sequence": "1",
+				"stop_id": "70038",
+				"stop_name": "Bowdoin",
+				"sch_arr_dt": "1443106140",
+				"sch_dep_dt": "1443106140",
+				"pre_dt": "1443106418",
+				"pre_away": "725"
+			}, {
+				"stop_sequence": "20",
+				"stop_id": "70042",
+				"stop_name": "State Street - to Wonderland",
+				"sch_arr_dt": "1443106260",
+				"sch_dep_dt": "1443106260",
+				"pre_dt": "1443106497",
+				"pre_away": "804"
+			}, {
+				"stop_sequence": "30",
+				"stop_id": "70044",
+				"stop_name": "Aquarium - Outbound",
+				"sch_arr_dt": "1443106380",
+				"sch_dep_dt": "1443106380",
+				"pre_dt": "1443106588",
+				"pre_away": "895"
+			}, {
+				"stop_sequence": "40",
+				"stop_id": "70046",
+				"stop_name": "Maverick - Outbound",
+				"sch_arr_dt": "1443106560",
+				"sch_dep_dt": "1443106560",
+				"pre_dt": "1443106742",
+				"pre_away": "1049"
+			}, {
+				"stop_sequence": "50",
+				"stop_id": "70048",
+				"stop_name": "Airport - Outbound",
+				"sch_arr_dt": "1443106680",
+				"sch_dep_dt": "1443106680",
+				"pre_dt": "1443106877",
+				"pre_away": "1184"
+			}, {
+				"stop_sequence": "60",
+				"stop_id": "70050",
+				"stop_name": "Wood Island - Outbound",
+				"sch_arr_dt": "1443106800",
+				"sch_dep_dt": "1443106800",
+				"pre_dt": "1443106981",
+				"pre_away": "1288"
+			}, {
+				"stop_sequence": "70",
+				"stop_id": "70052",
+				"stop_name": "Orient Heights - Outbound",
+				"sch_arr_dt": "1443106920",
+				"sch_dep_dt": "1443106920",
+				"pre_dt": "1443107234",
+				"pre_away": "1541"
+			}, {
+				"stop_sequence": "80",
+				"stop_id": "70054",
+				"stop_name": "Suffolk Downs - Outbound",
+				"sch_arr_dt": "1443107040",
+				"sch_dep_dt": "1443107040",
+				"pre_dt": "1443107326",
+				"pre_away": "1633"
+			}, {
+				"stop_sequence": "90",
+				"stop_id": "70056",
+				"stop_name": "Beachmont - Outbound",
+				"sch_arr_dt": "1443107160",
+				"sch_dep_dt": "1443107160",
+				"pre_dt": "1443107415",
+				"pre_away": "1722"
+			}, {
+				"stop_sequence": "100",
+				"stop_id": "70058",
+				"stop_name": "Revere Beach - Outbound",
+				"sch_arr_dt": "1443107280",
+				"sch_dep_dt": "1443107280",
+				"pre_dt": "1443107530",
+				"pre_away": "1837"
+			}, {
+				"stop_sequence": "110",
+				"stop_id": "70060",
+				"stop_name": "Wonderland",
+				"sch_arr_dt": "1443107400",
+				"sch_dep_dt": "1443107400",
+				"pre_dt": "1443107632",
+				"pre_away": "1939"
+			}]
+		}, {
+			"trip_id": "28187646",
+			"trip_name": "10:58 am from Bowdoin to Wonderland",
+			"trip_headsign": "Wonderland",
+			"stop": [{
+				"stop_sequence": "1",
+				"stop_id": "70038",
+				"stop_name": "Bowdoin",
+				"sch_arr_dt": "1443106680",
+				"sch_dep_dt": "1443106680",
+				"pre_dt": "1443106782",
+				"pre_away": "1089"
+			}, {
+				"stop_sequence": "20",
+				"stop_id": "70042",
+				"stop_name": "State Street - to Wonderland",
+				"sch_arr_dt": "1443106860",
+				"sch_dep_dt": "1443106860",
+				"pre_dt": "1443106861",
+				"pre_away": "1168"
+			}, {
+				"stop_sequence": "30",
+				"stop_id": "70044",
+				"stop_name": "Aquarium - Outbound",
+				"sch_arr_dt": "1443106980",
+				"sch_dep_dt": "1443106980",
+				"pre_dt": "1443106952",
+				"pre_away": "1259"
+			}, {
+				"stop_sequence": "40",
+				"stop_id": "70046",
+				"stop_name": "Maverick - Outbound",
+				"sch_arr_dt": "1443107160",
+				"sch_dep_dt": "1443107160",
+				"pre_dt": "1443107106",
+				"pre_away": "1413"
+			}, {
+				"stop_sequence": "50",
+				"stop_id": "70048",
+				"stop_name": "Airport - Outbound",
+				"sch_arr_dt": "1443107280",
+				"sch_dep_dt": "1443107280",
+				"pre_dt": "1443107241",
+				"pre_away": "1548"
+			}, {
+				"stop_sequence": "60",
+				"stop_id": "70050",
+				"stop_name": "Wood Island - Outbound",
+				"sch_arr_dt": "1443107400",
+				"sch_dep_dt": "1443107400",
+				"pre_dt": "1443107345",
+				"pre_away": "1652"
+			}, {
+				"stop_sequence": "70",
+				"stop_id": "70052",
+				"stop_name": "Orient Heights - Outbound",
+				"sch_arr_dt": "1443107520",
+				"sch_dep_dt": "1443107520",
+				"pre_dt": "1443107598",
+				"pre_away": "1905"
+			}, {
+				"stop_sequence": "80",
+				"stop_id": "70054",
+				"stop_name": "Suffolk Downs - Outbound",
+				"sch_arr_dt": "1443107640",
+				"sch_dep_dt": "1443107640",
+				"pre_dt": "1443107690",
+				"pre_away": "1997"
+			}, {
+				"stop_sequence": "90",
+				"stop_id": "70056",
+				"stop_name": "Beachmont - Outbound",
+				"sch_arr_dt": "1443107760",
+				"sch_dep_dt": "1443107760",
+				"pre_dt": "1443107779",
+				"pre_away": "2086"
+			}, {
+				"stop_sequence": "100",
+				"stop_id": "70058",
+				"stop_name": "Revere Beach - Outbound",
+				"sch_arr_dt": "1443107880",
+				"sch_dep_dt": "1443107880",
+				"pre_dt": "1443107894",
+				"pre_away": "2201"
+			}, {
+				"stop_sequence": "110",
+				"stop_id": "70060",
+				"stop_name": "Wonderland",
+				"sch_arr_dt": "1443108000",
+				"sch_dep_dt": "1443108000",
+				"pre_dt": "1443107996",
+				"pre_away": "2303"
+			}]
+		}]
+	}],
+	"alert_headers": []
+}

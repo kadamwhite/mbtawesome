@@ -1,0 +1,289 @@
+GET /developer/api/v2/alertsbyroute?route=Orange&api_key=wX9NwuHnZU2ToO7GmGR9uw&format=json
+accept: */*
+host: realtime.mbta.com
+accept-encoding: gzip, deflate
+
+HTTP/1.1 200 OK
+cache-control: no-cache
+pragma: no-cache
+content-type: application/json; charset=utf-8
+expires: -1
+server: Microsoft-IIS/7.5
+x-aspnet-version: 4.0.30319
+x-powered-by: ASP.NET
+date: Thu, 24 Sep 2015 14:41:36 GMT
+connection: close
+content-length: 8933
+
+{
+	"alerts": [{
+		"alert_id": 88088,
+		"effect_name": "Station Issue",
+		"effect": "UNKNOWN_EFFECT",
+		"cause_name": "construction",
+		"cause": "CONSTRUCTION",
+		"header_text": "Downtown Crossing: The Franklin St entrance will be closed on Monday, August 10, and will remain closed until Summer 2016 to accommodate ongoing construction for the Millennium Tower Project.",
+		"short_header_text": "Downtown Crossing: The Franklin St entrance will be closed on Mon, Aug 10, and will remain closed until Summer 2016 due to construction",
+		"description_text": "Customers desiring to enter and exit at Downtown Crossing should instead utilize entrances and exits on Summer, Chauncy, and Arch Streets. \r\n\r\nCustomers desiring elevator access should note that Elevator 891 will be closed during this construction. If exiting, travel down the concourse to use the elevator through the glass doors and to the left of the CharlieCard Store. This elevator will take you to the lobby of 101 Arch Street. If boarding, travel to 101 Arch Street. Take the elevator in the back left corner of the lobby to the concourse. Take a right to find the Oak Grove-bound platform ahead. Customers can also enter and exit the station using the Roche Bros. elevator on Summer St. (during store hours only).\r\n\r\nAffected routes:\r\nOrange Line\r\nRed Line (Ashmont branch)\r\nRed Line (Braintree branch)",
+		"severity": "Minor",
+		"created_dt": "1438373070",
+		"last_modified_dt": "1439920033",
+		"service_effect_text": "Change at Downtown Crossing",
+		"timeframe_text": "ongoing",
+		"alert_lifecycle": "Ongoing",
+		"effect_periods": [{
+			"effect_start": "1439195400",
+			"effect_end": ""
+		}],
+		"affected_services": {
+			"services": [{
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70020",
+				"stop_name": "Downtown Crossing - to Forest Hills"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70021",
+				"stop_name": "Downtown Crossing - to Oak Grove"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Red",
+				"route_name": "Red Line",
+				"stop_id": "70077",
+				"stop_name": "Downtown Crossing - to Ashmont/Braintree"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Red",
+				"route_name": "Red Line",
+				"stop_id": "70078",
+				"stop_name": "Downtown Crossing - to Alewife"
+			}],
+			"elevators": []
+		}
+	}, {
+		"alert_id": 92997,
+		"effect_name": "Shuttle",
+		"effect": "DETOUR",
+		"cause_name": "construction",
+		"cause": "CONSTRUCTION",
+		"header_text": "Buses replacing Orange Line service between Forest Hills and Ruggles Stations on October 17-18 from start to end of service.",
+		"short_header_text": "Buses replacing Orange Line service between Forest Hills and Ruggles Stations on October 17-18 from start to end of service.",
+		"url": "http://www.mbta.com/about_the_mbta/news_events/?id=6442454500&month=&year=",
+		"description_text": "Due to crews performing necessary work as part of the Winter Resiliency Improvement Program, buses will replace Orange Line trains between Forest Hills and Ruggles Stations in both directions from start to end of service beginning Saturday, October 17, through Sunday, October 18. Regular Orange Line train service will resume at the start of service on Monday, October 19. All shuttle bus stops are accessible for persons with disabilities. \r\n\r\nShuttling the following stops: \r\nRuggles\r\nRoxbury Crossing\r\nJackson Square\r\nStony Brook\r\nGreen Street\r\nForest Hills",
+		"severity": "Severe",
+		"created_dt": "1441809730",
+		"last_modified_dt": "1442571262",
+		"service_effect_text": "Orange Line shuttle",
+		"timeframe_text": "October 17-18",
+		"alert_lifecycle": "Upcoming",
+		"effect_periods": [{
+			"effect_start": "1445070600",
+			"effect_end": "1445236200"
+		}],
+		"affected_services": {
+			"services": [{
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70001",
+				"stop_name": "Forest Hills Orange Line"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70002",
+				"stop_name": "Green Street - Outbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70003",
+				"stop_name": "Green Street - Inbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70004",
+				"stop_name": "Stony Brook - Outbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70005",
+				"stop_name": "Stony Brook - Inbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70006",
+				"stop_name": "Jackson Square - Outbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70007",
+				"stop_name": "Jackson Square - Inbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70008",
+				"stop_name": "Roxbury Crossing - Outbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70009",
+				"stop_name": "Roxbury Crossing - Inbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70010",
+				"stop_name": "Ruggles - Outbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70011",
+				"stop_name": "Ruggles - Inbound"
+			}],
+			"elevators": []
+		}
+	}, {
+		"alert_id": 94478,
+		"effect_name": "Shuttle",
+		"effect": "DETOUR",
+		"cause_name": "construction",
+		"cause": "CONSTRUCTION",
+		"header_text": "Buses replacing Orange Line service between Oak Grove and Sullivan Stations on September 23-24 and 27-30 as well as October 1, 4-8, 11-15, 19-22, and 25-29 from approximately 8:45 p.m. through the end of service",
+		"short_header_text": "Buses replacing Orange Ln between Oak Grove & Sullivan on Sep 23-24 & 27-30 & Oct 1, 4-8, 11-15, 19-22, & 25-29 from about 8:45pm until clos",
+		"url": "http://www.mbta.com/about_the_mbta/news_events/?id=6442454500&month=&year=",
+		"description_text": "Due to crews performing work as part of the Winter Resiliency Improvement Program, alternate shuttle buses will replace Orange Line trains in both directions from Sullivan to Oak Grove Stations beginning at approximately 8:45 p.m. through the end of service on the following dates: \r\n\r\n- Wednesday, September 23, 2015, through Thursday, September 24, 2015. \r\n- Sunday, September 27, 2015, through Thursday, October 1, 2015.\r\n- Sunday, October 4, 2015, through Thursday, October 8, 2015.\r\n- Sunday, October 11, 2015, through Thursday, October 15, 2015\r\n- Monday, October 19, 2015, through Thursday, October 22, 2015\r\n- Sunday, October 25, 2015, through Thursday, October 29, 2015.\r\n\r\nRegular Orange Line trains will resume at the start of service the next day. All shuttle bus stops are accessible for persons with disabilities. \r\n\r\nShuttling the following stops:\r\nOak Grove\r\nMalden Center\r\nWellington\r\nAssembly\r\nSullivan Square",
+		"severity": "Severe",
+		"created_dt": "1442590149",
+		"last_modified_dt": "1443003332",
+		"service_effect_text": "Orange Line shuttle",
+		"timeframe_text": "starting later today",
+		"alert_lifecycle": "Upcoming",
+		"recurrence_text": "5 days a week",
+		"effect_periods": [{
+			"effect_start": "1443141900",
+			"effect_end": "1443162600"
+		}, {
+			"effect_start": "1443401100",
+			"effect_end": "1443421800"
+		}, {
+			"effect_start": "1443487500",
+			"effect_end": "1443508200"
+		}, {
+			"effect_start": "1443573900",
+			"effect_end": "1443594600"
+		}, {
+			"effect_start": "1443660300",
+			"effect_end": "1443681000"
+		}, {
+			"effect_start": "1443746700",
+			"effect_end": "1443767400"
+		}, {
+			"effect_start": "1444005900",
+			"effect_end": "1444026600"
+		}, {
+			"effect_start": "1444092300",
+			"effect_end": "1444113000"
+		}, {
+			"effect_start": "1444178700",
+			"effect_end": "1444199400"
+		}, {
+			"effect_start": "1444265100",
+			"effect_end": "1444285800"
+		}],
+		"affected_services": {
+			"services": [{
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70030",
+				"stop_name": "Sullivan Square - Inbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70031",
+				"stop_name": "Sullivan Square - Outbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70032",
+				"stop_name": "Wellington - Inbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70033",
+				"stop_name": "Wellington - Outbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70034",
+				"stop_name": "Malden - Inbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70035",
+				"stop_name": "Malden - Outbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70036",
+				"stop_name": "Oak Grove"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70278",
+				"stop_name": "Assembly - Inbound"
+			}, {
+				"route_type": "1",
+				"mode_name": "Subway",
+				"route_id": "Orange",
+				"route_name": "Orange Line",
+				"stop_id": "70279",
+				"stop_name": "Assembly - Outbound"
+			}],
+			"elevators": []
+		}
+	}],
+	"route_id": "Orange",
+	"route_name": "Orange Line"
+}
