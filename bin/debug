@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 var debug = require( 'debug' )( 'init' );
-var app = require( '../server' );
 var _ = require( 'lodash' );
 
 // Get any command-line arguments
@@ -25,11 +24,25 @@ var path = require( 'path' );
 Replay.fixtures = path.join( __dirname, '../fixtures/' + fixtureDir );
 
 // Optionally set record mode from the CLI
-if ( process.argv.record || process.argv.r ) {
+if ( argv.record || argv.r ) {
+  console.log( 'Recording fixture "' + fixtureDir + '"...' );
   Replay.mode = 'record';
+} else {
+  console.log( 'Replaying fixture "' + fixtureDir + '"...' );
+  config.api.key = 'wX9NwuHnZU2ToO7GmGR9uw';
 }
 
-app.set( 'port', process.env.PORT || 3000 );
+// Require in, configure & load the server
+var app = require( '../server' );
+var port = 3000;
+if ( process.env.PORT ) {
+  port = process.env.PORT;
+} else if ( _.isString( argv.p ) ) {
+  port = argv.p;
+} else if ( _.isString( argv.port ) ) {
+  port = argv.port;
+}
+app.set( 'port', port );
 
 var server = app.listen( app.get( 'port' ), function() {
   debug( 'Express server listening on port ' + server.address().port );
