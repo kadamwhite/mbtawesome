@@ -14,7 +14,7 @@
   <p class="transfers">
     {%each station.transfer as transfer %}
     {%if transfer | supported-line %}
-    <a href="/{{ transfer }}">
+    <a href="/{{ transfer | transfer-station station.station }}">
     {%endif %}
     <span class="xfer-icon xfer-{{ transfer }}" title="{{ transfer | capitalize }} Line">
       <span class="sr">{{ transfer | capitalize }} Line</span>
