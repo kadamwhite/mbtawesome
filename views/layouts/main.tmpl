@@ -18,17 +18,22 @@
       <a href="/">
         <h1 class="site-title">MBTAwesome</h1>
       </a>
+      <a href="/about" class="about-link" title="About MBTAwesome">
+        <p><strong>?</strong></p>
+      </a>
     </nav>
 
     {%partial content %}
 
     <div class="footer">
       <p>
-        Built by <a href="https://twitter.com/kadamwhite">K. Adam White</a>
-        at <a href="http://bocoup.com">Bocoup</a>
+        <small>&copy; 2015 <a href="https://twitter.com/kadamwhite">K. Adam White</a>
+        &bull;
+        <a href="/about">About MBTAwesome</a></small>
       </p>
-      <p>Follow <a href="https://twitter.com/mbtawesome">@mbtawesome</a> for app updates!</p>
-      <p>&copy; 2015 <a href="https://twitter.com/kadamwhite">K. Adam White</a></p>
+      <p>
+        <small>Built in Boston at <a href="http://bocoup.com">Bocoup</a></small>
+      </p>
     </div>
 
     <script async src="/js/app{{ '.min' | if-prod }}.js"></script>

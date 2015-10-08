@@ -42,6 +42,21 @@ a {
   }
 }
 
+.color-square {
+  border: 5px solid;
+  border-top-color: $mbta-green;
+  border-right-color: $mbta-blue;
+  border-bottom-color: $mbta-orange;
+  border-left-color: $mbta-red;
+  background: center center no-repeat;
+}
+p.color-square {
+  @extend h4;
+  display: inline-block;
+  padding: 10px;
+  margin-bottom: 0;
+}
+
 // Header
 // ==============================================
 
@@ -61,7 +76,30 @@ a {
     font-size: 2.5rem;
     line-height: 1.5;
     +respond-above($md-screen) { font-size: 3.5rem; }
-    +respond-above($lg-screen) { font-size: 4.5rem; }
+  }
+
+  a {
+    display: inline-block;
+  }
+
+  .about-link {
+    float: right;
+    @extend .color-square;
+    border-width: 1px;
+    border-radius: 2rem;
+    width: 3.5rem;
+    margin-left: -3.5rem;
+    text-align: center;
+    +respond-above($md-screen) {
+      width: 4.5rem;
+      margin-left: -4.5rem;
+      height: 4.5rem;
+      border-radius: 3rem;
+
+      p {
+        line-height: 4.5rem;
+      }
+    }
   }
 
   h1 {
@@ -76,6 +114,7 @@ a {
       display: inline-block;
     }
     +respond-above($lg-screen) {
+      font-size: 4.5rem;
       padding-left: 80px;
       background-size: 60px 60px;
       -webkit-background-size: 60px 60px;
@@ -569,6 +608,13 @@ xfer-border( $color, $color2 = $color ) {
   }
 }
 
+// About Page
+// ==============================================
+.about-page {
+  max-width: 650px;
+  margin: auto;
+}
+
 // Error Pages
 // ==============================================
 
@@ -576,12 +622,7 @@ xfer-border( $color, $color2 = $color ) {
   width: 175px;
   height: 175px;
   margin: 0 auto 3.5rem;
-  border: 5px solid;
-  border-top-color: $mbta-green;
-  border-right-color: $mbta-blue;
-  border-bottom-color: $mbta-orange;
-  border-left-color: $mbta-red;
-  background: center center no-repeat;
+  @extend .color-square;
 }
 
 .error-404 .error-square { background-image: url( '/images/404.png' ); }
