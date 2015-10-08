@@ -14,7 +14,7 @@ var TripsCollection = require( '../../collections/trips' );
 var data = require( '../../data' );
 
 module.exports = {
-  url: '^/:line(red|orange|blue)/:station',
+  url: '^/:line(red|orange|blue|green-b|green-c|green-d|green-e)/:station',
 
   update: function( opts ) {
     this.enter( opts );

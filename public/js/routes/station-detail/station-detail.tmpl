@@ -1,14 +1,14 @@
 <div class="container">
 
-  <h1 class="station-detail {{ line.slug }}">
+  <h1 class="station-detail {{ line.slug | get-color }}">
     {{ station.name }}
   </h1>
 
   <div class="alert-list"></div>
 
-  <hr class="divider-{{ line.slug }}" />
+  <hr class="divider-{{ line.slug | get-color }}" />
 
-  <ul class="arrival-predictions {{ line.slug }}" data-hook="predictions-lists"></ul>
+  <ul class="arrival-predictions {{ line.slug | get-color }}" data-hook="predictions-lists"></ul>
 
   {%if station.transfer %}
   <p class="transfers">
@@ -28,9 +28,9 @@
   {%endif %}
 
   <div class="line">
-    <h2 class="line button {{ line.slug }}">
+    <h2 class="line button {{ line.slug | get-color }}">
       <a href="/{{ line.slug }}">
-        Back to {{ line.slug | capitalize }} Line
+        Back to {{ line.name | capitalize }}
       </a>
     </h2>
   </div>

@@ -218,6 +218,9 @@ coloring( $color ) {
   &.blue  {
     coloring( $mbta-blue );
   }
+  &.green {
+    coloring( $mbta-green );
+  }
 
   ul.branches {
     margin: 0;
@@ -268,7 +271,7 @@ xfer-border( $color, $color2 = $color ) {
     xfer-border( $mbta-silver );
   }
   .xfer-green.xfer-rail {
-    xfer-border( $mbta-rail, $mbta-silver );
+    xfer-border( $mbta-green, $mbta-rail );
   }
   .xfer-orange.xfer-silver {
     xfer-border( $mbta-orange, $mbta-silver );
@@ -525,19 +528,6 @@ xfer-border( $color, $color2 = $color ) {
   }
   span:last-child:after {
     content: "";
-  }
-}
-
-// Green Line
-// ==============================================
-
-.green-line {
-  h2 {
-    text-align: center;
-    br {
-      +respond-above($sm-screen) { display: none; }
-    }
-    +respond-above($sm-screen) { text-align: left}
   }
 }
 

@@ -16,7 +16,7 @@ var LineStatusModel = require( '../../models/line-status' );
 var data = require( '../../data' );
 
 module.exports = {
-  url: '^/:line(red|orange|blue)',
+  url: '^/:line(red|orange|blue|green-b|green-c|green-d|green-e)',
 
   update: function( opts ) {
     this.enter( opts );
@@ -71,7 +71,7 @@ module.exports = {
     // Set the title: we do this here instead of in a `title` function on
     // the router state object because it uses some of the data above
     this.title = pageTitle([
-      lineSlug + ' Line'
+      line.name + ' Overview'
     ]);
 
     analytics.pageView();

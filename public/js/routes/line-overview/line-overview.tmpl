@@ -3,13 +3,13 @@
 
     <h1>{{ line.name }}</h1>
 
-    <hr class="divider-{{ line.slug }}" />
+    <hr class="divider-{{ line.slug | get-color }}" />
 
     <div class="line-status" data-hook="line-status"></div>
 
     <div class="alert-list" data-hook="alert-list"></div>
 
-    <ul class="stations {{ line.slug }}"></ul>
+    <ul class="stations {{ line.slug | get-color }}"></ul>
 
     <small>
       <em>
