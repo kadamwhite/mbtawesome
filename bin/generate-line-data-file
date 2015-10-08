@@ -1,0 +1,150 @@
+#!/usr/bin/env node
+
+/* =========================================================================
+This is a CLI that will take a route_id (specified via --route) and generate
+a file, formatted the way MBTAwesome expects, representing the list of stops
+for that route.
+========================================================================= */
+/*jshint -W106 */ // Disable underscore_case warnings
+
+var debug = require( 'debug' )( 'init' );
+var _ = require( 'lodash' );
+var beautify = require( 'js-beautify' ).js_beautify;
+
+// Get any command-line arguments
+var argv = require( 'minimist' )( process.argv.slice( 2 ) );
+
+var validLines = require( '../server/services/valid-lines' );
+
+var routeId = argv.route.toLowerCase();
+
+// Input validation
+
+if ( ! routeId ) {
+  console.error( 'Missing required argument --route' );
+  process.exit( 1 );
+}
+
+if ( validLines.invalid( routeId ) ) {
+  console.error( routeId + ' is not a valid route_id' );
+  process.exit( 1 );
+}
+
+// Helper method
+
+function formatObjAsStr( obj ) {
+   return beautify( JSON.stringify( obj ), {
+    indent_size: 2
+  })
+  // de-quote object keys
+  .replace( /"(\w+)":/g, '$1:' )
+  // lat & lon should be floats, not strings
+  .replace( /(lat|lon): "([^"]+)"/g, '$1: $2' )
+  // dir property is an integer, not a string
+  .replace( /dir: "([^"]+)"/g, 'dir: $1' )
+  // single-quotes
+  .replace( /"/g, '\'' );
+}
+
+// Request the data for this route
+
+var config = require( '../server/services/config' );
+var api = require( 'mbtapi' ).create({
+  apiKey: config.api.key
+});
+
+var formattedRouteId = validLines.format( routeId );
+
+api.stopsByRoute( formattedRouteId ).then(function( results ) {
+  // The format we get back from the API looks like this:
+  //
+  //     {
+  //       direction: [
+  //         { direction_id: '0', direction_name: 'Westbound', stop: [
+  //           {
+  //             stop_order: '1',
+  //             stop_id: '70210',
+  //             stop_name: 'Lechmere - Inbound',
+  //             parent_station: 'place-lech',
+  //             parent_station_name: 'Lechmere',
+  //             stop_lat: '42.370772',
+  //             stop_lon: '-71.076536'
+  //           }, ...
+  //         ] },
+  //         { direction_id: '1', direction_name: 'Eastbound', stop: [Array] }
+  //       ]
+  //     }
+  //
+  // The format we want to generate looks like this:
+  //
+  //     [{
+  //       name: 'Aquarium',
+  //       station: 'place-aqucl',
+  //       position: { lat: 42.3598, lon: -71.0517 },
+  //       stops: [
+  //         { dir: 0, dirName: 'Westbound', id: '70043' },
+  //         { dir: 1, dirName: 'Eastbound', id: '70044' }
+  //       ]
+  //     }]
+
+  var directions = results.direction;
+
+  // Convert the 0-indexed direction into the master list
+  var stations = directions[0].stop.map(function( stop ) {
+    return {
+      name: stop.parent_station_name,
+      station: stop.parent_station,
+      position: {
+        lat: stop.stop_lat,
+        lon: stop.stop_lon
+      },
+      stops: [{
+        dir: directions[ 0 ].direction_id,
+        dirName: directions[ 0 ].direction_name,
+        id: stop.stop_id
+      }]
+    };
+  });
+
+  // Iterate through the remaining directions' stops, adding their data on to
+  // the relevant item in the generated stations array
+  for ( var i = 1; i < directions.length; i++ ) {
+    directions[i].stop.forEach(function( stop ) {
+      var stationToAugment = _.findWhere( stations, {
+        station: stop.parent_station
+      });
+
+      if ( ! stationToAugment ) {
+        console.error( [
+          'Station',
+          stop.parent_station,
+          'did not exist in the other direction!'
+        ].join( ' ' ) );
+        return;
+      }
+
+      stationToAugment.stops.push({
+        dir: directions[i].direction_id,
+        dirName: directions[i].direction_name,
+        id: stop.stop_id
+      });
+    });
+  }
+
+  console.log( [
+    '/*jshint -W106 */ // Disable underscore_case warnings',
+    '\'use strict\';',
+    '',
+    'var stations = ' + formatObjAsStr( stations ) + ';',
+    '',
+    'module.exports = {',
+    // This will sometimes print e.g. "Gree-C Line", which needs manual cleanup
+    '  name: \'' + formattedRouteId + ' Line\',',
+    '  slug: \'' + routeId + '\',',
+    '  routes: [ \'' + formattedRouteId + '\' ],',
+    '  stations: stations',
+    '};'
+  ].join( '\n' ) );
+});
+
+
