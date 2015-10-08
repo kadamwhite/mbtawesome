@@ -42,7 +42,6 @@ a {
   }
 }
 
-
 // Header
 // ==============================================
 
@@ -54,6 +53,7 @@ a {
   margin-bottom: 25px;
   width: 100%;
   border-bottom: 1px solid #e1e1e1;
+  +respond-above($md-screen) { text-align: center; }
 
   h1, p {
     margin: 0;
@@ -61,6 +61,25 @@ a {
     font-size: 2.5rem;
     line-height: 1.5;
     +respond-above($md-screen) { font-size: 3.5rem; }
+    +respond-above($lg-screen) { font-size: 4.5rem; }
+  }
+
+  h1 {
+    padding-left: 35px;
+    background: url( '/images/mbtawesome-icon.svg' ) left center no-repeat;
+    background-size: 30px 30px;
+    -webkit-background-size: 30px 30px;
+    +respond-above($md-screen) {
+      padding-left: 50px;
+      background-size: 40px 40px;
+      -webkit-background-size: 40px 40px;
+      display: inline-block;
+    }
+    +respond-above($lg-screen) {
+      padding-left: 80px;
+      background-size: 60px 60px;
+      -webkit-background-size: 60px 60px;
+    }
   }
 }
 
@@ -96,9 +115,13 @@ a {
 }
 
 .top-nav {
+  position: fixed;
+  z-index: 1;
+  top: 0;
   padding: 5px 10px;
   +respond-above($sm-screen) { padding: 10px 20px; }
   +respond-above($md-screen) { padding: 20px 20px; }
+  background: white;
 }
 
 // Container
@@ -106,6 +129,10 @@ a {
 
 .container {
   min-height: 300px;
+  margin-top: 5em;
+  +respond-above($sm-screen) { margin-top: 6em; }
+  +respond-above($md-screen) { margin-top: 8em; }
+  +respond-above($lg-screen) { margin-top: 9em; }
 }
 
 // List Buttons
@@ -187,7 +214,7 @@ coloring( $color ) {
     }
     +respond-above($lg-screen) {
       font-size: 3rem;
-      padding: 8rem 0;
+      padding: 7rem 0;
     }
   }
 }
