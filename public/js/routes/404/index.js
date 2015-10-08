@@ -13,6 +13,7 @@ module.exports = {
     $( '.container' ).replaceWith( view.el );
 
     analytics.pageView();
+    window.scrollTo( 0, 0 );
   },
 
   title: pageTitle([

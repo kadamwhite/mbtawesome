@@ -75,5 +75,6 @@ module.exports = {
     ]);
 
     analytics.pageView();
+    window.scrollTo( 0, 0 );
   }
 };
