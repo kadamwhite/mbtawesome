@@ -192,6 +192,14 @@ coloring( $color ) {
   }
 }
 
+// Custom positioning for home screen links
+ul.lines {
+  margin-bottom: 0;
+  +respond-above($sm-screen) {
+    margin-bottom: 1em;
+  }
+}
+
 // Per-list coloring (class goes on <ul>)
 .stations {
 

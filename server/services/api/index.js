@@ -58,10 +58,7 @@ function predictionsByLine( lineSlug ) {
   var routeId = validLines.format( lineSlug );
 
   return predictionsByRoute( routeId ).then(function( results ) {
-    console.log( results );
-    var result = getTripsFromRoute( results );
-    console.log( result );
-    return _.flattenDeep( result );
+    return _.flattenDeep( getTripsFromRoute( results ) );
   });
 }
 
