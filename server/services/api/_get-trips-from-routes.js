@@ -54,14 +54,4 @@ function getTripsFromRoute( route ) {
   });
 }
 
-function getTripsFromRoutes( routes ) {
-  // TODO: This may not need to handle an array anymore, now that each line only
-  // has one route_id in the API and we are treating each green line branch as
-  // a separate line. This ternary workaround should be temporary.
-  _.chain( _.isArray( routes ) ? routes : [ routes ] )
-    .map( getTripsFromRoute )
-    .flattenDeep()
-    .value();
-}
-
-module.exports = getTripsFromRoutes;
+module.exports = getTripsFromRoute;

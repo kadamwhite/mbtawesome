@@ -11,7 +11,7 @@ var api = require( 'mbtapi' ).create({
 });
 
 var validLines = require( '../valid-lines' );
-var getTripsFromRoutes = require( './_get-trips-from-routes' );
+var getTripsFromRoute = require( './_get-trips-from-routes' );
 var batchRequests = require( './_batch-requests' );
 
 // 15 second cache expiry
@@ -57,7 +57,12 @@ function predictionsByLine( lineSlug ) {
 
   var routeId = validLines.format( lineSlug );
 
-  return predictionsByRoute( routeId ).then( getTripsFromRoutes );
+  return predictionsByRoute( routeId ).then(function( results ) {
+    console.log( results );
+    var result = getTripsFromRoute( results );
+    console.log( result );
+    return _.flattenDeep( result );
+  });
 }
 
 /**
@@ -98,17 +103,9 @@ function alertsByLine( lineSlug ) {
   var routeId = validLines.format( lineSlug );
 
   return alertsByRoute( routeId ).then(function( alerts ) {
-    console.log( alerts );
     // Extract alerts object from data (e.g. `{ alerts: [ [Object], [Object] ] }`)
-    return _.chain( alerts.alerts )
-      // Flatten alerts from multiple routes into a single array
-      .flattenDeep()
-      // Remove leftovers from empty alerts arrays
-      .filter()
-      // De-dupe on ID (one alert can affect many lines, and may be returned twice)
-      .unique( 'alert_id' )
-      .value()
-  })
+    return alerts.alerts;
+  });
 }
 
 module.exports = {
