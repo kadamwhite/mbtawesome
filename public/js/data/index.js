@@ -8,7 +8,11 @@ var LinesCollection = require( '../collections/lines' );
 cache.lines = new LinesCollection([
   require( './blue' ),
   require( './orange' ),
-  require( './red' )
+  require( './red' ),
+  require( './green-b' ),
+  require( './green-c' ),
+  require( './green-d' ),
+  require( './green-e' )
 ]);
 
 // Use AmpersandModel as a client-side data store: the penalties of holding

@@ -36,6 +36,7 @@ var stations = [{
 }, {
   name: 'North Station',
   station: 'place-north',
+  transfer: [ 'orange', 'rail' ],
   // position: {
   //   lat: 42.365577,
   //   lon: -71.06129
@@ -52,6 +53,7 @@ var stations = [{
 }, {
   name: 'Haymarket',
   station: 'place-haecl',
+  transfer: [ 'orange' ],
   // position: {
   //   lat: 42.363021,
   //   lon: -71.05829
@@ -68,6 +70,7 @@ var stations = [{
 }, {
   name: 'Park Street',
   station: 'place-pktrm',
+  transfer: [ 'red' ],
   // position: {
   //   lat: 42.35639457,
   //   lon: -71.0624242
@@ -84,6 +87,7 @@ var stations = [{
 }, {
   name: 'Boylston',
   station: 'place-boyls',
+  transfer: [ 'silver' ],
   // position: {
   //   lat: 42.35302,
   //   lon: -71.06459
