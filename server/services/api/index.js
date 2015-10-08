@@ -10,6 +10,7 @@ var api = require( 'mbtapi' ).create({
   apiKey: config.api.key
 });
 
+var validLines = require( '../valid-lines' );
 var getTripsFromRoutes = require( './_get-trips-from-routes' );
 var batchRequests = require( './_batch-requests' );
 
@@ -18,19 +19,6 @@ var shortCache = require( './_short-cache' );
 
 // 2 minute cache expiry
 var longCache = require( './_long-cache' );
-
-// Hard-coded route ID list (saves an otherwise useless DB round-trip)
-var routes = {
-  blue: [ 'Blue' ],
-  orange: [ 'Orange' ],
-  red: [ 'Red' ],
-  green: [
-    'Green-B',
-    'Green-C',
-    'Green-D',
-    'Green-E'
-  ]
-}
 
 /**
  * Get predictions for a specified route from cache, or initiate a new
@@ -55,20 +43,21 @@ function predictionsByRoute( routeId ) {
 /**
  * Get an array of trips operating on a given line
  *
- * @param  {String} lineSlug One of "red," "orange," "blue"
+ * @param  {String} lineSlug One of "red," "orange," "blue", or "green-[bcde]"
  * @return {Promise}         A promise that resolves to an array of trips
  */
 function predictionsByLine( lineSlug ) {
-  var routeIds = routes[ lineSlug ];
   var errorMessage;
 
-  if ( ! routeIds ) {
+  if ( validLines.invalid( lineSlug ) ) {
     // Fail out
     errorMessage = 'No routes available for the provided line (' + lineSlug + ')';
     return Promise.reject( new Error( errorMessage ) );
   }
 
-  return batchRequests( routeIds, predictionsByRoute ).then( getTripsFromRoutes );
+  var routeId = validLines.format( lineSlug );
+
+  return predictionsByRoute( routeId ).then( getTripsFromRoutes );
 }
 
 /**
@@ -94,23 +83,24 @@ function alertsByRoute( routeId ) {
  * Get an array of alerts active for a given line
  *
  * @method alertsByLine
- * @param  {String} lineSlug One of "red", "orange," or "blue"
+ * @param  {String} lineSlug One of "red", "orange", "blue", or "green-[bcde]"
  * @return {Promise}         A promise that resolves to an array of trips
  */
 function alertsByLine( lineSlug ) {
-  var routeIds = routes[ lineSlug ];
   var errorMessage;
 
-  if ( ! routeIds ) {
+  if ( validLines.invalid( lineSlug ) ) {
     // Fail out
     errorMessage = 'No routes available for the provided line (' + lineSlug + ')';
     return Promise.reject( new Error( errorMessage ) );
   }
 
-  return batchRequests( routeIds, alertsByRoute ).then(function( alerts ) {
-    return _.chain( alerts )
-      // Extract alerts object from data (e.g. `[ { alerts: [ [Object], [Object] ] } ]`)
-      .pluck( 'alerts' )
+  var routeId = validLines.format( lineSlug );
+
+  return alertsByRoute( routeId ).then(function( alerts ) {
+    console.log( alerts );
+    // Extract alerts object from data (e.g. `{ alerts: [ [Object], [Object] ] }`)
+    return _.chain( alerts.alerts )
       // Flatten alerts from multiple routes into a single array
       .flattenDeep()
       // Remove leftovers from empty alerts arrays

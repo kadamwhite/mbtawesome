@@ -7,13 +7,13 @@ var Promise = require( 'bluebird' );
 
 var pageTitle = require( '../services/page-title' );
 var mbtapi = require( '../services/api' );
+var validLines = require( '../services/valid-lines' );
 
 function stationDetailRoute( req, res, next ) {
   var line = req.params.line;
 
   // 404 early if we're not requesting a "valid" line
-  // (Green gets its own template, because it is SO AWESOME)
-  if ( [ 'red', 'orange', 'blue' ].indexOf( line ) < 0 ) {
+  if ( validLines.invalid( line ) ) {
     return next();
   }
   // 404 client-side if the station doesn't find a match
