@@ -48,7 +48,9 @@
     "minimist": "^1.2.0",
     "mocha": "^2.3.2",
     "proxyquire": "^1.7.2",
-    "replay": "^2.0.6"
+    "replay": "^2.0.6",
+    "sinon": "^1.17.1",
+    "sinon-chai": "^2.8.0"
   },
   "dependencies": {
     "ampersand-collection": "^1.5.0",
