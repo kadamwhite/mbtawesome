@@ -24,18 +24,20 @@ module.exports = {
 
   enter: function( opts ) {
     var lineSlug = opts.param.line;
+    // Green line data comes in unified blob, so for "green-X" get just "green"
+    var shortSlug = lineSlug.split( '-' )[ 0 ];
 
     // Look up the data with the line slug route parameter
     var line = _.findWhere( data.lines.models, {
       slug: lineSlug
     });
 
-    var trips = data.predictions.get( lineSlug );
+    var trips = data.predictions.get( shortSlug );
     if ( ! trips ) {
       trips = new TripsCollection([], {
-        line: lineSlug
+        line: shortSlug
       });
-      data.predictions.set( lineSlug, trips );
+      data.predictions.set( shortSlug, trips );
     }
 
     var alerts = data.alerts.get( lineSlug );

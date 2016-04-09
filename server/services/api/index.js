@@ -41,6 +41,26 @@ function predictionsByRoute( routeId ) {
 }
 
 /**
+ * Get predictions for a set of routes from cache, or initiate a new API request
+ * to retrieve updated prediction data
+ *
+ * @private
+ * @param  {String[]} routeIds An array of MBTA API unique route_id string
+ * @return {Promise}           A promise that will resolve to the route data
+ */
+function predictionsByRoutes( routeId ) {
+  var cacheKey = 'predictions-' + routeId.join( ',' );
+  var routePredictionsPromise = shortCache.get( cacheKey );
+
+  if ( ! routePredictionsPromise ) {
+    routePredictionsPromise = api.predictionsByRoutes( routeId );
+    shortCache.set( cacheKey, routePredictionsPromise );
+  }
+
+  return routePredictionsPromise;
+}
+
+/**
  * Get an array of trips operating on a given line
  *
  * @param  {String} lineSlug One of "red," "orange," "blue", or "green-[bcde]"
@@ -55,9 +75,28 @@ function predictionsByLine( lineSlug ) {
     return Promise.reject( new Error( errorMessage ) );
   }
 
+  if ( lineSlug === 'green' ) {
+    console.log('foo');
+    return predictionsByRoutes( validLines.greenLineRoutes ).then(function( results ) {
+      // "route_type": "0",
+      //   "mode_name": "Subway",
+      //   "route": [{
+      //     "route_id": "Green-B",
+      //     "route_name": "Green Line B",
+      //     "direction": [
+      return _.flattenDeep( results.mode[0].route.map( getTripsFromRoute ) );
+    }).catch(function(err) {
+      console.error(err);
+    });
+  }
+
   var routeId = validLines.format( lineSlug );
 
   return predictionsByRoute( routeId ).then(function( results ) {
+    // [{
+    //   "route_id": "Green-B",
+    //   "route_name": "Green Line B",
+    //   "direction": [
     return _.flattenDeep( getTripsFromRoute( results ) );
   });
 }

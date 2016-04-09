@@ -23,6 +23,8 @@ module.exports = {
   enter: function( opts ) {
     /* jshint validthis: true */
     var lineSlug = opts.param.line;
+    // Green line data comes in unified blob, so for "green-X" get just "green"
+    var shortSlug = lineSlug.split( '-' )[ 0 ];
     var parentStation = opts.param.station;
 
     // Look up the data with the line slug route parameter
@@ -39,12 +41,13 @@ module.exports = {
       });
     }
 
-    var trips = data.predictions.get( lineSlug );
+    // Green line data comes in unified blob, so for "green-X" get just "green"
+    var trips = data.predictions.get( shortSlug );
     if ( ! trips ) {
       trips = new TripsCollection([], {
-        line: lineSlug
+        line: shortSlug
       });
-      data.predictions.set( lineSlug, trips );
+      data.predictions.set( shortSlug, trips );
     }
 
     var view = new StationDetailView({

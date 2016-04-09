@@ -11,7 +11,7 @@ var mbtapi = require( '../services/api' );
 function lineOverviewRoute( req, res, next ) {
 
   // Prime API cache
-  mbtapi.alertsByLine( 'green' );
+  mbtapi.predictionsByLine( 'green' );
 
   // Determine the title
   var title = pageTitle([

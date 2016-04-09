@@ -18,6 +18,7 @@ function lineOverviewRoute( req, res, next ) {
   }
 
   // Prime API cache
+  mbtapi.alertsByLine( line );
   mbtapi.predictionsByLine( line );
 
   // Determine the title

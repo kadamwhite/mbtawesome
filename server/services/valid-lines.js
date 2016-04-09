@@ -13,6 +13,7 @@ var validLines = [
   'blue',
   'orange',
   'red',
+  'green',
   'green-b',
   'green-c',
   'green-d',
@@ -46,6 +47,7 @@ function format( routeId ) {
 
 module.exports = {
   list: validLines,
+  greenLineRoutes: [ 'Green-B', 'Green-C', 'Green-D', 'Green-E' ],
   invalid: invalid,
   format: format
 };
