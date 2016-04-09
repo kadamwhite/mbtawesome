@@ -42,6 +42,15 @@
         </td>
       </tr>
       {%endif %}
+    {%elsif not loaded %}
+      <tr>
+        <td colspan="2">
+          <div class="loading-spinner inline">
+            <div class="rotating-plane small-spinner"></div>
+          </div>
+          <em>Loading &hellip;</em>
+        </td>
+      </tr>
     {%else %}
       <tr>
         <td colspan="2">

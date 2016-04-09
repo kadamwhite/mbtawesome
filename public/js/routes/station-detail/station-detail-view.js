@@ -79,6 +79,9 @@ var StationDetailView = View.extend({
           };
         });
 
+        // Pass through the "loaded" flag from the trips collection for UI state
+        var loaded = this.trips.loaded;
+
         // JFK UMass has two platforms, one for Braintree service and one for
         // Ashmont service: to properly account for these, we need to do one
         // final grouping and mapping action to merge the trip lists for
@@ -89,7 +92,8 @@ var StationDetailView = View.extend({
           return {
             dir: direction.dir,
             name: direction.name,
-            trips: tripsForDirection
+            trips: tripsForDirection,
+            loaded: loaded
           };
         });
 
@@ -113,7 +117,6 @@ var StationDetailView = View.extend({
    */
   _triggerPredictionsChange: function() {
     this.trigger( 'change:trips' );
-    window.tbd = this.tripsByDirection;
   },
 
   render: function() {

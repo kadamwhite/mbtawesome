@@ -18,6 +18,12 @@ var PredictionsListView = jQueryView.extend({
         return this.model.name;
       }
     },
+    loaded: {
+      deps: [ 'model.loaded' ],
+      fn: function() {
+        return this.model.loaded;
+      }
+    },
     trips: {
       deps: [ 'model.trips' ],
       fn: function() {

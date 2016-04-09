@@ -76,7 +76,6 @@ function predictionsByLine( lineSlug ) {
   }
 
   if ( lineSlug === 'green' ) {
-    console.log('foo');
     return predictionsByRoutes( validLines.greenLineRoutes ).then(function( results ) {
       // "route_type": "0",
       //   "mode_name": "Subway",

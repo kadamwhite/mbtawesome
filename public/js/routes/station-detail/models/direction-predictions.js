@@ -10,6 +10,11 @@ var DirectionPredictionsModel = Model.extend({
      */
     name: 'string',
     /**
+     * Whether this trips collection has loaded
+     * @property {Boolean} loaded
+     */
+    loaded: 'boolean',
+    /**
      * The trips going in this direction for which we have predictions
      * @property {Array} trips
      */
