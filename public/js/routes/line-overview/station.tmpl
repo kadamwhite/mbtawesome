@@ -7,7 +7,7 @@
     </span>
     {%endeach %}
   </div>
-  <h2 class="button{%each station.transfer as transfer %} xfer-{{ transfer }}{%endeach %}">
+  <h2 class="button{%each station.transfer as transfer %} xfer-{{ transfer | get-color }}{%endeach %}">
     <a href="/{{ line.slug }}/{{ station.station }}">
       {{ station.name }}
     </a>
