@@ -196,6 +196,24 @@ coloring( $color ) {
   }
 }
 
+// Green line custom half-width buttons
+
+.half-columns {
+  +respond-below($md-screen) {
+    .columns {
+      width: 48%;
+      clear: right;
+      &:nth-of-type(2n) {
+        float: right;
+      }
+
+      +respond-above($sm-screen) {
+        margin: 0 0 1em 0;
+      }
+    }
+  }
+}
+
 .station,
 .line {
   list-style-type: none;
