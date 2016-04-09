@@ -117,7 +117,7 @@ var stations = [{
 }, {
   name: 'Park Street',
   station: 'place-pktrm',
-  transfer: [ 'green' ],
+  transfer: [ 'green-b' ],
   // position: {
   //   lat: 42.3564,
   //   lon: -71.0624

@@ -101,7 +101,7 @@ var stations = [{
 }, {
   name: 'North Station',
   station: 'place-north',
-  transfer: [ 'green', 'rail' ],
+  transfer: [ 'green-c', 'rail' ],
   // position: {
   //   lat: 42.3656,
   //   lon: -71.0613
@@ -118,7 +118,7 @@ var stations = [{
 }, {
   name: 'Haymarket',
   station: 'place-haecl',
-  transfer: [ 'green' ],
+  transfer: [ 'green-c' ],
   // position: {
   //   lat: 42.363,
   //   lon: -71.0583
