@@ -2,6 +2,23 @@
 'use strict';
 
 var stations = [{
+  name: 'Government Center',
+  station: 'place-gover',
+  transfer: [ 'blue' ],
+  // position: {
+  //   lat: 42.359705,
+  //   lon: -71.059215
+  // },
+  stops: [{
+    dir: 0,
+    dirName: 'Westbound',
+    id: '70202'
+  }, {
+    dir: 1,
+    dirName: 'Eastbound',
+    id: '70201'
+  }]
+}, {
   name: 'Park Street',
   station: 'place-pktrm',
   transfer: [ 'red' ],

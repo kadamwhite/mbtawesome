@@ -163,6 +163,23 @@ var stations = [{
     id: '70042'
   }]
 }, {
+  name: 'Government Center',
+  station: 'place-gover',
+  transfer: [ 'green-b' ],
+  // position: {
+  //   lat: 42.359705,
+  //   lon: -71.059215
+  // },
+  stops: [{
+    dir: 0,
+    dirName: 'Westbound',
+    id: '70039'
+  }, {
+    dir: 1,
+    dirName: 'Eastbound',
+    id: '70040'
+  }]
+}, {
   name: 'Bowdoin',
   station: 'place-bomnl',
   // position: {

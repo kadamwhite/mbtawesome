@@ -2,38 +2,21 @@
 'use strict';
 
 var stations = [{
-  name: 'North Station',
-  station: 'place-north',
-  transfer: [ 'orange', 'rail' ],
+  name: 'Government Center',
+  station: 'place-gover',
+  transfer: [ 'blue' ],
   // position: {
-  //   lat: 42.365577,
-  //   lon: -71.06129
+  //   lat: 42.359705,
+  //   lon: -71.059215
   // },
   stops: [{
     dir: 0,
     dirName: 'Westbound',
-    id: '70206'
+    id: '70202'
   }, {
     dir: 1,
     dirName: 'Eastbound',
-    id: '70205'
-  }]
-}, {
-  name: 'Haymarket',
-  station: 'place-haecl',
-  transfer: [ 'orange' ],
-  // position: {
-  //   lat: 42.363021,
-  //   lon: -71.05829
-  // },
-  stops: [{
-    dir: 0,
-    dirName: 'Westbound',
-    id: '70204'
-  }, {
-    dir: 1,
-    dirName: 'Eastbound',
-    id: '70203'
+    id: '70201'
   }]
 }, {
   name: 'Park Street',

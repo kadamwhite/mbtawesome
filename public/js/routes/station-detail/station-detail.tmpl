@@ -16,10 +16,10 @@
     {%if transfer | supported-line %}
     <a href="/{{ transfer | transfer-station station.station }}">
     {%endif %}
-    <span class="xfer-icon xfer-{{ transfer }}" title="{{ transfer | capitalize }} Line">
-      <span class="sr">{{ transfer | capitalize }} Line</span>
+    <span class="xfer-icon xfer-{{ transfer | get-color }}" title="{{ transfer | get-color | capitalize }} Line">
+      <span class="sr">{{ transfer | get-color | capitalize }} Line</span>
     </span>
-    {%if transfer | supported-line %}
+    {%if transfer | get-color | supported-line %}
     </a>
     {%endif %}
     {%endeach %}
