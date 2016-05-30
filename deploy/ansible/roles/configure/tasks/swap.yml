@@ -1,0 +1,21 @@
+# Ensure machine has ample swap space to handle things like npm install
+# when system resources are low.
+
+- name: ensure swap space exists
+  command: dd if=/dev/zero of=/extraswap bs=1M count=1024
+  when: ansible_swaptotal_mb < 1
+
+- name: ensure swap space is set up
+  command: mkswap /extraswap
+  when: ansible_swaptotal_mb < 1
+
+- name: ensure swap will be mounted automatically
+  action: lineinfile dest=/etc/fstab regexp="extraswap" line="/extraswap none swap sw 0 0" state=present
+
+- name: ensure swap is on
+  command: swapon -a
+
+- name: ensure swapiness is set
+  sysctl:
+    name: vm.swappiness
+    value: "1"

@@ -20,9 +20,6 @@ public/css
 public/js/app.min.js
 public/js/app.min.map
 
-# App-specific configuration
-config.yml
-
 # File used for authoring WIP test suites during development
 test.js
 
@@ -32,3 +29,9 @@ logs/
 
 # Discify analyzer for browserify bundle
 disc.html
+
+# Exclude terraform backup files
+*.tfstate.backup
+
+# Exclude vagrant data
+.vagrant

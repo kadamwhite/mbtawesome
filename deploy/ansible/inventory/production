@@ -1,0 +1,4 @@
+# Specify your production app server here. This should match the ansible
+# group_vars/all site_fqdn setting.
+
+mbtawesome.com ansible_ssh_host=107.170.28.199 ansible_ssh_user=root
