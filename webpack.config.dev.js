@@ -4,6 +4,9 @@ const findCacheDir = require('find-cache-dir');
 const objectHash = require('node-object-hash');
 
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const VisualizerPlugin = require('webpack-visualizer-plugin');
+
 
 const hardSourceCacheDir = findCacheDir({
   // Render into node_modules/.cache/hard-source/[confighash]/...
@@ -16,24 +19,14 @@ module.exports = {
   context: resolve(__dirname, 'public'),
 
   entry: {
-    // dependencies: [
-    //   // bundle the client for webpack-dev-server
-    //   // and connect to the provided endpoint
-    //   'webpack-dev-server/client?http://localhost:8080',
-
-    //   // bundle the client for hot reloading
-    //   // only- means to only hot reload for successful updates
-    //   'webpack/hot/only-dev-server',
-    // ],
     app: './js/client.js',
-    // css: './stylus/app.styl'
   },
 
   output: {
     // the output bundle
     filename: '[name].min.js',
 
-    path: resolve(__dirname, 'public/js'),
+    path: resolve(__dirname, 'public'),
 
     // necessary for HMR to know where to load the hot update chunks
     publicPath: '/',
@@ -68,39 +61,42 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
-      // {
-      //   test: /\.styl$/,
-      //   use: [
-      //     'style-loader',
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         modules: true,
-      //         sourceMap: true,
-      //         localIdentName: '[path][name]--[local]--[hash:base64:5]',
-      //       },
-      //     },
-      //     {
-      //       loader: 'postcss-loader',
-      //       // See postcss.config.js for other options
-      //       options: {
-      //         sourceMap: true,
-      //       },
-      //     },
-      //     'stylus-loader',
-      //   ],
-      // },
-      // {
-      //   test: /\.(png|svg|jpg|gif)$/,
-      //   use: [
-      //     {
-      //       loader: 'url-loader',
-      //       options: {
-      //         limit: 10000,
-      //       },
-      //     },
-      //   ],
-      // },
+      {
+        test: /\.styl$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: false,
+                sourceMap: true,
+                minimize: true,
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              // See postcss.config.js for other options
+              options: {
+                sourceMap: true,
+              },
+            },
+            'stylus-loader',
+          ],
+        }),
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'raw-loader',
+          // {
+          //   loader: 'url-loader',
+          //   options: {
+          //     limit: 10000,
+          //   },
+          // },
+        ],
+      },
     ],
   },
 
@@ -122,16 +118,22 @@ module.exports = {
       configHash: webpackConfig => objectHash().hash(webpackConfig),
     }),
 
-    // // Minify with UglifyJS
-    // new webpack.optimize.UglifyJsPlugin({
-    //   sourceMap: true,
-    //   compress: {
-    //     warnings: false,
-    //   },
-    // }),
+    // Extract CSS file
+    new ExtractTextPlugin('[name].min.css'),
 
-    // // Webpack 3 Scope Hoisting optimization
-    // new webpack.optimize.ModuleConcatenationPlugin(),
+    // Minify with UglifyJS
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false,
+      },
+    }),
+
+    // Webpack 3 Scope Hoisting optimization
+    new webpack.optimize.ModuleConcatenationPlugin(),
+
+    // Easily visualize bundle stats (output at public/stats.html)
+    new VisualizerPlugin(),
   ],
 
 };

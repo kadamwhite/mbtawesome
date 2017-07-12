@@ -48,7 +48,7 @@ if ( ! PROD_MODE ) {
   // Support stylus
   app.use( stylus.middleware({
     src: path.join( __dirname, 'public/stylus' ),
-    dest: path.join( __dirname, 'public/css' ),
+    dest: path.join( __dirname, 'public' ),
     compile: function compileStylus( str, path ) {
       return stylus( str )
         .set( 'filename', path )
@@ -58,7 +58,7 @@ if ( ! PROD_MODE ) {
   }) );
 
   // Bundle and serve first-party application code
-  app.get( '/js/app.js', browserify( './public/js/client.js', {
+  app.get( '/app.js', browserify( './public/js/client.js', {
     debug: true
   }));
 }

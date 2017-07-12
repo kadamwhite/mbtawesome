@@ -11,7 +11,7 @@
     <link rel="icon" sizes="192x192" href="/images/touch-icon.png">
     <link rel="apple-touch-icon" href="/images/touch-icon.png">
 
-    <link rel="stylesheet" href="/css/app{{ '.min' | if-prod }}.css" />
+    <link rel="stylesheet" href="/app{{ '.min' | if-prod }}.css" />
   </head>
   <body>
     <nav class="top-nav">
@@ -36,7 +36,7 @@
       </p>
     </div>
 
-    <script async src="/js/app{{ '.min' | if-prod }}.js"></script>
+    <script async src="/app{{ '.min' | if-prod }}.js"></script>
     {%partial partials/analytics %}
   </body>
 </html>

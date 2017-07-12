@@ -1,5 +1,7 @@
 'use strict';
 
+require('../stylus/app.styl');
+
 // Navigation
 // ==============================================
 require( './router' ).start({

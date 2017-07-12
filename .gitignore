@@ -10,15 +10,15 @@ public/js/vendor/**/.gitignore
 public/js/vendor/**/.npmignore
 public/js/vendor/**/CNAME
 public/js/vendor/**/LICENSE
+
 # Exclude jQuery source files
 public/js/vendor/jquery/src
+
 # Exclude underscore entirely (in favor of lodash)
 public/js/vendor/underscore
 
 # Server-Compiled Assets
-public/css
-public/js/app.min.js
-public/js/app.min.map
+public/app.*
 
 # App-specific configuration
 config.yml
@@ -30,5 +30,6 @@ test.js
 logs/
 *.log
 
-# Discify analyzer for browserify bundle
+# Discify analyzer for webpack bundle
 disc.html
+stats.html

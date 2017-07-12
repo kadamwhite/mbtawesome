@@ -3,7 +3,6 @@
 var bind = require( 'lodash.bind' );
 var View = require( 'ampersand-view' );
 var indexTemplate = require( './index.tmpl' );
-console.log(indexTemplate);
 
 var IndexView = View.extend({
 
