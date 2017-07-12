@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const findCacheDir = require('find-cache-dir');
 const objectHash = require('node-object-hash');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 const hardSourceCacheDir = findCacheDir({
@@ -27,14 +26,14 @@ module.exports = {
     //   'webpack/hot/only-dev-server',
     // ],
     app: './js/client.js',
-    css: './stylus/app.styl'
+    // css: './stylus/app.styl'
   },
 
   output: {
     // the output bundle
-    filename: '[name].js',
+    filename: '[name].min.js',
 
-    path: resolve(__dirname, 'public'),
+    path: resolve(__dirname, 'public/js'),
 
     // necessary for HMR to know where to load the hot update chunks
     publicPath: '/',
@@ -42,92 +41,75 @@ module.exports = {
 
   module: {
     rules: [
+      // {
+      //   test: /\.js?$/,
+      //   use: [
+      //     // Check code for lint errors as it is consumed
+      //     {
+      //       loader: 'eslint-loader',
+      //       options: {
+      //         // emit all errors as warnings: this lets us see all issues in the
+      //         // dev console, but the presence of errors will not block rebuilds
+      //         emitWarning: true,
+      //       },
+      //     },
+      //   ],
+      //   exclude: /node_modules/,
+      // },
       {
-        test: /\.jsx?$/,
+        test: /\.tmpl$/,
         use: [
           {
-            loader: 'babel-loader',
+            loader: 'combyne-loader',
             options: {
-              // This is a feature of `babel-loader` for webpack (not Babel itself).
-              // It enables caching results in ./node_modules/.cache/react-scripts/
-              // directory for faster rebuilds. We use findCacheDir() because of:
-              // https://github.com/facebookincubator/create-react-app/issues/483
-              cacheDirectory: findCacheDir({
-                name: 'react-scripts',
-              }),
-            },
-          },
-          // Before running code through babel, check it for lint errors
-          {
-            loader: 'eslint-loader',
-            options: {
-              // emit all errors as warnings: this lets us see all issues in the
-              // dev console, but the presence of errors will not block rebuilds
-              emitWarning: true,
+              root: resolve(__dirname, 'views'),
             },
           },
         ],
         exclude: /node_modules/,
       },
-      {
-        test: /\.styl$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              sourceMap: true,
-              localIdentName: '[path][name]--[local]--[hash:base64:5]',
-            },
-          },
-          {
-            loader: 'postcss-loader',
-            // See postcss.config.js for other options
-            options: {
-              sourceMap: true,
-            },
-          },
-          'stylus-loader',
-        ],
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-            },
-          },
-        ],
-      },
+      // {
+      //   test: /\.styl$/,
+      //   use: [
+      //     'style-loader',
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         modules: true,
+      //         sourceMap: true,
+      //         localIdentName: '[path][name]--[local]--[hash:base64:5]',
+      //       },
+      //     },
+      //     {
+      //       loader: 'postcss-loader',
+      //       // See postcss.config.js for other options
+      //       options: {
+      //         sourceMap: true,
+      //       },
+      //     },
+      //     'stylus-loader',
+      //   ],
+      // },
+      // {
+      //   test: /\.(png|svg|jpg|gif)$/,
+      //   use: [
+      //     {
+      //       loader: 'url-loader',
+      //       options: {
+      //         limit: 10000,
+      //       },
+      //     },
+      //   ],
+      // },
     ],
   },
 
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
-
   plugins: [
-    // enable HMR globally
-    new webpack.HotModuleReplacementPlugin(),
+    // // enable HMR globally
+    // new webpack.HotModuleReplacementPlugin(),
 
     // prints more readable module names in the browser console on HMR updates
     new webpack.NamedModulesPlugin(),
-
-    // Inject generated scripts into the src/index.html template
-    new HtmlWebpackPlugin({
-      template: './index.html',
-    }),
-
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'dependencies',
-      filename: 'dependencies.js',
-
-      // (with more entries, this ensures that no other module goes into the vendor chunk)
-      minChunks: Infinity,
-    }),
 
     // Use hard source caching for faster rebuilds
     new HardSourceWebpackPlugin({
@@ -139,6 +121,17 @@ module.exports = {
       // replaced if [confighash] does not appear in cacheDirectory.
       configHash: webpackConfig => objectHash().hash(webpackConfig),
     }),
+
+    // // Minify with UglifyJS
+    // new webpack.optimize.UglifyJsPlugin({
+    //   sourceMap: true,
+    //   compress: {
+    //     warnings: false,
+    //   },
+    // }),
+
+    // // Webpack 3 Scope Hoisting optimization
+    // new webpack.optimize.ModuleConcatenationPlugin(),
   ],
 
 };
