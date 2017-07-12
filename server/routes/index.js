@@ -8,6 +8,7 @@ router.get( '/about', require( './about' ) );
 router.get( '/green', require( './green-line' ) );
 router.get( '/:line', require( './line-overview' ) );
 router.get( '/:line/:station', require( './station-detail' ) );
+router.get( '/:departure-boards', require( './departure-boards' ) );
 
 // Handle 404's
 

@@ -27,4 +27,14 @@ router.get( '/lines/:line/alerts', function( req, res ) {
   });
 });
 
+router.get( '/departure-board', function( req, res ) {
+  mbtapi.departureBoard().then(function( csv ) {
+    res.setHeader( 'Cache-Control', 'public, max-age=15' );
+    res.status( 200 ).send( csv );
+  }).catch(function( err ) {
+    console.error( err );
+    res.status( 500 ).json( err.message );
+  });
+});
+
 module.exports = router;

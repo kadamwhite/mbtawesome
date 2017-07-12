@@ -58,9 +58,13 @@ if ( ! PROD_MODE ) {
   }) );
 
   // Bundle and serve first-party application code
-  app.get( '/js/app.js', browserify( './public/js/client.js', {
-    debug: true
-  }));
+  function serveBrowserifyBundle( srcUrl, destUrl ) {
+    app.get( srcUrl, browserify( destUrl, {
+      debug: true
+    }));
+  }
+  serveBrowserifyBundle( '/js/app.js', './public/js/client.js' );
+  serveBrowserifyBundle( '/js/departure-board.js', './public/js/departure-board.js' );
 }
 
 // Other middleware & static assets

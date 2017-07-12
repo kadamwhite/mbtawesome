@@ -10,6 +10,8 @@ var api = require( 'mbtapi' ).create({
   apiKey: config.api.key
 });
 
+var restler = require( 'restler' );
+
 var validLines = require( '../valid-lines' );
 var getTripsFromRoute = require( './_get-trips-from-routes' );
 var batchRequests = require( './_batch-requests' );
@@ -143,7 +145,34 @@ function alertsByLine( lineSlug ) {
   });
 }
 
+/**
+ * Get the CSV departure board file from the GTFS feed
+ *
+ * @method departureBoard
+ * @return {Promise} A promise resolving to the returned CSV file
+ */
+function departureBoard() {
+  var cacheKey = 'departure-board';
+  var departureBoardPromise = shortCache.get( cacheKey );
+
+  if ( ! departureBoardPromise ) {
+    departureBoardPromise = new Promise(function( resolve, reject ) {
+      restler.get( 'http://developer.mbta.com/lib/gtrtfs/Departures.csv' )
+        .on( 'success', resolve )
+        .on( 'error', reject )
+        .on( 'fail', reject )
+        .on( 'timeout', reject );
+    });
+    shortCache.set( cacheKey, departureBoardPromise );
+  }
+
+
+
+  return departureBoardPromise;
+}
+
 module.exports = {
   predictionsByLine: predictionsByLine,
-  alertsByLine: alertsByLine
+  alertsByLine: alertsByLine,
+  departureBoard: departureBoard
 };
